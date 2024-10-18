@@ -44,7 +44,7 @@ If you would like to receive feedback on your presentation after the session, pl
 ::: callout-tip
 ## Important information, tasks & deadlines
 
--   ℹ️ You will be graded based on your individual contribution, so please clarify which slides are presented by whom (e.g., by adding the initials of the presenting individual in the footnote of the slide).
+-   💡 You will be graded based on your individual contribution, so please clarify which slides are presented by whom (e.g., by adding the initials of the presenting individual in the footnote of the slide).
 -   ⏰ *One week before your presentation:* feedback meeting to discuss the presentation draft during the office hours. Please arrange an alternative date in good time if you are unable to attend the scheduled feedback meeting.
 -   ⏰ *At the latest at 12:00 the day before the feedback meeting:* Send the first complete draft of the presentation slides by e-mail to [christoph.](mailto:christoph.adrian@fau.de?subject=Entwurf%20Präsentation%20DBD)[adrian](mailto:christoph.adrian@fau.de?subject=Draft%20Presentation%20DBD)[\@fau.de](mailto:christoph.adrian@fau.de?subject=Entwurf%20Präsentation%20DBD)
 -   ⏰ *Until 09:00 of the day of the presentation:* Send the final draft of the presentation by e-mail to [christoph.adrian\@fau.de](mailto:christoph.adrian@fau.de?subject=Presentation%20DBD)
@@ -84,8 +84,8 @@ These presentations are the basis for the peer review and the final written repo
 ::: callout-tip
 ## Important information, tasks & deadlines
 
--   ℹ️ You will be graded as a group (unless explicitly requested otherwise). Not every group member has to present, but all group members should contribute and be able to answer questions about the project.
--   ℹ️ The presentations will be the basis for the Peer Review assignment. In order to simplify the process, please use the Google-Slide template provided to your group.
+-   💡 You will be graded as a group (unless explicitly requested otherwise). Not every group member has to present, but all group members should contribute and be able to answer questions about the project.
+-   💡 The presentations will be the basis for the [Peer Review](#sec-peer-review) assignment. In order to simplify the process, please use the Google-Slide template provided to your group.
 -   ⏰ *Until the 15.01.2025:* Finalize the presentation (Goolge Slides). On the 16.01., the presentation will be changed to non-editable and make available for peer review. After the peer-review process, the presentation will be "unlocked" and you can make changes again.
 :::
 
@@ -120,7 +120,7 @@ During the peer review process, you will be provided with
 ::: callout-tip
 ## Important tasks & deadlines
 
--   ℹ️ The peer review will be graded on the extent to which it comprehensively and constructively addresses the components of the other groups presentation: the research context and motivation, data analysis, modeling, interpretations, and conclusions.
+-   💡 The peer review will be graded on the extent to which it comprehensively and constructively addresses the components of the other groups presentation: the research context and motivation, data analysis, modeling, interpretations, and conclusions.
 -   ⏰ *Between 15.01. and 22.01*: Fill out the peer review form for the two assigned groups.
 :::
 
