@@ -37,20 +37,20 @@ website:
     #   href: http://10.204.20.178/
     #   text: DBD 4CAT-Server
     
-    # style: "floating"
-    # search: true
-    # collapse-level: 1
-    # contents: 
-    #   - section: "Course information"
-    #     contents:
-    #       - href: course-syllabus.qmd
-    #         text: Syllabus
-    #       - href: course-assignments.qmd
-    #         text: Assignments
-    #       - href: index.qmd
-    #         text: Schedule
-    #       - href: course-team.qmd
-    #         text: Teaching team
+    style: "floating"
+    search: true
+    collapse-level: 1
+    contents: 
+      - section: "Course information"
+        contents:
+          - href: course-syllabus.qmd
+            text: Syllabus
+          - href: course-assignments.qmd
+            text: Assignments
+          - href: index.qmd
+            text: Schedule
+          - href: course-team.qmd
+            text: Teaching team
 
 
     #   - section: "Sessions"
