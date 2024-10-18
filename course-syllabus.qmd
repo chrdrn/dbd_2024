@@ -53,12 +53,10 @@ All slides, assignment instructions, an up-to-date schedule, and other course ma
 ::: callout-caution
 ## Important information
 
-<!-- TODO Add links to sections in course-assignments -->
-
 -   ⚠️ Please note that this is a provisional timetable which may change, especially after the kick-off meeting and the allocation of topics *(see [Course schedule](index.html) for the latest version).*
 -   All sessions marked with a 🔨 are hands-on sessions actively working with R.
--   All sessions marked with a 📚 are presentation sessions where groups of students will give a detailed presentation *(see [Assignments](course-assignments.html) for more information).*
--   All sessions marked with a 📊 are presentation sessions where groups of students will present the results of their project work *(see [Assignments](course-assignments.html) for more information).*
+-   All sessions marked with a 📚 are presentation sessions where groups of students will give a detailed presentation *(see [Assignments](course-assignments.html#sec-presentation) for more information).*
+-   All sessions marked with a 📊 are presentation sessions where groups of students will present the results of their project work *(see [Assignments](course-assignments.html#sec-research-project-presentation) for more information).*
 :::
 
 <!-- TODO Update schedule, especially block 2 -->
