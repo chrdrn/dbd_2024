@@ -1,0 +1,178 @@
+---
+title: "Syllabus"
+bibliography: references.bib
+csl: apa-cv.csl 
+suppress-bibliography: true
+link-citations: false
+citations-hover: false
+---
+
+## Course information
+
+| First session | Session time              | Location (Room)    |
+|---------------|---------------------------|--------------------|
+| 23.10.2023    | Wednesdays, 13:15 - 14:45 | Findelgasse, 2.024 |
+
+::: callout-important
+## Assignment and course language
+
+-   The course can be held in English or German (incl. presentations, pitches, discussions, etc.), depending on the preferences voiced by the students in the survey before the beginning of the course.
+-   Regardless of the feedback on the course language, the written assignments can be in German or English, depending on what the student/groups prefer.
+:::
+
+## Course description
+
+In this seminar, students are introduced to working with digital behavioral data (DBD). DBD refer to digital traces of human behavior that are knowingly or unknowingly left in online environments (e.g. social media, messengers, entertainment media, or digital collaboration tools). These rich data is increasingly available to social scientific research in the public interest, but can also be used to derive strategic insights for business decisions.
+
+Students learn how to work with DBD alongside the entire research process, from data collection, preprocessing and analysis, to reporting and provision (e.g. via open science tools). Students first get a comprehensive overview of the ways in which DBD can be collected (e.g., API scraping, usage logging, mock-up virtual environments, or data donations), as well as the requirements for data protection, research ethics, and data quality. Afterwards, students practice and apply their newly acquired knowledge in small projects on use cases from media and communication research. In doing so, they learn important computer-based methods with which large digital behavioral data sets (e.g. texts, images, usage behavior logs) can be processed and analyzed. By completing this module, participants will get an up-to-date overview and practical insights into how the potential of observational data (digital traces) can be used to better understand the behavior of media users in digital environments.
+
+## Learning Objectives
+
+Students will
+
+-   overview and understand central opportunities of DBD and accompanying challenges for data collection and preprocessing
+-   evaluate the strengths and weaknesses of different ways of collecting DBD
+-   get to know and understand central requirements for data protection, research ethics, and data quality
+-   get to know and overview key computational social science methods to analyze DBD
+-   practice and apply knowledge on DBD, statistics, and data analysis in small projects of their own
+
+## Recommended prerequisites
+
+-   Interest in social scientific perspectives on media, communication, and digital technologies.
+-   Basic knowledge of working with statistical software such as Stata, R, Python, or SPSS is required.
+-   Students are recommended, but not required, to also visit the lecture *Data Science: Foundations, Tools, Applications in Socio-Economics and Marketing*.
+
+## Organization of the course
+
+Registration for the course takes place via ![](https://www.studon.fau.de/favicon.ico){width="16"} [StudOn](https://www.studon.fau.de/crs5976934.html). There you will receive the first information and instructions. Please make sure that you complete the short survey before the seminar begins.
+
+All slides, assignment instructions, an up-to-date schedule, and other course materials may be found on the [course website](index.html). I will regularly send out course announcements by e-mail, so please make sure to check your mail address associated with ![](https://www.studon.fau.de/favicon.ico){width="16"} StudOn regularly.
+
+## (Preliminary) Schedule
+
+::: callout-caution
+## Important information
+
+<!-- TODO Add links to sections in course-assignments -->
+
+-   ⚠️ Please note that this is a provisional timetable which may change, especially after the kick-off meeting and the allocation of topics *(see [Course schedule](index.html) for the latest version).*
+-   All sessions marked with a 🔨 are hands-on sessions actively working with R.
+-   All sessions marked with a 📚 are presentation sessions where groups of students will give a detailed presentation *(see [Assignments](course-assignments.html) for more information).*
+-   All sessions marked with a 📊 are presentation sessions where groups of students will present the results of their project work *(see [Assignments](course-assignments.html) for more information).*
+:::
+
+<!-- TODO Update schedule, especially block 2 -->
+
+| Session | Datum          | Topic                                        |
+|---------|----------------|----------------------------------------------|
+|         | 📂 **Block 1** | **Introduction**                             |
+| 1       | 23.10.2024     | Kick-Off                                     |
+| 2       | 30.10.2024     | DBD: Introduction & Overview                 |
+| 3       | 06.11.2024     | 🔨 Introduction to working with R            |
+|         | 📂 **Block 2** | **Theoretical foundation**                   |
+| 4       | 13.11.2024     | 📚 Research I                                |
+| 5       | 20.11.2024     | 📚 Research II                               |
+| 6       | 27.11.2024     | 📚 Research III                              |
+|         | 📂 **Block 3** | **Natural language processing**              |
+| 7       | 04.12.2024     | 🔨 Text as data I: Introduction              |
+| 8       | 11.12.2024     | 🔨 Text as data II: Advanced Methods         |
+| 9       | 18.12.2024     | 🔨 Advanced Method I: Topic Modeling         |
+| \-      | \-             | 🎄*Christmas Break (No Lecture)*             |
+| 10      | 08.01.2025     | 🔨 Advanced Method II: Machine Learning      |
+|         | 📂 **Block 5** | **Project Work**                             |
+| 11      | 15.01.2025     | 🔨 Project work                              |
+| 12      | 22.01.2025     | 🔨 Project work                              |
+| 13      | 29.01.2025     | 📊 Project Presentation (I)                  |
+| 14      | 05.02.2025     | 📊 Project Presentation (II) & 🏁 Evaluation |
+
+::: callout-note
+For the latest, more detailed version of the course schedule as well as the linked content of the individual sessions (e.g. slides or literature for the respective presentation), please see [Schedule](index.html).
+:::
+
+The course consists of several blocks:
+
+### Block I: Introduction
+
+The first four sessions form the (theoretical) basis for the course.
+
+-   The kick-off session is mainly for getting to know each other and organizing the course. 
+-   The second session is to give you an extended introduction DBD, including challenges and important frameworks. 
+-   The third session is about practical work with R and RStudio.  
+
+### Block II: Theoretical foundation
+
+The second block will contain the presentations by different groups of students about the research relevant for the course.
+
+<!-- TODO Short description of first presentation session -->
+
+<!-- TODO Short description of second presentation session -->
+
+<!-- TODO Short description of third presentation session -->
+
+### Block III: Natural Language Processing (NLP)
+
+The third block is about working with text data. It is separated into four parts.
+
+-   The first session is an introduction to working with text data.
+-   The second session is about advanced methods for working with text data and introduces the two methods of the next two sessions.
+-   The third session is about topic modeling, a method to extract topics from text data.
+-   The fourth session is about machine learning, a method to classify text data.
+
+### Block IV: Project Work
+
+The last block is about working on your project. The goal is to combine the theoretical and practical knowledge you have gained in the previous sessions and apply it to a research project of your choice. This means you have to find a research question, develop a concept of an analysis, run it, analyze it, and present your results (short presentation and written report).
+
+## Sessions
+
+The goal of the sessions is to be as interactive as possible. In general, the sessions consist of two parts. In the first part (± 30 - 45 minutes) at the beginning of the session, there are usually presentations (including discussion), which are more or less detailed depending on the stage of the project. The second part (± 45 - 60 minutes) consists of a group activity (with concluding discussion), which should either be about deepening the presentation content or about independent work on one's own or the group project.
+
+My role as instructor is to introduce you new tools and techniques, but it is up to you to take them and make use of them. A lot of what you do in this course will involve writing code, and coding is a skill that is best learned by doing. You are expected to bring a laptop to each class so that you can take part in the in-session exercises. Please make sure your laptop is fully charged before you come to class as the number of outlets in the classroom will not be sufficient to accommodate everyone.
+
+### Where to ask questions
+
+-   If you have a question during the lecture, feel free to ask it! There are likely other students with the same question, so by asking you will create a learning opportunity for everyone.
+-   Any general questions about session content, assignments or about the project should be posted into the ![](https://www.studon.fau.de/favicon.ico){width="16"} [StudOn-Forum](https://www.studon.fau.de/frm6070102.html), so that everyone can benefit from the answers. There is a chance another student has already asked a similar question, so please check the other posts before adding a new question. If you know the answer to a question, I encourage you to respond!
+-   E-mails should be reserved for personal matters.
+
+## Assessment
+
+In order to obtain credits and a grade, participants are required to
+
+1.  **attend regularly (at least 80% of the sessions) and participate actively**. A maximum of two sessions can be missed without excuse. Absence in further sessions can only be excused in case of illness (i. e. with a medical certificate).
+2.  **complete various assignments as part of a [portfolio](course-assignments.html#sec-portfolio).** The type and scope of the assignments depends on the number of participants and the project(s). Detailed information can be found in the section [Assignments](course-assignments.html).
+
+## Academic integrity
+
+::: callout-important
+## TL;DR
+
+Do not cheat!
+:::
+
+For general information on formatting, style, citation, appendices, wording of the affidavit, etc., see our [Guide to Academic Writing](https://faucommsci.github.io/wissenschaftliches_arbeiten/leitfaden_book/index.html).
+
+### Policy on sharing and reusing code
+
+I am well aware that a huge volume of code is available on the web to solve any number of problems. Unless I explicitly tell you not to use something, the course's policy is that you may make use of any online resources (e.g. StackOverflow) but you must explicitly cite where you obtained any code you directly use (or use as inspiration). Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism.
+
+### Policy on use of generative artificial intelligence (AI):
+
+You should treat generative AI, such as ChatGPT, the same as other online resources. There are two guiding principles that govern how you can use AI in this course[^1]: (1) Cognitive dimension: Working with AI should not reduce your ability to think clearly. We will practice using AI to facilitate---rather than hinder---learning. (2) Ethical dimension: Students using AI should be transparent about their use and make sure it aligns with academic integrity.
+
+[^1]: These guiding principles are based on [*Course Policies related to ChatGPT and other AI Tools*](https://docs.google.com/document/d/1WpCeTyiWCPQ9MNCsFeKMDQLSTsg1oKfNIH6MzoSFXqQ/preview) developed by Joel Gladd, Ph.D
+
+-   **✅ AI tools for code**: You may make use of the technology for coding examples on assignments; if you do so, you must explicitly cite where you obtained the code. Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism. You may use [these guidelines](https://guides.lib.monash.edu/c.php?g=219786&p=6972087) for citing AI-generated content.
+
+-   **❌ AI tools for narrative**: Unless instructed otherwise, you may not use generative AI to write narrative on assignments. In general, you may use generative AI as a resource as you complete assignments but not to answer the exercises for you. You are ultimately responsible for the work you turn in; it should reflect your understanding of the course content.
+
+## Recommended textbooks
+
+-   @atteveldt2021
+
+-   @engel2021
+
+-   @engel2021a
+
+-   @haim2023
+
+-   @salganik2018
