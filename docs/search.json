@@ -1,0 +1,283 @@
+[
+  {
+    "objectID": "course-syllabus.html",
+    "href": "course-syllabus.html",
+    "title": "Syllabus",
+    "section": "",
+    "text": "First session\nSession time\nLocation (Room)\n\n\n\n\n23.10.2023\nWednesdays, 13:15 - 14:45\nFindelgasse, 2.024\n\n\n\n\n\n\n\n\n\nAssignment and course language\n\n\n\n\nThe course can be held in English or German (incl. presentations, pitches, discussions, etc.), depending on the preferences voiced by the students in the survey before the beginning of the course.\nRegardless of the feedback on the course language, the written assignments can be in German or English, depending on what the student/groups prefer.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#course-information",
+    "href": "course-syllabus.html#course-information",
+    "title": "Syllabus",
+    "section": "",
+    "text": "First session\nSession time\nLocation (Room)\n\n\n\n\n23.10.2023\nWednesdays, 13:15 - 14:45\nFindelgasse, 2.024\n\n\n\n\n\n\n\n\n\nAssignment and course language\n\n\n\n\nThe course can be held in English or German (incl. presentations, pitches, discussions, etc.), depending on the preferences voiced by the students in the survey before the beginning of the course.\nRegardless of the feedback on the course language, the written assignments can be in German or English, depending on what the student/groups prefer.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#course-description",
+    "href": "course-syllabus.html#course-description",
+    "title": "Syllabus",
+    "section": "Course description",
+    "text": "Course description\nIn this seminar, students are introduced to working with digital behavioral data (DBD). DBD refer to digital traces of human behavior that are knowingly or unknowingly left in online environments (e.g. social media, messengers, entertainment media, or digital collaboration tools). These rich data is increasingly available to social scientific research in the public interest, but can also be used to derive strategic insights for business decisions.\nStudents learn how to work with DBD alongside the entire research process, from data collection, preprocessing and analysis, to reporting and provision (e.g. via open science tools). Students first get a comprehensive overview of the ways in which DBD can be collected (e.g., API scraping, usage logging, mock-up virtual environments, or data donations), as well as the requirements for data protection, research ethics, and data quality. Afterwards, students practice and apply their newly acquired knowledge in small projects on use cases from media and communication research. In doing so, they learn important computer-based methods with which large digital behavioral data sets (e.g. texts, images, usage behavior logs) can be processed and analyzed. By completing this module, participants will get an up-to-date overview and practical insights into how the potential of observational data (digital traces) can be used to better understand the behavior of media users in digital environments.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#learning-objectives",
+    "href": "course-syllabus.html#learning-objectives",
+    "title": "Syllabus",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\nStudents will\n\noverview and understand central opportunities of DBD and accompanying challenges for data collection and preprocessing\nevaluate the strengths and weaknesses of different ways of collecting DBD\nget to know and understand central requirements for data protection, research ethics, and data quality\nget to know and overview key computational social science methods to analyze DBD\npractice and apply knowledge on DBD, statistics, and data analysis in small projects of their own",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#recommended-prerequisites",
+    "href": "course-syllabus.html#recommended-prerequisites",
+    "title": "Syllabus",
+    "section": "Recommended prerequisites",
+    "text": "Recommended prerequisites\n\nInterest in social scientific perspectives on media, communication, and digital technologies.\nBasic knowledge of working with statistical software such as Stata, R, Python, or SPSS is required.\nStudents are recommended, but not required, to also visit the lecture Data Science: Foundations, Tools, Applications in Socio-Economics and Marketing.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#organization-of-the-course",
+    "href": "course-syllabus.html#organization-of-the-course",
+    "title": "Syllabus",
+    "section": "Organization of the course",
+    "text": "Organization of the course\nRegistration for the course takes place via  StudOn. There you will receive the first information and instructions. Please make sure that you complete the short survey before the seminar begins.\nAll slides, assignment instructions, an up-to-date schedule, and other course materials may be found on the course website. I will regularly send out course announcements by e-mail, so please make sure to check your mail address associated with  StudOn regularly.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#preliminary-schedule",
+    "href": "course-syllabus.html#preliminary-schedule",
+    "title": "Syllabus",
+    "section": "(Preliminary) Schedule",
+    "text": "(Preliminary) Schedule\n\n\n\n\n\n\nImportant information\n\n\n\n\n\n⚠️ Please note that this is a provisional timetable which may change, especially after the kick-off meeting and the allocation of topics (see Course schedule for the latest version).\nAll sessions marked with a 🔨 are hands-on sessions actively working with R.\nAll sessions marked with a 📚 are presentation sessions where groups of students will give a detailed presentation (see Assignments for more information).\nAll sessions marked with a 📊 are presentation sessions where groups of students will present the results of their project work (see Assignments for more information).\n\n\n\n\n\n\n\n\n\n\n\n\nSession\nDatum\nTopic\n\n\n\n\n\n📂 Block 1\nIntroduction\n\n\n1\n23.10.2024\nKick-Off\n\n\n2\n30.10.2024\nDBD: Introduction & Overview\n\n\n3\n06.11.2024\n🔨 Introduction to working with R\n\n\n\n📂 Block 2\nTheoretical foundation\n\n\n4\n13.11.2024\n📚 Research I\n\n\n5\n20.11.2024\n📚 Research II\n\n\n6\n27.11.2024\n📚 Research III\n\n\n\n📂 Block 3\nNatural language processing\n\n\n7\n04.12.2024\n🔨 Text as data I: Introduction\n\n\n8\n11.12.2024\n🔨 Text as data II: Advanced Methods\n\n\n9\n18.12.2024\n🔨 Advanced Method I: Topic Modeling\n\n\n-\n-\n🎄Christmas Break (No Lecture)\n\n\n10\n08.01.2025\n🔨 Advanced Method II: Machine Learning\n\n\n\n📂 Block 5\nProject Work\n\n\n11\n15.01.2025\n🔨 Project work\n\n\n12\n22.01.2025\n🔨 Project work\n\n\n13\n29.01.2025\n📊 Project Presentation (I)\n\n\n14\n05.02.2025\n📊 Project Presentation (II) & 🏁 Evaluation\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nFor the latest, more detailed version of the course schedule as well as the linked content of the individual sessions (e.g. slides or literature for the respective presentation), please see Schedule.\n\n\nThe course consists of several blocks:\n\nBlock I: Introduction\nThe first four sessions form the (theoretical) basis for the course.\n\nThe kick-off session is mainly for getting to know each other and organizing the course. \nThe second session is to give you an extended introduction DBD, including challenges and important frameworks. \nThe third session is about practical work with R and RStudio.  \n\n\n\nBlock II: Theoretical foundation\nThe second block will contain the presentations by different groups of students about the research relevant for the course.\n\n\n\n\n\nBlock III: Natural Language Processing (NLP)\nThe third block is about working with text data. It is separated into four parts.\n\nThe first session is an introduction to working with text data.\nThe second session is about advanced methods for working with text data and introduces the two methods of the next two sessions.\nThe third session is about topic modeling, a method to extract topics from text data.\nThe fourth session is about machine learning, a method to classify text data.\n\n\n\nBlock IV: Project Work\nThe last block is about working on your project. The goal is to combine the theoretical and practical knowledge you have gained in the previous sessions and apply it to a research project of your choice. This means you have to find a research question, develop a concept of an analysis, run it, analyze it, and present your results (short presentation and written report).",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#sessions",
+    "href": "course-syllabus.html#sessions",
+    "title": "Syllabus",
+    "section": "Sessions",
+    "text": "Sessions\nThe goal of the sessions is to be as interactive as possible. In general, the sessions consist of two parts. In the first part (± 30 - 45 minutes) at the beginning of the session, there are usually presentations (including discussion), which are more or less detailed depending on the stage of the project. The second part (± 45 - 60 minutes) consists of a group activity (with concluding discussion), which should either be about deepening the presentation content or about independent work on one’s own or the group project.\nMy role as instructor is to introduce you new tools and techniques, but it is up to you to take them and make use of them. A lot of what you do in this course will involve writing code, and coding is a skill that is best learned by doing. You are expected to bring a laptop to each class so that you can take part in the in-session exercises. Please make sure your laptop is fully charged before you come to class as the number of outlets in the classroom will not be sufficient to accommodate everyone.\n\nWhere to ask questions\n\nIf you have a question during the lecture, feel free to ask it! There are likely other students with the same question, so by asking you will create a learning opportunity for everyone.\nAny general questions about session content, assignments or about the project should be posted into the  StudOn-Forum, so that everyone can benefit from the answers. There is a chance another student has already asked a similar question, so please check the other posts before adding a new question. If you know the answer to a question, I encourage you to respond!\nE-mails should be reserved for personal matters.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#assessment",
+    "href": "course-syllabus.html#assessment",
+    "title": "Syllabus",
+    "section": "Assessment",
+    "text": "Assessment\nIn order to obtain credits and a grade, participants are required to\n\nattend regularly (at least 80% of the sessions) and participate actively. A maximum of two sessions can be missed without excuse. Absence in further sessions can only be excused in case of illness (i. e. with a medical certificate).\ncomplete various assignments as part of a portfolio. The type and scope of the assignments depends on the number of participants and the project(s). Detailed information can be found in the section Assignments.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#academic-integrity",
+    "href": "course-syllabus.html#academic-integrity",
+    "title": "Syllabus",
+    "section": "Academic integrity",
+    "text": "Academic integrity\n\n\n\n\n\n\nTL;DR\n\n\n\nDo not cheat!\n\n\nFor general information on formatting, style, citation, appendices, wording of the affidavit, etc., see our Guide to Academic Writing.\n\nPolicy on sharing and reusing code\nI am well aware that a huge volume of code is available on the web to solve any number of problems. Unless I explicitly tell you not to use something, the course’s policy is that you may make use of any online resources (e.g. StackOverflow) but you must explicitly cite where you obtained any code you directly use (or use as inspiration). Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism.\n\n\nPolicy on use of generative artificial intelligence (AI):\nYou should treat generative AI, such as ChatGPT, the same as other online resources. There are two guiding principles that govern how you can use AI in this course1: (1) Cognitive dimension: Working with AI should not reduce your ability to think clearly. We will practice using AI to facilitate—rather than hinder—learning. (2) Ethical dimension: Students using AI should be transparent about their use and make sure it aligns with academic integrity.\n\n✅ AI tools for code: You may make use of the technology for coding examples on assignments; if you do so, you must explicitly cite where you obtained the code. Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism. You may use these guidelines for citing AI-generated content.\n❌ AI tools for narrative: Unless instructed otherwise, you may not use generative AI to write narrative on assignments. In general, you may use generative AI as a resource as you complete assignments but not to answer the exercises for you. You are ultimately responsible for the work you turn in; it should reflect your understanding of the course content.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#recommended-textbooks",
+    "href": "course-syllabus.html#recommended-textbooks",
+    "title": "Syllabus",
+    "section": "Recommended textbooks",
+    "text": "Recommended textbooks\n\nAtteveldt, W. van, Trilling, D., & Arcíla, C. (2021). Computational analysis of communication: A practical introduction to the analysis of texts, networks, and images with code examples in python and r. John Wiley & Sons.\nEngel, U., Quan-Haase, A., Liu, S. X., & Lyberg, L. (2021). Handbook of Computational Social Science, Volume 1: Theory, Case Studies and Ethics (1st ed.). Routledge. https://doi.org/10.4324/9781003024583\nEngel, U., Quan-Haase, A., Liu, S. X., & Lyberg, L. (2021). Handbook of computational social science, volume 2. Routledge. https://doi.org/10.4324/9781003025245\nHaim, M. (2023). Computational Communication Science: Eine Einführung. Springer Fachmedien Wiesbaden. https://link.springer.com/10.1007/978-3-658-40171-9\nSalganik, M. J. (2018). Bit by bit: Social research in the digital age. Princeton University Press.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#footnotes",
+    "href": "course-syllabus.html#footnotes",
+    "title": "Syllabus",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nThese guiding principles are based on Course Policies related to ChatGPT and other AI Tools developed by Joel Gladd, Ph.D↩︎",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-team.html",
+    "href": "course-team.html",
+    "title": "Teaching team",
+    "section": "",
+    "text": "Christoph Adrian (he/him)     is a Research Assistant at the Chair of Communication Science at Friedrich-Alexander-Universität (FAU) Erlangen-Nürnberg.\nHis work focuses on computational methods, especially Text as Data Approaches and workin with Digital behavioral data, with an emphasis on computing, reproducible research, student-centered learning, and open-source education.\n\n\n\nOffice hours\nLocation\n\n\n\n\nWednesday 15:30 - 16:30\nFG 2.031",
+    "crumbs": [
+      "Course information",
+      "Teaching team"
+    ]
+  },
+  {
+    "objectID": "course-team.html#instructor",
+    "href": "course-team.html#instructor",
+    "title": "Teaching team",
+    "section": "",
+    "text": "Christoph Adrian (he/him)     is a Research Assistant at the Chair of Communication Science at Friedrich-Alexander-Universität (FAU) Erlangen-Nürnberg.\nHis work focuses on computational methods, especially Text as Data Approaches and workin with Digital behavioral data, with an emphasis on computing, reproducible research, student-centered learning, and open-source education.\n\n\n\nOffice hours\nLocation\n\n\n\n\nWednesday 15:30 - 16:30\nFG 2.031",
+    "crumbs": [
+      "Course information",
+      "Teaching team"
+    ]
+  },
+  {
+    "objectID": "course-presentations.html",
+    "href": "course-presentations.html",
+    "title": "Course presentations",
+    "section": "",
+    "text": "Scheibe, K., Zimmer, F., Fietkiewicz, K., & Stock, W. (2022). Hawaii international conference on system sciences. https://doi.org/10.24251/HICSS.2022.410\nXu, Y., Kapitan, S., & Phillips, M. (2023). The commercial impact of live streaming: A systematic literature review and future research agenda. International Journal of Consumer Studies, 47(6), 2495–2527. https://doi.org/10.1111/ijcs.12960\n\n\n\nGros, D., Hackenholt, A., Zawadzki, P., & Wanner, B. (2018). Interactions of Twitch Users and Their Usage Behavior (G. Meiselwitz, Ed.; pp. 201–213). Springer International Publishing. https://doi.org/10.1007/978-3-319-91485-5_15\nWolff, G. H., & Shen, C. (2022). Audience size, moderator activity, gender, and content diversity: Exploring user participation and financial commitment on Twitch.tv. New Media & Society, 146144482110699. https://doi.org/10.1177/14614448211069996"
+  },
+  {
+    "objectID": "course-presentations.html#presentation-session-1-social-live-streaming-services",
+    "href": "course-presentations.html#presentation-session-1-social-live-streaming-services",
+    "title": "Course presentations",
+    "section": "",
+    "text": "Scheibe, K., Zimmer, F., Fietkiewicz, K., & Stock, W. (2022). Hawaii international conference on system sciences. https://doi.org/10.24251/HICSS.2022.410\nXu, Y., Kapitan, S., & Phillips, M. (2023). The commercial impact of live streaming: A systematic literature review and future research agenda. International Journal of Consumer Studies, 47(6), 2495–2527. https://doi.org/10.1111/ijcs.12960\n\n\n\nGros, D., Hackenholt, A., Zawadzki, P., & Wanner, B. (2018). Interactions of Twitch Users and Their Usage Behavior (G. Meiselwitz, Ed.; pp. 201–213). Springer International Publishing. https://doi.org/10.1007/978-3-319-91485-5_15\nWolff, G. H., & Shen, C. (2022). Audience size, moderator activity, gender, and content diversity: Exploring user participation and financial commitment on Twitch.tv. New Media & Society, 146144482110699. https://doi.org/10.1177/14614448211069996"
+  },
+  {
+    "objectID": "course-presentations.html#presentation-session-2-focus-on-users",
+    "href": "course-presentations.html#presentation-session-2-focus-on-users",
+    "title": "Course presentations",
+    "section": "Presentation Session 2: Focus on Users",
+    "text": "Presentation Session 2: Focus on Users\nHou, F., Guan, Z., Li, B., & Chong, A. Y. L. (2020). Factors influencing people’s continuous watching intention and consumption intention in live streaming. Internet Research, 30(1), 141–163. https://doi.org/10.1108/INTR-04-2018-0177\n\nTopic 2_1:\nXi, D., Xu, W., Tang, L., & Han, B. (2024). The impact of streamer emotions on viewer gifting behavior: Evidence from entertainment live streaming. Internet Research, 34(3), 748–783. https://doi.org/10.1108/INTR-05-2022-0350\n\n\nTopic 2_2:\nLeith, A. P., & Gheen, E. (2022). Twitch in the time of quarantine: The role of engagement in needs fulfillment. Psychology of Popular Media, 11(3), 275–280. https://doi.org/10.1037/ppm0000372\nNavarro, A., & Tapiador, F. J. (2023). Twitch as a privileged locus to analyze young people’s attitudes in the climate change debate: a quantitative analysis. Humanities and Social Sciences Communications, 10(1), 1–13. https://doi.org/10.1057/s41599-023-02377-4"
+  },
+  {
+    "objectID": "course-presentations.html#presentation-session-3-focus-on-content",
+    "href": "course-presentations.html#presentation-session-3-focus-on-content",
+    "title": "Course presentations",
+    "section": "Presentation Session 3: Focus on Content",
+    "text": "Presentation Session 3: Focus on Content\n\nTopic 3_1\nDutt, S., & Graham, S. (2023). Video, talk and text: How do parties communicate coherently across modalities in live videostreams? Discourse, Context and Media, 55. https://doi.org/10.1016/j.dcm.2023.100726\n\n\nTopic 3_2\nRiddick, S., & Shivener, R. (2022). Affective spamming on twitch: Rhetorics of an emote-only audience in a presidential inauguration livestream. Computers and Composition, 64. https://doi.org/10.1016/j.compcom.2022.102711"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Digital Behavioral Data",
+    "section": "",
+    "text": "Note\n\n\n\nThis page provides an outline of the topics, contents, and assignments for the semester. Please note that the contents of the course sessions ( background information,  slides,  exercises and  showcases) will be updated continuously throughout the semester, with all changes being documented here.",
+    "crumbs": [
+      "Course information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#copyright",
+    "href": "index.html#copyright",
+    "title": "Digital Behavioral Data",
+    "section": "Copyright",
+    "text": "Copyright\nThis content is licensed under a GPL-3.0 License.",
+    "crumbs": [
+      "Course information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "course-assignments.html",
+    "href": "course-assignments.html",
+    "title": "Assingments",
+    "section": "",
+    "text": "In order to be able to adapt the assignments flexibly to the requirements of the course (e.g. different number of students, projects changing from semester to semester or several projects in one semester), this seminar uses a portfolio assessment. Even though the seminar aims at testing new forms of assignments due to its practical and empirical orientation, traditional assignments such as presentations or written reports will still be an integral part. However, these will be expanded to include the special features of working with digital behavioral data.\nAssignments can be group (👥) or individual (👤) work and are marked as such. The expected group size is 2-4 persons.\nThe following list contains an overview of the assignments to be completed in the course:\n\n\nBreakdown of the final grade\n\n\nAssignment\n100 Pts\n\n\n\n\n👥 Presentation: 📚 Theory\n30 Pts\n\n\n👥 Presentation: 📊 Research Project\n15 Pts\n\n\n👤 Peer Review\n15 Pts\n\n\n👥 Written assignment: Final Project Report\n40 Pts\n\n\n\n\n\n\n\n\n\nImportant Disclaimer\n\n\n\n\nThe final structure of the course (e.g. which and how many small projects) will be discussed and determined together with the students in the first session. Accordingly, it is possible that the portfolio or the assignments contained in it will be adjusted subsequently (e.g. the scope, content or deadline of assignments could be changed or even entire assignments could be dropped).",
+    "crumbs": [
+      "Course information",
+      "Assignments"
+    ]
+  },
+  {
+    "objectID": "course-assignments.html#sec-portfolio",
+    "href": "course-assignments.html#sec-portfolio",
+    "title": "Assingments",
+    "section": "",
+    "text": "In order to be able to adapt the assignments flexibly to the requirements of the course (e.g. different number of students, projects changing from semester to semester or several projects in one semester), this seminar uses a portfolio assessment. Even though the seminar aims at testing new forms of assignments due to its practical and empirical orientation, traditional assignments such as presentations or written reports will still be an integral part. However, these will be expanded to include the special features of working with digital behavioral data.\nAssignments can be group (👥) or individual (👤) work and are marked as such. The expected group size is 2-4 persons.\nThe following list contains an overview of the assignments to be completed in the course:\n\n\nBreakdown of the final grade\n\n\nAssignment\n100 Pts\n\n\n\n\n👥 Presentation: 📚 Theory\n30 Pts\n\n\n👥 Presentation: 📊 Research Project\n15 Pts\n\n\n👤 Peer Review\n15 Pts\n\n\n👥 Written assignment: Final Project Report\n40 Pts\n\n\n\n\n\n\n\n\n\nImportant Disclaimer\n\n\n\n\nThe final structure of the course (e.g. which and how many small projects) will be discussed and determined together with the students in the first session. Accordingly, it is possible that the portfolio or the assignments contained in it will be adjusted subsequently (e.g. the scope, content or deadline of assignments could be changed or even entire assignments could be dropped).",
+    "crumbs": [
+      "Course information",
+      "Assignments"
+    ]
+  },
+  {
+    "objectID": "course-assignments.html#sec-presentation",
+    "href": "course-assignments.html#sec-presentation",
+    "title": "Assingments",
+    "section": "👥 Presentation : 📚 Theory (20 Pts)",
+    "text": "👥 Presentation : 📚 Theory (20 Pts)\nThe topics for the presentation will be assigned at the beginning of the course. The presentation should be 20 to 30 minutes long (including time for questions and discussion). Literature for the preparation of the presentation will be provided. The texts relevant for the respective presentation can be found in the information on the preparation (📖) of the respective session. All texts listed in the section “Mandatory literature” constitute the presentation literature for your respective presentation and will be provided. Please include all texts on your topic in your presentation, but feel free to set your own priorities in the presentation. You may also cite other sources, provided they enrich the subject matter.\nThe aim of the presentation is to give the course participants an overview on your topic, e.g., central terms, definitions and features of the respective platform, method and/or tool. The presentation of the state of research (what is the goal of the studies and what do they show?) plays a subordinate role.\n\nFeedback meeting before the presentation (mandatory)\nAdditionally, presenters are required to meet with the instructor in the week before their presentation for a mandatory feedback. My office hours are directly after the session, on Wednesdays from 15:30 to 16:30. If you have scheduling conflicts, we can arrange another meeting time. Meetings can take place in person or via Zoom.\n\nIn advance of the feedback meeting, a first complete draft of the presentation must be submitted as a PowerPoint or PDF file via mail at the latest until 12:00 the day before the meeting, one week before the presentation. During the feedback meeting, students will receive detailed feedback and tips on how to revise their presentation. The revised presentations are then given in presence in the respective sessions. Afterwards, a PDF of the slides is made available to the seminar.\n\n\nFeedback after the presentation (optional)\nIf you would like to receive feedback on your presentation after the session, please let me know during the mandatory feedack meeting. The feedback will take place directly after the event (15:00 to 15:30). The aim of this feedback is to give you a first impression directly after the presentation. However, there will be no (assessment of) the presentation in the discussion.\n\n\n\n\n\n\nImportant information, tasks & deadlines\n\n\n\n\nℹ️ You will be graded based on your individual contribution, so please clarify which slides are presented by whom (e.g., by adding the initials of the presenting individual in the footnote of the slide).\n⏰ One week before your presentation: feedback meeting to discuss the presentation draft during the office hours. Please arrange an alternative date in good time if you are unable to attend the scheduled feedback meeting.\n⏰ At the latest at 12:00 the day before the feedback meeting: Send the first complete draft of the presentation slides by e-mail to christoph.adrian@fau.de\n⏰ Until 09:00 of the day of the presentation: Send the final draft of the presentation by e-mail to christoph.adrian@fau.de",
+    "crumbs": [
+      "Course information",
+      "Assignments"
+    ]
+  },
+  {
+    "objectID": "course-assignments.html#sec-research-project-presentation",
+    "href": "course-assignments.html#sec-research-project-presentation",
+    "title": "Assingments",
+    "section": "👥 Presentation: 📊 Research Project (15 Pts)",
+    "text": "👥 Presentation: 📊 Research Project (15 Pts)\nIn this presentations you will present your research project, including (preliminary) results. The presentation should be 15 to 20 minutes long (with additional 10 minutes for questions and discussion). The aim of the presentation is to give the course an overview of your project and to get feedback on your research question, methodology and analysis, that can be included into the written report. Therefore, you should include the following points in your presentation:\n\nSection 1 - Introduction (2-3 slides)\nThe introduction section includes\n\nan introduction to the subject matter you’re investigating\nthe motivation for your research question (citing relevant literature)\nthe general research question you wish to explore and/or your hypotheses regarding the research question of interest.\n\n\n\nSection 2 - Method description (2 slides)\nIn this section, you will describe the method and data (sub-)sample you selected. This includes\n\ndescription of the “observations” included in the data set,\nmotivations for the selection of your specific subsample,\nanalytical approach with which you want to answer the research question/hypothesis,\ndescription of the central method(s) as well as necessary pre-processing steps.\n\n\n\nSection 3 - Results and Discussion (2-3 slides)\nIn this section, you will provide a brief overview of your (preliminary) results. This includes\n\ndescription, visualization and/or summary statistics of the central variables,\n(preliminary) results of the central method(s) you used,\n(optionally) a challenge you face and want to discuss with the course.\n\nThese presentations are the basis for the peer review and the final written report. Therefore, you should use the feedback you receive to improve your project and the final report.\n\n\n\n\n\n\nImportant information, tasks & deadlines\n\n\n\n\nℹ️ You will be graded as a group (unless explicitly requested otherwise). Not every group member has to present, but all group members should contribute and be able to answer questions about the project.\nℹ️ The presentations will be the basis for the Peer Review assignment. In order to simplify the process, please use the Google-Slide template provided to your group.\n⏰ Until the 15.01.2025: Finalize the presentation (Goolge Slides). On the 16.01., the presentation will be changed to non-editable and make available for peer review. After the peer-review process, the presentation will be “unlocked” and you can make changes again.",
+    "crumbs": [
+      "Course information",
+      "Assignments"
+    ]
+  },
+  {
+    "objectID": "course-assignments.html#sec-peer-review",
+    "href": "course-assignments.html#sec-peer-review",
+    "title": "Assingments",
+    "section": "👤 Peer Review (15 Pts)",
+    "text": "👤 Peer Review (15 Pts)\nCritically reviewing others’ work is a crucial part of the scientific process. Therefore, each person will be assigned two other group’s research project presentations to review before their presentation. This way, you will be able to get additional feedback before presenting your results to the whole course.\nDuring the peer review process, you will be provided with\n\nread-only access to two group presentations via Google Slides. Although the slides should be non-editable, please to not try to change and do not share the slides.\na link to a digital peer review form. The form contains both short item scales and open-ended questions. The aim is to summarize the content of the presentation very briefly, evaluate it and make suggestions for improvement.\n\n\n\n\n\n\n\n\n\nImportant tasks & deadlines\n\n\n\n\nℹ️ The peer review will be graded on the extent to which it comprehensively and constructively addresses the components of the other groups presentation: the research context and motivation, data analysis, modeling, interpretations, and conclusions.\n⏰ Between 15.01. and 22.01: Fill out the peer review form for the two assigned groups.",
+    "crumbs": [
+      "Course information",
+      "Assignments"
+    ]
+  },
+  {
+    "objectID": "course-assignments.html#sec-written-report",
+    "href": "course-assignments.html#sec-written-report",
+    "title": "Assingments",
+    "section": "👥 Written short report (40 Pts)",
+    "text": "👥 Written short report (40 Pts)\nThe goal of the written short report is for each group to use at least one of the method or data presented to explore a topic of your own choosing. Choose both data and topic based on your group’s interests, experience or work you all have done in other courses or research projects. The goal of this project is for you to demonstrate proficiency in the techniques covered in this class (and beyond, if you like!) and apply them to a data set to analyze it in a meaningful way.\nBe selective in what you include in your final write-up. The goal is to write a cohesive narrative that demonstrates a thorough and comprehensive analysis rather than explain every step of the analysis. You are welcome to include an appendix with additional work at the end of the written report document; however, grading will largely be based on the content in the main body of the report. You should assume the reader will not see the material in the appendix unless prompted to view it in the main body of the report. The appendix should be neatly formatted and easy for the reader to navigate. It is not included in the word limit.\nThe written report should be 750 to 1000 words per person. However, when written as a group report, the number or words scale with a factor of 0.8 per person (e.g., a group of two should write 1200 to 1600 words, a group of three 1800 to 2400 words). All analyses as well as the written report must be done in RStudio and all components of the project must be reproducible. The mandatory components of the reports are: Introduction, Data/Methodology, Results, Discussion & Conclusion. You are free to add additional sections as necessary. You will be graded based on your individual contribution, so please clarify which part of the report was written by whom (e.g., by adding the initials of the author in the header of the section).\nThe written report is worth 40 points, broken down as follows\n\n\n\nTotal\n40 pts\n\n\n\n\nIntroduction + Theory\n6 pts\n\n\nMethodology/Data\n10 pts\n\n\nResults\n14 pts\n\n\nDiscussion + conclusion\n6 pts\n\n\nOrganization + formatting\n4 pts\n\n\n\n\n\n\n\n\n\nImportant tasks & deadlines\n\n\n\n\nFinal submission of the revised written report is due 02.03.2024, 23:591.",
+    "crumbs": [
+      "Course information",
+      "Assignments"
+    ]
+  },
+  {
+    "objectID": "course-assignments.html#footnotes",
+    "href": "course-assignments.html#footnotes",
+    "title": "Assingments",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nPlease note that this is a temporary deadline. The final deadline will be adjusted in the course in consultation with the students if necessary.↩︎",
+    "crumbs": [
+      "Course information",
+      "Assignments"
+    ]
+  }
+]
