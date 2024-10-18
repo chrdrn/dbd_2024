@@ -15,7 +15,7 @@ website:
   #   style: headline
   #   palette: light
 
-  repo-url: TODO Update repo page URL
+  repo-url: https://github.com/chrdrn/dbd_2024
   repo-actions: [edit, issue]
     
   sidebar:
@@ -24,8 +24,11 @@ website:
     tools: 
     - icon: globe
       href: https://www.kommunikationswissenschaft.rw.fau.de/lehre/master/digital-behavioral-data/
+    - icon: bookmark
+      href: https://www.studon.fau.de/crs5976934.html
+      text: StudOn course
     - icon: github
-      href: TODO Update repo URL
+      href: https://github.com/chrdrn/dbd_2024
       text: Course repository
     # - icon: chat-dots
     #   href: https://fau-dbd.zulipchat.com/
