@@ -1,0 +1,53 @@
+---
+title: "Session 5"
+subtitle: "📚 Effekte von {{< bi twitch >}} & TV-Debatten"
+bibliography: references_sessions.bib
+csl: ../apa-cv.csl 
+suppress-bibliography: true
+link-citations: false
+citations-hover: false
+---
+
+## Participate
+
+🖥️ [🚧 Session 05](TODO%20ADD%20links)
+
+## Literature
+
+::: {.callout-important appearance="simple"}
+The following sections list the **mandatory articles** for the each presenting group. Additional optional articles are provided under *Further reading*.
+:::
+
+### 📚 Thema 3: (Wirkungs-)Effekte der {{< bi twitch >}}-Nutzung/Interaktion
+
+-   [@xi2024]
+-   [@bründl2023]
+-   [@wolff2022]
+
+##### Further Readings
+
+-   [@han2023]
+-   [@meisner2023]
+-   [@tomlinson2024]
+-   [@hou2020]
+-   [@chinchilla2024]
+
+### 📚 Thema 4: (Wirkungs-)Effekte von TV-Wahldebatten
+
+-   [@lepennec2023]
+-   [@waldvogel2022]
+-   [@jennings2020a]
+-   [@warner2024]
+
+##### Further Readings
+
+-   [@benoit2003]
+-   [@mckinney2013]
+
+### <br>
+
+::: {style="font-size: 0.875em;"}
+Back to [course schedule](/index.html "Course schedule") ⏎
+:::
+
+###

@@ -1,0 +1,47 @@
+---
+title: "Session 6"
+subtitle: "📚 Politische TV-Debatten & Social Media"
+bibliography: references_sessions.bib
+csl: ../apa-cv.csl 
+suppress-bibliography: true
+link-citations: false
+citations-hover: false
+---
+
+## Participate
+
+🖥️ [🚧 Session 06](TODO%20ADD%20links)
+
+## Literature
+
+::: {.callout-important appearance="simple"}
+The following sections list the **mandatory articles** for the each presenting group. Additional optional articles are provided under *Further reading*.
+:::
+
+### 📚 Thema 5: Wechselwirkung zwischen TV-Debatten und Twitter
+
+-   [@trilling2015]
+-   [@robertson2019]
+-   [@jennings2020]
+
+##### Further Readings
+
+-   [@coddington2014]
+-   [@goovaerts2023]
+
+### 📚 Thema 6: Live-Chat(-Kommentare) in politischen Debatten
+
+-   [@asbury-kimmel2021]
+-   [@ruiz-bravo2022]
+-   [@riddick2022]
+-   [@eaton2024]
+
+##### Further reading
+
+-   [@powell2023]
+
+### <br>
+
+::: {style="font-size: 0.875em;"}
+Back to [course schedule](/index.html "Course schedule") ⏎
+:::

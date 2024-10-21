@@ -1,0 +1,50 @@
+---
+title: "Session 4"
+subtitle: "📚 {{< bi twitch >}}-Nutzung im Fokus: Motivation & Interaktionen"
+bibliography: references_sessions.bib
+csl: ../apa-cv.csl 
+suppress-bibliography: true
+link-citations: false
+citations-hover: false
+---
+
+## Participate
+
+🖥️ [🚧 Session 04](TODO%20ADD%20links)
+
+## Literature
+
+::: {.callout-important appearance="simple"}
+The following sections list the **mandatory articles** for the each presenting group. Additional optional articles are provided under *Further reading*.
+:::
+
+### 📚 Thema 1: Motivation für die Nutzung von Twitch
+
+-   [@hilvert-bruce2018]
+-   [@castro-agirre2024]
+-   [@nguyen2024]
+
+##### Further Readings
+
+-   [@gros2018]
+-   [@zimmer2018]
+-   [@xu2021]
+-   [@kneisel2023]
+
+### 📚 Thema 2: Kommunikation und Interaktion auf Twitch
+
+-   [@jacobs2021]
+-   [@dutt2023]
+-   [@navarro2023]
+
+##### Further Readings
+
+-   [@young2022]
+-   [@lessel2022]
+-   [@mao2022]
+
+<br>
+
+::: {style="font-size: 0.875em;"}
+Back to [course schedule](/index.html "Course schedule") ⏎
+:::
