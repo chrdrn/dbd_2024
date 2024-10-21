@@ -1,0 +1,299 @@
+---
+title: Introduction
+bibliography: references_computing.bib
+---
+
+```{r setup-environment}
+#| echo: false
+#| eval: false
+
+# Only run once, during initial project setup
+
+# >> Define API access parameter
+# To avoid issues, an extra ".Renviron" is created for the project
+# This means that the parameters are only defined fo the current project
+# To create a local .Renviron for the current project, run:
+pacman::p_load(usethis, tuber)
+usethis::edit_r_environ(scope = "project")
+
+# ... and add the following parameters
+# # YOUTUBE API PARAMETERS
+# YOUTUBE_CLIENT_ID = "API ACCESS KEY HERE"
+# YOUTUBE_CLIENT_SECRET "SECRET ACCESS KEY here"
+
+# >> Restart R and run the following lines to create local .httr-oauth
+tuber::yt_oauth(
+  app_id = Sys.getenv("YOUTUBE_CLIENT_ID"),
+  app_secret = Sys.getenv("YOUTUBE_CLIENT_SECRET")
+)
+```
+
+```{r setup-session}
+#| echo: false
+pacman::p_load(
+  tuber, 
+  tidyverse, glue, gt
+)
+
+# YouTube OAuth
+yt_oauth(token = "../.httr-oauth")
+```
+
+::: callout-important
+## Assignment
+
+-   Please watch all the videos in the tutorial series on [Introduction to R, RStudio & Quarto](#introduction-to-r-rstudio-quarto) and [Practical Work with R] **by December 1st, 2024** at the latest. The content conveyed in the videos (e.g., knowledge and application of certain functions to filter, summarize, or edit data) will **be assumed as a foundation for session 7 of the seminar.**
+
+-   If you have **questions and/or problems**, please write a **post in the forum of the ![](https://www.studon.fau.de/favicon.ico){width="16"}[StudOn](https://www.studon.fau.de/studon/goto.php?target=frm_6070102l)** course so that everyone can benefit from the answers. Use the prefix "Question/Problem R:" in the subject line and tag/add me. If available, please always include the material/video to which your question refers.
+:::
+
+::: callout-tip
+## Useful Tips
+
+-   It is possible that another student has already asked a similar question, so please check the existing posts (e.g., by searching for the prefix) before adding a new question. If you know the answer to a question, feel free to respond!
+:::
+
+## Background
+
+Practical work with R, RStudio, and Quarto is an integral part of the Digital Behavioral Data course. To accommodate different levels of prior knowledge while establishing a common "basic knowledge" for the course, we would like to provide you with a series of introductory videos to facilitate your (re)entry. Specifically, this consists of a mix of YouTube tutorials by {{< iconify devicon github width=16px height=16px >}} [Andy Field](https://github.com/profandyfield), which initially teach the general handling of R, RStudio & Quarto, and the materials from [CCS.Amsterdam](https://ccs.amsterdam/), which focus on more "substantive" work with R. All tutorials are in English.
+
+## Introduction to R, RStudio & Quarto {#introduction-to-r-rstudio-quarto}
+
+-   This video tutorial series was created by {{< iconify devicon github width=16px height=16px >}} [Andy Field](https://github.com/profandyfield) to acompany his books [An Adventure in Statistics](https://www.statisticsadventure.com/) [@field2016] and [Discovering Statistics Using R](https://www.discovr.rocks/) [@field2012], and deals with the use of RStudio and Quarto for interacting with R.
+-   The videos cover the installation of R, RStudio, and Quarto, the differences between them, a tour of RStudio, good workflows in RStudio, installing and loading packages, and using Quarto.
+
+::: callout-caution
+## Please note ...
+
+-   Most of the exercises shown in the tutorial can be easily reproduced, either by manually entering the data or variables or by using your own files (e.g., when embedding graphics).
+-   However, some data used (e.g., in the session [`RStudio Working with Code: Part 3`](https://www.youtube.com/watch?v=wYKdgazQ640)) is unfortunately not available publically. In this case, you can either use your own "data" to reproduce the examples or rely on built-in R datasets (such as [`airquality`](https://www.rdocumentation.org/packages/datasets/versions/3.6.2/topics/airquality), [`mtcars`](https://www.rdocumentation.org/packages/datasets/versions/3.6.2/topics/mtcars), [`iris`](https://www.rdocumentation.org/packages/datasets/versions/3.6.2/topics/iris), etc.) by loading them with the `data()` command (e.g., `data(mtcars)`).
+:::
+
+```{r create-data-field}
+#| echo: false 
+#| message: false
+#| warning: false
+
+# Define parameters
+field_playlist_id = "PLCv5msX612Ct-K7FWV55juZCHv0zPStMs" # Playlist auf KoWi-YT-Account
+
+# Create gt table
+field_table_raw <- get_playlist_items(
+  filter = c(playlist_id = field_playlist_id)) %>%
+  janitor::clean_names() %>% 
+  pull(content_details_video_id) %>% 
+  map(., ~get_video_details(video_id = .x, part="snippet, contentDetails")) %>% 
+  map_dfr(.,
+  ~ tibble(
+    video_id = .x$items[[1]]$id,
+    title = .x$items[[1]]$snippet$title,
+    duration = .x$items[[1]]$contentDetails$duration ) %>% 
+    mutate(url = paste0("https://www.youtube.com/watch?v=",video_id))) %>% 
+    rowid_to_column(var = "Session")
+
+```
+
+```{r table-tutorial-field}
+#| echo: false 
+#| message: false
+#| warning: false
+
+field_table_raw %>% 
+  mutate(
+    across(Session, ~as.character(.)), 
+    video_link_icon = "youtube",
+    title_link = glue::glue("[{title}]({url})"),
+    title_link = map(title_link, gt::md),
+    dauer_raw = duration(duration),
+    minute = minute(dauer_raw), 
+    seconds = second(dauer_raw),
+    Dauer = sprintf("%02d:%02d", minute, seconds)
+    ) %>% 
+  select(Session, video_link_icon, title_link, Dauer) %>% 
+  gt() %>% 
+  fmt_icon(
+    columns = c(video_link_icon),
+    a11y = "decorative"
+  ) %>% 
+  cols_merge(
+    columns = c(video_link_icon, title_link),
+    pattern = "{1} {2}"
+  ) %>% 
+  gt::cols_label(
+    video_link_icon = "Titel"
+    ) %>% 
+  gt::cols_align(
+    align = "left",
+    column = video_link_icon
+  ) %>% 
+  gt::cols_width(
+    Session ~ pct(10)
+  ) %>% 
+  tab_footnote(
+    footnote = md("You can also play the videos as a [YouTube playlist](https://www.youtube.com/watch?v=ZvPFKfNHBNQ&list=PLCv5msX612Ct-K7FWV55juZCHv0zPStMs)."),
+  ) %>% 
+  gtExtras::gt_theme_538() %>% 
+  tab_options(table.width = pct(100))
+```
+
+## Practical Work with R {#practical-work-with-r}
+
+-   [CCS.Amsterdam](https://ccs.amsterdam/) is a group of "Computational" communication scientists from the University of Amsterdam and the Vrije Universiteit Amsterdam. In various research projects, these scientists aim to use and develop computational methods to answer social science research questions. This includes, among other things, the study of news streams, polarization, political microtargeting, fake news, and recommender design. A main goal of the group is to disseminate knowledge among a growing community of enthusiastic "Computational" communication scientists.
+
+-   The series of tutorials curated by CCS.Amsterdam aims to teach the use of tidyverse functions for data cleaning, transformation, visualization, etc. The tutorials consist of both ***handouts***, i.e., documents explaining the most important commands, and ***video tutorials*** covering the same material.
+
+-   The table also lists chapters from [Computational Analysis of Communication \[CAC\]](https://cssbook.net/) and [R for Data Science \[R4DS\]](https://r4ds.had.co.nz/index.html), two 100% free and openly accessible books that also cover and possibly deepen the material of the respective session.
+
+::: callout-caution
+## Please note
+
+-   The video tutorials may be slightly older than the handouts. In case of doubt, follow the content of the handouts rather than the videos.
+-   Please note that the CAC offers R and Python examples side by side. You may need to actively select the R code examples.
+:::
+
+```{r create-css-course-material-data}
+#| echo: false
+#| message: false
+#| warning: false
+
+# Create tibble
+ccsa_course_material = tibble(
+  Session = c(1,2,3,4), 
+  Titel = c(
+    "R basics: commands, objects, and functions",
+    "R Tidyverse: Data transformation",
+    "R Tidyverse: Data summarization", 
+    "R ggplot2: Basics of data visualization"
+  ), 
+  handout_url = c(
+    "https://github.com/ccs-amsterdam/r-course-material/blob/master/tutorials/R-tidy-4-basics.md",
+    "https://github.com/ccs-amsterdam/r-course-material/blob/master/tutorials/R-tidy-5-transformation.md",
+    "https://github.com/ccs-amsterdam/r-course-material/blob/master/tutorials/R-tidy-5b-groupby.md",
+    "https://github.com/ccs-amsterdam/r-course-material/blob/master/tutorials/r-tidy-3_7-visualization.md"
+  ),
+  cac_url = c(
+    "https://cssbook.net/chapter03.html",
+    "https://cssbook.net/chapter06.html",
+    "https://cssbook.net/chapter06.html#6_3",
+    "https://cssbook.net/chapter07.html"
+  ),
+  r4ds_url = c(
+    "https://r4ds.had.co.nz/workflow-basics.html",
+    "https://r4ds.had.co.nz/transform.html",
+    "https://r4ds.had.co.nz/transform.html",
+    "https://r4ds.had.co.nz/exploratory-data-analysis.html"
+  ),
+  core_packages = c(
+    "base R", 
+    "dplyr",
+    "dplyr",
+    "ggplot2"
+  ), 
+  core_packages_cheatsheet_url = c(
+    "https://github.com/rstudio/cheatsheets/blob/main/base-r.pdf", 
+    "https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transfortion.pdf",
+    "https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf",
+    "https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf"
+  ),
+  core_functions = c(
+    "", 
+    "filter, select, arrange, mutate", 
+    "group_by, summarize", 
+    ""
+  )
+)
+```
+
+```{r create-data-ccsa}
+#| echo: false 
+#| message: false
+#| warning: false
+
+# Define parameters
+ccsa_playlist_id = "PLCv5msX612CuCq5jjoaPi-IhcYeXYFhwJ"
+
+# Get YouTube data
+ccsa_youtube_raw <- get_playlist_items(
+  filter = c(playlist_id = ccsa_playlist_id)) %>%
+  janitor::clean_names() %>% 
+  pull(content_details_video_id) %>% 
+  map(., ~get_video_details(video_id = .x, part="snippet, contentDetails")) %>% 
+  map_dfr(.,
+  ~ tibble(
+    video_id = .x$items[[1]]$id,
+    title = .x$items[[1]]$snippet$title,
+    duration = .x$items[[1]]$contentDetails$duration ) %>% 
+    mutate(url = paste0("https://www.youtube.com/watch?v=",video_id))) %>% 
+    rowid_to_column(var = "Session") 
+
+# Join YouTube and Course material
+ccsa_table_raw <- ccsa_youtube_raw %>% 
+  left_join(ccsa_course_material, by = join_by(Session))
+```
+
+```{r table-tutorial-ccsa}
+#| echo: false 
+#| message: false
+#| warning: false
+
+ccsa_table_raw %>% 
+  mutate(
+    # Edit YouTube data
+    video_link_icon = "youtube",
+    video_link = glue::glue("[{Titel}]({url})"),
+    video_link = map(video_link, gt::md),
+    dauer_raw = duration(duration),
+    minute = minute(dauer_raw), 
+    seconds = second(dauer_raw),
+    Dauer = sprintf("%02d:%02d", minute, seconds),
+    # Edit Course Materials
+    handout_link_icon = "file-code",
+    handout_link = glue::glue("[Handout]({handout_url})"),
+    handout_link = map(handout_link, gt::md), 
+    book_icon = "bookmark", 
+    cac_link = glue::glue("[CAC]({cac_url})"), 
+    cac_link = map(cac_link, gt::md),
+    r4ds_link = glue::glue("[R4DS]({r4ds_url})"), 
+    r4ds_link = map(r4ds_link, gt::md)
+  ) %>% 
+  select(
+    Session,
+    video_link_icon, video_link, 
+    handout_link_icon, handout_link,
+    book_icon, cac_link, r4ds_link,
+    Dauer) %>% 
+  gt() %>% 
+  fmt_icon(
+    columns = c(video_link_icon, handout_link_icon, book_icon),
+    a11y = "decorative"
+  ) %>% 
+  cols_merge(
+    columns = c(video_link_icon, video_link),
+    pattern = "{1} {2}"
+  ) %>% 
+  cols_merge(
+    columns = c(handout_link_icon, handout_link),
+    pattern = "{1} [{2}]"
+  ) %>% 
+  cols_merge(
+    columns = c(book_icon, cac_link, r4ds_link),
+    pattern = "{1} [{2}] [{3}] "
+  ) %>% 
+  gt::cols_label(
+    video_link_icon = "Video-Tutorial",
+    handout_link_icon = "Materialien",
+    book_icon = "Literatur"
+    ) %>% 
+  gt::cols_align(
+    align = "left",
+    column = video_link
+  ) %>% 
+  gt::cols_width(
+    Session ~ pct(10)
+  ) %>% 
+  tab_footnote(
+    footnote = md("You can also play the videos as a [YouTube playlist](https://www.youtube.com/watch?v=PVhZD5MINYM&list=PLCv5msX612CuCq5jjoaPi-IhcYeXYFhwJ&index=1)."),
+  ) %>% 
+  gtExtras::gt_theme_538() %>% 
+  tab_options(table.width = pct(100))
+```
