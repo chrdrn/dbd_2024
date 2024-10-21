@@ -1,0 +1,25 @@
+---
+title: "Session 1"
+subtitle: "Kick-Off"
+editor: visual
+---
+
+::: callout-important
+Please make sure that you answered the survey send to you by (StudOn) mail.
+:::
+ 
+## Prepare
+
+✍️ Fill out the short survey before the 22.10.2024 (see ![](https://www.studon.fau.de/favicon.ico){width="16"} [StudOn](https://www.studon.fau.de/crs5349138.html) for Link)
+
+📖 Read the [syllabus](/course-syllabus.html)
+
+## Participate
+
+🖥️ [🚧 Session 01](TODO Add link to slides)
+
+<br>
+
+::: {style="font-size: 0.875em;"}
+Back to [course schedule](/index.html "Course schedule") ⏎
+:::
