@@ -5,7 +5,7 @@ project:
 website:
   title: "Digital behavioral data"
   description: "Homepage of the course 'Digital behavioral data‘ at Friedrich-Alexander-Universtität (FAU) Erlangen-Nürnberg"
-  favicon: "https://raw.githubusercontent.com/faucommsci/teaching_materials/main/images/icons/favicon_fau_red.svg"
+  favicon: https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/icons/favicon_fau_red.svg
   page-navigation: true
   open-graph: true
   reader-mode: false
@@ -86,16 +86,17 @@ website:
     #       - href: exercise/exercise-10.qmd
     #         text: "Exercise 10"
 
-    #   - section: "Computing"
-    #     contents:
-    #       - href: computing/computing-textbooks.qmd
-    #         text: R Textbooks
-    #       - href: computing/computing-cheatsheets.qmd
-    #         text: R Cheatsheets
-    #       - href: computing/computing-useful_links.qmd
-    #         text: Useful R sources
+      - section: "Working with R"
+        contents:
+          - href: computing/computing-introduction.qmd
+            text: R Video Tutorials
+          - href: computing/computing-textbooks.qmd
+            text: R Textbooks
+          - href: computing/computing-cheatsheets.qmd
+            text: R Cheatsheets
+          # - href: computing/computing-useful_links.qmd
+          #   text: Useful R sources
             
-
   page-footer: 
    left: "Copyright 2024, Christoph Adrian"
    right: "This page is built with ☕ & [Quarto](https://quarto.org/)."
@@ -109,3 +110,6 @@ format:
     code-copy: true
     code-overflow: wrap
     toc: true
+
+execute:
+  freeze: auto
