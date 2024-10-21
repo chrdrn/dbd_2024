@@ -70,7 +70,7 @@
     "href": "course-syllabus.html#preliminary-schedule",
     "title": "Syllabus",
     "section": "(Preliminary) Schedule",
-    "text": "(Preliminary) Schedule\n\n\n\n\n\n\nImportant information\n\n\n\n\n⚠️ Please note that this is a provisional timetable which may change, especially after the kick-off meeting and the allocation of topics (see Course schedule for the latest version).\nAll sessions marked with a 🔨 are hands-on sessions actively working with R.\nAll sessions marked with a 📚 are presentation sessions where groups of students will give a detailed presentation (see Assignments for more information).\nAll sessions marked with a 📊 are presentation sessions where groups of students will present the results of their project work (see Assignments for more information).\n\n\n\n\n\n\n\n\n\n\n\n\nSession\nDatum\nTopic\n\n\n\n\n\n📂 Block 1\nIntroduction\n\n\n1\n23.10.2024\nKick-Off\n\n\n2\n30.10.2024\nDBD: Introduction & Overview\n\n\n3\n06.11.2024\n🔨 Introduction to working with R\n\n\n\n📂 Block 2\nTheoretical foundation\n\n\n4\n13.11.2024\n📚 Research I\n\n\n5\n20.11.2024\n📚 Research II\n\n\n6\n27.11.2024\n📚 Research III\n\n\n\n📂 Block 3\nNatural language processing\n\n\n7\n04.12.2024\n🔨 Text as data I: Introduction\n\n\n8\n11.12.2024\n🔨 Text as data II: Advanced Methods\n\n\n9\n18.12.2024\n🔨 Advanced Method I: Topic Modeling\n\n\n-\n-\n🎄Christmas Break (No Lecture)\n\n\n10\n08.01.2025\n🔨 Advanced Method II: Machine Learning\n\n\n\n📂 Block 5\nProject Work\n\n\n11\n15.01.2025\n🔨 Project work\n\n\n12\n22.01.2025\n🔨 Project work\n\n\n13\n29.01.2025\n📊 Project Presentation (I)\n\n\n14\n05.02.2025\n📊 Project Presentation (II) & 🏁 Evaluation\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nFor the latest, more detailed version of the course schedule as well as the linked content of the individual sessions (e.g. slides or literature for the respective presentation), please see Schedule.\n\n\nThe course consists of several blocks:\n\nBlock I: Introduction\nThe first four sessions form the (theoretical) basis for the course.\n\nThe kick-off session is mainly for getting to know each other and organizing the course. \nThe second session is to give you an extended introduction DBD, including challenges and important frameworks. \nThe third session is about practical work with R and RStudio.  \n\n\n\nBlock II: Theoretical foundation\nThe second block will contain the presentations by different groups of students about the research relevant for the course.\n\n\n\n\n\nBlock III: Natural Language Processing (NLP)\nThe third block is about working with text data. It is separated into four parts.\n\nThe first session is an introduction to working with text data.\nThe second session is about advanced methods for working with text data and introduces the two methods of the next two sessions.\nThe third session is about topic modeling, a method to extract topics from text data.\nThe fourth session is about machine learning, a method to classify text data.\n\n\n\nBlock IV: Project Work\nThe last block is about working on your project. The goal is to combine the theoretical and practical knowledge you have gained in the previous sessions and apply it to a research project of your choice. This means you have to find a research question, develop a concept of an analysis, run it, analyze it, and present your results (short presentation and written report).",
+    "text": "(Preliminary) Schedule\n\n\n\n\n\n\nImportant information\n\n\n\n\n⚠️ Please note that this is a provisional timetable which may change, especially after the kick-off meeting and the allocation of topics (see Course schedule for the latest version).\nAll sessions marked with a 🔨 are hands-on sessions actively working with R.\nAll sessions marked with a 📚 are presentation sessions where groups of students will give a detailed presentation (see Assignments for more information).\nAll sessions marked with a 📊 are presentation sessions where groups of students will present the results of their project work (see Assignments for more information).\n\n\n\n\n\n\n\n\n\n\n\nSession\nDatum\nTopic\n\n\n\n\n\n📂 Block 1\nIntroduction\n\n\n1\n23.10.2024\nKick-Off\n\n\n2\n30.10.2024\nDBD: Introduction & Overview\n\n\n3\n06.11.2024\n🔨 Introduction to working with R\n\n\n\n📂 Block 2\nTheoretical background:  & TV election debates\n\n\n4\n13.11.2024\n📚  usage in focus\n\n\n5\n20.11.2024\n📚 Effects of  & TV debates\n\n\n6\n27.11.2024\n📚 Political TV debates & social media\n\n\n\n📂 Block 3\nNatural language processing\n\n\n7\n04.12.2024\n🔨 Text as data I: Introduction\n\n\n8\n11.12.2024\n🔨 Text as data II: Advanced Methods\n\n\n9\n18.12.2024\n🔨 Advanced Method I: Topic Modeling\n\n\n-\n-\n🎄Christmas Break (No Lecture)\n\n\n10\n08.01.2025\n🔨 Advanced Method II: Machine Learning\n\n\n\n📂 Block 5\nProject Work\n\n\n11\n15.01.2025\n🔨 Project work\n\n\n12\n22.01.2025\n🔨 Project work\n\n\n13\n29.01.2025\n📊 Project Presentation (I)\n\n\n14\n05.02.2025\n📊 Project Presentation (II) & 🏁 Evaluation\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nFor the latest, more detailed version of the course schedule as well as the linked content of the individual sessions (e.g. slides or literature for the respective presentation), please see Schedule.\n\n\nThe course consists of several blocks:\n\nBlock I: Introduction\nThe first four sessions form the (theoretical) basis for the course.\n\nThe kick-off session is mainly for getting to know each other and organizing the course. \nThe second session is to give you an extended introduction DBD, including challenges and important frameworks. \nThe third session is about practical work with R and RStudio.  \n\n\n\nBlock II: Theoretical foundation\nThe second block will contain the presentations by different groups of students about the research relevant for the course.\n\n\nBlock III: Natural Language Processing (NLP)\nThe third block is about working with text data. It is separated into four parts.\n\nThe first session is an introduction to working with text data.\nThe second session is about advanced methods for working with text data and introduces the two methods of the next two sessions.\nThe third session is about topic modeling, a method to extract topics from text data.\nThe fourth session is about machine learning, a method to classify text data.\n\n\n\nBlock IV: Project Work\nThe last block is about working on your project. The goal is to combine the theoretical and practical knowledge you have gained in the previous sessions and apply it to a research project of your choice. This means you have to find a research question, develop a concept of an analysis, run it, analyze it, and present your results (short presentation and written report).",
     "crumbs": [
       "Course information",
       "Syllabus"
@@ -132,6 +132,103 @@
     ]
   },
   {
+    "objectID": "computing/computing-textbooks.html",
+    "href": "computing/computing-textbooks.html",
+    "title": "R textbooks",
+    "section": "",
+    "text": "While there is no official R textbook for the course, there are a few to look at:\n\n🔗 R for Data Science, 2nd Edition\n🔗 Data Visualization: A Practical Introduction\n🔗 Tidy modeling with R\n🔗 Text Mining with R",
+    "crumbs": [
+      "Working with R",
+      "R Textbooks"
+    ]
+  },
+  {
+    "objectID": "computing/computing-instructions_R.html",
+    "href": "computing/computing-instructions_R.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "Assignment\n\n\n\n\nPlease watch all the videos in the tutorial series on Introduction to R, RStudio & Quarto and Practical Work with R by December 1st, 2024 at the latest. The content conveyed in the videos (e.g., knowledge and application of certain functions to filter, summarize, or edit data) will be assumed as a foundation for session 7 of the seminar.\nIf you have questions and/or problems, please write a post in the forum of the StudOn course so that everyone can benefit from the answers. Use the prefix “Question/Problem R:” in the subject line and tag/add me. If available, please always include the material/video to which your question refers.",
+    "crumbs": [
+      "Working with R",
+      "R Video Tutorials"
+    ]
+  },
+  {
+    "objectID": "computing/computing-instructions_R.html#background",
+    "href": "computing/computing-instructions_R.html#background",
+    "title": "Introduction",
+    "section": "Background",
+    "text": "Background\nPractical work with R, RStudio, and Quarto is an integral part of the Digital Behavioral Data course. To accommodate different levels of prior knowledge while establishing a common “basic knowledge” for the course, we would like to provide you with a series of introductory videos to facilitate your (re)entry. Specifically, this consists of a mix of YouTube tutorials by  Andy Field, which initially teach the general handling of R, RStudio & Quarto, and the materials from CCS.Amsterdam, which focus on more “substantive” work with R. All tutorials are in English.",
+    "crumbs": [
+      "Working with R",
+      "R Video Tutorials"
+    ]
+  },
+  {
+    "objectID": "computing/computing-instructions_R.html#introduction-to-r-rstudio-quarto",
+    "href": "computing/computing-instructions_R.html#introduction-to-r-rstudio-quarto",
+    "title": "Introduction",
+    "section": "Introduction to R, RStudio & Quarto",
+    "text": "Introduction to R, RStudio & Quarto\n\nThis video tutorial series was created by  Andy Field to acompany his books An Adventure in Statistics (Field and Iles 2016) and Discovering Statistics Using R (Field, Miles, and Field 2012), and deals with the use of RStudio and Quarto for interacting with R.\nThe videos cover the installation of R, RStudio, and Quarto, the differences between them, a tour of RStudio, good workflows in RStudio, installing and loading packages, and using Quarto.\n\n\n\n\n\n\n\nPlease note …\n\n\n\n\nMost of the exercises shown in the tutorial can be easily reproduced, either by manually entering the data or variables or by using your own files (e.g., when embedding graphics).\nHowever, some data used (e.g., in the session RStudio Working with Code: Part 3) is unfortunately not available publically. In this case, you can either use your own “data” to reproduce the examples or rely on built-in R datasets (such as airquality, mtcars, iris, etc.) by loading them with the data() command (e.g., data(mtcars)).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSession\nTitel\nDauer\n\n\n\n\n1\n\n\n\n\n Installing R and RStudio\n06:13\n\n\n2\n\n\n\n\n Installing Quarto\n02:55\n\n\n3\n\n\n\n\n R Studio desktop workflow (2022)\n08:16\n\n\n4\n\n\n\n\n Customizing Rstudio\n08:03\n\n\n5\n\n\n\n\n Quarto visual editor [Part 1]\n10:20\n\n\n6\n\n\n\n\n Quarto visual editor [Part 2]\n13:19\n\n\n7\n\n\n\n\n Quarto visual editor [Part 3]\n10:39\n\n\n8\n\n\n\n\n Quarto visual editor [Part 4]\n04:28\n\n\n9\n\n\n\n\n Quarto visual editor [Part 5]\n12:10\n\n\n10\n\n\n\n\n RStudio Working with Code: Part 1\n07:41\n\n\n11\n\n\n\n\n RStudio Working with Code: Part 2\n14:08\n\n\n12\n\n\n\n\n RStudio Working with Code: Part 3\n08:44\n\n\n13\n\n\n\n\n RStudio Working with Code: Part 4\n06:47\n\n\n14\n\n\n\n\n RStudio Working with Code: Part 5\n07:07\n\n\n15\n\n\n\n\n RStudio Working with Code: Part 6\n05:48\n\n\n\nYou can also play the videos as a YouTube playlist.",
+    "crumbs": [
+      "Working with R",
+      "R Video Tutorials"
+    ]
+  },
+  {
+    "objectID": "computing/computing-instructions_R.html#practical-work-with-r",
+    "href": "computing/computing-instructions_R.html#practical-work-with-r",
+    "title": "Introduction",
+    "section": "Practical Work with R",
+    "text": "Practical Work with R\n\nCCS.Amsterdam is a group of “Computational” communication scientists from the University of Amsterdam and the Vrije Universiteit Amsterdam. In various research projects, these scientists aim to use and develop computational methods to answer social science research questions. This includes, among other things, the study of news streams, polarization, political microtargeting, fake news, and recommender design. A main goal of the group is to disseminate knowledge among a growing community of enthusiastic “Computational” communication scientists.\nThe series of tutorials curated by CCS.Amsterdam aims to teach the use of tidyverse functions for data cleaning, transformation, visualization, etc. The tutorials consist of both handouts, i.e., documents explaining the most important commands, and video tutorials covering the same material.\nThe table also lists chapters from Computational Analysis of Communication [CAC] and R for Data Science [R4DS], two 100% free and openly accessible books that also cover and possibly deepen the material of the respective session.\n\n\n\n\n\n\n\nPlease note\n\n\n\n\nThe video tutorials may be slightly older than the handouts. In case of doubt, follow the content of the handouts rather than the videos.\nPlease note that the CAC offers R and Python examples side by side. You may need to actively select the R code examples.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSession\nVideo-Tutorial\nMaterialien\nLiteratur\nDauer\n\n\n\n\n1\n\n\n\n\n R basics: commands, objects, and functions\n\n\n\n\n [Handout]\n\n\n\n\n [CAC] [R4DS]\n29:30\n\n\n2\n\n\n\n\n R Tidyverse: Data transformation\n\n\n\n\n [Handout]\n\n\n\n\n [CAC] [R4DS]\n22:19\n\n\n3\n\n\n\n\n R Tidyverse: Data summarization\n\n\n\n\n [Handout]\n\n\n\n\n [CAC] [R4DS]\n11:00\n\n\n4\n\n\n\n\n R ggplot2: Basics of data visualization\n\n\n\n\n [Handout]\n\n\n\n\n [CAC] [R4DS]\n35:14\n\n\n\nYou can also play the videos as a YouTube playlist.",
+    "crumbs": [
+      "Working with R",
+      "R Video Tutorials"
+    ]
+  },
+  {
+    "objectID": "sessions/session-06.html",
+    "href": "sessions/session-06.html",
+    "title": "Session 6",
+    "section": "",
+    "text": "🖥️ 🚧 Session 06"
+  },
+  {
+    "objectID": "sessions/session-06.html#participate",
+    "href": "sessions/session-06.html#participate",
+    "title": "Session 6",
+    "section": "",
+    "text": "🖥️ 🚧 Session 06"
+  },
+  {
+    "objectID": "sessions/session-06.html#literature",
+    "href": "sessions/session-06.html#literature",
+    "title": "Session 6",
+    "section": "Literature",
+    "text": "Literature\n\n\n\n\n\n\nThe following sections list the mandatory articles for the each presenting group. Additional optional articles are provided under Further reading.\n\n\n\n\n📚 Thema 5: Wechselwirkung zwischen TV-Debatten und Twitter\n\nTrilling, D. (2015). Two Different Debates? Investigating the Relationship Between a Political Debate on TV and Simultaneous Comments on Twitter. Social Science Computer Review, 33(3), 259–276. https://doi.org/10.1177/0894439314537886\nRobertson, C. T., Dutton, W. H., Ackland, R., & Peng, T.-Q. (2019). The democratic role of social media in political debates: The use of Twitter in the first televised US presidential debate of 2016. Journal of Information Technology & Politics, 16(2), 105–118. https://doi.org/10.1080/19331681.2019.1590283\nJennings, F. J., Warner, B. R., McKinney, M. S., Kearney, C. C., Funk, M. E., & Bramlett, J. C. (2020). Learning from Presidential Debates: Who Learns the Most and Why? Communication Studies, 71(5), 896–910. https://doi.org/10.1080/10510974.2020.1807377\n\n\nFurther Readings\n\nCoddington, M., Molyneux, L., & Lawrence, R. G. (2014). Fact Checking the Campaign: How Political Reporters Use Twitter to Set the Record Straight (or Not). The International Journal of Press/Politics, 19(4), 391–409. https://doi.org/10.1177/1940161214540942\nGoovaerts, I., & Turkenburg, E. (2023). How Contextual Features Shape Incivility Over Time: An Analysis of the Evolution and Determinants of Political Incivility in Televised Election Debates (19852019). Communication Research, 50(4), 480–507. https://doi.org/10.1177/00936502221135694\n\n\n\n\n📚 Thema 6: Live-Chat(-Kommentare) in politischen Debatten\n\nAsbury-Kimmel, V., Chang, K.-C., McCabe, K. T., Munger, K., & Ventura, T. (2021). The effect of streaming chat on perceptions of political debates. Journal of Communication, 71(6), 947–974. https://doi.org/10.1093/joc/jqab041\nRuiz-Bravo, N., Selander, L., & Roshan, M. (2022). The Political Turn of Twitch  Understanding Live Chat as an Emergent Political Space. http://hdl.handle.net/10125/79723\nRiddick, S., & Shivener, R. (2022). Affective spamming on twitch: Rhetorics of an emote-only audience in a presidential inauguration livestream. Computers and Composition, 64. https://doi.org/10.1016/j.compcom.2022.102711\nEaton, J. (2024). From the comments section: Analyzing online public discourse on the first 2020 presidential debate. Research & Politics, 11(3), 20531680241271758. https://doi.org/10.1177/20531680241271758\n\n\nFurther reading\n\nPowell, A., & Williams-Johnson, D. (2023). “You dumb cracker b*tch”: The legitimizing of White supremacy during a Twitch ban of HasanAbi. New Media & Society, 14614448231191776. https://doi.org/10.1177/14614448231191776\n\n\n\n\n\n\nBack to course schedule ⏎"
+  },
+  {
+    "objectID": "sessions/session-05.html",
+    "href": "sessions/session-05.html",
+    "title": "Session 5",
+    "section": "",
+    "text": "🖥️ 🚧 Session 05"
+  },
+  {
+    "objectID": "sessions/session-05.html#participate",
+    "href": "sessions/session-05.html#participate",
+    "title": "Session 5",
+    "section": "",
+    "text": "🖥️ 🚧 Session 05"
+  },
+  {
+    "objectID": "sessions/session-05.html#literature",
+    "href": "sessions/session-05.html#literature",
+    "title": "Session 5",
+    "section": "Literature",
+    "text": "Literature\n\n\n\n\n\n\nThe following sections list the mandatory articles for the each presenting group. Additional optional articles are provided under Further reading.\n\n\n\n\n📚 Thema 3: (Wirkungs-)Effekte der -Nutzung/Interaktion\n\nXi, D., Xu, W., Tang, L., & Han, B. (2024). The impact of streamer emotions on viewer gifting behavior: Evidence from entertainment live streaming. Internet Research, 34(3), 748–783. https://doi.org/10.1108/INTR-05-2022-0350\nBründl, S., Matt, C., Hess, T., & Engert, S. (2023). How synchronous participation affects the willingness to subscribe to social live streaming services: The role of co-interactive behavior on twitch. European Journal of Information Systems, 32(5), 800–817. https://doi.org/10.1080/0960085X.2022.2062468\nWolff, G. H., & Shen, C. (2022). Audience size, moderator activity, gender, and content diversity: Exploring user participation and financial commitment on Twitch.tv. New Media & Society, 146144482110699. https://doi.org/10.1177/14614448211069996\n\n\nFurther Readings\n\nHan, C., Seering, J., Kumar, D., Hancock, J. T., & Durumeric, Z. (2023). Hate Raids on Twitch: Echoes of the Past, New Modalities, and Implications for Platform Governance. Proceedings of the ACM on Human-Computer Interaction, 7(CSCW1), 1–28. https://doi.org/10.1145/3579609\nMeisner, C. (2023). Networked Responses to Networked Harassment? Creators’ Coordinated Management of “Hate Raids” on Twitch. Social Media + Society, 9(2), 20563051231179696. https://doi.org/10.1177/20563051231179696\nTomlinson, C. (2024). Community Grievances, personal responsibility, and DIY protection: Frustrations and solution-seeking among marginalized Twitch streamers. Convergence: The International Journal of Research into New Media Technologies, 30(1), 358–374. https://doi.org/10.1177/13548565231184060\nHou, F., Guan, Z., Li, B., & Chong, A. Y. L. (2020). Factors influencing people’s continuous watching intention and consumption intention in live streaming. Internet Research, 30(1), 141–163. https://doi.org/10.1108/INTR-04-2018-0177\nChinchilla, P., & Kim, J. (2024). “Let’s Chill and Chat”: Exploring the Effects of Streamers’ Self-Disclosure on Parasocial Interaction via Social Presence. International Journal of HumanComputer Interaction, 1–11. https://doi.org/10.1080/10447318.2024.2390263\n\n\n\n\n📚 Thema 4: (Wirkungs-)Effekte von TV-Wahldebatten\n\nLe Pennec, C., & Pons, V. (2023). How do campaigns shape vote choice? Multicountry evidence from 62 elections and 56 TV debates*. The Quarterly Journal of Economics, 138(2), 703–767. https://doi.org/10.1093/qje/qjad002\nWaldvogel, T., König, P., Wagschal, U., Becker, B., & Weishaupt, S. (2022). It’s the emotion, stupid! Emotional responses to televised debates and their impact on voting intention. Open Political Science, 5(1), 13–28. https://doi.org/10.1515/openps-2022-0146\nJennings, F. J., Bramlett, J. C., McKinney, M. S., & Hardy, M. M. (2020). Tweeting Along Partisan Lines: Identity-Motivated Elaboration and Presidential Debates. Social Media + Society, 6(4), 2056305120965518. https://doi.org/10.1177/2056305120965518\nWarner, B. R., Park, J., Kim, G.-E., McKinney, M. S., & Paul, Wm. B. (2024). Do Presidential Primary Debates Increase Political Polarization? American Behavioral Scientist, 68(1), 80–96. https://doi.org/10.1177/00027642211026613\n\n\nFurther Readings\n\nBenoit, W. L., Hansen, G. J., & Verser, R. M. (2003). A meta-analysis of the effects of viewing u.s. Presidential debates. Communication Monographs, 70(4), 335–350. https://doi.org/10.1080/0363775032000179133\nMcKinney, M. S., & Warner, B. R. (2013). Do Presidential Debates Matter? Examining a Decade of Campaign Debate Effects. Argumentation and Advocacy, 49(4), 238–258. https://doi.org/10.1080/00028533.2013.11821800\n\n\n\n\n\n\nBack to course schedule ⏎"
+  },
+  {
     "objectID": "course-team.html",
     "href": "course-team.html",
     "title": "Teaching team",
@@ -158,28 +255,28 @@
     "href": "course-presentations.html",
     "title": "Course presentations",
     "section": "",
-    "text": "Scheibe, K., Zimmer, F., Fietkiewicz, K., & Stock, W. (2022). Hawaii international conference on system sciences. https://doi.org/10.24251/HICSS.2022.410\nXu, Y., Kapitan, S., & Phillips, M. (2023). The commercial impact of live streaming: A systematic literature review and future research agenda. International Journal of Consumer Studies, 47(6), 2495–2527. https://doi.org/10.1111/ijcs.12960\n\n\n\nGros, D., Hackenholt, A., Zawadzki, P., & Wanner, B. (2018). Interactions of Twitch Users and Their Usage Behavior (G. Meiselwitz, Ed.; pp. 201–213). Springer International Publishing. https://doi.org/10.1007/978-3-319-91485-5_15\nWolff, G. H., & Shen, C. (2022). Audience size, moderator activity, gender, and content diversity: Exploring user participation and financial commitment on Twitch.tv. New Media & Society, 146144482110699. https://doi.org/10.1177/14614448211069996"
+    "text": "Zimmer, F., Scheibe, K., & Stock, W. G. (2018). A Model for Information Behavior Research on Social Live Streaming Services (SLSSs) (G. Meiselwitz, Ed.; pp. 429–448). Springer International Publishing. https://doi.org/10.1007/978-3-319-91485-5_33\nHou, F., Guan, Z., Li, B., & Chong, A. Y. L. (2020). Factors influencing people’s continuous watching intention and consumption intention in live streaming. Internet Research, 30(1), 141–163. https://doi.org/10.1108/INTR-04-2018-0177\nCabeza-Ramírez, L. J., Fuentes-García, F. J., & Muñoz-Fernandez, G. A. (2021). Exploring the Emerging Domain of Research on Video Game Live Streaming in Web of Science: State of the Art, Changes and Trends. International Journal of Environmental Research and Public Health, 18(6), 2917. https://doi.org/10.3390/ijerph18062917\nNguyen, T. T., & Veer, E. (2024). Why people watch user-generated videos? A systematic review and meta-analysis. International Journal of Human-Computer Studies, 181, 103144. https://doi.org/10.1016/j.ijhcs.2023.103144\n\n\nXu, Y., Kapitan, S., & Phillips, M. (2023). The commercial impact of live streaming: A systematic literature review and future research agenda. International Journal of Consumer Studies, 47(6), 2495–2527. https://doi.org/10.1111/ijcs.12960\n\n\n\n\nGros, D., Hackenholt, A., Zawadzki, P., & Wanner, B. (2018). Interactions of Twitch Users and Their Usage Behavior (G. Meiselwitz, Ed.; pp. 201–213). Springer International Publishing. https://doi.org/10.1007/978-3-319-91485-5_15\nWolff, G. H., & Shen, C. (2022). Audience size, moderator activity, gender, and content diversity: Exploring user participation and financial commitment on Twitch.tv. New Media & Society, 146144482110699. https://doi.org/10.1177/14614448211069996\nGamir-Ríos, J., Cano-Orón, L., & García-Casas, D. (2024). Twitch’s Second Phase of Development: Analyzing Streamer Profiles and Content Trends That Boost Its Evolution into a Mass Media. Games and Culture, 15554120241257030. https://doi.org/10.1177/15554120241257030\nCastro-Agirre, I., & Martínez-Fernández, G. (2024). From gamer niche to mainstream media: Twitch’s most popular media figures and content. Communication & Society, 179–196. https://doi.org/10.15581/003.37.2.179-196"
   },
   {
-    "objectID": "course-presentations.html#presentation-session-1-social-live-streaming-services",
-    "href": "course-presentations.html#presentation-session-1-social-live-streaming-services",
+    "objectID": "course-presentations.html#introduction-to-social-live-streaming-services",
+    "href": "course-presentations.html#introduction-to-social-live-streaming-services",
     "title": "Course presentations",
     "section": "",
-    "text": "Scheibe, K., Zimmer, F., Fietkiewicz, K., & Stock, W. (2022). Hawaii international conference on system sciences. https://doi.org/10.24251/HICSS.2022.410\nXu, Y., Kapitan, S., & Phillips, M. (2023). The commercial impact of live streaming: A systematic literature review and future research agenda. International Journal of Consumer Studies, 47(6), 2495–2527. https://doi.org/10.1111/ijcs.12960\n\n\n\nGros, D., Hackenholt, A., Zawadzki, P., & Wanner, B. (2018). Interactions of Twitch Users and Their Usage Behavior (G. Meiselwitz, Ed.; pp. 201–213). Springer International Publishing. https://doi.org/10.1007/978-3-319-91485-5_15\nWolff, G. H., & Shen, C. (2022). Audience size, moderator activity, gender, and content diversity: Exploring user participation and financial commitment on Twitch.tv. New Media & Society, 146144482110699. https://doi.org/10.1177/14614448211069996"
+    "text": "Zimmer, F., Scheibe, K., & Stock, W. G. (2018). A Model for Information Behavior Research on Social Live Streaming Services (SLSSs) (G. Meiselwitz, Ed.; pp. 429–448). Springer International Publishing. https://doi.org/10.1007/978-3-319-91485-5_33\nHou, F., Guan, Z., Li, B., & Chong, A. Y. L. (2020). Factors influencing people’s continuous watching intention and consumption intention in live streaming. Internet Research, 30(1), 141–163. https://doi.org/10.1108/INTR-04-2018-0177\nCabeza-Ramírez, L. J., Fuentes-García, F. J., & Muñoz-Fernandez, G. A. (2021). Exploring the Emerging Domain of Research on Video Game Live Streaming in Web of Science: State of the Art, Changes and Trends. International Journal of Environmental Research and Public Health, 18(6), 2917. https://doi.org/10.3390/ijerph18062917\nNguyen, T. T., & Veer, E. (2024). Why people watch user-generated videos? A systematic review and meta-analysis. International Journal of Human-Computer Studies, 181, 103144. https://doi.org/10.1016/j.ijhcs.2023.103144\n\n\nXu, Y., Kapitan, S., & Phillips, M. (2023). The commercial impact of live streaming: A systematic literature review and future research agenda. International Journal of Consumer Studies, 47(6), 2495–2527. https://doi.org/10.1111/ijcs.12960\n\n\n\n\nGros, D., Hackenholt, A., Zawadzki, P., & Wanner, B. (2018). Interactions of Twitch Users and Their Usage Behavior (G. Meiselwitz, Ed.; pp. 201–213). Springer International Publishing. https://doi.org/10.1007/978-3-319-91485-5_15\nWolff, G. H., & Shen, C. (2022). Audience size, moderator activity, gender, and content diversity: Exploring user participation and financial commitment on Twitch.tv. New Media & Society, 146144482110699. https://doi.org/10.1177/14614448211069996\nGamir-Ríos, J., Cano-Orón, L., & García-Casas, D. (2024). Twitch’s Second Phase of Development: Analyzing Streamer Profiles and Content Trends That Boost Its Evolution into a Mass Media. Games and Culture, 15554120241257030. https://doi.org/10.1177/15554120241257030\nCastro-Agirre, I., & Martínez-Fernández, G. (2024). From gamer niche to mainstream media: Twitch’s most popular media figures and content. Communication & Society, 179–196. https://doi.org/10.15581/003.37.2.179-196"
   },
   {
-    "objectID": "course-presentations.html#presentation-session-2-focus-on-users",
-    "href": "course-presentations.html#presentation-session-2-focus-on-users",
+    "objectID": "course-presentations.html#motivations-for-using-slss",
+    "href": "course-presentations.html#motivations-for-using-slss",
     "title": "Course presentations",
-    "section": "Presentation Session 2: Focus on Users",
-    "text": "Presentation Session 2: Focus on Users\nHou, F., Guan, Z., Li, B., & Chong, A. Y. L. (2020). Factors influencing people’s continuous watching intention and consumption intention in live streaming. Internet Research, 30(1), 141–163. https://doi.org/10.1108/INTR-04-2018-0177\n\nTopic 2_1:\nXi, D., Xu, W., Tang, L., & Han, B. (2024). The impact of streamer emotions on viewer gifting behavior: Evidence from entertainment live streaming. Internet Research, 34(3), 748–783. https://doi.org/10.1108/INTR-05-2022-0350\n\n\nTopic 2_2:\nLeith, A. P., & Gheen, E. (2022). Twitch in the time of quarantine: The role of engagement in needs fulfillment. Psychology of Popular Media, 11(3), 275–280. https://doi.org/10.1037/ppm0000372\nNavarro, A., & Tapiador, F. J. (2023). Twitch as a privileged locus to analyze young people’s attitudes in the climate change debate: a quantitative analysis. Humanities and Social Sciences Communications, 10(1), 1–13. https://doi.org/10.1057/s41599-023-02377-4"
+    "section": "Motivations for using SLSS",
+    "text": "Motivations for using SLSS\n\nTopic 3: By streamers\nZimmer, F., & Scheibe, K. (2019). Hawaii international conference on system sciences. https://doi.org/10.24251/HICSS.2019.306\nScheibe, K., Zimmer, F., Fietkiewicz, K., & Stock, W. (2022). Interpersonal Relations and Social Actions on Live Streaming Services. A Systematic Review on Cyber-social Relations. http://hdl.handle.net/10125/79744\nYoung, A., & Wiedenfeld, G. (2022). A Motivation Analysis of Video Game Microstreamers: “Finding My People and Myself” on YouTube and Twitch. Journal of Broadcasting & Electronic Media, 66(2), 381–399. https://doi.org/10.1080/08838151.2022.2086549\nXi, D., Xu, W., Tang, L., & Han, B. (2024). The impact of streamer emotions on viewer gifting behavior: Evidence from entertainment live streaming. Internet Research, 34(3), 748–783. https://doi.org/10.1108/INTR-05-2022-0350\nTomlinson, C. (2024). Community Grievances, personal responsibility, and DIY protection: Frustrations and solution-seeking among marginalized Twitch streamers. Convergence: The International Journal of Research into New Media Technologies, 30(1), 358–374. https://doi.org/10.1177/13548565231184060\n\nOptional:\nChinchilla, P., & Kim, J. (2024). “Let’s Chill and Chat”: Exploring the Effects of Streamers’ Self-Disclosure on Parasocial Interaction via Social Presence. International Journal of HumanComputer Interaction, 1–11. https://doi.org/10.1080/10447318.2024.2390263\n\n\n\nTopic 4: By users\nHilvert-Bruce, Z., Neill, J. T., Sjöblom, M., & Hamari, J. (2018). Social motivations of live-streaming viewer engagement on twitch. Computers in Human Behavior, 84, 58–67. https://doi.org/10.1016/j.chb.2018.02.013\nGoh, Z. H., Tandoc, E. C., & Ng, B. (2021). “Live” Together with You: Livestream Views Mitigate the Effects of Loneliness on Well-being. Journal of Broadcasting & Electronic Media, 65(4), 505–524. https://doi.org/10.1080/08838151.2021.1994970\nLeith, A. P., & Gheen, E. (2022). Twitch in the time of quarantine: The role of engagement in needs fulfillment. Psychology of Popular Media, 11(3), 275–280. https://doi.org/10.1037/ppm0000372\nLessel, P., Altmeyer, M., Sahner, J., & Krüger, A. (2022). Streamer’s hell - investigating audience influence in live-streams beyond the game. Proc. ACM Hum.-Comput. Interact., 6(CHI PLAY), 252:1252:27. https://doi.org/10.1145/3549515\nZsila, Á., Shabahang, R., Aruguete, M. S., Bőthe, B., Gregor-Tóth, P., & Orosz, G. (2024). Exploring the association between Twitch use and well-being. Psychology of Popular Media, 13(4), 620–632. https://doi.org/10.1037/ppm0000486\nKneisel, A., & Sternadori, M. (2023). Effects of parasocial affinity and gender on live streaming fans’ motivations. Convergence, 29(2), 322–341. https://doi.org/10.1177/13548565221114461"
   },
   {
-    "objectID": "course-presentations.html#presentation-session-3-focus-on-content",
-    "href": "course-presentations.html#presentation-session-3-focus-on-content",
+    "objectID": "course-presentations.html#effects-of-slss",
+    "href": "course-presentations.html#effects-of-slss",
     "title": "Course presentations",
-    "section": "Presentation Session 3: Focus on Content",
-    "text": "Presentation Session 3: Focus on Content\n\nTopic 3_1\nDutt, S., & Graham, S. (2023). Video, talk and text: How do parties communicate coherently across modalities in live videostreams? Discourse, Context and Media, 55. https://doi.org/10.1016/j.dcm.2023.100726\n\n\nTopic 3_2\nRiddick, S., & Shivener, R. (2022). Affective spamming on twitch: Rhetorics of an emote-only audience in a presidential inauguration livestream. Computers and Composition, 64. https://doi.org/10.1016/j.compcom.2022.102711"
+    "section": "Effects of SLSS",
+    "text": "Effects of SLSS\n\nUse specific\nBründl, S., Matt, C., Hess, T., & Engert, S. (2023). How synchronous participation affects the willingness to subscribe to social live streaming services: The role of co-interactive behavior on twitch. European Journal of Information Systems, 32(5), 800–817. https://doi.org/10.1080/0960085X.2022.2062468\nNavarro, A., & Tapiador, F. J. (2023). Twitch as a privileged locus to analyze young people’s attitudes in the climate change debate: a quantitative analysis. Humanities and Social Sciences Communications, 10(1), 1–13. https://doi.org/10.1057/s41599-023-02377-4\n\n\nContent specific\nDutt, S., & Graham, S. (2023). Video, talk and text: How do parties communicate coherently across modalities in live videostreams? Discourse, Context and Media, 55. https://doi.org/10.1016/j.dcm.2023.100726\nMao, E. (2022). How live stream content types impact viewers’ support behaviors? Mediational analysis on psychological and social gratifications. Frontiers in Psychology, 13. https://doi.org/10.3389/fpsyg.2022.951055\nRiddick, S., & Shivener, R. (2022). Affective spamming on twitch: Rhetorics of an emote-only audience in a presidential inauguration livestream. Computers and Composition, 64. https://doi.org/10.1016/j.compcom.2022.102711\n\nEmotions\nLacko, D., Dufková, E., & Machackova, H. (2023). Does aggressive commentary by streamers during violent video game affect state aggression in adolescents? New Media & Society, 14614448231182620. https://doi.org/10.1177/14614448231182620\nLacko, D., Macháčková, H., & Smahel, D. (n.d.). Does violence in video games impact aggression and empathy? A longitudinal study of czech adolescents to differentiate within- and between-person effects. https://doi.org/10.31234/osf.io/dns8t"
   },
   {
     "objectID": "index.html",
@@ -201,6 +298,66 @@
     "crumbs": [
       "Course information",
       "Schedule"
+    ]
+  },
+  {
+    "objectID": "sessions/session-01.html",
+    "href": "sessions/session-01.html",
+    "title": "Session 1",
+    "section": "",
+    "text": "Important\n\n\n\nPlease make sure that you answered the survey send to you by (StudOn) mail."
+  },
+  {
+    "objectID": "sessions/session-01.html#prepare",
+    "href": "sessions/session-01.html#prepare",
+    "title": "Session 1",
+    "section": "Prepare",
+    "text": "Prepare\n✍️ Fill out the short survey before the 22.10.2024 (see  StudOn for Link)\n📖 Read the syllabus"
+  },
+  {
+    "objectID": "sessions/session-01.html#participate",
+    "href": "sessions/session-01.html#participate",
+    "title": "Session 1",
+    "section": "Participate",
+    "text": "Participate\n🖥️ 🚧 Session 01\n\n\nBack to course schedule ⏎"
+  },
+  {
+    "objectID": "sessions/session-04.html",
+    "href": "sessions/session-04.html",
+    "title": "Session 4",
+    "section": "",
+    "text": "🖥️ 🚧 Session 04"
+  },
+  {
+    "objectID": "sessions/session-04.html#participate",
+    "href": "sessions/session-04.html#participate",
+    "title": "Session 4",
+    "section": "",
+    "text": "🖥️ 🚧 Session 04"
+  },
+  {
+    "objectID": "sessions/session-04.html#literature",
+    "href": "sessions/session-04.html#literature",
+    "title": "Session 4",
+    "section": "Literature",
+    "text": "Literature\n\n\n\n\n\n\nThe following sections list the mandatory articles for the each presenting group. Additional optional articles are provided under Further reading.\n\n\n\n\n📚 Thema 1: Motivation für die Nutzung von Twitch\n\nHilvert-Bruce, Z., Neill, J. T., Sjöblom, M., & Hamari, J. (2018). Social motivations of live-streaming viewer engagement on twitch. Computers in Human Behavior, 84, 58–67. https://doi.org/10.1016/j.chb.2018.02.013\nCastro-Agirre, I., & Martínez-Fernández, G. (2024). From gamer niche to mainstream media: Twitch’s most popular media figures and content. Communication & Society, 179–196. https://doi.org/10.15581/003.37.2.179-196\nNguyen, T. T., & Veer, E. (2024). Why people watch user-generated videos? A systematic review and meta-analysis. International Journal of Human-Computer Studies, 181, 103144. https://doi.org/10.1016/j.ijhcs.2023.103144\n\n\nFurther Readings\n\nGros, D., Hackenholt, A., Zawadzki, P., & Wanner, B. (2018). Interactions of Twitch Users and Their Usage Behavior (G. Meiselwitz, Ed.; pp. 201–213). Springer International Publishing. https://doi.org/10.1007/978-3-319-91485-5_15\nZimmer, F., Scheibe, K., & Stock, W. G. (2018). A Model for Information Behavior Research on Social Live Streaming Services (SLSSs) (G. Meiselwitz, Ed.; pp. 429–448). Springer International Publishing. https://doi.org/10.1007/978-3-319-91485-5_33\nXu, X.-Y., Niu, W.-B., Jia, Q.-D., Nthoiwa, L., & Li, L.-W. (2021). Why Do Viewers Engage in Video Game Streaming? The Perspective of Cognitive Emotion Theory and the Moderation Effect of Personal Characteristics. Sustainability, 13(21), 11990. https://doi.org/10.3390/su132111990\nKneisel, A., & Sternadori, M. (2023). Effects of parasocial affinity and gender on live streaming fans’ motivations. Convergence, 29(2), 322–341. https://doi.org/10.1177/13548565221114461\n\n\n\n\n📚 Thema 2: Kommunikation und Interaktion auf Twitch\n\nJacobs, N., & Booth, P. (2021). Converging experiences, converging audiences: An analysis of doctor who on Twitch. Convergence: The International Journal of Research into New Media Technologies, 27(5), 1324–1342. https://doi.org/10.1177/1354856520976447\nDutt, S., & Graham, S. (2023). Video, talk and text: How do parties communicate coherently across modalities in live videostreams? Discourse, Context and Media, 55. https://doi.org/10.1016/j.dcm.2023.100726\nNavarro, A., & Tapiador, F. J. (2023). Twitch as a privileged locus to analyze young people’s attitudes in the climate change debate: a quantitative analysis. Humanities and Social Sciences Communications, 10(1), 1–13. https://doi.org/10.1057/s41599-023-02377-4\n\n\nFurther Readings\n\nYoung, A., & Wiedenfeld, G. (2022). A Motivation Analysis of Video Game Microstreamers: “Finding My People and Myself” on YouTube and Twitch. Journal of Broadcasting & Electronic Media, 66(2), 381–399. https://doi.org/10.1080/08838151.2022.2086549\nLessel, P., Altmeyer, M., Sahner, J., & Krüger, A. (2022). Streamer’s hell - investigating audience influence in live-streams beyond the game. Proc. ACM Hum.-Comput. Interact., 6(CHI PLAY), 252:1252:27. https://doi.org/10.1145/3549515\nMao, E. (2022). How live stream content types impact viewers’ support behaviors? Mediational analysis on psychological and social gratifications. Frontiers in Psychology, 13. https://doi.org/10.3389/fpsyg.2022.951055\n\n\n\nBack to course schedule ⏎"
+  },
+  {
+    "objectID": "computing/computing-useful_links.html",
+    "href": "computing/computing-useful_links.html",
+    "title": "Useful sources",
+    "section": "",
+    "text": "This is selection of useful R sources:\n\n Quarto tutorials by Andy Field\n Automatisierte Inhaltsanalyse mit R by Kornelius Puschmann"
+  },
+  {
+    "objectID": "computing/computing-cheatsheets.html",
+    "href": "computing/computing-cheatsheets.html",
+    "title": "R cheatsheets",
+    "section": "",
+    "text": "The following cheatsheets come from https://posit.co/resources/cheatsheets. We haven’t covered every function and functionality listed on them, but you might still find them useful as references.",
+    "crumbs": [
+      "Working with R",
+      "R Cheatsheets"
     ]
   },
   {
