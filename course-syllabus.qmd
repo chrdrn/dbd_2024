@@ -59,29 +59,27 @@ All slides, assignment instructions, an up-to-date schedule, and other course ma
 -   All sessions marked with a 📊 are presentation sessions where groups of students will present the results of their project work *(see [Assignments](course-assignments.html#sec-research-project-presentation) for more information).*
 :::
 
-<!-- TODO Update schedule, especially block 2 -->
-
-| Session | Datum          | Topic                                        |
-|---------|----------------|----------------------------------------------|
-|         | 📂 **Block 1** | **Introduction**                             |
-| 1       | 23.10.2024     | Kick-Off                                     |
-| 2       | 30.10.2024     | DBD: Introduction & Overview                 |
-| 3       | 06.11.2024     | 🔨 Introduction to working with R            |
-|         | 📂 **Block 2** | **Theoretical foundation**                   |
-| 4       | 13.11.2024     | 📚 Research I                                |
-| 5       | 20.11.2024     | 📚 Research II                               |
-| 6       | 27.11.2024     | 📚 Research III                              |
-|         | 📂 **Block 3** | **Natural language processing**              |
-| 7       | 04.12.2024     | 🔨 Text as data I: Introduction              |
-| 8       | 11.12.2024     | 🔨 Text as data II: Advanced Methods         |
-| 9       | 18.12.2024     | 🔨 Advanced Method I: Topic Modeling         |
-| \-      | \-             | 🎄*Christmas Break (No Lecture)*             |
-| 10      | 08.01.2025     | 🔨 Advanced Method II: Machine Learning      |
-|         | 📂 **Block 5** | **Project Work**                             |
-| 11      | 15.01.2025     | 🔨 Project work                              |
-| 12      | 22.01.2025     | 🔨 Project work                              |
-| 13      | 29.01.2025     | 📊 Project Presentation (I)                  |
-| 14      | 05.02.2025     | 📊 Project Presentation (II) & 🏁 Evaluation |
+| Session | Datum | Topic |
+|-------|---------------|------------------------------------|
+|  | 📂 **Block 1** | **Introduction** |
+| 1 | 23.10.2024 | Kick-Off |
+| 2 | 30.10.2024 | DBD: Introduction & Overview |
+| 3 | 06.11.2024 | 🔨 Introduction to working with R |
+|  | 📂 **Block 2** | **Theoretical background: {{< bi twitch >}} & TV election debates** |
+| 4 | 13.11.2024 | 📚 {{< bi twitch >}} usage in focus |
+| 5 | 20.11.2024 | 📚 Effects of {{< bi twitch >}} & TV debates  |
+| 6 | 27.11.2024 | 📚 Political TV debates & social media  |
+|  | 📂 **Block 3** | **Natural language processing** |
+| 7 | 04.12.2024 | 🔨 Text as data I: Introduction |
+| 8 | 11.12.2024 | 🔨 Text as data II: Advanced Methods |
+| 9 | 18.12.2024 | 🔨 Advanced Method I: Topic Modeling |
+| \- | \- | 🎄*Christmas Break (No Lecture)* |
+| 10 | 08.01.2025 | 🔨 Advanced Method II: Machine Learning |
+|  | 📂 **Block 5** | **Project Work** |
+| 11 | 15.01.2025 | 🔨 Project work |
+| 12 | 22.01.2025 | 🔨 Project work |
+| 13 | 29.01.2025 | 📊 Project Presentation (I) |
+| 14 | 05.02.2025 | 📊 Project Presentation (II) & 🏁 Evaluation |
 
 ::: callout-note
 For the latest, more detailed version of the course schedule as well as the linked content of the individual sessions (e.g. slides or literature for the respective presentation), please see [Schedule](index.html).
@@ -100,12 +98,6 @@ The first four sessions form the (theoretical) basis for the course.
 ### Block II: Theoretical foundation
 
 The second block will contain the presentations by different groups of students about the research relevant for the course.
-
-<!-- TODO Short description of first presentation session -->
-
-<!-- TODO Short description of second presentation session -->
-
-<!-- TODO Short description of third presentation session -->
 
 ### Block III: Natural Language Processing (NLP)
 
