@@ -88,7 +88,7 @@ website:
 
       - section: "Working with R"
         contents:
-          - href: computing/computing-introductions.qmd
+          - href: computing/computing-instructions_R.qmd
             text: R Video Tutorials
           - href: computing/computing-textbooks.qmd
             text: R Textbooks
