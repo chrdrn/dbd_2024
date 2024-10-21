@@ -17,17 +17,17 @@ This page provides an outline of the topics, contents, and assignments for the s
 
 <!-- FIXME Add column with link to exercises / group activities -->
 
-| Session | Date | Topic | Resources |
+| ID | Date | Topic | Resources |
 |------------------|------------------|--------------------|------------------|
 |  | 📂 **Block 1** | **Introduction** |  |
-| 1 | 23.10.2024 | Kick-Off | |
-| 2 | 30.10.2024 | DBD: Introduction & Overview |  |
+| 1 | 23.10.2024 | Kick-Off | [{{< bi book >}}](/sessions/session-01.html "Session 01"){aria-label="Session 01"}  |
+| 2 | 30.10.2024 | DBD: Overview & Introduction |  |
 | 3 | 06.11.2024 | 🔨 Introduction to working with R |  |
-|  | 📂 **Block 2** | **Theoretical foundation** |  |
-| 4 | 13.11.2024 | 📚 Research I |  |
-| 5 | 20.11.2024 | 📚 Research II |  |
-| 6 | 27.11.2024 | 📚 Research III |  |
-|  | 📂 **Block 3** | **Natural language processing** |  |
+|  | 📂 **Block 2** | **Theoretical Background: {{< bi twitch >}} & TV Election Debates** |  |
+| 4 | 13.11.2024 | 📚 {{< bi twitch >}}-Nutzung im Fokus  | [{{< bi book >}}](/sessions/session-04.html "Session 04"){aria-label="Session 04"}   |
+| 5 | 20.11.2024 | 📚 Effekte von {{< bi twitch >}} & TV-Debatten | [{{< bi book >}}](/sessions/session-05.html "Session 05"){aria-label="Session 05"}   |
+| 6 | 27.11.2024 | 📚 Politische TV-Debatten & Social Media | [{{< bi book >}}](/sessions/session-06.html "Session 06"){aria-label="Session 06"}  |
+|  | 📂 **Block 3** | **Method: Natural language processing** |  |
 | 7 | 04.12.2024 | 🔨 Text as data I: Introduction |  |
 | 8 | 11.12.2024 | 🔨 Text as data II: Advanced Methods |  |
 | 9 | 18.12.2024 | 🔨 Advanced Method I: Topic Modeling |  |
@@ -39,7 +39,7 @@ This page provides an outline of the topics, contents, and assignments for the s
 | 13 | 29.01.2025 | 📊 Project Presentation (I) |  |
 | 14 | 05.02.2025 | 📊 Project Presentation (II) & 🏁 Evaluation |  |
 
-: {tbl-colwidths="\[2,20,50,30 \]"}
+: {tbl-colwidths="\[5,10,60,25 \]"}
 
 ## Copyright
 
