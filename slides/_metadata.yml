@@ -1,0 +1,35 @@
+title-slide-attributes:
+  data-background-image: img/slide_bg-title.png
+  data-background-color: "#04316a"
+  slide-logo: false
+
+author: 
+  - name: Christoph Adrian
+    url: https://chrdrn.github.io/dbd_2024/course-team.html
+    affiliation: Chair of Communicaion Science
+    affiliation-url: https://www.kowi.rw.fau.de/person/christoph-adrian/
+  
+format:
+  revealjs:
+    theme: slidetheme.scss
+    logo: ../img/dbd_hex.png
+    footer: "[Home](https://chrdrn.github.io/dbd_2024/)"
+    slide-number: true
+    preview-links: auto
+    # template-partials:
+    #   - title-slide.html
+    chalkboard:
+      buttons: false
+
+highlight-style: atom-one
+
+filters:
+  - line-highlight
+
+execute:
+  echo: true
+
+csl: ../apa.csl
+
+editor_options: 
+  chunk_output_type: console
