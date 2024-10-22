@@ -1,0 +1,432 @@
+---
+title: "Kick-Off"
+subtitle: "Session 01"
+date: 23 10 2024
+date-format: "DD.MM.YYYY"
+bibliography: references_slides.bib
+---
+
+# Agenda {background-image="img/slide_bg-agenda.png"}
+
+1.  [Kurze Vorstellungsrunde](#intro)
+2.  [Warum eigentlich Digital Behavioral Data?](#dbd-introduction)
+3.  [Grundidee und Thema des Kurses](#dbd-course)
+4.  [Oragnisatorisches](#orga)
+5.  [Themenverteilung](#topics)
+6.  Fragen
+
+```{r setup-slide-session}
+#| echo: false
+
+# Load packages
+library(jsonlite)
+library(tidyverse)
+library(here)
+
+# Load schedule
+source(here("slides/schedule.R"))
+```
+
+# `print("Hello course!")` {#intro background-image="img/slide_bg-section.png"}
+
+**Christoph Adrian**
+
+-   B.A. und M.Sc. Sozialökonomik \@ FAU
+-   Text as Data & Social Media Usage (Effects)
+-   Fließend in R, Grundkenntnisse in Python, SPSS & Stata
+-   #gerneperdu
+
+## Und nun zu Ihnen!
+
+#### Vorstellungsrunde
+
+-   Wie heißen Sie?
+-   Was und wo haben Sie im **Bachelor studiert**?
+-   Was **studieren** Sie **aktuell**?
+-   Welches **soziale Netzwerk/Medium** haben Sie letzte Woche am meisten genutzt und **warum**?
+
+::: notes
+-   Hintegrund und Vorwissen
+-   Mediennutzung
+:::
+
+# An Abundance of Possibilites {#dbd-introduction background-image="img/slide_bg-section.png"}
+
+Warum eigentlich **Digital Behavioral Data**?
+
+## Mehr Daten durch fortschreitende Digitalisiserung
+
+#### Beispiel: Wachsenden Anzahl eingebauter Smartphone-Sensoren
+
+![Graphik aus @struminskaya2020](img/session-01/dbd_smartphone_development.jpeg){fig-align="center"}
+
+## Verlagerung in den digitalen Raum
+
+#### Trend der Digitalisierung von Verhaltensweisen und Aktivitäten
+
+::::: columns
+::: {.column width="65%"}
+![Quelle: @keusch2021](img/session-01/dbd_matrix.png){fig-align="center" width="1024"}
+:::
+
+::: {.column width="35%"}
+<br>
+
+#### **Einschränkungen**
+
+-   **Selektive Nutzung** von bestimmten digitalen Geräten bzw. Funktionen
+-   Kategorisierung ist **Momentaufnahme** und nicht überschneidungsfrei
+:::
+:::::
+
+::: notes
+-   Einige inhärent digitale Verhalten (z.B. Web Searches) bei zunehmender Digitalisierung von analogen Verhalten (z.B. Collaborative Work)
+-   Fehlen digitaler Spurendaten in all diesen Quadranten für bestimmte Personen und bestimmte Verhaltensweisen durch selektive Nutzung digitaler Geräte.
+:::
+
+## Ein Definitionsversuch von DBD
+
+#### nach @weller2021
+
+::::: columns
+::: {.column width="50%"}
+... fasst eine Vielzahl von möglichen **Datenquellen** zusammen, die verschiedene **Arten von Aktivitäten** aufzeichnen
+
+... können dabei helfen, **Meinungen, Verhalten und Merkmale der menschlichen Nutzung** digitaler Technologien zu erkennen
+:::
+
+::: {.column width="50%"}
+![](img/session-01/dbd_pictogram.svg){fig-align="center"}
+:::
+:::::
+
+## Lernziele
+
+#### Die Studierenden werden ...
+
+-   einen **Überblick über die zentralen Möglichkeiten von DBD** und die damit verbundenen **Herausforderungen** bei der Datenerhebung und -aufbereitung bekommen
+-   lernen die **Stärken und Schwächen** verschiedener **Methoden zur Erhebung von DBD** bewerten
+-   zentrale Anforderungen an **Datenschutz, Forschungsethik und Datenqualität** kennen und verstehen lernen
+-   zentrale sozialwissenschaftliche **Methoden zur Analyse von DBD kennenlernen**
+-   das Wissen über DBD, Statistik und Datenanalyse in **eigenen kleinen Projekten** zu üben und anzuwenden
+
+# Projektarbeit mit DBD & {{< iconify devicon rstudio >}} {#dbd-course background-image="img/slide_bg-section.png"}
+
+**Grundidee** und **Thema** des Kurses
+
+## 4 (Themen-)Blocks
+
+#### Struktur und Aufbau des Seminars
+
+![](img/session-01/graphic-course_blocks.png){fig-align="center"}
+
+## Twitch meets Politics meets NLP
+
+#### Auswertung von Live-Stream(-Chats) zur US-Presidential Debates
+
+:::::: columns
+::: {.column width="60%"}
+Entwicklung eigener kleiner **Forschungsprojekte** mit
+
+-   DBD in Form von **Live-Chats & Transcripten**
+-   Natrual Language Processing **(NLP) für die Analyse** von
+-   **Live-(Reactions)-Streams** von {{< bi twitch >}} **Twitch**-Streamer:innen
+-   auf die **(Vice-)Presidential Debates 2024**
+:::
+
+:::: {.column width="40%"}
+::: r-stack
+![](img/session-01/twitch_news_2.png){width="350"}
+
+![](img/session-01/twitch_news_1.png){.fragment width="350"}
+:::
+::::
+::::::
+
+
+## Warum {{< bi twitch >}} Twitch?
+
+#### Plattform für Live-Streaming von User-generated content
+
+-   führende **Live-Streaming-Plattform**, hauptsächlich für Videospiele, zunehmend aber andere Kategorien (z.B. "Just Chatting")
+-   ermöglicht Streamern:innen **Echtzeit-Interaktionen mit Community via Chat**
+-   bietet **Monetarisierungsmöglichkeiten** durch Abonnements, Spenden und Werbung
+-   in Zahlen: 2023 hat Twitch **\$3 Milliarden Umsatz** generiert, **7,1 Millionen aktive Streamer:innen** und **2,41 Millionen aktive Zuschauer:innen** im Monat, die ingesamt **21,4 Milliarden Stunden an Content** konsumiert haben
+
+#### Trend: **Plattform für politische Diskussionen und Debatten**
+
+
+## NLP angewendet auf Chat-Logs und Transkripte
+
+#### Informationen zur Datenanalyse & potentielle Analysestrategien
+
+-   **Transkripte & Chats der Live-Streams** von [{{< bi twitch >}} hasanabi](https://www.twitch.tv/hasanabi) und [{{< bi twitch >}} zackrawrr](https://www.twitch.tv/zackrawrr) und [{{< bi youtube >}}](https://www.youtube.com/majorityreportlive)|[{{< bi twitch >}} TheMajorityReport](https://www.twitch.tv/themajorityreport) zu der **Presidential** (Harris vs. Trump) und **Vice-Presidential **(Vance vs. Walz) **Debates** 2024
+    -   Download der **VODs** mit dem {{< iconify devicon python >}} Paket [`twitch-dl`](https://twitch-dl.bezdomni.net/)
+    -   Download & Stream des **Live-Chats** mit dem {{< iconify devicon python >}} Paket [`chat_downloader`](https://chat-downloader.readthedocs.io/en/latest/)
+    -   **Transkription** der Streams & der Debatte mit AI-based Transkriptionstool [NoScribe](https://github.com/kaixxx/noScribe) 
+-   Auswertung mit **NLP-Methoden** (z.B. Topic Modeling, Sentimentanalyse etc.)
+
+
+## Kurzer Exkurs zur Auswertung & Analyse
+
+#### Häufig gestellte Fragen zu notwendigen Methodenvorkenntnissen
+
+-   **Welchen Vorkenntnisse sind für den Kurs vorausgesetzt?** Interesse an *sozialwissenschaftlichen Perspektiven auf Medien, Kommunikation und digitale Technologien & Grundkenntnisse* in der Arbeit mit *Statistikprogrammen* (z.B. R, Python, Stata, SPSS)
+
+-   **Werden wir praktisch mit Statistikprogrammen arbeiten?** Ja. Dazu werden wir *R bzw. RStudio* nutzen.
+
+    ::: {style="color: #C50F3C;"}
+    **Deswegen: Bitte** 💻 **mitbringen!**
+    :::
+
+-   **Werden wir die mathematische Grundlagen der vorgestellten Methoden lernen?** Ja und Nein. Der Kurs *konzentriert sich in erster Linie auf die Anwendung*; einige mathematische Parameter der vorgestellten Methoden werden jedoch für die Anwendung benötigt und deswegen kurz erörtert.
+
+# Any questions so far? {background-image="img/slide_bg-participation.png"}
+
+Fragen zum Kurs oder den Inhalten
+
+
+# Organisatorisches {#orga background-image="img/slide_bg-orga.png"}
+
+Ablauf, Kommunikation, Prüfungsleistungen
+
+## (Vorläufiger) Seminarplan {.smaller}
+
+
+```{r table-schedule}
+#| echo: false 
+
+schedule %>%
+    gt::gt() %>%
+    gt::fmt_markdown(columns = c(Datum, Topic)) %>% 
+    gtExtras::gt_theme_538() %>% 
+    gt::tab_options(
+        table.width = gt::pct(75), 
+        table.font.size = "12px"
+    ) %>%
+    gtExtras::gt_highlight_rows(
+        rows = 2,
+        fill = "#C50F3C", 
+        alpha = 0.2,
+        bold_target_only = TRUE,
+        target_col = Topic       
+    )
+```
+
+
+## StudOn & Github
+
+#### Materialien und Kommunikation im Kurs
+
+-   Informationen zu **Kurs** ([*Semesterplan*](https://chrdrn.github.io/dbd_2024/)*,* [*Syllabus*](https://chrdrn.github.io/dbd_2024/course-syllabus.html)*, [Prüfungleistungen](https://chrdrn.github.io/dbd_2024/course-assignments.html) etc*) & den einzelnen **Sitzungen** (*Slides, Literatur und ggf. Übungsmaterial*) finden sich auf der [Github-Kursseite](https://chrdrn.github.io/dbd_2024)
+-   **Pflichtliteratur** der Präsentationen & **Beispieldatensätze** werden auf [StudOn](https://www.studon.fau.de/crs5349138.html) bereitgestellt
+-   Für die **Kommunikation gilt**
+    -   **Ankündigungen** werden über den [StudOn-Verteiler](https://www.studon.fau.de/crs5976934.html) versendet
+    -   für **Fragen**, allgemein zum Kurs oder spezifische zu R nutzten Sie bitte das [Forum](https://www.studon.fau.de/frm6070102.html) 
+    -   Kontakt über [E-Mail](mailto:christoph.adrian@fau.de?subject=DBD) bitte nur bei **persönlichen Anliegen**, die nicht für die Gruppe relvevant sind.
+
+::: notes
+-   Kurze Vorführung der Webseite
+-   Zulip Frage/Probleme bei Registrierung?
+-   Optional: Github/OSF
+:::
+
+## What is expected
+
+#### Leistungsanforderungen & Prüfungsleistungen
+
+-   **Regelmäßig aktive Teilnahme** an Sitzungen
+    -   max. zwei unentschuldigte Fehltermine (Kulanzregelung), bei Krankheit zählen die Fehltermine mit
+-   Bearbeitung von **vier Assignments** im Rahmen eines **Portfolios**:
+    -   Gruppenpräsentation (👥) zu wissenschaftlichen Grundlagen (📚)
+    -   Gruppenpräsentation (👥) zu Research Project (📊)
+    -   Peer Review (👤)
+    -   Projektbericht (👥)
+
+::: notes
+-   Frage: Syllabus gelesen?
+-   Frage: Assignments angeschaut?
+:::
+
+## Die "Grundlagenpräsentation"
+
+#### Informationen zur [*Gruppenpräsentation zu wissenschaftlichen Grundlagen* 📚](https://chrdrn.github.io/dbd_2024/course-assignments.html#sec-presentation)
+
+-   liefert **Überblick** über das zentrale Thema der Pflichtlektüre, z.B. **zentrale Begriffe, Definitionen, Datengrundlage & - aufbereitung sowie methodische Vorgehensweise** (inklusive Analyse)
+-   **alle Texte der Pflichtlektüre** müssen in der Präsentation **berücksichtigt** werden, die Gruppe kann aber **eigene Schwerpunkte setzen** und eigene Quellen hinzufügen
+-   vermittelt **theoretische Grundlage** für Research Projects
+-   zwischen 20 und 30 Minuten, danach Zeit für Fragen und Diskussion
+
+##### Besonderheit: vorher verpflichtendes Feedbackgespräch
+
+## Feedback dann, wenn es am meisten hilft
+
+#### Informationen zum [verpflichtenden Feedbackgespräch](https://chrdrn.github.io/dbd_2024/course-assignments.html#feedback-meeting-before-the-presentation-mandatory)
+
+<!-- TODO Add slide with example? -->
+
+-   Studierende erhalten Feedback und **Tipps, wie sie ihre Präsentation überarbeiten bzw. optimieren können**
+-   **30-minütiges Gespräch** in der Sprechstunde (mittwochs, 15:30 bis 16:30 Uhr), eine **Woche vor der Präsentation**
+    -   Buchung des Termins über StudOn
+-   Abgabe des **ersten vollständigen Präsentationsentwurfs** als PowerPoint- oder PDF-Datei **spätestens bis 12:00 Uhr am Vortag des Feedback-Gesprächs**
+
+## Die "Projektpräsentation"
+
+#### Gruppenpräsentation zum (aktullen Stand) des Projekts
+
+-   präsentiert den aktuellen Stand des Projekts, inklusive Vorstellung des theoretischen Hintergrundes, Forschungsfrage Datenaufbereitung, Analyse und ersten Ergebnisse
+-   zwischen 15 bis 20 Minuten (inklusive mind. 5 Minuten für Nachfragen), maximal 10 Folien
+-   bietet Möglichkeit für Problembesprechung, Feedback und Diskussion
+-   zur Vereinfachung der Koordination werden Google Slides Vorlagen zur Verfügung gestellt
+
+##### Bessonderheit: Grundlage für das Peer Review
+
+## Feedback geben (lernen)
+
+#### Peer Review der Gruppenpräsentationen
+
+-   ausfüllen von Peer-Review-Formularen (Ratingskalen sowie offenen Fragen) für Präsentationen anderer Gruppen
+
+-   lernen, andere Projekte zu bewerten und konstruktives Feedback zu schreiben
+
+-   Gruppen erhalten die Feedback-Formulare und haben dadurch zusätzliches Feedback zum eigenen Projekte, dass für die Präsentation bzw. den Projektbericht verwendet werden kann
+
+##### Besonderheit: Individuelles Assigment!
+
+::: notes
+-   (Teilweise) Während des Semesters
+:::
+
+## Zusammenführung aller Assignments
+
+#### Schriftlicher Bericht zur Anwendung von Methoden und Analysestrategien
+
+-   der Projektbericht ist die **schriftliche Ausarbeitung** des Forschungsprojekts und führt damit die Arbeit aus den Präsentationen und dem (Feedback der) Peer Reviews zusammen
+-   mindestens eine der vorgestellten Methoden auf ein selbstgewählte Stichprobe der bereitgestellten Daten anwenden, um ein Thema Ihrer Wahl zu erforschen.
+-   **750 bis 1000 Wörter pro Personn**, bei einem **Gruppenbericht** skaliert die Anzal der Wörter mit einem **Faktor von 0,8 pro Person** (*z. B. sollte eine Zweiergruppe 1200 bis 1600 Wörter schreiben, eine Dreiergruppe 1800 bis 2400 Wörter*)
+-   **Abgabe als Quarto-Dokument (& PDF)**, d.h. der Bericht sowie alle Komponenten (z.B. Tabellen, Grafiken) werden in RStudio erstellt und müssen komplett reproduzierbar sein
+
+## Arbeit mit R
+
+#### Der Einsatz von R bzw. RStudio im Kurs
+
+-   **Kostenlose Software** mit vielen nützlichen und **beginner-friendly Tutorials**
+-   R or Python? **Both!**
+
+**Im Kurs:**
+
+-   Bestehende R-Kenntnisse sind förderlich, aber nicht zwigend notwendig, wichtiger sind **praktische Erfahrung im syntaxbasierten Arbeiten**
+-   **Learn to code by example**: Code von Sitzungen & Beispielen wird bereitgestellt (ggf. durch Showcases)
+-   **Pflicht: [Tutorials](https://chrdrn.github.io/dbd_2024/computing/computing-instructions_R.html) auf Kurshomepage**
+
+## Building a common knowledge base
+
+#### Informationen zu den Pflicht-Tutorials
+
+-   Vermittlung des notwendigen Basiswissens für die Arbeit mit R, RStudio und Quarto mit Hilfe von zwei (Video-)Tutorials:
+    -   Einführung in R, RStudio und Quarto von Andy Field für die Vermittlung der Grundlagen & den allgemeinen Umgang mit den Programmen
+    -   Praktisches Arbeiten mit R des CCS Amsterdam legt Schwerpunkt auf das „inhaltliche“ Arbeiten mit R (Vorstellung von Verwendung von wichtigen Funktionen)
+-   Ausführliche Informationen sowie Links zu den einzelnen Videos (bzw. Playslisten) finden Sie auf der [Kursseite](https://faucommsci.github.io/dbd_2023/computing/computing-instructions_R.html)
+
+## Short summary
+
+#### Fahrplan für die Prüfungsleistungen
+
+| Zeitpunkte | Leistung |
+|---------------------|---------------------------------------------------|
+| Block II (13./20./27.11) | **Gruppenpräsentation zu wissenschaftlichen Grundlagen 📚** |
+| bis zum 4.12. | R-Tutorilas absolvieren um Grundlagenwissen für Methodenblock zu haben |
+| bis zum 15.01. | Erster vollständiger **Gruppenpräsentation zum Research Project 📊** |
+| vom 16.01. bis zum 21.01. | Ausfüllen der Peer-Review-Formulare |
+| vom 22.01 bis 29.01/05.02 | Einarbeitung des Feedback in die **Gruppenpräsentation zum Research Project 📊** |
+| 29.01./05.02 | **Gruppenpräsentation zum Research Project 📊** |
+| bis zum 02.03.25 | Abgabe des Projektberichts |
+
+<!-- FIXME Fragen-Folien ergänzen -->
+
+# Themenverteilung {#topics background-image="img/slide_bg-participation.png"}
+
+## Wichtige Informatione
+
+#### Sonderanmeldetermin am 28./29.10
+
+-   Ärgerlicherweise gibt es immer wieder Studierende, die sich anmelden und betreuen lassen, aber dann einfach irgendwann (teilweise sehr kurzfristig) “verschwinden”.
+-   Konsequenz: Nutzung des WiSo-Sonderanmeldetermins am 28./29.10.
+
+#### Deshalb: Wichtig!
+
+-   ⚠️ Nehmen Sie bitte kein Thema an, wenn absehbar ist, dass Sie nicht teilnehmen werden.
+-   ⚠️ Wir behalten uns vor, bei Rückzug trotz abgeschlossener Themenvergabe, Sie trotzdem für die Prüfung zu melden
+
+## Please state your preference
+
+#### Vergabe der Präsentationsthemen mit SimpleAssign
+
+<!-- FIXME qr-code position -->
+
+::::: columns
+::: {.column width="50%"}
+<br>
+
+Bitte scannen Sie den **QR-Code** oder nutzen Sie folgenden **Link** und geben Sie Ihre Themenpräferenz an:
+
+-   <https://simpleassign.net/poll/-O9lSn9X3pAIOdHyNQNu>
+:::
+
+::: {.column width="50%"}
+{{< qrcode https://simpleassign.net/poll/-O9lSn9X3pAIOdHyNQNu >}}
+:::
+:::::
+
+## Let's spin the wheel?!
+
+#### Zuteilung der Präsentationsthemen
+
+:::::: columns
+:::: {.column width="70%"}
+|     |                                                   |
+|-----|---------------------------------------------------|
+| ID  | Thema                                             |
+| 1   | Motivation für die Nutzung von Twitch             |
+| 2   | Kommunikation und Interaktion auf Twitch          |
+| 3   | (Wirkungs-)Effekte von Twitch-Nutzung/Interaktion |
+| 4   | (Wirkungs-)Effekte von TV-Wahldebatten            |
+| 5   | Wechselwirkung zwischen TV-Debatten und Twitter   |
+| 6   | Live-Chat(-Kommentare) in politischen Debaten     |
+
+: Themen
+
+::: {style="text-align: center; margin-top: 1em"}
+[In case of emergency: Wheel of Names](https://wheelofnames.com/){preview-link="true" style="text-align: center"}
+:::
+::::
+
+::: {.column width="30%"}
+[![](img/session-01/simple_assing-logo.jpeg){width="150"}](https://simpleassign.com/results/-NhW_EY5JXFZ25ZcYZbx)
+
+[![](img/logo-google_slides.png){width="150"}](https://docs.google.com/presentation/d/1kXKEDejpj6yyBCiLnSrsEQmClSZPfoW2hVetCDWJNLM/edit?usp=sharing)
+:::
+::::::
+
+# Any (further) questions? {background-image="img/slide_bg-question.png"}
+
+## Before we meet again
+
+#### Hinweise und offene Fragen
+
+**Hinweise**:
+
+-   Lernen Sie die [Kursseite](https://faucommsci.github.io/dbd_2023/) & [Zulip](https://fau-dbd.zulipchat.com/) kennen! Und checken Sie die Infos ({{< bi book >}}) zur nächten Sitzung.
+-   **Bis zum 13.11.: [Basiskurs R/RStudio](https://www.studon.fau.de/studon/goto.php?target=crs_3235361_join) durcharbeiten.** Bitte senden Sie das Kurszertifikat an [christoph.adrian\@fau.de](mailto:christoph.adrian@fau.de?subject=DBD%20R-Kurszertifikat)
+
+**Fragen**:
+
+-   Why no English? 🤷
+-   Haben Sie noch Fragen?
+
+# Bis zur nächsten Sitzung! {background-image="img/slide_bg-end_session.png"}
+
+## Literatur
+
+::: {#refs}
+:::
