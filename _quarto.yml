@@ -5,7 +5,7 @@ project:
 website:
   title: "Digital behavioral data"
   description: "Homepage of the course 'Digital behavioral data‘ at Friedrich-Alexander-Universtität (FAU) Erlangen-Nürnberg"
-  favicon: https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/icons/favicon_fau_red.svg
+  favicon: "img/logo_fau_red.svg"
   page-navigation: true
   open-graph: true
   reader-mode: false
