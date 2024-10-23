@@ -20,7 +20,7 @@ This page provides an outline of the topics, contents, and assignments for the s
 | ID | Date | Topic | Resources |
 |------------------|------------------|--------------------|------------------|
 |  | 📂 **Block 1** | **Introduction** |  |
-| 1 | 23.10.2024 | Kick-Off | [{{< bi book >}}](/sessions/session-01.html "Session 01"){aria-label="Session 01"}  |
+| 1 | 23.10.2024 | Kick-Off | [{{< bi book >}}](/sessions/session-01.html "Session 01"){aria-label="Session 01"} \| [{{< bi file-earmark-slides >}}](/slides/slides-01.html "Slides: Session 01"){aria-label="Slides Session 01"} |
 | 2 | 30.10.2024 | DBD: Overview & Introduction |  |
 | 3 | 06.11.2024 | 🔨 Introduction to working with R |  |
 |  | 📂 **Block 2** | **Theoretical Background: {{< bi twitch >}} & TV Election Debates** |  |
