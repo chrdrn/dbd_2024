@@ -392,36 +392,6 @@ countdown(
 :::
 :::::
 
-## Let's spin the wheel?! {visibility="hidden"}
-
-#### Zuteilung der Präsentationsthemen
-
-:::::: columns
-:::: {.column width="70%"}
-|     |                                                   |
-|-----|---------------------------------------------------|
-| ID  | Thema                                             |
-| 1   | Motivation für die Nutzung von Twitch             |
-| 2   | Kommunikation und Interaktion auf Twitch          |
-| 3   | (Wirkungs-)Effekte von Twitch-Nutzung/Interaktion |
-| 4   | (Wirkungs-)Effekte von TV-Wahldebatten            |
-| 5   | Wechselwirkung zwischen TV-Debatten und Twitter   |
-| 6   | Live-Chat(-Kommentare) in politischen Debaten     |
-
-::: {style="text-align: center; margin-top: 1em"}
-[In case of emergency: Wheel of Names](https://wheelofnames.com/){preview-link="true" style="text-align: center"}
-:::
-::::
-
-::: {.column width="10%"}
-:::
-
-
-::: {.column width="20%"}
-[![](img/session-01/simple_assing-logo.jpeg){width="150"}](https://simpleassign.net/asgmts/-O9lSn9X3pAIOdHyNQNu)
-:::
-::::::
-
 # Any (further) questions? {#questions background-image="img/slide_bg-question.png"}
 
 ## Before we meet again
