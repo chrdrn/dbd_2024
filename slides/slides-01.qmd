@@ -13,7 +13,7 @@ bibliography: references_slides.bib
 3.  [Grundidee und Thema des Kurses](#dbd-course)
 4.  [Oragnisatorisches](#orga)
 5.  [Themenverteilung](#topics)
-6.  Fragen
+6.  [Fragen](#questions)
 
 ```{r setup-slide-session}
 #| echo: false
@@ -22,6 +22,7 @@ bibliography: references_slides.bib
 library(jsonlite)
 library(tidyverse)
 library(here)
+library(countdown)
 
 # Load schedule
 source(here("slides/schedule.R"))
@@ -41,9 +42,10 @@ source(here("slides/schedule.R"))
 #### Vorstellungsrunde
 
 -   Wie heißen Sie?
--   Was und wo haben Sie im **Bachelor studiert**?
 -   Was **studieren** Sie **aktuell**?
+-   Was und wo haben Sie im **Bachelor studiert**?
 -   Welches **soziale Netzwerk/Medium** haben Sie letzte Woche am meisten genutzt und **warum**?
+-   Beteiligen Sie sich an **Online-Diskussionen** und wenn ja, **wo** und **warum**?
 
 ::: notes
 -   Hintegrund und Vorwissen
@@ -143,7 +145,6 @@ Entwicklung eigener kleiner **Forschungsprojekte** mit
 ::::
 ::::::
 
-
 ## Warum {{< bi twitch >}} Twitch?
 
 #### Plattform für Live-Streaming von User-generated content
@@ -155,17 +156,15 @@ Entwicklung eigener kleiner **Forschungsprojekte** mit
 
 #### Trend: **Plattform für politische Diskussionen und Debatten**
 
-
 ## NLP angewendet auf Chat-Logs und Transkripte
 
 #### Informationen zur Datenanalyse & potentielle Analysestrategien
 
--   **Transkripte & Chats der Live-Streams** von [{{< bi twitch >}} hasanabi](https://www.twitch.tv/hasanabi) und [{{< bi twitch >}} zackrawrr](https://www.twitch.tv/zackrawrr) und [{{< bi youtube >}}](https://www.youtube.com/majorityreportlive)|[{{< bi twitch >}} TheMajorityReport](https://www.twitch.tv/themajorityreport) zu der **Presidential** (Harris vs. Trump) und **Vice-Presidential **(Vance vs. Walz) **Debates** 2024
+-   **Transkripte & Chats der Live-Streams** von [{{< bi twitch >}} hasanabi](https://www.twitch.tv/hasanabi) und [{{< bi twitch >}} zackrawrr](https://www.twitch.tv/zackrawrr) und [{{< bi youtube >}}](https://www.youtube.com/majorityreportlive)\|[{{< bi twitch >}} TheMajorityReport](https://www.twitch.tv/themajorityreport) zu der **Presidential** (Harris vs. Trump) und **Vice-Presidential** (Vance vs. Walz) **Debates** 2024
     -   Download der **VODs** mit dem {{< iconify devicon python >}} Paket [`twitch-dl`](https://twitch-dl.bezdomni.net/)
     -   Download & Stream des **Live-Chats** mit dem {{< iconify devicon python >}} Paket [`chat_downloader`](https://chat-downloader.readthedocs.io/en/latest/)
-    -   **Transkription** der Streams & der Debatte mit AI-based Transkriptionstool [NoScribe](https://github.com/kaixxx/noScribe) 
+    -   **Transkription** der Streams & der Debatte mit AI-based Transkriptionstool [NoScribe](https://github.com/kaixxx/noScribe)
 -   Auswertung mit **NLP-Methoden** (z.B. Topic Modeling, Sentimentanalyse etc.)
-
 
 ## Kurzer Exkurs zur Auswertung & Analyse
 
@@ -185,13 +184,11 @@ Entwicklung eigener kleiner **Forschungsprojekte** mit
 
 Fragen zum Kurs oder den Inhalten
 
-
 # Organisatorisches {#orga background-image="img/slide_bg-orga.png"}
 
 Ablauf, Kommunikation, Prüfungsleistungen
 
 ## (Vorläufiger) Seminarplan {.smaller}
-
 
 ```{r table-schedule}
 #| echo: false 
@@ -213,16 +210,15 @@ schedule %>%
     )
 ```
 
-
 ## StudOn & Github
 
 #### Materialien und Kommunikation im Kurs
 
--   Informationen zu **Kurs** ([*Semesterplan*](https://chrdrn.github.io/dbd_2024/)*,* [*Syllabus*](https://chrdrn.github.io/dbd_2024/course-syllabus.html)*, [Prüfungleistungen](https://chrdrn.github.io/dbd_2024/course-assignments.html) etc*) & den einzelnen **Sitzungen** (*Slides, Literatur und ggf. Übungsmaterial*) finden sich auf der [Github-Kursseite](https://chrdrn.github.io/dbd_2024)
+-   Informationen zu **Kurs** ([*Semesterplan*](https://chrdrn.github.io/dbd_2024/)*,* [*Syllabus*](https://chrdrn.github.io/dbd_2024/course-syllabus.html)*, [Prüfungleistungen](https://chrdrn.github.io/dbd_2024/course-assignments.html) etc.*) & den einzelnen **Sitzungen** (*Slides, Literatur und ggf. Übungsmaterial*) finden sich auf der [Github-Kursseite](https://chrdrn.github.io/dbd_2024)
 -   **Pflichtliteratur** der Präsentationen & **Beispieldatensätze** werden auf [StudOn](https://www.studon.fau.de/crs5349138.html) bereitgestellt
 -   Für die **Kommunikation gilt**
     -   **Ankündigungen** werden über den [StudOn-Verteiler](https://www.studon.fau.de/crs5976934.html) versendet
-    -   für **Fragen**, allgemein zum Kurs oder spezifische zu R nutzten Sie bitte das [Forum](https://www.studon.fau.de/frm6070102.html) 
+    -   für **Fragen**, allgemein zum Kurs oder spezifische zu R nutzten Sie bitte das [Forum](https://www.studon.fau.de/frm6070102.html)
     -   Kontakt über [E-Mail](mailto:christoph.adrian@fau.de?subject=DBD) bitte nur bei **persönlichen Anliegen**, die nicht für die Gruppe relvevant sind.
 
 ::: notes
@@ -237,24 +233,19 @@ schedule %>%
 
 -   **Regelmäßig aktive Teilnahme** an Sitzungen
     -   max. zwei unentschuldigte Fehltermine (Kulanzregelung), bei Krankheit zählen die Fehltermine mit
--   Bearbeitung von **vier Assignments** im Rahmen eines **Portfolios**:
-    -   Gruppenpräsentation (👥) zu wissenschaftlichen Grundlagen (📚)
-    -   Gruppenpräsentation (👥) zu Research Project (📊)
-    -   Peer Review (👤)
-    -   Projektbericht (👥)
-
-::: notes
--   Frage: Syllabus gelesen?
--   Frage: Assignments angeschaut?
-:::
+-   Bearbeitung von [**vier Assignments**](https://chrdrn.github.io/dbd_2024/course-assignments.html) im Rahmen eines **Portfolios**:
+    -   [👥 Gruppenpräsentation zu wissenschaftlichen Grundlagen 📚 (30 Pkt.)](https://chrdrn.github.io/dbd_2024/course-assignments.html#sec-presentation)
+    -   [👥 Gruppenpräsentation zum Forschungsprojekt 📊 (15 Pkt.)](https://chrdrn.github.io/dbd_2024/course-assignments.html#sec-research-project-presentation)
+    -   [👤 Peer Review (15 Pkt.)](https://chrdrn.github.io/dbd_2024/course-assignments.html#sec-peer-review)
+    -   [👥 Projektbericht (40 Pkt.)](https://chrdrn.github.io/dbd_2024/course-assignments.html#sec-written-report)
 
 ## Die "Grundlagenpräsentation"
 
 #### Informationen zur [*Gruppenpräsentation zu wissenschaftlichen Grundlagen* 📚](https://chrdrn.github.io/dbd_2024/course-assignments.html#sec-presentation)
 
 -   liefert **Überblick** über das zentrale Thema der Pflichtlektüre, z.B. **zentrale Begriffe, Definitionen, Datengrundlage & - aufbereitung sowie methodische Vorgehensweise** (inklusive Analyse)
--   **alle Texte der Pflichtlektüre** müssen in der Präsentation **berücksichtigt** werden, die Gruppe kann aber **eigene Schwerpunkte setzen** und eigene Quellen hinzufügen
--   vermittelt **theoretische Grundlage** für Research Projects
+-   vermittelt **theoretische Grundlage** für Forschungsprojekt
+-   **alle bereitgestellten Pflichtexte** müssen in der Präsentation **berücksichtigt** werden, die Gruppe kann aber **eigene Schwerpunkte setzen** und eigene Quellen hinzufügen
 -   zwischen 20 und 30 Minuten, danach Zeit für Fragen und Diskussion
 
 ##### Besonderheit: vorher verpflichtendes Feedbackgespräch
@@ -272,46 +263,62 @@ schedule %>%
 
 ## Die "Projektpräsentation"
 
-#### Gruppenpräsentation zum (aktullen Stand) des Projekts
+#### Informationen zur [Gruppenpräsentation zum Forschungsprojekt 📊](https://chrdrn.github.io/dbd_2024/course-assignments.html#sec-research-project-presentation)
 
--   präsentiert den aktuellen Stand des Projekts, inklusive Vorstellung des theoretischen Hintergrundes, Forschungsfrage Datenaufbereitung, Analyse und ersten Ergebnisse
+-   Präsentation des (aktuellen Stand des) **Projekts**, inklusive Vorstellung des **theoretischen Hintergrundes, Forschungsfrage Datenaufbereitung, Analyse und ersten Ergebnisse**
 -   zwischen 15 bis 20 Minuten (inklusive mind. 5 Minuten für Nachfragen), maximal 10 Folien
--   bietet Möglichkeit für Problembesprechung, Feedback und Diskussion
--   zur Vereinfachung der Koordination werden Google Slides Vorlagen zur Verfügung gestellt
+-   bietet **Möglichkeit** für **Problembesprechung, Feedback und Diskussion**
+-   zur Vereinfachung der Koordination werden **Google Slides Vorlagen zur Verfügung gestellt**
 
-##### Bessonderheit: Grundlage für das Peer Review
+##### Besonderheit: Grundlage für das Peer Review
 
 ## Feedback geben (lernen)
 
-#### Peer Review der Gruppenpräsentationen
+#### Informationen zum [Peer Review](https://chrdrn.github.io/dbd_2024/course-assignments.html#sec-peer-review) der Gruppenpräsentationen
 
--   ausfüllen von Peer-Review-Formularen (Ratingskalen sowie offenen Fragen) für Präsentationen anderer Gruppen
+-   **Peer-Review-Formularen** (Ratingskalen sowie offenen Fragen) für **Präsentationen anderer Gruppen** ausfüllen
 
--   lernen, andere Projekte zu bewerten und konstruktives Feedback zu schreiben
+-   lernen, andere **Projekte** zu **bewerten** und **konstruktives Feedback zu geben**
 
--   Gruppen erhalten die Feedback-Formulare und haben dadurch zusätzliches Feedback zum eigenen Projekte, dass für die Präsentation bzw. den Projektbericht verwendet werden kann
+-   Gruppen erhalten **zusätzliches Feedback zum eigenen Projekt**, dass für die Präsentation bzw. den Projektbericht verwendet werden kann
 
 ##### Besonderheit: Individuelles Assigment!
 
-::: notes
--   (Teilweise) Während des Semesters
-:::
-
 ## Zusammenführung aller Assignments
 
-#### Schriftlicher Bericht zur Anwendung von Methoden und Analysestrategien
+#### Informationen zum [Projektberichtch](https://chrdrn.github.io/dbd_2024/course-assignments.html#sec-written-report)
 
--   der Projektbericht ist die **schriftliche Ausarbeitung** des Forschungsprojekts und führt damit die Arbeit aus den Präsentationen und dem (Feedback der) Peer Reviews zusammen
--   mindestens eine der vorgestellten Methoden auf ein selbstgewählte Stichprobe der bereitgestellten Daten anwenden, um ein Thema Ihrer Wahl zu erforschen.
--   **750 bis 1000 Wörter pro Personn**, bei einem **Gruppenbericht** skaliert die Anzal der Wörter mit einem **Faktor von 0,8 pro Person** (*z. B. sollte eine Zweiergruppe 1200 bis 1600 Wörter schreiben, eine Dreiergruppe 1800 bis 2400 Wörter*)
+-   Projektbericht ist die **schriftliche Ausarbeitung des Forschungsprojekts** und führt damit die Arbeit aus den Präsentationen und dem (Feedback der) Peer Reviews zusammen
+-   **mindestens eine der vorgestellten Methoden** auf ein selbstgewählte Stichprobe der bereitgestellten Daten anwenden, um ein Thema Ihrer Wahl zu erforschen.
+-   **750 bis 1000 Wörter pro Personn**, bei einem **Gruppenbericht** skaliert die Anzal der Wörter mit einem **Faktor von 0,8 pro Person** (*z.B. sollte eine Zweiergruppe 1200 bis 1600 Wörter schreiben, eine Dreiergruppe 1800 bis 2400 Wörter*)
 -   **Abgabe als Quarto-Dokument (& PDF)**, d.h. der Bericht sowie alle Komponenten (z.B. Tabellen, Grafiken) werden in RStudio erstellt und müssen komplett reproduzierbar sein
 
-## Arbeit mit R
+
+## Short summary
+
+#### Fahrplan für die Prüfungsleistungen
+
+<br>
+
+::: {style="font-size: 24px"}
+| Zeitpunkte | Leistung |
+|----------------------|--------------------------------------------------|
+| Block II (13./20./27.11) | **"Themenpräsentation" 📚** |
+| bis zum 4.12. | **R-Tutorials abschließen** (Grundlage für Methodenblock) |
+| bis zum 15.01. | Erster vollständiger Entwurf **"Projektpräsentation"** **📊** |
+| vom 16.01. bis zum 21.01. | Ausfüllen der **Peer-Review-Formulare** |
+| vom 22.01 bis 29.01/05.02 | Einarbeitung des Feedback in **"Projektpräsentation"** **📊** |
+| 29.01./05.02 | **"Projektpräsentation"** **📊** |
+| bis zum 02.03.25 | Abgabe des **Projektberichts** |
+:::
+
+
+## Warum {{< iconify devicon rstudio >}}?
 
 #### Der Einsatz von R bzw. RStudio im Kurs
 
 -   **Kostenlose Software** mit vielen nützlichen und **beginner-friendly Tutorials**
--   R or Python? **Both!**
+-   {{< iconify devicon rstudio >}} or {{< iconify devicon python >}}? **Both!**
 
 **Im Kurs:**
 
@@ -321,41 +328,32 @@ schedule %>%
 
 ## Building a common knowledge base
 
-#### Informationen zu den Pflicht-Tutorials
+#### Informationen zu den [{{< iconify devicon rstudio >}}-Tutorials](https://chrdrn.github.io/dbd_2024/computing/computing-instructions_R.html)
 
--   Vermittlung des notwendigen Basiswissens für die Arbeit mit R, RStudio und Quarto mit Hilfe von zwei (Video-)Tutorials:
-    -   Einführung in R, RStudio und Quarto von Andy Field für die Vermittlung der Grundlagen & den allgemeinen Umgang mit den Programmen
-    -   Praktisches Arbeiten mit R des CCS Amsterdam legt Schwerpunkt auf das „inhaltliche“ Arbeiten mit R (Vorstellung von Verwendung von wichtigen Funktionen)
--   Ausführliche Informationen sowie Links zu den einzelnen Videos (bzw. Playslisten) finden Sie auf der [Kursseite](https://faucommsci.github.io/dbd_2023/computing/computing-instructions_R.html)
+-   Vermittlung des **notwendigen Basiswissens für die Arbeit mit R, RStudio und Quarto** mit Hilfe von zwei (Video-)Tutorials:
+    -   [Einführung in R, RStudio und Quarto von Andy Field](https://chrdrn.github.io/dbd_2024/computing/computing-instructions_R.html#introduction-to-r-rstudio-quarto) für die Vermittlung der Grundlagen & den allgemeinen Umgang mit den Programmen
+    -   [Praktisches Arbeiten mit R des CCS Amsterdam](https://chrdrn.github.io/dbd_2024/computing/computing-instructions_R.html#practical-work-with-r) legt Schwerpunkt auf das „inhaltliche“ Arbeiten mit R (Vorstellung von Verwendung von wichtigen Funktionen)
+-   Weitere nützliche Quellen finden Sie in dem Bereich ***Working with R*** auf der [Kursseite](https://faucommsci.github.io/dbd_2024)
 
-## Short summary
 
-#### Fahrplan für die Prüfungsleistungen
+# Any questions so far? {background-image="img/slide_bg-participation.png"}
 
-| Zeitpunkte | Leistung |
-|---------------------|---------------------------------------------------|
-| Block II (13./20./27.11) | **Gruppenpräsentation zu wissenschaftlichen Grundlagen 📚** |
-| bis zum 4.12. | R-Tutorilas absolvieren um Grundlagenwissen für Methodenblock zu haben |
-| bis zum 15.01. | Erster vollständiger **Gruppenpräsentation zum Research Project 📊** |
-| vom 16.01. bis zum 21.01. | Ausfüllen der Peer-Review-Formulare |
-| vom 22.01 bis 29.01/05.02 | Einarbeitung des Feedback in die **Gruppenpräsentation zum Research Project 📊** |
-| 29.01./05.02 | **Gruppenpräsentation zum Research Project 📊** |
-| bis zum 02.03.25 | Abgabe des Projektberichts |
+Gibt es Fragen zu den Prüfungsleistungen oder dem Ablauf?
 
-<!-- FIXME Fragen-Folien ergänzen -->
 
-# Themenverteilung {#topics background-image="img/slide_bg-participation.png"}
+# Themenverteilung {#topics background-image="img/slide_bg-group_activity.png"}
 
-## Wichtige Informatione
+## Sonderanmeldetermin für Prüfung
 
-#### Sonderanmeldetermin am 28./29.10
+#### Wichtige Informationen zur Prüfungsanmeldung
 
 -   Ärgerlicherweise gibt es immer wieder Studierende, die sich anmelden und betreuen lassen, aber dann einfach irgendwann (teilweise sehr kurzfristig) “verschwinden”.
--   Konsequenz: Nutzung des WiSo-Sonderanmeldetermins am 28./29.10.
+-   **Deshalb: Nutzung des** [**WiSo-Sonderanmeldetermin für Prüfung am 28./29.10.**]{style="color: #C50F3C"}
 
-#### Deshalb: Wichtig!
 
--   ⚠️ Nehmen Sie bitte kein Thema an, wenn absehbar ist, dass Sie nicht teilnehmen werden.
+#### Bitte berücksichtigen Sie unbedingt: 
+
+-   ⚠️ Nehmen Sie **bitte kein Thema** an, wenn absehbar ist, dass **Sie nicht teilnehmen werden**.
 -   ⚠️ Wir behalten uns vor, bei Rückzug trotz abgeschlossener Themenvergabe, Sie trotzdem für die Prüfung zu melden
 
 ## Please state your preference
@@ -371,14 +369,30 @@ schedule %>%
 Bitte scannen Sie den **QR-Code** oder nutzen Sie folgenden **Link** und geben Sie Ihre Themenpräferenz an:
 
 -   <https://simpleassign.net/poll/-O9lSn9X3pAIOdHyNQNu>
+  
+
 :::
 
-::: {.column width="50%"}
-{{< qrcode https://simpleassign.net/poll/-O9lSn9X3pAIOdHyNQNu >}}
+::: {.column width="10%"}
+:::
+
+::: {.column width="40%"}
+<br>
+
+{{< qrcode https://simpleassign.net/poll/-O9lSn9X3pAIOdHyNQNu width=300 height=300 colorDark='#C50F3C' >}}
+
+```{r countdown-vote}
+#| echo: false
+
+countdown(
+    minutes = 2,
+    warn_when = 20)
+```
+
 :::
 :::::
 
-## Let's spin the wheel?!
+## Let's spin the wheel?! {visibility="hidden"}
 
 #### Zuteilung der Präsentationsthemen
 
@@ -394,35 +408,33 @@ Bitte scannen Sie den **QR-Code** oder nutzen Sie folgenden **Link** und geben S
 | 5   | Wechselwirkung zwischen TV-Debatten und Twitter   |
 | 6   | Live-Chat(-Kommentare) in politischen Debaten     |
 
-: Themen
-
 ::: {style="text-align: center; margin-top: 1em"}
 [In case of emergency: Wheel of Names](https://wheelofnames.com/){preview-link="true" style="text-align: center"}
 :::
 ::::
 
-::: {.column width="30%"}
-[![](img/session-01/simple_assing-logo.jpeg){width="150"}](https://simpleassign.com/results/-NhW_EY5JXFZ25ZcYZbx)
+::: {.column width="10%"}
+:::
 
-[![](img/logo-google_slides.png){width="150"}](https://docs.google.com/presentation/d/1kXKEDejpj6yyBCiLnSrsEQmClSZPfoW2hVetCDWJNLM/edit?usp=sharing)
+
+::: {.column width="20%"}
+[![](img/session-01/simple_assing-logo.jpeg){width="150"}](https://simpleassign.net/asgmts/-O9lSn9X3pAIOdHyNQNu)
 :::
 ::::::
 
-# Any (further) questions? {background-image="img/slide_bg-question.png"}
+# Any (further) questions? {#questions background-image="img/slide_bg-question.png"}
 
 ## Before we meet again
 
 #### Hinweise und offene Fragen
 
-**Hinweise**:
+-   Lernen Sie die [Kursseite](https://chrdrn.github.io/dbd_2024/) kennen! Und checken Sie die Infos ({{< bi book >}}) zur nächten Sitzung.
+-   Verschaffen Sie sich einen Überblick über die [R-Tutorials](https://chrdrn.github.io/dbd_2024/computing/computing-instructions_R.html)
 
--   Lernen Sie die [Kursseite](https://faucommsci.github.io/dbd_2023/) & [Zulip](https://fau-dbd.zulipchat.com/) kennen! Und checken Sie die Infos ({{< bi book >}}) zur nächten Sitzung.
--   **Bis zum 13.11.: [Basiskurs R/RStudio](https://www.studon.fau.de/studon/goto.php?target=crs_3235361_join) durcharbeiten.** Bitte senden Sie das Kurszertifikat an [christoph.adrian\@fau.de](mailto:christoph.adrian@fau.de?subject=DBD%20R-Kurszertifikat)
-
-**Fragen**:
-
+#### Ein paar Fragen an Sie: 
 -   Why no English? 🤷
--   Haben Sie noch Fragen?
+-   Warum das große Interesse an Zeitreihenanalyse?
+-   Welche Erwartung an "Machine Learning"?
 
 # Bis zur nächsten Sitzung! {background-image="img/slide_bg-end_session.png"}
 
