@@ -1,0 +1,1888 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<link href="../img/logo_fau_red.svg" rel="icon" type="image/svg+xml">
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/quarto-contrib/qrcodejs-v1.0.0/qrcode.js"></script>
+<script src="../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
+<link href="../site_libs/quarto-contrib/bootstrap-icons-1.11.1/all.css" rel="stylesheet"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.5.57">
+
+  <meta name="author" content="Christoph Adrian">
+  <title>Digital behavioral data – Kick-Off</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <link href="../site_libs/countdown-0.4.0/countdown.css" rel="stylesheet">
+  <script src="../site_libs/countdown-0.4.0/countdown.js"></script>
+<meta property="og:title" content="Kick-Off – Digital behavioral data">
+<meta property="og:description" content="Session 01">
+<meta property="og:site_name" content="Digital behavioral data">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-color="#04316a" data-background-image="img/slide_bg-title.png" slide-logo="false" class="quarto-title-block center">
+  <h1 class="title">Kick-Off</h1>
+  <p class="subtitle">Session 01</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+<a href="https://chrdrn.github.io/dbd_2024/course-team.html">Christoph Adrian</a> 
+</div>
+        <p class="quarto-title-affiliation">
+            <a href="https://www.kowi.rw.fau.de/person/christoph-adrian/">
+            Chair of Communicaion Science
+            </a>
+          </p>
+    </div>
+</div>
+
+  <p class="date">23.10.2024</p>
+</section>
+<section id="agenda" class="title-slide slide level1 center" data-background-image="img/slide_bg-agenda.png">
+<h1>Agenda</h1>
+<ol type="1">
+<li><a href="#/intro">Kurze Vorstellungsrunde</a></li>
+<li><a href="#/dbd-introduction">Warum eigentlich Digital Behavioral Data?</a></li>
+<li><a href="#/dbd-course">Grundidee und Thema des Kurses</a></li>
+<li><a href="#/orga">Oragnisatorisches</a></li>
+<li><a href="#/topics">Themenverteilung</a></li>
+<li><a href="#/questions">Fragen</a></li>
+</ol>
+</section>
+
+<section>
+<section id="intro" class="title-slide slide level1 center" data-background-image="img/slide_bg-section.png">
+<h1><code>print("Hello course!")</code></h1>
+<p><strong>Christoph Adrian</strong></p>
+<ul>
+<li>B.A. und M.Sc. Sozialökonomik @ FAU</li>
+<li>Text as Data &amp; Social Media Usage (Effects)</li>
+<li>Fließend in R, Grundkenntnisse in Python, SPSS &amp; Stata</li>
+<li>#gerneperdu</li>
+</ul>
+</section>
+<section id="und-nun-zu-ihnen" class="slide level2">
+<h2>Und nun zu Ihnen!</h2>
+<h4 id="vorstellungsrunde">Vorstellungsrunde</h4>
+<ul>
+<li>Wie heißen Sie?</li>
+<li>Was <strong>studieren</strong> Sie <strong>aktuell</strong>?</li>
+<li>Was und wo haben Sie im <strong>Bachelor studiert</strong>?</li>
+<li>Welches <strong>soziale Netzwerk/Medium</strong> haben Sie letzte Woche am meisten genutzt und <strong>warum</strong>?</li>
+<li>Beteiligen Sie sich an <strong>Online-Diskussionen</strong> und wenn ja, <strong>wo</strong> und <strong>warum</strong>?</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>Hintegrund und Vorwissen</li>
+<li>Mediennutzung</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="dbd-introduction" class="title-slide slide level1 center" data-background-image="img/slide_bg-section.png">
+<h1>An Abundance of Possibilites</h1>
+<p>Warum eigentlich <strong>Digital Behavioral Data</strong>?</p>
+</section>
+<section id="mehr-daten-durch-fortschreitende-digitalisiserung" class="slide level2">
+<h2>Mehr Daten durch fortschreitende Digitalisiserung</h2>
+<h4 id="beispiel-wachsenden-anzahl-eingebauter-smartphone-sensoren">Beispiel: Wachsenden Anzahl eingebauter Smartphone-Sensoren</h4>
+
+<img data-src="img/session-01/dbd_smartphone_development.jpeg" class="r-stretch quarto-figure-center"><p class="caption">Graphik aus <span class="citation" data-cites="struminskaya2020">Struminskaya et al. (<a href="#/literatur" role="doc-biblioref" onclick="">2020</a>)</span></p></section>
+<section id="verlagerung-in-den-digitalen-raum" class="slide level2">
+<h2>Verlagerung in den digitalen Raum</h2>
+<h4 id="trend-der-digitalisierung-von-verhaltensweisen-und-aktivitäten">Trend der Digitalisierung von Verhaltensweisen und Aktivitäten</h4>
+<div class="columns">
+<div class="column" style="width:65%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/session-01/dbd_matrix.png" width="1024"></p>
+<figcaption>Quelle: <span class="citation" data-cites="keusch2021">Engel et al. (<a href="#/literatur" role="doc-biblioref" onclick="">2021</a>)</span></figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:35%;">
+<p><br></p>
+<h4 id="einschränkungen"><strong>Einschränkungen</strong></h4>
+<ul>
+<li><strong>Selektive Nutzung</strong> von bestimmten digitalen Geräten bzw. Funktionen</li>
+<li>Kategorisierung ist <strong>Momentaufnahme</strong> und nicht überschneidungsfrei</li>
+</ul>
+</div></div>
+<aside class="notes">
+<ul>
+<li>Einige inhärent digitale Verhalten (z.B. Web Searches) bei zunehmender Digitalisierung von analogen Verhalten (z.B. Collaborative Work)</li>
+<li>Fehlen digitaler Spurendaten in all diesen Quadranten für bestimmte Personen und bestimmte Verhaltensweisen durch selektive Nutzung digitaler Geräte.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="ein-definitionsversuch-von-dbd" class="slide level2">
+<h2>Ein Definitionsversuch von DBD</h2>
+<h4 id="nach-weller2021">nach <span class="citation" data-cites="weller2021">Weller (<a href="#/literatur" role="doc-biblioref" onclick="">2021</a>)</span></h4>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>… fasst eine Vielzahl von möglichen <strong>Datenquellen</strong> zusammen, die verschiedene <strong>Arten von Aktivitäten</strong> aufzeichnen</p>
+<p>… können dabei helfen, <strong>Meinungen, Verhalten und Merkmale der menschlichen Nutzung</strong> digitaler Technologien zu erkennen</p>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/session-01/dbd_pictogram.svg" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="lernziele" class="slide level2">
+<h2>Lernziele</h2>
+<h4 id="die-studierenden-werden">Die Studierenden werden …</h4>
+<ul>
+<li>einen <strong>Überblick über die zentralen Möglichkeiten von DBD</strong> und die damit verbundenen <strong>Herausforderungen</strong> bei der Datenerhebung und -aufbereitung bekommen</li>
+<li>lernen die <strong>Stärken und Schwächen</strong> verschiedener <strong>Methoden zur Erhebung von DBD</strong> bewerten</li>
+<li>zentrale Anforderungen an <strong>Datenschutz, Forschungsethik und Datenqualität</strong> kennen und verstehen lernen</li>
+<li>zentrale sozialwissenschaftliche <strong>Methoden zur Analyse von DBD kennenlernen</strong></li>
+<li>das Wissen über DBD, Statistik und Datenanalyse in <strong>eigenen kleinen Projekten</strong> zu üben und anzuwenden</li>
+</ul>
+</section></section>
+<section>
+<section id="dbd-course" class="title-slide slide level1 center" data-background-image="img/slide_bg-section.png">
+<h1>Projektarbeit mit DBD &amp; <iconify-icon role="img" inline="" icon="devicon:rstudio" aria-label="Icon rstudio from devicon Iconify.design set." title="Icon rstudio from devicon Iconify.design set."></iconify-icon></h1>
+<p><strong>Grundidee</strong> und <strong>Thema</strong> des Kurses</p>
+</section>
+<section id="themen-blocks" class="slide level2">
+<h2>4 (Themen-)Blocks</h2>
+<h4 id="struktur-und-aufbau-des-seminars">Struktur und Aufbau des Seminars</h4>
+
+<img data-src="img/session-01/graphic-course_blocks.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="twitch-meets-politics-meets-nlp" class="slide level2">
+<h2>Twitch meets Politics meets NLP</h2>
+<h4 id="auswertung-von-live-stream-chats-zur-us-presidential-debates">Auswertung von Live-Stream(-Chats) zur US-Presidential Debates</h4>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p>Entwicklung eigener kleiner <strong>Forschungsprojekte</strong> mit</p>
+<ul>
+<li>DBD in Form von <strong>Live-Chats &amp; Transcripten</strong></li>
+<li>Natrual Language Processing <strong>(NLP) für die Analyse</strong> von</li>
+<li><strong>Live-(Reactions)-Streams</strong> von <i class="bi-twitch " style="" role="img" aria-hidden="true"></i> <strong>Twitch</strong>-Streamer:innen</li>
+<li>auf die <strong>(Vice-)Presidential Debates 2024</strong></li>
+</ul>
+</div><div class="column" style="width:40%;">
+<div class="r-stack">
+<p><img data-src="img/session-01/twitch_news_2.png" width="350"></p>
+<p><img data-src="img/session-01/twitch_news_1.png" class="fragment" width="350"></p>
+</div>
+</div></div>
+</section>
+<section id="warum-twitch" class="slide level2">
+<h2>Warum <i class="bi-twitch " style="" role="img" aria-hidden="true"></i> Twitch?</h2>
+<h4 id="plattform-für-live-streaming-von-user-generated-content">Plattform für Live-Streaming von User-generated content</h4>
+<ul>
+<li>führende <strong>Live-Streaming-Plattform</strong>, hauptsächlich für Videospiele, zunehmend aber andere Kategorien (z.B. “Just Chatting”)</li>
+<li>ermöglicht Streamern:innen <strong>Echtzeit-Interaktionen mit Community via Chat</strong></li>
+<li>bietet <strong>Monetarisierungsmöglichkeiten</strong> durch Abonnements, Spenden und Werbung</li>
+<li>in Zahlen: 2023 hat Twitch <strong>$3 Milliarden Umsatz</strong> generiert, <strong>7,1 Millionen aktive Streamer:innen</strong> und <strong>2,41 Millionen aktive Zuschauer:innen</strong> im Monat, die ingesamt <strong>21,4 Milliarden Stunden an Content</strong> konsumiert haben</li>
+</ul>
+<h4 id="trend-plattform-für-politische-diskussionen-und-debatten">Trend: <strong>Plattform für politische Diskussionen und Debatten</strong></h4>
+</section>
+<section id="nlp-angewendet-auf-chat-logs-und-transkripte" class="slide level2">
+<h2>NLP angewendet auf Chat-Logs und Transkripte</h2>
+<h4 id="informationen-zur-datenanalyse-potentielle-analysestrategien">Informationen zur Datenanalyse &amp; potentielle Analysestrategien</h4>
+<ul>
+<li><strong>Transkripte &amp; Chats der Live-Streams</strong> von <a href="https://www.twitch.tv/hasanabi"><i class="bi-twitch " style="" role="img" aria-hidden="true"></i> hasanabi</a> und <a href="https://www.twitch.tv/zackrawrr"><i class="bi-twitch " style="" role="img" aria-hidden="true"></i> zackrawrr</a> und <a href="https://www.youtube.com/majorityreportlive"><i class="bi-youtube " style="" role="img" aria-hidden="true"></i></a>|<a href="https://www.twitch.tv/themajorityreport"><i class="bi-twitch " style="" role="img" aria-hidden="true"></i> TheMajorityReport</a> zu der <strong>Presidential</strong> (Harris vs.&nbsp;Trump) und <strong>Vice-Presidential</strong> (Vance vs.&nbsp;Walz) <strong>Debates</strong> 2024
+<ul>
+<li>Download der <strong>VODs</strong> mit dem <iconify-icon role="img" inline="" icon="devicon:python" aria-label="Icon python from devicon Iconify.design set." title="Icon python from devicon Iconify.design set."></iconify-icon> Paket <a href="https://twitch-dl.bezdomni.net/"><code>twitch-dl</code></a></li>
+<li>Download &amp; Stream des <strong>Live-Chats</strong> mit dem <iconify-icon role="img" inline="" icon="devicon:python" aria-label="Icon python from devicon Iconify.design set." title="Icon python from devicon Iconify.design set."></iconify-icon> Paket <a href="https://chat-downloader.readthedocs.io/en/latest/"><code>chat_downloader</code></a></li>
+<li><strong>Transkription</strong> der Streams &amp; der Debatte mit AI-based Transkriptionstool <a href="https://github.com/kaixxx/noScribe">NoScribe</a></li>
+</ul></li>
+<li>Auswertung mit <strong>NLP-Methoden</strong> (z.B. Topic Modeling, Sentimentanalyse etc.)</li>
+</ul>
+</section>
+<section id="kurzer-exkurs-zur-auswertung-analyse" class="slide level2">
+<h2>Kurzer Exkurs zur Auswertung &amp; Analyse</h2>
+<h4 id="häufig-gestellte-fragen-zu-notwendigen-methodenvorkenntnissen">Häufig gestellte Fragen zu notwendigen Methodenvorkenntnissen</h4>
+<ul>
+<li><p><strong>Welchen Vorkenntnisse sind für den Kurs vorausgesetzt?</strong> Interesse an <em>sozialwissenschaftlichen Perspektiven auf Medien, Kommunikation und digitale Technologien &amp; Grundkenntnisse</em> in der Arbeit mit <em>Statistikprogrammen</em> (z.B. R, Python, Stata, SPSS)</p></li>
+<li><p><strong>Werden wir praktisch mit Statistikprogrammen arbeiten?</strong> Ja. Dazu werden wir <em>R bzw. RStudio</em> nutzen.</p>
+<div style="color: #C50F3C;">
+<p><strong>Deswegen: Bitte</strong> 💻 <strong>mitbringen!</strong></p>
+</div></li>
+<li><p><strong>Werden wir die mathematische Grundlagen der vorgestellten Methoden lernen?</strong> Ja und Nein. Der Kurs <em>konzentriert sich in erster Linie auf die Anwendung</em>; einige mathematische Parameter der vorgestellten Methoden werden jedoch für die Anwendung benötigt und deswegen kurz erörtert.</p></li>
+</ul>
+</section></section>
+<section id="any-questions-so-far" class="title-slide slide level1 center" data-background-image="img/slide_bg-participation.png">
+<h1>Any questions so far?</h1>
+<p>Fragen zum Kurs oder den Inhalten</p>
+</section>
+
+<section>
+<section id="orga" class="title-slide slide level1 center" data-background-image="img/slide_bg-orga.png">
+<h1>Organisatorisches</h1>
+<p>Ablauf, Kommunikation, Prüfungsleistungen</p>
+</section>
+<section id="vorläufiger-seminarplan" class="slide level2 smaller">
+<h2>(Vorläufiger) Seminarplan</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div id="zpheqmttou" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>@import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cairo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+#zpheqmttou table {
+  font-family: Cairo, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#zpheqmttou thead, #zpheqmttou tbody, #zpheqmttou tfoot, #zpheqmttou tr, #zpheqmttou td, #zpheqmttou th {
+  border-style: none;
+}
+
+#zpheqmttou p {
+  margin: 0;
+  padding: 0;
+}
+
+#zpheqmttou .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 12px;
+  font-weight: 400;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: 75%;
+  border-top-style: none;
+  border-top-width: 3px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#zpheqmttou .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#zpheqmttou .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#zpheqmttou .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#zpheqmttou .gt_heading {
+  background-color: #FFFFFF;
+  text-align: left;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zpheqmttou .gt_bottom_border {
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zpheqmttou .gt_col_headings {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #000000;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zpheqmttou .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#zpheqmttou .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#zpheqmttou .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#zpheqmttou .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#zpheqmttou .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #000000;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#zpheqmttou .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#zpheqmttou .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #000000;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#zpheqmttou .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #000000;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #FFFFFF;
+  vertical-align: middle;
+}
+
+#zpheqmttou .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#zpheqmttou .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#zpheqmttou .gt_row {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#zpheqmttou .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 0px;
+  border-right-color: #FFFFFF;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zpheqmttou .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#zpheqmttou .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#zpheqmttou .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#zpheqmttou .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zpheqmttou .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#zpheqmttou .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#zpheqmttou .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zpheqmttou .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zpheqmttou .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#zpheqmttou .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zpheqmttou .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#zpheqmttou .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zpheqmttou .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zpheqmttou .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zpheqmttou .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zpheqmttou .gt_sourcenote {
+  font-size: 12px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zpheqmttou .gt_left {
+  text-align: left;
+}
+
+#zpheqmttou .gt_center {
+  text-align: center;
+}
+
+#zpheqmttou .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#zpheqmttou .gt_font_normal {
+  font-weight: normal;
+}
+
+#zpheqmttou .gt_font_bold {
+  font-weight: bold;
+}
+
+#zpheqmttou .gt_font_italic {
+  font-style: italic;
+}
+
+#zpheqmttou .gt_super {
+  font-size: 65%;
+}
+
+#zpheqmttou .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#zpheqmttou .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#zpheqmttou .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#zpheqmttou .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#zpheqmttou .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#zpheqmttou .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#zpheqmttou .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#zpheqmttou .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#zpheqmttou div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+
+tbody tr:last-child {
+  border-bottom: 2px solid #ffffff00;
+}
+</style>
+
+<table class="gt_table caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="Session" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="border-top-width: 0px; border-top-style: solid; border-top-color: black; font-family: Chivo; font-size: 14px; vertical-align: bottom; font-weight: 200; text-transform: uppercase" scope="col">Session</th>
+<th id="Datum" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="border-top-width: 0px; border-top-style: solid; border-top-color: black; font-family: Chivo; font-size: 14px; vertical-align: bottom; font-weight: 200; text-transform: uppercase" scope="col">Datum</th>
+<th id="Topic" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="border-top-width: 0px; border-top-style: solid; border-top-color: black; font-family: Chivo; font-size: 14px; vertical-align: bottom; font-weight: 200; text-transform: uppercase" scope="col">Topic</th>
+<th id="Presenter" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="border-top-width: 0px; border-top-style: solid; border-top-color: black; font-family: Chivo; font-size: 14px; vertical-align: bottom; font-weight: 200; text-transform: uppercase" scope="col">Presenter</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" headers="Session"></td>
+<td class="gt_row gt_left" headers="Datum">📂 <strong>Block 1</strong></td>
+<td class="gt_row gt_left" headers="Topic"><strong>Introduction</strong></td>
+<td class="gt_row gt_left" headers="Presenter"></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Session" style="background-color: rgba(197,15,60,0.2)">1</td>
+<td class="gt_row gt_left" headers="Datum" style="background-color: rgba(197,15,60,0.2)">23.10.2024</td>
+<td class="gt_row gt_left" headers="Topic" style="background-color: rgba(197,15,60,0.2); color: #000000; font-weight: bold">Kick-Off</td>
+<td class="gt_row gt_left" headers="Presenter" style="background-color: rgba(197,15,60,0.2)">Christoph Adrian</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Session">2</td>
+<td class="gt_row gt_left" headers="Datum">30.10.2024</td>
+<td class="gt_row gt_left" headers="Topic">DBD: Overview &amp; Introduction</td>
+<td class="gt_row gt_left" headers="Presenter">Christoph Adrian</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Session">3</td>
+<td class="gt_row gt_left" headers="Datum">06.11.2024</td>
+<td class="gt_row gt_left" headers="Topic">🔨 Introduction to working with R</td>
+<td class="gt_row gt_left" headers="Presenter">Christoph Adrian</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Session"></td>
+<td class="gt_row gt_left" headers="Datum">📂 <strong>Block 2</strong></td>
+<td class="gt_row gt_left" headers="Topic"><strong>Theoretical Background: Twitch &amp; TV Election Debates</strong></td>
+<td class="gt_row gt_left" headers="Presenter"></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Session">4</td>
+<td class="gt_row gt_left" headers="Datum">13.11.2024</td>
+<td class="gt_row gt_left" headers="Topic">📚 Twitch-Nutzung im Fokus</td>
+<td class="gt_row gt_left" headers="Presenter">Student groups (TBD)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Session">5</td>
+<td class="gt_row gt_left" headers="Datum">20.11.2024</td>
+<td class="gt_row gt_left" headers="Topic">📚 (Wirkungs-)Effekte von Twitch &amp; TV-Debatten</td>
+<td class="gt_row gt_left" headers="Presenter">Student groups (TBD)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Session">6</td>
+<td class="gt_row gt_left" headers="Datum">27.11.2024</td>
+<td class="gt_row gt_left" headers="Topic">📚 Politische Debatten &amp; Social Media</td>
+<td class="gt_row gt_left" headers="Presenter">Student groups (TBD)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Session"></td>
+<td class="gt_row gt_left" headers="Datum">📂 <strong>Block 3</strong></td>
+<td class="gt_row gt_left" headers="Topic"><strong>Method: Natural Language Processing</strong></td>
+<td class="gt_row gt_left" headers="Presenter"></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Session">7</td>
+<td class="gt_row gt_left" headers="Datum">04.12.2024</td>
+<td class="gt_row gt_left" headers="Topic">🔨 Text as data I: Introduction</td>
+<td class="gt_row gt_left" headers="Presenter">Christoph Adrian</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Session">8</td>
+<td class="gt_row gt_left" headers="Datum">11.12.2024</td>
+<td class="gt_row gt_left" headers="Topic">🔨 Text as data I: Advanced Methods</td>
+<td class="gt_row gt_left" headers="Presenter">Christoph Adrian</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Session">9</td>
+<td class="gt_row gt_left" headers="Datum">18.12.2024</td>
+<td class="gt_row gt_left" headers="Topic">🔨 Advanced Method I: Topic Modeling</td>
+<td class="gt_row gt_left" headers="Presenter">Christoph Adrian</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Session"></td>
+<td class="gt_row gt_left" headers="Datum">08.01.2025</td>
+<td class="gt_row gt_left" headers="Topic">🎄<em>Christmas Break (No Lecture)</em></td>
+<td class="gt_row gt_left" headers="Presenter"></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Session">10</td>
+<td class="gt_row gt_left" headers="Datum">📂 <strong>Block 4</strong></td>
+<td class="gt_row gt_left" headers="Topic">🔨 Advanced Method I: Machine Learning</td>
+<td class="gt_row gt_left" headers="Presenter">Christoph Adrian</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Session"></td>
+<td class="gt_row gt_left" headers="Datum">15.01.2025</td>
+<td class="gt_row gt_left" headers="Topic"><strong>Project Work</strong></td>
+<td class="gt_row gt_left" headers="Presenter"></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Session">11</td>
+<td class="gt_row gt_left" headers="Datum">22.01.2025</td>
+<td class="gt_row gt_left" headers="Topic">🔨 Project work</td>
+<td class="gt_row gt_left" headers="Presenter">Student groups</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Session">12</td>
+<td class="gt_row gt_left" headers="Datum">29.01.2025</td>
+<td class="gt_row gt_left" headers="Topic">🔨 Project work</td>
+<td class="gt_row gt_left" headers="Presenter">Student groups</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Session">13</td>
+<td class="gt_row gt_left" headers="Datum">05.02.2025</td>
+<td class="gt_row gt_left" headers="Topic">📊 Project Presentation I</td>
+<td class="gt_row gt_left" headers="Presenter">Student groups (TBD)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Session">14</td>
+<td class="gt_row gt_left" headers="Datum">📂 <strong>Block 1</strong></td>
+<td class="gt_row gt_left" headers="Topic">📊 Project Presentation &amp; 🏁 Evaluation</td>
+<td class="gt_row gt_left" headers="Presenter">Studentds (TBD) &amp; Christoph Adrian</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="studon-github" class="slide level2">
+<h2>StudOn &amp; Github</h2>
+<h4 id="materialien-und-kommunikation-im-kurs">Materialien und Kommunikation im Kurs</h4>
+<ul>
+<li>Informationen zu <strong>Kurs</strong> (<a href="https://chrdrn.github.io/dbd_2024/"><em>Semesterplan</em></a><em>,</em> <a href="https://chrdrn.github.io/dbd_2024/course-syllabus.html"><em>Syllabus</em></a><em>, <a href="https://chrdrn.github.io/dbd_2024/course-assignments.html">Prüfungleistungen</a> etc.</em>) &amp; den einzelnen <strong>Sitzungen</strong> (<em>Slides, Literatur und ggf. Übungsmaterial</em>) finden sich auf der <a href="https://chrdrn.github.io/dbd_2024">Github-Kursseite</a></li>
+<li><strong>Pflichtliteratur</strong> der Präsentationen &amp; <strong>Beispieldatensätze</strong> werden auf <a href="https://www.studon.fau.de/crs5349138.html">StudOn</a> bereitgestellt</li>
+<li>Für die <strong>Kommunikation gilt</strong>
+<ul>
+<li><strong>Ankündigungen</strong> werden über den <a href="https://www.studon.fau.de/crs5976934.html">StudOn-Verteiler</a> versendet</li>
+<li>für <strong>Fragen</strong>, allgemein zum Kurs oder spezifische zu R nutzten Sie bitte das <a href="https://www.studon.fau.de/frm6070102.html">Forum</a></li>
+<li>Kontakt über <a href="mailto:christoph.adrian@fau.de?subject=DBD">E-Mail</a> bitte nur bei <strong>persönlichen Anliegen</strong>, die nicht für die Gruppe relvevant sind.</li>
+</ul></li>
+</ul>
+<aside class="notes">
+<ul>
+<li>Kurze Vorführung der Webseite</li>
+<li>Zulip Frage/Probleme bei Registrierung?</li>
+<li>Optional: Github/OSF</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="what-is-expected" class="slide level2">
+<h2>What is expected</h2>
+<h4 id="leistungsanforderungen-prüfungsleistungen">Leistungsanforderungen &amp; Prüfungsleistungen</h4>
+<ul>
+<li><strong>Regelmäßig aktive Teilnahme</strong> an Sitzungen
+<ul>
+<li>max. zwei unentschuldigte Fehltermine (Kulanzregelung), bei Krankheit zählen die Fehltermine mit</li>
+</ul></li>
+<li>Bearbeitung von <a href="https://chrdrn.github.io/dbd_2024/course-assignments.html"><strong>vier Assignments</strong></a> im Rahmen eines <strong>Portfolios</strong>:
+<ul>
+<li><a href="https://chrdrn.github.io/dbd_2024/course-assignments.html#sec-presentation">👥 Gruppenpräsentation zu wissenschaftlichen Grundlagen 📚 (30 Pkt.)</a></li>
+<li><a href="https://chrdrn.github.io/dbd_2024/course-assignments.html#sec-research-project-presentation">👥 Gruppenpräsentation zum Forschungsprojekt 📊 (15 Pkt.)</a></li>
+<li><a href="https://chrdrn.github.io/dbd_2024/course-assignments.html#sec-peer-review">👤 Peer Review (15 Pkt.)</a></li>
+<li><a href="https://chrdrn.github.io/dbd_2024/course-assignments.html#sec-written-report">👥 Projektbericht (40 Pkt.)</a></li>
+</ul></li>
+</ul>
+</section>
+<section id="die-grundlagenpräsentation" class="slide level2">
+<h2>Die “Grundlagenpräsentation”</h2>
+<h4 id="informationen-zur-gruppenpräsentation-zu-wissenschaftlichen-grundlagen">Informationen zur <a href="https://chrdrn.github.io/dbd_2024/course-assignments.html#sec-presentation"><em>Gruppenpräsentation zu wissenschaftlichen Grundlagen</em> 📚</a></h4>
+<ul>
+<li>liefert <strong>Überblick</strong> über das zentrale Thema der Pflichtlektüre, z.B. <strong>zentrale Begriffe, Definitionen, Datengrundlage &amp; - aufbereitung sowie methodische Vorgehensweise</strong> (inklusive Analyse)</li>
+<li>vermittelt <strong>theoretische Grundlage</strong> für Forschungsprojekt</li>
+<li><strong>alle bereitgestellten Pflichtexte</strong> müssen in der Präsentation <strong>berücksichtigt</strong> werden, die Gruppe kann aber <strong>eigene Schwerpunkte setzen</strong> und eigene Quellen hinzufügen</li>
+<li>zwischen 20 und 30 Minuten, danach Zeit für Fragen und Diskussion</li>
+</ul>
+<h5 id="besonderheit-vorher-verpflichtendes-feedbackgespräch">Besonderheit: vorher verpflichtendes Feedbackgespräch</h5>
+</section>
+<section id="feedback-dann-wenn-es-am-meisten-hilft" class="slide level2">
+<h2>Feedback dann, wenn es am meisten hilft</h2>
+<h4 id="informationen-zum-verpflichtenden-feedbackgespräch">Informationen zum <a href="https://chrdrn.github.io/dbd_2024/course-assignments.html#feedback-meeting-before-the-presentation-mandatory">verpflichtenden Feedbackgespräch</a></h4>
+<!-- TODO Add slide with example? -->
+<ul>
+<li>Studierende erhalten Feedback und <strong>Tipps, wie sie ihre Präsentation überarbeiten bzw. optimieren können</strong></li>
+<li><strong>30-minütiges Gespräch</strong> in der Sprechstunde (mittwochs, 15:30 bis 16:30 Uhr), eine <strong>Woche vor der Präsentation</strong>
+<ul>
+<li>Buchung des Termins über StudOn</li>
+</ul></li>
+<li>Abgabe des <strong>ersten vollständigen Präsentationsentwurfs</strong> als PowerPoint- oder PDF-Datei <strong>spätestens bis 12:00 Uhr am Vortag des Feedback-Gesprächs</strong></li>
+</ul>
+</section>
+<section id="die-projektpräsentation" class="slide level2">
+<h2>Die “Projektpräsentation”</h2>
+<h4 id="informationen-zur-gruppenpräsentation-zum-forschungsprojekt">Informationen zur <a href="https://chrdrn.github.io/dbd_2024/course-assignments.html#sec-research-project-presentation">Gruppenpräsentation zum Forschungsprojekt 📊</a></h4>
+<ul>
+<li>Präsentation des (aktuellen Stand des) <strong>Projekts</strong>, inklusive Vorstellung des <strong>theoretischen Hintergrundes, Forschungsfrage Datenaufbereitung, Analyse und ersten Ergebnisse</strong></li>
+<li>zwischen 15 bis 20 Minuten (inklusive mind. 5 Minuten für Nachfragen), maximal 10 Folien</li>
+<li>bietet <strong>Möglichkeit</strong> für <strong>Problembesprechung, Feedback und Diskussion</strong></li>
+<li>zur Vereinfachung der Koordination werden <strong>Google Slides Vorlagen zur Verfügung gestellt</strong></li>
+</ul>
+<h5 id="besonderheit-grundlage-für-das-peer-review">Besonderheit: Grundlage für das Peer Review</h5>
+</section>
+<section id="feedback-geben-lernen" class="slide level2">
+<h2>Feedback geben (lernen)</h2>
+<h4 id="informationen-zum-peer-review-der-gruppenpräsentationen">Informationen zum <a href="https://chrdrn.github.io/dbd_2024/course-assignments.html#sec-peer-review">Peer Review</a> der Gruppenpräsentationen</h4>
+<ul>
+<li><p><strong>Peer-Review-Formularen</strong> (Ratingskalen sowie offenen Fragen) für <strong>Präsentationen anderer Gruppen</strong> ausfüllen</p></li>
+<li><p>lernen, andere <strong>Projekte</strong> zu <strong>bewerten</strong> und <strong>konstruktives Feedback zu geben</strong></p></li>
+<li><p>Gruppen erhalten <strong>zusätzliches Feedback zum eigenen Projekt</strong>, dass für die Präsentation bzw. den Projektbericht verwendet werden kann</p></li>
+</ul>
+<h5 id="besonderheit-individuelles-assigment">Besonderheit: Individuelles Assigment!</h5>
+</section>
+<section id="zusammenführung-aller-assignments" class="slide level2">
+<h2>Zusammenführung aller Assignments</h2>
+<h4 id="informationen-zum-projektberichtch">Informationen zum <a href="https://chrdrn.github.io/dbd_2024/course-assignments.html#sec-written-report">Projektberichtch</a></h4>
+<ul>
+<li>Projektbericht ist die <strong>schriftliche Ausarbeitung des Forschungsprojekts</strong> und führt damit die Arbeit aus den Präsentationen und dem (Feedback der) Peer Reviews zusammen</li>
+<li><strong>mindestens eine der vorgestellten Methoden</strong> auf ein selbstgewählte Stichprobe der bereitgestellten Daten anwenden, um ein Thema Ihrer Wahl zu erforschen.</li>
+<li><strong>750 bis 1000 Wörter pro Personn</strong>, bei einem <strong>Gruppenbericht</strong> skaliert die Anzal der Wörter mit einem <strong>Faktor von 0,8 pro Person</strong> (<em>z.B. sollte eine Zweiergruppe 1200 bis 1600 Wörter schreiben, eine Dreiergruppe 1800 bis 2400 Wörter</em>)</li>
+<li><strong>Abgabe als Quarto-Dokument (&amp; PDF)</strong>, d.h. der Bericht sowie alle Komponenten (z.B. Tabellen, Grafiken) werden in RStudio erstellt und müssen komplett reproduzierbar sein</li>
+</ul>
+</section>
+<section id="short-summary" class="slide level2">
+<h2>Short summary</h2>
+<h4 id="fahrplan-für-die-prüfungsleistungen">Fahrplan für die Prüfungsleistungen</h4>
+<p><br></p>
+<div style="font-size: 24px">
+<table class="caption-top">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 69%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Zeitpunkte</th>
+<th>Leistung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Block II (13./20./27.11)</td>
+<td><strong>“Themenpräsentation” 📚</strong></td>
+</tr>
+<tr class="even">
+<td>bis zum 4.12.</td>
+<td><strong>R-Tutorials abschließen</strong> (Grundlage für Methodenblock)</td>
+</tr>
+<tr class="odd">
+<td>bis zum 15.01.</td>
+<td>Erster vollständiger Entwurf <strong>“Projektpräsentation”</strong> <strong>📊</strong></td>
+</tr>
+<tr class="even">
+<td>vom 16.01. bis zum 21.01.</td>
+<td>Ausfüllen der <strong>Peer-Review-Formulare</strong></td>
+</tr>
+<tr class="odd">
+<td>vom 22.01 bis 29.01/05.02</td>
+<td>Einarbeitung des Feedback in <strong>“Projektpräsentation”</strong> <strong>📊</strong></td>
+</tr>
+<tr class="even">
+<td>29.01./05.02</td>
+<td><strong>“Projektpräsentation”</strong> <strong>📊</strong></td>
+</tr>
+<tr class="odd">
+<td>bis zum 02.03.25</td>
+<td>Abgabe des <strong>Projektberichts</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="warum" class="slide level2">
+<h2>Warum <iconify-icon role="img" inline="" icon="devicon:rstudio" aria-label="Icon rstudio from devicon Iconify.design set." title="Icon rstudio from devicon Iconify.design set."></iconify-icon>?</h2>
+<h4 id="der-einsatz-von-r-bzw.-rstudio-im-kurs">Der Einsatz von R bzw. RStudio im Kurs</h4>
+<ul>
+<li><strong>Kostenlose Software</strong> mit vielen nützlichen und <strong>beginner-friendly Tutorials</strong></li>
+<li><iconify-icon role="img" inline="" icon="devicon:rstudio" aria-label="Icon rstudio from devicon Iconify.design set." title="Icon rstudio from devicon Iconify.design set."></iconify-icon> or <iconify-icon role="img" inline="" icon="devicon:python" aria-label="Icon python from devicon Iconify.design set." title="Icon python from devicon Iconify.design set."></iconify-icon>? <strong>Both!</strong></li>
+</ul>
+<p><strong>Im Kurs:</strong></p>
+<ul>
+<li>Bestehende R-Kenntnisse sind förderlich, aber nicht zwigend notwendig, wichtiger sind <strong>praktische Erfahrung im syntaxbasierten Arbeiten</strong></li>
+<li><strong>Learn to code by example</strong>: Code von Sitzungen &amp; Beispielen wird bereitgestellt (ggf. durch Showcases)</li>
+<li><strong>Pflicht: <a href="https://chrdrn.github.io/dbd_2024/computing/computing-instructions_R.html">Tutorials</a> auf Kurshomepage</strong></li>
+</ul>
+</section>
+<section id="building-a-common-knowledge-base" class="slide level2">
+<h2>Building a common knowledge base</h2>
+<h4 id="informationen-zu-den--tutorials">Informationen zu den <a href="https://chrdrn.github.io/dbd_2024/computing/computing-instructions_R.html"><iconify-icon role="img" inline="" icon="devicon:rstudio" aria-label="Icon rstudio from devicon Iconify.design set." title="Icon rstudio from devicon Iconify.design set."></iconify-icon>-Tutorials</a></h4>
+<ul>
+<li>Vermittlung des <strong>notwendigen Basiswissens für die Arbeit mit R, RStudio und Quarto</strong> mit Hilfe von zwei (Video-)Tutorials:
+<ul>
+<li><a href="https://chrdrn.github.io/dbd_2024/computing/computing-instructions_R.html#introduction-to-r-rstudio-quarto">Einführung in R, RStudio und Quarto von Andy Field</a> für die Vermittlung der Grundlagen &amp; den allgemeinen Umgang mit den Programmen</li>
+<li><a href="https://chrdrn.github.io/dbd_2024/computing/computing-instructions_R.html#practical-work-with-r">Praktisches Arbeiten mit R des CCS Amsterdam</a> legt Schwerpunkt auf das „inhaltliche“ Arbeiten mit R (Vorstellung von Verwendung von wichtigen Funktionen)</li>
+</ul></li>
+<li>Weitere nützliche Quellen finden Sie in dem Bereich <strong><em>Working with R</em></strong> auf der <a href="https://faucommsci.github.io/dbd_2024">Kursseite</a></li>
+</ul>
+</section></section>
+<section id="any-questions-so-far-1" class="title-slide slide level1 center" data-background-image="img/slide_bg-participation.png">
+<h1>Any questions so far?</h1>
+<p>Gibt es Fragen zu den Prüfungsleistungen oder dem Ablauf?</p>
+</section>
+
+<section>
+<section id="topics" class="title-slide slide level1 center" data-background-image="img/slide_bg-group_activity.png">
+<h1>Themenverteilung</h1>
+
+</section>
+<section id="sonderanmeldetermin-für-prüfung" class="slide level2">
+<h2>Sonderanmeldetermin für Prüfung</h2>
+<h4 id="wichtige-informationen-zur-prüfungsanmeldung">Wichtige Informationen zur Prüfungsanmeldung</h4>
+<ul>
+<li>Ärgerlicherweise gibt es immer wieder Studierende, die sich anmelden und betreuen lassen, aber dann einfach irgendwann (teilweise sehr kurzfristig) “verschwinden”.</li>
+<li><strong>Deshalb: Nutzung des</strong> <span style="color: #C50F3C"><strong>WiSo-Sonderanmeldetermin für Prüfung am 28./29.10.</strong></span></li>
+</ul>
+<h4 id="bitte-berücksichtigen-sie-unbedingt">Bitte berücksichtigen Sie unbedingt:</h4>
+<ul>
+<li>⚠️ Nehmen Sie <strong>bitte kein Thema</strong> an, wenn absehbar ist, dass <strong>Sie nicht teilnehmen werden</strong>.</li>
+<li>⚠️ Wir behalten uns vor, bei Rückzug trotz abgeschlossener Themenvergabe, Sie trotzdem für die Prüfung zu melden</li>
+</ul>
+</section>
+<section id="please-state-your-preference" class="slide level2">
+<h2>Please state your preference</h2>
+<h4 id="vergabe-der-präsentationsthemen-mit-simpleassign">Vergabe der Präsentationsthemen mit SimpleAssign</h4>
+<!-- FIXME qr-code position -->
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p>Bitte scannen Sie den <strong>QR-Code</strong> oder nutzen Sie folgenden <strong>Link</strong> und geben Sie Ihre Themenpräferenz an:</p>
+<ul>
+<li><a href="https://simpleassign.net/poll/-O9lSn9X3pAIOdHyNQNu" class="uri">https://simpleassign.net/poll/-O9lSn9X3pAIOdHyNQNu</a></li>
+</ul>
+</div><div class="column" style="width:10%;">
+
+</div><div class="column" style="width:40%;">
+<p><br></p>
+<div id="" class="qrcode"></div>
+<script type="text/javascript">
+(function() {
+  var script = document.currentScript;
+  var qrcode = script.previousElementSibling;
+  qrcode.qrcode = new QRCode(qrcode, {"text":"https://simpleassign.net/poll/-O9lSn9X3pAIOdHyNQNu","colorLight":"#ffffff","width":"300","height":"300","colorDark":"#C50F3C"});
+  script.remove();
+})();
+</script>
+    
+<div class="cell">
+<div class="cell-output-display">
+<div class="countdown" id="timer_704800f5" data-warn-when="20" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+</div></div>
+</section></section>
+<section>
+<section id="questions" class="title-slide slide level1 center" data-background-image="img/slide_bg-question.png">
+<h1>Any (further) questions?</h1>
+
+</section>
+<section id="before-we-meet-again" class="slide level2">
+<h2>Before we meet again</h2>
+<h4 id="hinweise-und-offene-fragen">Hinweise und offene Fragen</h4>
+<ul>
+<li>Lernen Sie die <a href="https://chrdrn.github.io/dbd_2024/">Kursseite</a> kennen! Und checken Sie die Infos (<i class="bi-book " style="" role="img" aria-hidden="true"></i>) zur nächten Sitzung.</li>
+<li>Verschaffen Sie sich einen Überblick über die <a href="https://chrdrn.github.io/dbd_2024/computing/computing-instructions_R.html">R-Tutorials</a></li>
+</ul>
+<h4 id="ein-paar-fragen-an-sie">Ein paar Fragen an Sie:</h4>
+<ul>
+<li>Why no English? 🤷</li>
+<li>Warum das große Interesse an Zeitreihenanalyse?</li>
+<li>Welche Erwartung an “Machine Learning”?</li>
+</ul>
+</section></section>
+<section>
+<section id="bis-zur-nächsten-sitzung" class="title-slide slide level1 center" data-background-image="img/slide_bg-end_session.png">
+<h1>Bis zur nächsten Sitzung!</h1>
+
+</section>
+<section id="literatur" class="slide level2 smaller scrollable">
+<h2>Literatur</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-keusch2021" class="csl-entry" role="listitem">
+Engel, U., Quan-Haase, A., Liu, S. X., &amp; Lyberg, L. (2021). <em>Digital trace data</em> (1st ed., pp. 100–118). Routledge. <a href="https://www.taylorfrancis.com/books/9781003024583/chapters/10.4324/9781003024583-8">https://www.taylorfrancis.com/books/9781003024583/chapters/10.4324/9781003024583-8</a>
+</div>
+<div id="ref-struminskaya2020" class="csl-entry" role="listitem">
+Struminskaya, B., Lugtig, P., Keusch, F., &amp; Höhne, J. K. (2020). Augmenting Surveys With Data From Sensors and Apps: Opportunities and Challenges. <em>Social Science Computer Review</em>, 089443932097995. <a href="https://doi.org/10.1177/0894439320979951">https://doi.org/10.1177/0894439320979951</a>
+</div>
+<div id="ref-weller2021" class="csl-entry" role="listitem">
+Weller, K. (2021). <em>A short introduction to computational social science and digital behavioral data</em>. <a href="https://www.gesis.org/fileadmin/user_upload/MeettheExperts/GESIS_Meettheexperts_Introductioncss.pdf">https://www.gesis.org/fileadmin/user_upload/MeettheExperts/GESIS_Meettheexperts_Introductioncss.pdf</a>
+</div>
+</div>
+
+<div class="quarto-auto-generated-content">
+<p><img src="../img/dbd_hex.png" class="slide-logo"></p>
+<div class="footer footer-default">
+<p><a href="https://chrdrn.github.io/dbd_2024/">Home</a></p>
+</div>
+</div>
+</section></section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":false},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>
