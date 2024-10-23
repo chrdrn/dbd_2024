@@ -1,0 +1,29 @@
+---
+title: "Session 2"
+subtitle: "DBD: Overview & Introduction"
+bibliography: references_sessions.bib
+csl: ../apa-cv.csl 
+suppress-bibliography: true
+link-citations: false
+citations-hover: false
+---
+
+## Prepare
+
+✍️ Start working on [R-Video-Tutorials](https://chrdrn.github.io/dbd_2024/computing/computing-instructions_R.html).
+
+#### Suggested readings
+
+-   [@keusch2021]
+
+-   [@olteanu2019]
+
+## Participate
+
+🖥️ [🚧 Session 04](TODO%20ADD%20links)
+
+<br>
+
+::: {style="font-size: 0.875em;"}
+Back to [course schedule](/index.html "Course schedule") ⏎
+:::
