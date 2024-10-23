@@ -329,11 +329,11 @@
     "text": "Und nun zu Ihnen!\nVorstellungsrunde\n\nWie heißen Sie?\nWas studieren Sie aktuell?\nWas und wo haben Sie im Bachelor studiert?\nWelches soziale Netzwerk/Medium haben Sie letzte Woche am meisten genutzt und warum?\nBeteiligen Sie sich an Online-Diskussionen und wenn ja, wo und warum?\n\n\n\nHintegrund und Vorwissen\nMediennutzung"
   },
   {
-    "objectID": "slides/slides-01.html#mehr-daten-durch-fortschreitende-digitalisiserung",
-    "href": "slides/slides-01.html#mehr-daten-durch-fortschreitende-digitalisiserung",
+    "objectID": "slides/slides-01.html#mehr-daten-durch-fortschreitende-digitalisierung",
+    "href": "slides/slides-01.html#mehr-daten-durch-fortschreitende-digitalisierung",
     "title": "Kick-Off",
-    "section": "Mehr Daten durch fortschreitende Digitalisiserung",
-    "text": "Mehr Daten durch fortschreitende Digitalisiserung\nBeispiel: Wachsenden Anzahl eingebauter Smartphone-Sensoren\n\nGraphik aus Struminskaya et al. (2020)"
+    "section": "Mehr Daten durch fortschreitende Digitalisierung",
+    "text": "Mehr Daten durch fortschreitende Digitalisierung\nBeispiel: Wachsenden Anzahl eingebauter Smartphone-Sensoren\n\nGraphik aus Struminskaya et al. (2020)"
   },
   {
     "objectID": "slides/slides-01.html#verlagerung-in-den-digitalen-raum",
@@ -375,7 +375,7 @@
     "href": "slides/slides-01.html#warum-twitch",
     "title": "Kick-Off",
     "section": "Warum  Twitch?",
-    "text": "Warum  Twitch?\nPlattform für Live-Streaming von User-generated content\n\nführende Live-Streaming-Plattform, hauptsächlich für Videospiele, zunehmend aber andere Kategorien (z.B. “Just Chatting”)\nermöglicht Streamern:innen Echtzeit-Interaktionen mit Community via Chat\nbietet Monetarisierungsmöglichkeiten durch Abonnements, Spenden und Werbung\nin Zahlen: 2023 hat Twitch $3 Milliarden Umsatz generiert, 7,1 Millionen aktive Streamer:innen und 2,41 Millionen aktive Zuschauer:innen im Monat, die ingesamt 21,4 Milliarden Stunden an Content konsumiert haben\n\nTrend: Plattform für politische Diskussionen und Debatten"
+    "text": "Warum  Twitch?\nPlattform für Live-Streaming von User-generated content\n\nführende Live-Streaming-Plattform, hauptsächlich für Videospiele, zunehmend aber andere Kategorien (z.B. “Just Chatting”)\nermöglicht Streamern:innen Echtzeit-Interaktionen mit Community via Chat\nbietet Monetarisierungsmöglichkeiten durch Abonnements, Spenden und Werbung\nin Zahlen: 2023 hat Twitch $3 Milliarden Umsatz generiert, 7,1 Millionen aktive Streamer:innen und 2,41 Millionen aktive Zuschauer:innen, die ingesamt 21,4 Milliarden Stunden an Content konsumiert haben\n\nTrend: Plattform für politische Diskussionen und Debatten"
   },
   {
     "objectID": "slides/slides-01.html#nlp-angewendet-auf-chat-logs-und-transkripte",
@@ -396,7 +396,7 @@
     "href": "slides/slides-01.html#vorläufiger-seminarplan",
     "title": "Kick-Off",
     "section": "(Vorläufiger) Seminarplan",
-    "text": "(Vorläufiger) Seminarplan\n\n\n\n\n\n\n\n\nSession\nDatum\nTopic\nPresenter\n\n\n\n\n\n📂 Block 1\nIntroduction\n\n\n\n1\n23.10.2024\nKick-Off\nChristoph Adrian\n\n\n2\n30.10.2024\nDBD: Overview & Introduction\nChristoph Adrian\n\n\n3\n06.11.2024\n🔨 Introduction to working with R\nChristoph Adrian\n\n\n\n📂 Block 2\nTheoretical Background: Twitch & TV Election Debates\n\n\n\n4\n13.11.2024\n📚 Twitch-Nutzung im Fokus\nStudent groups (TBD)\n\n\n5\n20.11.2024\n📚 (Wirkungs-)Effekte von Twitch & TV-Debatten\nStudent groups (TBD)\n\n\n6\n27.11.2024\n📚 Politische Debatten & Social Media\nStudent groups (TBD)\n\n\n\n📂 Block 3\nMethod: Natural Language Processing\n\n\n\n7\n04.12.2024\n🔨 Text as data I: Introduction\nChristoph Adrian\n\n\n8\n11.12.2024\n🔨 Text as data I: Advanced Methods\nChristoph Adrian\n\n\n9\n18.12.2024\n🔨 Advanced Method I: Topic Modeling\nChristoph Adrian\n\n\n\n08.01.2025\n🎄Christmas Break (No Lecture)\n\n\n\n10\n📂 Block 4\n🔨 Advanced Method I: Machine Learning\nChristoph Adrian\n\n\n\n15.01.2025\nProject Work\n\n\n\n11\n22.01.2025\n🔨 Project work\nStudent groups\n\n\n12\n29.01.2025\n🔨 Project work\nStudent groups\n\n\n13\n05.02.2025\n📊 Project Presentation I\nStudent groups (TBD)\n\n\n14\n📂 Block 1\n📊 Project Presentation & 🏁 Evaluation\nStudentds (TBD) & Christoph Adrian"
+    "text": "(Vorläufiger) Seminarplan\n\n\n\n\n\n\n\n\nSession\nDatum\nTopic\nPresenter\n\n\n\n\n\n📂 Block 1\nIntroduction\n\n\n\n1\n23.10.2024\nKick-Off\nChristoph Adrian\n\n\n2\n30.10.2024\nDBD: Overview & Introduction\nChristoph Adrian\n\n\n3\n06.11.2024\n🔨 Introduction to working with R\nChristoph Adrian\n\n\n\n📂 Block 2\nTheoretical Background: Twitch & TV Election Debates\n\n\n\n4\n13.11.2024\n📚 Twitch-Nutzung im Fokus\nStudent groups (TBD)\n\n\n5\n20.11.2024\n📚 (Wirkungs-)Effekte von Twitch & TV-Debatten\nStudent groups (TBD)\n\n\n6\n27.11.2024\n📚 Politische Debatten & Social Media\nStudent groups (TBD)\n\n\n\n📂 Block 3\nMethod: Natural Language Processing\n\n\n\n7\n04.12.2024\n🔨 Text as data I: Introduction\nChristoph Adrian\n\n\n8\n11.12.2024\n🔨 Text as data I: Advanced Methods\nChristoph Adrian\n\n\n9\n18.12.2024\n🔨 Advanced Method I: Topic Modeling\nChristoph Adrian\n\n\n\nNo lecture\n🎄Christmas Break\n\n\n\n10\n08.01.2025\n🔨 Advanced Method I: Machine Learning\nChristoph Adrian\n\n\n\n📂 Block 4\nProject Work\n\n\n\n11\n15.01.2025\n🔨 Project work\nStudent groups\n\n\n12\n22.01.2025\n🔨 Project work\nStudent groups\n\n\n13\n29.01.2025\n📊 Project Presentation I\nStudent groups (TBD)\n\n\n14\n05.02.2025\n📊 Project Presentation & 🏁 Evaluation\nStudentds (TBD) & Christoph Adrian"
   },
   {
     "objectID": "slides/slides-01.html#studon-github",
