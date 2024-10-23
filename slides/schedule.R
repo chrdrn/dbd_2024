@@ -80,8 +80,8 @@ schedule_json <- '[
     },
     {
         "Session": "",
-        "Datum": "",
-        "Topic": "🎄*Christmas Break (No Lecture)*",
+        "Datum": "No lecture",
+        "Topic": "🎄*Christmas Break*",
         "Presenter": ""
     },
     {

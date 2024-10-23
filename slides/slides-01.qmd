@@ -56,7 +56,7 @@ source(here("slides/schedule.R"))
 
 Warum eigentlich **Digital Behavioral Data**?
 
-## Mehr Daten durch fortschreitende Digitalisiserung
+## Mehr Daten durch fortschreitende Digitalisierung
 
 #### Beispiel: Wachsenden Anzahl eingebauter Smartphone-Sensoren
 
@@ -152,7 +152,7 @@ Entwicklung eigener kleiner **Forschungsprojekte** mit
 -   führende **Live-Streaming-Plattform**, hauptsächlich für Videospiele, zunehmend aber andere Kategorien (z.B. "Just Chatting")
 -   ermöglicht Streamern:innen **Echtzeit-Interaktionen mit Community via Chat**
 -   bietet **Monetarisierungsmöglichkeiten** durch Abonnements, Spenden und Werbung
--   in Zahlen: 2023 hat Twitch **\$3 Milliarden Umsatz** generiert, **7,1 Millionen aktive Streamer:innen** und **2,41 Millionen aktive Zuschauer:innen** im Monat, die ingesamt **21,4 Milliarden Stunden an Content** konsumiert haben
+-   in Zahlen: 2023 hat Twitch **\$3 Milliarden Umsatz** generiert, **7,1 Millionen aktive Streamer:innen** und **2,41 Millionen aktive Zuschauer:innen**, die ingesamt **21,4 Milliarden Stunden an Content** konsumiert haben
 
 #### Trend: **Plattform für politische Diskussionen und Debatten**
 
