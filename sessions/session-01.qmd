@@ -16,7 +16,7 @@ Please make sure that you answered the survey send to you by (StudOn) mail.
 
 ## Participate
 
-🖥️ [🚧 Session 01](TODO Add link to slides)
+🖥️ [Session 01](/slides/slides-01.html)
 
 <br>
 
