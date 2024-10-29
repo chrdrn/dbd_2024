@@ -18,15 +18,15 @@ This page provides an outline of the topics, contents, and assignments for the s
 <!-- FIXME Add column with link to exercises / group activities -->
 
 | ID | Date | Topic | Resources |
-|------------------|------------------|--------------------|------------------|
+|------------------|------------------|-------------------|------------------|
 |  | 📂 **Block 1** | **Introduction** |  |
 | 1 | 23.10.2024 | Kick-Off | [{{< bi book >}}](/sessions/session-01.html "Session 01"){aria-label="Session 01"} \| [{{< bi file-earmark-slides >}}](/slides/slides-01.html "Slides: Session 01"){aria-label="Slides Session 01"} |
-| 2 | 30.10.2024 | DBD: Overview & Introduction |  |
+| 2 | 30.10.2024 | DBD: Overview & Introduction | [{{< bi book >}}](/sessions/session-02.html "Session 02"){aria-label="Session 02"} \| [{{< bi file-earmark-slides >}}](/slides/slides-02.html "Slides: Session 02"){aria-label="Slides Session 02"} |
 | 3 | 06.11.2024 | 🔨 Introduction to working with R |  |
-|  | 📂 **Block 2** | **Theoretical Background: {{< bi twitch >}} & TV Election Debates** |  |
-| 4 | 13.11.2024 | 📚 {{< bi twitch >}}-Nutzung im Fokus  | [{{< bi book >}}](/sessions/session-04.html "Session 04"){aria-label="Session 04"}   |
-| 5 | 20.11.2024 | 📚 Effekte von {{< bi twitch >}} & TV-Debatten | [{{< bi book >}}](/sessions/session-05.html "Session 05"){aria-label="Session 05"}   |
-| 6 | 27.11.2024 | 📚 Politische TV-Debatten & Social Media | [{{< bi book >}}](/sessions/session-06.html "Session 06"){aria-label="Session 06"}  |
+|  | 📂 **Block 2** | **Theoretical Background:** {{< bi twitch >}} **& TV Election Debates** |  |
+| 4 | 13.11.2024 | 📚 {{< bi twitch >}}-Nutzung im Fokus | [{{< bi book >}}](/sessions/session-04.html "Session 04"){aria-label="Session 04"} |
+| 5 | 20.11.2024 | 📚 Effekte von {{< bi twitch >}} & TV-Debatten | [{{< bi book >}}](/sessions/session-05.html "Session 05"){aria-label="Session 05"} |
+| 6 | 27.11.2024 | 📚 Politische TV-Debatten & Social Media | [{{< bi book >}}](/sessions/session-06.html "Session 06"){aria-label="Session 06"} |
 |  | 📂 **Block 3** | **Method: Natural language processing** |  |
 | 7 | 04.12.2024 | 🔨 Text as data I: Introduction |  |
 | 8 | 11.12.2024 | 🔨 Text as data II: Advanced Methods |  |
@@ -54,12 +54,10 @@ knitr::knit_exit()
 |--------|--------|--------|:------:|:------:|:------:|:------:|:------:|:------:|:------:|
 | Week | Date | Topic | 📖 | 🖥️ | 📋 | [💻](https://sakai.duke.edu/samigo-app/servlet/Login?id=6fa7ebf3-01af-42a6-91ba-3e813d3901221641094171786) | ✍️ | ✅ | 📂 |
 
-
 | Session | Date | Topic | Resources |
-|------------------|------------------|--------------------|------------------|
+|------------------|------------------|-------------------|------------------|
 |  | 📂 **Block 1** | **Introduction** |  |
-| 1 | 23.10.2024 | Kick-Off | [{{< bi book >}}](/sessions/session-01.html "Session 01"){aria-label="Session 01"} | [{{< bi file-earmark-slides >}}](/slides/slides-01.html "Slides: Session 01"){aria-label="Slides Session 07"} \| [{{< bi pencil-square >}}](/exercises/ms-exercise-07_solution.html "Exercise: Session 07"){aria-label="Exercise Session 07"} \| [{{< bi file-earmark-code >}}](/exercises/ms-showcase-07.html "Showcase: Session 07"){aria-label="Showcase Session 07"} \|  |
-
+| 1 | 23.10.2024 | Kick-Off | [{{< bi book >}}](/sessions/session-01.html "Session 01"){aria-label="Session 01"} |
 
 Icons
 
