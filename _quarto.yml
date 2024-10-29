@@ -94,8 +94,8 @@ website:
             text: R Textbooks
           - href: computing/computing-cheatsheets.qmd
             text: R Cheatsheets
-          # - href: computing/computing-useful_links.qmd
-          #   text: Useful R sources
+          - href: computing/computing-useful_links.qmd
+            text: Useful R sources
             
   page-footer: 
    left: "Copyright 2024, Christoph Adrian"
