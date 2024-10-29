@@ -12,15 +12,33 @@ citations-hover: false
 
 ✍️ Start working on [R-Video-Tutorials](https://chrdrn.github.io/dbd_2024/computing/computing-instructions_R.html).
 
-#### Suggested readings
+✍️ Book your time slot for the mandatory feedback session on [StudOn](https://www.studon.fau.de/book6086206.html).
+
+✍️ Remeber the registration deadline (28./29.10) for the seminar examination on [campo](https://www.campo.fau.de/qisserver/pages/cs/sys/portal/hisinoneStartPage.faces).
+
+## Participate
+
+🖥️ [Session 02](/slides/slides-02.html)
+
+## Suggested readings
+
+-   [@davidson2023]
+
+-   [@vandriel2022]
 
 -   [@keusch2021]
 
 -   [@olteanu2019]
 
-## Participate
+-   [@reeves2021]
 
-🖥️ [🚧 Session 04](TODO%20ADD%20links)
+## Useful tools & resources
+
+-   [@peeters2022a]
+
+-   [@peeters2022]
+
+## 
 
 <br>
 
