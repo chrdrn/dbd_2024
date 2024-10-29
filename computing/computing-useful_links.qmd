@@ -8,4 +8,4 @@ This is selection of useful R sources:
 
 -   {{< bi globe >}} [Automatisierte Inhaltsanalyse mit R](http://inhaltsanalyse-mit-r.de/) by Kornelius Puschmann
 
-
+- {{< bi globe >}}[Basiskurs R/RStudio](https://www.studon.fau.de/crs3235361.html) by the [Chair of Statistics and Econometrics](https://www.statistics.rw.fau.eu/) at [Friedrich-Alexander-Universität Erlangen-Nürnberg](https://www.fau.eu/)
