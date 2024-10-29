@@ -40,19 +40,19 @@ schedule_json <- '[
         "Session": "4",
         "Datum": "13.11.2024",
         "Topic": "📚 Twitch-Nutzung im Fokus",
-        "Presenter": "Student groups (TBD)"
+        "Presenter": "Student groups"
     },
     {
         "Session": "5",
         "Datum": "20.11.2024",
         "Topic": "📚 (Wirkungs-)Effekte von Twitch & TV-Debatten",
-        "Presenter": "Student groups (TBD)"
+        "Presenter": "Student groups"
     },
     {
         "Session": "6",
         "Datum": "27.11.2024",
         "Topic": "📚 Politische Debatten & Social Media",
-        "Presenter": "Student groups (TBD)"
+        "Presenter": "Student groups"
     },
     {
         "Session": "",
