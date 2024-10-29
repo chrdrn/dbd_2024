@@ -753,7 +753,11 @@
     "href": "computing/computing-useful_links.html",
     "title": "Useful sources",
     "section": "",
-    "text": "This is selection of useful R sources:\n\n Quarto tutorials by Andy Field\n Automatisierte Inhaltsanalyse mit R by Kornelius Puschmann"
+    "text": "This is selection of useful R sources:\n\n Quarto tutorials by Andy Field\n Automatisierte Inhaltsanalyse mit R by Kornelius Puschmann\nBasiskurs R/RStudio by the Chair of Statistics and Econometrics at Friedrich-Alexander-Universität Erlangen-Nürnberg",
+    "crumbs": [
+      "Working with R",
+      "Useful R sources"
+    ]
   },
   {
     "objectID": "computing/computing-cheatsheets.html",
