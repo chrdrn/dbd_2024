@@ -10,6 +10,7 @@ bibliography: references_slides.bib
 
 ```{r setup-slide-session}
 #| echo: false
+#| message: false
 
 # Load packages
 # Load schedule
