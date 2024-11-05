@@ -1,24 +1,21 @@
 ---
-title: "🔨 Working with R"
-subtitle: "Session 03 - Showcase "
+title: "Showcase"
+subtitle: "Session 03 - 🔨 Working with R"
 date: last-modified
 date-format: "DD.MM.YYYY"
 ---
 
 ::: {.callout-tip icon="false"}
-![Quarto Slides](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto-slide.svg) Link to slides
+[![Quarto Slides](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto-slide.svg) Link to slides](../slides/slides-03.html)
 
-![](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto_document.svg) Download source file
+[![](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto_document.svg) Download source file](https://github.com/chrdrn/dbd_2024/blob/main/exercises/showcase-03.qmd)
 
-![](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-binder_rstudio.svg) Open this exercise in interactive and executable environment
+<!-- ![](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-binder_rstudio.svg) Open this exercise in interactive and executable environment -->
 :::
 
 ## Background
 
--   The best way to learn R is by trying. This document tries to display a version of the "normal" data processing procedure.
--   Use `tidytuesday` data as an example to showcase the potential
-
-::: callout-note
+::: callout-tip
 ## Todays's data basis: Hollywood Age Gaps
 
 > An informational site showing the age gap between movie love interests.
@@ -30,14 +27,16 @@ The data follows certain rules:
 -   Not animated characters
 :::
 
+-   The best way to learn R is by trying. This document tries to display a version of the "normal" data processing procedure.
+-   Use `tidytuesday` data as an example to showcase the potential
+
 ## Packages
 
 -   The `pacman::p_load()` package is used to load the packages, which has several advantages over the conventional method with `library()`:
-
-  -   Concise syntax
-  -   Automatic installation (if the package is not already installed)
-  -   Loading multiple packages at once
-  -   Automatic search for dependencies
+-   Concise syntax
+-   Automatic installation (if the package is not already installed)
+-   Loading multiple packages at once
+-   Automatic search for dependencies
 
 ```{r load-packages}
 pacman::p_load(

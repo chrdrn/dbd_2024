@@ -1,6 +1,6 @@
 ---
-title: "🔨 Working with R"
-subtitle: "Session 03 - Showcase "
+title: "Exercise: Hollywood Age Gaps"
+subtitle: "Session 03 - 🔨 Working with R "
 date: last-modified
 date-format: "DD.MM.YYYY"
 ---
@@ -8,17 +8,19 @@ date-format: "DD.MM.YYYY"
 ::: {.callout-tip icon="false"}
 ![Quarto Slides](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto-slide.svg) Link to slides
 
-![](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto_document.svg) Download source file
+[![](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto_document.svg) Download source file](https://github.com/chrdrn/dbd_2024/blob/main/exercises/exercise-03.qmd) <!-- ![](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-binder_rstudio.svg) Open this exercise in interactive and executable environment -->
+:::
 
-![](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-binder_rstudio.svg) Open this exercise in interactive and executable environment
+::: callout-note
+## Ziel der Anwendung: Grundlagen der Datenexploration in R
+
+-   Auffrischung der Grundkenntnisse im Umgang mit R, tidyverse und ggplot2
+-   Nützliche Funktionen aus dem `easystats`-verse kennenlernen
 :::
 
 ## Background
 
--   The best way to learn R is by trying. This document tries to display a version of the "normal" data processing procedure.
--   Use `tidytuesday` data as an example to showcase the potential
-
-::: callout-note
+::: callout-tip
 ## Todays's data basis: Hollywood Age Gaps
 
 > An informational site showing the age gap between movie love interests.
@@ -30,14 +32,19 @@ The data follows certain rules:
 -   Not animated characters
 :::
 
-## Packages
+-   The best way to learn R is by trying. This document tries to display a version of the "normal" data processing procedure.
+-   Use `tidytuesday` data as an example to showcase the potential
 
--   The `pacman::p_load()` package is used to load the packages, which has several advantages over the conventional method with `library()`:
+## Preparation
 
-  -   Concise syntax
-  -   Automatic installation (if the package is not already installed)
-  -   Loading multiple packages at once
-  -   Automatic search for dependencies
+### Packages
+
+The `pacman::p_load()` package is used to load the packages, which has several advantages over the conventional method with `library()`:
+
+-   Concise syntax
+-   Automatic installation (if the package is not already installed)
+-   Loading multiple packages at once
+-   Automatic search for dependencies
 
 ```{r load-packages}
 pacman::p_load(
@@ -50,7 +57,7 @@ pacman::p_load(
   ggpubr)
 ```
 
-## Import data
+### Import und Vorverarbeitung der Daten
 
 | Variable | Description |
 |:-------------------------|:---------------------------------------------|
@@ -72,7 +79,9 @@ pacman::p_load(
 # Import data from URL
 age_gaps <- read_csv("http://hollywoodagegap.com/movies.csv") %>% 
   janitor::clean_names()
+```
 
+```{r recode-data-to-correct}
 # Correct data
 age_gaps_correct <- age_gaps %>% 
   mutate(
@@ -80,38 +89,47 @@ age_gaps_correct <- age_gaps %>%
   )
 ```
 
-## 📋 Exercise: Welche Rolle spielt das Geschlecht?
+## 🛠️ Praktische Übung
+
+::: callout-important
+## Achtung, bitte lesen!
+
+-   Bevor Sie mit der Arbeit an den folgenden 📋 **Exercises** beginnen, stellen Sie bitte sicher, dass Sie alle Chunks des Abschnitts [Preparation] ausgeführt haben. Das können Sie tun, indem Sie den "*Run all chunks above*"-Knopf ![](https://raw.githubusercontent.com/faucommsci/teaching_materials/main/images/buttons/rstudio-button-render_all_chunks_above.png) des nächsten Chunks benutzen.
+-   Bei Fragen zum Code lohnt sich ein Blick in den **Showcase** (.qmd oder .html). Beim Showcase handelt es sich um eine kompakte Darstellung des in der Präsentation verwenden R-Codes. Sie können das Showcase also nutzen, um sich die Code-Bausteine anzusehen, die für die R-Outputs auf den Slides benutzt wurden.
+:::
+
+### 🔎 Welche Rolle spielt das Geschlecht?
 
 ::: callout-note
-## Spielt das Geschlecht eine Rolle?
+#### Spielt das Geschlecht eine Rolle?
 
 -   Der folgende Abschitt befasst sich nun ergänzend mit der Frage, welche Rolle das Geschlecht mit Blick auf die "Gültigkeit" der vorherigen Ergebnisse spielt
 -   Dazu sind jedoch weitere Explorations- und Überarbeitungsschritte notwendig
 :::
 
-### Übeprüfung der `_gender`-Variablen
+### 📋 Exercise 1: Übeprüfung der `_gender`-Variablen
 
 ::: callout-caution
-## Exercise 1
+#### Arbeitsauftrag 1.1
 
 Nutzen Sie die Funktion `sjmisc::frq()` und schauen Sie sich im Datensatz `age_gaps_correct` die Variablen `actor_1_gender` und `actor_2_gender` an.
 :::
 
-```{r exercise_1}
+```{r exercise_1_1}
 # INSERT CODE HERE
 ```
 
 ::: callout-caution
-## Exercise 2
+#### Arbeitsauftrag 1.2
 
 Nutzen Sie die Funktion `sjmisc::flat_talbe()` und den Datensatz `age_gaps_correct` um eine Kreuztabelle der Variablen `actor_1_gender` und `actor_2_gender` zu erstellen.
 :::
 
-```{r exercise_2}
+```{r exercise_1_2}
 # INSERT CODE HERE
 ```
 
-### Sind die Daten "konsistent"?
+### 🔎 Sind die Daten "konsistent"?
 
 #### Überprüfung der Sortierung
 
@@ -183,26 +201,24 @@ age_gaps_consistent <- age_gaps_correct %>%
 
 ```
 
-## Die zweite Datenexploration
+### 🔎 Die zweite Datenexploration
 
-### Alterskombinationen im Überblick
+### 📋 Exercise 2: Alterskombinationen im Überblick
 
 ::: callout-caution
-## Exercise 3
+## Arbeitauftrag 2
 
 Nutzen Sie die Funktion `sjmisc::frq()` und schauen Sie sich im Datensatz `age_gaps_consistent` die Variablen `couple_structure` und `older_male_hetero` an.
 :::
 
-```{r exercise_3}
+```{r exercise_2}
 # INSERT CODE HERE
 ```
 
-### Wie sind die Altersunterschiede unterteilt, unter Berücksichtiung des Geschlechts?
-
-#### Graphische Überprüfung
+### 📋 Exercise 3: Wie sind die Altersunterschiede unterteilt, unter Berücksichtiung des Geschlechts?
 
 ::: callout-caution
-## Exercise 4
+#### Arbeitsauftrag 3.1 (graphische Überprüfung)
 
 -   Erstellen Sie, auf Basis des Datensatzes `age_gaps_consistent`, einen `ggplot`.
 -   Nutzen Sie im Argument `aes()` die Variable `age_difference` als `x`-Variable und `older_male_hetero` für das Argument `fill`.
@@ -210,26 +226,20 @@ Nutzen Sie die Funktion `sjmisc::frq()` und schauen Sie sich im Datensatz `age_g
 -   *Optional: Verwenden Sie `theme_pubr`*
 :::
 
-```{r exercise_4_1}
+```{r exercise_3_1}
 # INSERT CODE HERE
 ```
 
-```{r exercise_4_2}
-# INSERT CODE HERE
-```
-
-#### Überprüfung durch Modellierung
 
 ::: callout-caution
-## Exercise 5
+#### Arbeitsauftrag 3.2 (Überprüfung durch Modellierung)
 
-1. Erstellen Sie ein lineares Modell (`lm`), das die Variable `age_difference` als abhängige Variable und die Variablen `release_year` und `older_male_hetero` als unabhängige Variablen verwendet. Nutzen Sie dazu den Datensatz `age_gaps_consistent`.
-2. Geben Sie die Parameter des Modells mit der Funktion `parameters::parameters()` aus.
-3. Bewerten Sie die Modellleistung mit der Funktion `performance::model_performance()`.
-4. Erstellen Sie einen Bericht über das Modell mit der Funktion `report::report()`.
+1.  Erstellen Sie ein lineares Modell (`lm`), das die Variable `age_difference` als abhängige Variable und die Variablen `release_year` und `older_male_hetero` als unabhängige Variablen verwendet. Nutzen Sie dazu den Datensatz `age_gaps_consistent`.
+2.  Geben Sie die Parameter des Modells mit der Funktion `parameters::parameters()` aus.
+3.  Bewerten Sie die Modellleistung mit der Funktion `performance::model_performance()`.
+4.  Erstellen Sie einen Bericht über das Modell mit der Funktion `report::report()`.
 :::
 
-```{r exercise_5}
+```{r exercise_3_2}
 # INSERT CODE HERE
 ```
-
