@@ -1,0 +1,40 @@
+---
+title: "Session 3"
+subtitle: "🔨 Introduction to working with R"
+bibliography: references_sessions.bib
+csl: ../apa-cv.csl 
+suppress-bibliography: true
+link-citations: false
+citations-hover: false
+---
+
+## Prepare
+
+✍️ Keep working on [R-Video-Tutorials](computing/computing-instructions_R.html).
+
+🔍 Check out the resources in the section "Working with R" (z.B. [R Textbooks](computing/computing-textbooks.html) & [Useful R sources](computing/computing-useful_links.html))
+
+## Participate
+
+🖥️ [Session 03](/slides/slides-03.html)
+
+## Suggested readings
+
+-   [@bauer2023]
+
+-   [@dejonge2013]
+
+-   [@pearson2018]
+
+## Useful tools & resources
+
+-   📖 Useful and detailed [tutorial to use git/github with RStudio](https://rfortherestofus.com/2021/02/how-to-use-git-github-with-r)
+
+-   📖 [Happy Git and GitHub for the useR](https://happygitwithr.com/)
+
+
+<br>
+
+::: {style="font-size: 0.875em;"}
+Back to [course schedule](/index.html "Course schedule") ⏎
+:::
