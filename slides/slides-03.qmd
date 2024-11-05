@@ -1,0 +1,647 @@
+---
+title: "🔨 Working with R"
+subtitle: "Session 03"
+date: 06 11 2023
+date-format: "DD.MM.YYYY"
+bibliography: references_slides.bib
+---
+
+## Seminarplan
+
+```{r setup-slide-session}
+#| echo: false
+
+# Load packages
+# Load schedule
+source(here::here("slides/schedule.R"))
+
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(
+    here, taylor,
+    magrittr, janitor,
+    ggpubr, 
+    gt, gtExtras,
+    countdown, 
+    easystats, tidyverse
+)
+```
+
+```{r table-schedule}
+#| echo: false 
+
+schedule %>%
+    gt::gt() %>%
+    gt::fmt_markdown(columns = c(Datum, Topic)) %>% 
+    gtExtras::gt_theme_538() %>% 
+    gt::tab_options(
+        table.width = gt::pct(75), 
+        table.font.size = "12px"
+    ) %>%
+    # mark current session
+    gtExtras::gt_highlight_rows(
+        rows = 4,
+        fill = "#C50F3C", 
+        alpha = 0.2,
+        bold_target_only = TRUE,
+        target_col = Topic       
+    ) %>% 
+    # fade out past sessions
+    gt::tab_style(
+        style = cell_text(
+            style = "italic", 
+            color = "grey"),
+        location = cells_body(
+            columns = everything(), 
+            rows = 2:3)
+    )
+```
+
+# Agenda {background-image="img/slide_bg-agenda.png"}
+
+1.  [Organisation & Koordination](#organisation-koordination)
+2.  [Die etwas andere Einführung in {{< iconify devicon rstudio >}}](#r-introduction)
+3.  [Anwedung von {{< iconify devicon rstudio >}} am Beispiel](#r-example)
+
+# Organisation & -koordination {#organisation-koordination background-image="img/slide_bg-orga.png"}
+
+Feedbacktermine
+
+## Kurzes organisatorische Update
+
+#### Informationen zu Kursdetails und Prüfungsleistungen
+
+-   Infos zur Zuteilung der Feedbackgespräche
+
+    -   **Keine Anmeldung für Feedback notwendig**, stattdessen Reihenfolge wie bei Präsentation
+    -   Bei **Terminproblemen** könnt ihr gerne auf mich zukommen
+
+-   🗣️ 2. Präsentationsgruppe: Bitte denkt
+
+    -   an die Zusendung des **Entwurf der Präsentationsfolien** **bis spätestens [nächste Woche Dienstag 12:00!]{.underline}**
+
+    -   das **Feedbackgespräch am Mittwoch im Anschluss an das Seminar.**
+
+# Anything else? {background-image="img/slide_bg-participation.png"}
+
+Weitere Fragen zur Organisation oder Ablauf des Kurses
+
+# What I Wish I Knew ... {#r-introduction background-image="img/slide_bg-section.png"}
+
+... When I Started Using {{< iconify devicon rstudio >}}
+
+<br>
+
+## Building best practice
+
+#### Willkommen (zurück) zu {{< iconify devicon rstudio >}}
+
+<!-- FIXME Add fragments .semi-fade-out -->
+
+:::::: columns
+::: {.column width="50%"}
+**How most academics learn R:**
+
+![](https://media.tenor.com/EkQS-yDvuw4AAAAC/pool-throw.gif){fig-align="center" width="450"}
+:::
+
+:::: {.column width="50%"}
+::: {.fragment .fade-in}
+**How you should learn R:**
+
+-   R nicht systematisch lernen, sondern **spezifisch anwenden**.
+-   **Organisation** der Arbeit mit RStudio-Projekten
+-   **Lesbaren und nachvollziehbaren Code** schreiben!
+-   **(Nach-)Fragen**!
+:::
+::::
+::::::
+
+## Ein Repository voller Daten
+
+#### Beispiel für Übung durch Anwendung: [{{< bi github >}} tidytuesday](https://github.com/rfordatascience/tidytuesday) (social data project)
+
+![](https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/static/tt_logo.png){fig-align="center" width="500"}
+
+::: {style="font-size: smaller;"}
+-   Data is posted to social media every Monday morning.
+
+-   Explore the data, watching out for interesting relationships.
+
+-   Create a visualization, a model, a shiny app, or some other piece of data-science-related output, using R or another programming language.
+
+-   Share your output and the code used to generate it on social media with the #TidyTuesday hashtag.
+:::
+
+## Beispiele für #tidytuesday
+
+::::: columns
+::: {.column width="50%"}
+{{< tweet nrennie35 1721164261009793142 >}}
+:::
+
+::: {.column width="50%"}
+{{< tweet samiasab90 1720490541442355452 >}}
+:::
+:::::
+
+## Everything you need in one place
+
+#### Organisation der Arbeit mit RStudio-Projekten
+
+::::: columns
+::: {.column width="50%"}
+![](https://r4ds.hadley.nz/diagrams/new-project.png){fig-align="center"}
+:::
+
+::: {.column width="50%"}
+**Empfehlungen:**
+
+-   Für jedes Projekt ein RStudio-Projekt.
+
+-   Sicherung und Organisation von Daten, Skripte und Ouput an einem Ort, z.B. mit Unterstützung durch R-Pakete wie z.B. [prodigenr](https://rostools.github.io/prodigenr/)
+
+-   Verwendung von **relative, keine absoluten Pfade. Empfehlung: [here](https://here.r-lib.org/) R-Paket**
+:::
+:::::
+
+## Versionskontrolle als Kür
+
+#### Crashkurs zu Git(Hub)
+
+![{{< bi github >}} [MalikaIhle](https://malikaihle.github.io/Introduction-RStudio-Git-GitHub)](https://raw.githubusercontent.com/MalikaIhle/Introduction-RStudio-Git-GitHub/main/assets/GitHub-remote.png){fig-align="center"}
+
+-   Versionkontrolle für Code, gesichert in der Cloud
+-   Vollständige Rückverfolgbarkeit von (gesicherten) Änderungen
+-   Great effort, great return.
+
+<!--# Verlinkung von nützlichen Git mit R Quellen -->
+
+## Run chunks, not (whole) scripts
+
+#### Outputorientiertes Coding mit Quarto
+
+::: r-stack
+![](https://quarto.org/docs/get-started/hello/images/rstudio-hello.png){fig-align="center" width="961"}
+
+![](https://quarto.org/docs/get-started/hello/images/rstudio-source-visual.png){.fragment fragment-index="1" fig-align="center" width="1009"}
+
+![](https://quarto.org/docs/get-started/hello/images/rstudio-inline-output.png){.fragment fragment-index="2" fig-align="center" width="996"}
+:::
+
+## Quarto ≥ RMarkdown ≥ RScript
+
+#### Der Weg vom Code zum Output
+
+![](https://quarto.org/docs/get-started/hello/images/rstudio-qmd-how-it-works.png)
+
+-   Grundidee von [Quarto](https://quarto.org/) ![](https://quarto.org/favicon.png){width="20"}: ein Quelldokument kann in eine Vielzahl von Ausgabeformaten umgewandelt werden
+
+-   Markdown-Syntax für Text, verschiedene Programmiersprachen (wie z.B. R *und* Python) in einem Dokument
+
+## Develop your style
+
+#### Wichtigkeit der Codeformatierung und -dokumentierung
+
+```{r}
+#| eval: false
+
+# Strive for 
+short_flights <- flights |> filter(air_time < 60)
+
+# Avoid:
+SHTFTS <- flights |> filter(air_time < 60)
+```
+
+```{r}
+#| eval: false
+
+# Strive for 
+flights |>  
+  filter(!is.na(arr_delay), !is.na(tailnum)) |> 
+  count(dest)
+
+# Avoid
+flights|>filter(!is.na(arr_delay), !is.na(tailnum))|>count(dest)
+```
+
+<br>
+
+-   Die Entwicklung (oder Aneignung) eines Codestils ist wichtig!
+-   Was sich zunächst willkürlich anfühlt, hilft mit der Zeit sehr
+-   Unterstützung durch den [tidyverse style guide](https://style.tidyverse.org/index.html) bzw. die Pakete [styler](https://styler.r-lib.org/) oder [lintr](https://lintr.r-lib.org/)
+
+## Empfehlung: tidyverse is your friend!
+
+#### Verschiedenen Paketen für alle Schritte eines Projektes
+
+![](https://rviews.rstudio.com/post/2017-06-09-What-is-the-tidyverse_files/tidyverse1.png){fig-align="center" width="943"}
+
+Quelle: RStudio
+
+## The friend of your friend: easystats
+
+#### Fokus auf die Analyse
+
+![](https://raw.githubusercontent.com/easystats/easystats/main/man/figures/logo_wall.png){fig-align="center"}
+
+Quelle: @lüdecke2022
+
+# Working with {{< iconify devicon rstudio >}} ... {#r-example background-image="img/slide_bg-example.png"}
+
+... in the real world!
+
+**Im Fokus:** [**Hollywood Age Gap**](https://hollywoodagegap.com/) **Project**
+
+<!-- [![Quarto Document](/img/badge-quarto_document.svg)](/exercise/exercise-03.html) [![Binder RStudio](/img/badge-binder_rstudio.svg)](https://mybinder.org/v2/gh/faucommsci/dbd_binder/HEAD?urlpath=rstudio) -->
+
+## Am Anfang steht die Theorie
+
+#### Typischer "data science process" als Kontext der Sitzung
+
+![](https://r4ds.hadley.nz/diagrams/data-science/base.png){fig-align="center"}
+
+Quelle: @wickham2023
+
+::: notes
+Additional steps (add if necessary): <!-- 
+![](https://r4ds.hadley.nz/diagrams/data-science/whole-game.png){.fragment fragment-index="1" fig-align="center"}
+![](https://r4ds.hadley.nz/diagrams/data-science/communicate.png){.fragment fragment-index="2" fig-align="center"}
+![](https://r4ds.hadley.nz/diagrams/data-science/visualize.png){.fragment fragment-index="2" fig-align="center"}
+![](https://r4ds.hadley.nz/diagrams/data-science/transform.png){.fragment fragment-index="3" fig-align="center"}
+![](https://r4ds.hadley.nz/diagrams/data-science/import.png){.fragment fragment-index="4" fig-align="center"}
+![](https://r4ds.hadley.nz/diagrams/data-science/program.png){.fragment fragment-index="5" fig-align="center"} 
+-->
+:::
+
+## Age difference in years between move love interests
+
+#### Datengrundlage für die Beispiele: Hollywood Age Gap ([{{< bi house >}}](https://hollywoodagegap.com/) \| [{{< bi github >}}](https://github.com/lynnandtonic/hollywood-age-gap) )
+
+::::: columns
+::: {.column width="40%"}
+<br>
+
+![](img/session-02/screenshot-hollywood_age_gap.png){fig-align="center" width="325"}
+:::
+
+::: {.column width="60%"}
+-   *"An informational site showing the age gap between movie love interests."*
+-   Community-Projekt
+
+##### Guidlines for participation/submission:
+
+-   *The two (or more) actors play actual love interests (not just friends, coworkers, or some other non-romantic type of relationship)*
+-   *The youngest of the two actors is at least 17 years old*
+-   *Not animated characters*
+:::
+:::::
+
+## Explore ➞ Adapt ➞ Repeat ⟳
+
+#### Prozess der Datenaufbereitung
+
+![](https://r4ds.hadley.nz/diagrams/data-science/whole-game.png){fig-align="center" width="1478"}
+
+-   nimmt in der Regel den Großteil der Zeit der Datenanalyse in Anspruch
+-   häufig bedarf es der mehrfachen **Wiederholung dreier Schritte:**
+    -   der (explorativen) **`Erkundung`**,
+    -   der **`Standartdisierung`** und
+    -   der (erneuten) **`Bereinung`** der Daten
+
+## Drei Stufen der Datenqualität
+
+#### Typische Strategien zur Datenbereinigung nach @pearson2018
+
+::::::: columns
+::: {.column width="30%"}
+<br>
+
+![Quelle: @dejonge2013](img/session-02/graph-statistical_analysis_value_chain.jpg){fig-align="center" width="800"}
+:::
+
+::: {.column width="10%"}
+:::
+
+:::: {.column width="60%"}
+::: {style="font-size: 20px;"}
+1.  Bewertung **allgemeiner Merkmale des Datensatzes**, z. B.:
+
+    -   Wie viele Fälle sind enthalten? Wie viele Variablen?
+
+    -   Wie lauten die Variablennamen? Sind sie sinnvoll?
+
+    -   Welchen Typ hat jede Variable, z. B. numerisch, kategorisch, logisch?
+
+    -   Wie viele eindeutige Werte hat jede Variable?
+
+    -   Welcher Wert tritt am häufigsten auf, und wie oft kommt er vor?
+
+    -   Gibt es **fehlende Werte**? Wenn ja, wie häufig ist dies der Fall?
+
+2.  Untersuchung **deskriptiver Statistiken** für jede Variable;
+
+3.  **Explorative Visualisierung**;
+
+4.  Verschiedene Verfahren zur **Suche nach Anomalien** in den Daten;
+
+5.  Untersuchung der **Beziehungen zwischen Schlüsselvariablen** mit Hilfe von Scatterplots/Boxplots/Mosaic-Plots;
+
+6.  **Dokumentation des Vorgehens und der Ergebnisse** (z.B. mit .rmd-Dokument). Dient als Grundlage für die anschließende Analyse und Erläuterung der Ergebnisse.
+:::
+::::
+:::::::
+
+## Stärke von R: Umgang mit Daten {visibility="hidden"}
+
+#### Datenimport in R
+
+:::::: columns
+::: {.column width="50%"}
+<br>
+
+-   Ein Bereich, in dem R wirklich glänzt, ist die Fähigkeit mit mehreren und verschiedenen Datenquellen (gleichzeitig) zu arbeiten
+
+-   R verfügt über eine Reihe an Paketen für den Import, die Transformation sowie die Bearbeitung verschiedenster Datenquellen.
+:::
+
+:::: {.column width="50%"}
+<br>
+
+##### Beispiele für R-Pakete:
+
+::: {style="font-size: smaller;"}
+-   `haven` - SPSS, Stata, and SAS files
+-   `DBI` - databases
+-   `jsonlite` - json
+-   `xml2` - XML
+-   `httr` - Web APIs
+-   `rvest` - HTML (Web Scraping)
+-   `readr::read_lines()` - text data
+:::
+::::
+::::::
+
+## Direkter Download via URL
+
+#### Datenimport und -preview
+
+::::::: columns
+:::: {.column width="30%"}
+::: {style="font-size: 14px; color: gray;"}
+**Bewertung allgemeiner Merkmale des Datensatzes, z. B.:**
+
+-   🔍 **Wie viele Fälle sind enthalten? Wie viele Variablen?**
+-   🔍 **Wie lauten die Variablennamen? Sind sie sinnvoll?**
+-   Welchen Typ hat jede Variable, z. B. numerisch, kategorisch, logisch?
+-   Wie viele eindeutige Werte hat jede Variable?
+-   Welcher Wert tritt am häufigsten auf, und wie oft kommt er vor?
+-   Gibt es fehlende Werte? Wenn ja, wie häufig ist dies der Fall?
+:::
+::::
+
+:::: {.column width="70%"}
+::: {style="font-size: smaller;"}
+```{r import-data-raw}
+age_gaps <- read_csv("http://hollywoodagegap.com/movies.csv") 
+age_gaps 
+```
+:::
+::::
+:::::::
+
+## Let the cleaning beginn
+
+#### Erste Schritte der Datenbereinigung
+
+::::::: columns
+:::: {.column width="30%"}
+::: {style="font-size: 14px; color: gray;"}
+**Bewertung allgemeiner Merkmale des Datensatzes, z. B.:**
+
+-   ✅ ~~Wie viele Fälle sind enthalten? Wie viele Variablen?~~
+-   ✅ ~~Wie lauten die Variablennamen? Sind sie sinnvoll?~~
+-   🔍 **Welchen Typ hat jede Variable, z. B. numerisch, kategorisch, logisch?**
+-   Wie viele eindeutige Werte hat jede Variable?
+-   Welcher Wert tritt am häufigsten auf, und wie oft kommt er vor?
+-   Gibt es fehlende Werte? Wenn ja, wie häufig ist dies der Fall?
+:::
+::::
+
+:::: {.column width="70%"}
+::: {style="font-size: smaller;"}
+```{r recoding-raw-data}
+age_gaps %<>% janitor::clean_names()
+age_gaps %>% glimpse()
+```
+:::
+::::
+:::::::
+
+## Building the habits!
+
+#### Erste Schritte der Datenbereinigung
+
+::::::: columns
+:::: {.column width="30%"}
+::: {style="font-size: 14px; color: gray;"}
+**Bewertung allgemeiner Merkmale des Datensatzes, z. B.:**
+
+-   ✅ ~~Wie viele Fälle sind enthalten? Wie viele Variablen?~~
+-   ✅ ~~Wie lauten die Variablennamen? Sind sie sinnvoll?~~
+-   ✅ ~~Welchen Typ hat jede Variable, z. B. numerisch, kategorisch, logisch?~~
+-   Wie viele eindeutige Werte hat jede Variable?
+-   Welcher Wert tritt am häufigsten auf, und wie oft kommt er vor?
+-   Gibt es fehlende Werte? Wenn ja, wie häufig ist dies der Fall?
+:::
+::::
+
+:::: {.column width="70%"}
+::: {style="font-size: smaller;"}
+```{r recoding-data-to-correct}
+age_gaps_correct <- age_gaps %>% 
+  mutate(
+    across(ends_with("_birthdate"), ~as.Date(.)) # set dates to dates
+  )
+```
+:::
+
+<br>
+
+##### Reminder
+
+-   Veränderungen nicht im selben Datensatz speichern
+-   Verständliche Benennung & Kommentierung der Daten
+-   Bearbeitungsschritte kommentieren
+::::
+:::::::
+
+## Kontrolle der Lageparameter
+
+#### Erste Schritte der Datenbereinigung
+
+::::::: columns
+:::: {.column width="30%"}
+::: {style="font-size: 14px; color: gray;"}
+**Bewertung allgemeiner Merkmale des Datensatzes, z. B.:**
+
+-   ✅ ~~Wie viele Fälle sind enthalten? Wie viele Variablen?~~
+-   ✅ ~~Wie lauten die Variablennamen? Sind sie sinnvoll?~~
+-   ✅ ~~Welchen Typ hat jede Variable, z. B. numerisch, kategorisch, logisch?~~
+-   🔍 **Wie viele eindeutige Werte hat jede Variable?**
+-   🔍 **Welcher Wert tritt am häufigsten auf, und wie oft kommt er vor?**
+-   🔍 **Gibt es fehlende Werte? Wenn ja, wie häufig ist dies der Fall?**
+:::
+::::
+
+:::: {.column width="70%"}
+::: {style="font-size: smaller;"}
+```{r table-data-location-parameters}
+age_gaps_correct %>% 
+    datawizard::describe_distribution() %>% 
+    print_html()
+```
+:::
+::::
+:::::::
+
+## Let's start exploring!
+
+#### Wie sind die Altersunterschiede verteilt?
+
+```{r figure-age-difference}
+age_gaps_correct %>% 
+    ggplot(aes(age_difference)) +
+    geom_bar() +
+    theme_pubr()
+```
+
+## A recent past ...
+
+#### In welchen Filmen ist der Altersunterschied am höchsten?
+
+```{r table-movies-highest-age-difference}
+age_gaps_correct %>% 
+    arrange(desc(age_difference)) %>% 
+    select(movie_name, age_difference, release_year) 
+```
+
+## ... or still present?
+
+#### In welchen Filmen ist der Altersunterschied am höchsten?
+
+```{r table-movies-highest-age-difference-current}
+age_gaps_correct %>% 
+    filter(release_year >= 2022) %>% 
+    arrange(desc(age_difference)) %>% 
+    select(
+        movie_name, age_difference, release_year, 
+        actor_1_name, actor_2_name)
+```
+
+## (Durchschnitts-)Unterschied nach Jahren
+
+#### Gibt es einen Zusammenhang zwischen Altersunterschied und Releasedatum?
+
+```{r figure-age-difference-mean-by-year }
+age_gaps_correct %>% 
+    group_by(release_year) %>% 
+    summarise(age_difference_mean = mean(age_difference)) %>% 
+    ggplot(aes(release_year, age_difference_mean)) +
+    geom_col() +
+    theme_pubr()
+```
+
+## Verteilung nach Jahren
+
+#### Gibt es einen Zusammenhang zwischen Altersunterschied und Releasedatum?
+
+```{r figure-age-difference-by-year}
+#| output-location: column
+#| fig-height: 11
+#| fig-width: 15
+
+ggpubr::ggboxplot(
+    data = age_gaps_correct, 
+    x = "release_year", 
+    y = "age_difference"
+  ) +
+  # Rotate x-axis labels by 90 degrees
+  theme(
+    axis.text.x = element_text(
+        angle = 90,
+        vjust = 0.5,
+         hjust=1))  
+
+```
+
+## Ein Blick auf die Korrelation
+
+#### Gibt es einen Zusammenhang zwischen Altersunterschied und Releasedatum?
+
+```{r model-age-difference-release-correlation}
+age_gaps %>%
+  select(release_year, age_difference) %>% 
+  correlation::correlation()
+```
+
+## Mit Kanonen auf Spatzen schießen
+
+#### Gibt es einen Zusammenhang zwischen Altersunterschied und Releasedatum?
+
+```{r model-age-difference-release-lm}
+# Schätzung des Models
+mdl <- lm(age_difference ~ release_year, data = age_gaps_correct)
+```
+
+<br>
+
+```{r model-age-difference-release-lm-parameter}
+mdl %>% parameters::parameters()
+```
+
+<br>
+
+```{r model-age-difference-release-lm-performance}
+mdl %>% performance::model_performance()
+```
+
+## Convenience wrapper
+
+#### Gibt es einen Zusammenhang zwischen Altersunterschied und Releasedatum?
+
+```{r model-age-difference-release-lm-report}
+mdl %>% report::report()
+```
+
+## Try - Fail - Repeat
+
+#### Kurzes Fazit der heutigen Sitzung
+
+::::: columns
+::: {.column width="60%"}
+<br>
+
+-   Wenn R, dann mit RStudio + Quarto!
+
+-   Anschauen - nachmachen - ausprobieren
+
+-   Keep it `tidy`
+
+-   (Gute) Routinen bilden
+
+-   "There is almost always a package for that ..."
+:::
+
+::: {.column width="40%"}
+![](img/session-02/meme-it_is_hard_using_R.jpeg){fig-align="center" width="392"}
+:::
+:::::
+
+# Time for questions {background-image="img/slide_bg-question.png"}
+
+# Bis zur nächsten Sitzung! {background-image="img/slide_bg-end_session.png"}
+
+## Literatur
+
+::: {#refs}
+:::
