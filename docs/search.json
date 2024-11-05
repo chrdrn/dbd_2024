@@ -187,335 +187,137 @@
     ]
   },
   {
-    "objectID": "sessions/session-06.html",
-    "href": "sessions/session-06.html",
-    "title": "Session 6",
+    "objectID": "exercises/exercise-03.html",
+    "href": "exercises/exercise-03.html",
+    "title": "Exercise: Hollywood Age Gaps",
     "section": "",
-    "text": "🖥️ 🚧 Session 06"
+    "text": "Link to slides\n Download source file"
   },
   {
-    "objectID": "sessions/session-06.html#participate",
-    "href": "sessions/session-06.html#participate",
-    "title": "Session 6",
-    "section": "",
-    "text": "🖥️ 🚧 Session 06"
+    "objectID": "exercises/exercise-03.html#background",
+    "href": "exercises/exercise-03.html#background",
+    "title": "Exercise: Hollywood Age Gaps",
+    "section": "Background",
+    "text": "Background\n\n\n\n\n\n\nTodays’s data basis: Hollywood Age Gaps\n\n\n\n\nAn informational site showing the age gap between movie love interests.\n\nThe data follows certain rules:\n\nThe two (or more) actors play actual love interests (not just friends, coworkers, or some other non-romantic type of relationship)\nThe youngest of the two actors is at least 17 years old\nNot animated characters\n\n\n\n\nThe best way to learn R is by trying. This document tries to display a version of the “normal” data processing procedure.\nUse tidytuesday data as an example to showcase the potential"
   },
   {
-    "objectID": "sessions/session-06.html#literature",
-    "href": "sessions/session-06.html#literature",
-    "title": "Session 6",
+    "objectID": "exercises/exercise-03.html#preparation",
+    "href": "exercises/exercise-03.html#preparation",
+    "title": "Exercise: Hollywood Age Gaps",
+    "section": "Preparation",
+    "text": "Preparation\n\nPackages\nThe pacman::p_load() package is used to load the packages, which has several advantages over the conventional method with library():\n\nConcise syntax\nAutomatic installation (if the package is not already installed)\nLoading multiple packages at once\nAutomatic search for dependencies\n\n\npacman::p_load(\n  here, \n  magrittr, \n  tidyverse,\n  janitor,\n  easystats,\n  sjmisc,\n  ggpubr)\n\n\n\nImport und Vorverarbeitung der Daten\n\nVariablennamen und -beschreibungen\n\n\n\n\n\n\nVariable\nDescription\n\n\n\n\nmovie_name\nName of the film\n\n\nrelease_year\nRelease year\n\n\ndirector\nDirector of the film\n\n\nage_difference\nAge difference between the characters in whole years\n\n\ncouple_number\nAn identifier for the couple in case multiple couples are listed for this film\n\n\nactor_1_name\nThe name of the older actor in this couple\n\n\nactor_2_name\nThe name of the younger actor in this couple\n\n\nactor_1_birthdate\nThe birthdate of the older member of the couple\n\n\nactor_2_birthdate\nThe birthdate of the younger member of the couple\n\n\nactor_1_age\nThe age of the older actor when the film was released\n\n\nactor_2_age\nThe age of the younger actor when the film was released\n\n\n\n\n# Import data from URL\nage_gaps &lt;- read_csv(\"http://hollywoodagegap.com/movies.csv\") %&gt;% \n  janitor::clean_names()\n\n\n# Correct data\nage_gaps_correct &lt;- age_gaps %&gt;% \n  mutate(\n    across(ends_with(\"_birthdate\"), ~as.Date(.)) # set dates to dates\n  )"
+  },
+  {
+    "objectID": "exercises/exercise-03.html#praktische-übung",
+    "href": "exercises/exercise-03.html#praktische-übung",
+    "title": "Exercise: Hollywood Age Gaps",
+    "section": "🛠️ Praktische Übung",
+    "text": "🛠️ Praktische Übung\n\n\n\n\n\n\nAchtung, bitte lesen!\n\n\n\n\nBevor Sie mit der Arbeit an den folgenden 📋 Exercises beginnen, stellen Sie bitte sicher, dass Sie alle Chunks des Abschnitts Preparation ausgeführt haben. Das können Sie tun, indem Sie den “Run all chunks above”-Knopf  des nächsten Chunks benutzen.\nBei Fragen zum Code lohnt sich ein Blick in den Showcase (.qmd oder .html). Beim Showcase handelt es sich um eine kompakte Darstellung des in der Präsentation verwenden R-Codes. Sie können das Showcase also nutzen, um sich die Code-Bausteine anzusehen, die für die R-Outputs auf den Slides benutzt wurden.\n\n\n\n\n🔎 Welche Rolle spielt das Geschlecht?\n\n\n\n\n\n\nSpielt das Geschlecht eine Rolle?\n\n\n\n\nDer folgende Abschitt befasst sich nun ergänzend mit der Frage, welche Rolle das Geschlecht mit Blick auf die “Gültigkeit” der vorherigen Ergebnisse spielt\nDazu sind jedoch weitere Explorations- und Überarbeitungsschritte notwendig\n\n\n\n\n\n📋 Exercise 1: Übeprüfung der _gender-Variablen\n\n\n\n\n\n\nArbeitsauftrag 1.1\n\n\n\nNutzen Sie die Funktion sjmisc::frq() und schauen Sie sich im Datensatz age_gaps_correct die Variablen actor_1_gender und actor_2_gender an.\n\n\n\n# INSERT CODE HERE\n\n\n\n\n\n\n\nArbeitsauftrag 1.2\n\n\n\nNutzen Sie die Funktion sjmisc::flat_talbe() und den Datensatz age_gaps_correct um eine Kreuztabelle der Variablen actor_1_gender und actor_2_gender zu erstellen.\n\n\n\n# INSERT CODE HERE\n\n\n\n🔎 Sind die Daten “konsistent”?\n\nÜberprüfung der Sortierung\n\nage_gaps_correct %&gt;% \n  summarise(\n      p1_older = mean(actor_1_age &gt; actor_2_age), # older person first?\n      p1_male  = mean(actor_1_gender == \"man\"),  # male person first? \n      p_1_first_alpha = mean(actor_1_name &lt; actor_2_name) # alphabetical order?\n  )\n\n# A tibble: 1 × 3\n  p1_older p1_male p_1_first_alpha\n     &lt;dbl&gt;   &lt;dbl&gt;           &lt;dbl&gt;\n1    0.813   0.987           0.496\n\n\n\n\n\nÜberprüfung der Anzahl pro Paare pro Film\n\n# Create data\ncouples &lt;- age_gaps_correct %&gt;% \n  group_by(movie_name) %&gt;% \n  summarise(n = n()) \n\n# Distribution\ncouples %&gt;% frq(n)\n\nn &lt;integer&gt; \n# total N=863 valid N=863 mean=1.39 sd=0.75\n\nValue |   N | Raw % | Valid % | Cum. %\n--------------------------------------\n    1 | 628 | 72.77 |   72.77 |  72.77\n    2 | 162 | 18.77 |   18.77 |  91.54\n    3 |  54 |  6.26 |    6.26 |  97.80\n    4 |  14 |  1.62 |    1.62 |  99.42\n    5 |   3 |  0.35 |    0.35 |  99.77\n    6 |   1 |  0.12 |    0.12 |  99.88\n    7 |   1 |  0.12 |    0.12 | 100.00\n &lt;NA&gt; |   0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;\n\n# Movies with a loot of couples \ncouples %&gt;% \n  filter(n &gt; 3) %&gt;% \n  arrange(desc(n))\n\n# A tibble: 19 × 2\n   movie_name                      n\n   &lt;chr&gt;                       &lt;int&gt;\n 1 Love Actually                   7\n 2 The Family Stone                6\n 3 A View to a Kill                5\n 4 He's Just Not That Into You     5\n 5 Mona Lisa Smile                 5\n 6 A Star Is Born                  4\n 7 American Pie                    4\n 8 Boogie Nights                   4\n 9 Book Club                       4\n10 Closer                          4\n11 Pushing Tin                     4\n12 Sex and the City                4\n13 Soul Food                       4\n14 Tag                             4\n15 The Favourite                   4\n16 The Girl on the Train           4\n17 The Other Woman                 4\n18 Tomorrow Never Dies             4\n19 Twilight                        4\n\n\n\n\nKorrekturen\n\nage_gaps_consistent &lt;- age_gaps_correct %&gt;% \n  # If multiple couples, assign couple number by movie\n  mutate(\n      couple_number = row_number(),\n      .by = \"movie_name\"\n  ) %&gt;% \n  # Change data structure (one line per actor in a coulpe of a movie)\n  pivot_longer(\n    cols = starts_with(c(\"actor_1_\", \"actor_2_\")),\n    names_to = c(NA, NA, \".value\"),\n    names_sep = \"_\"\n  ) %&gt;% \n  # Put older actor first\n  arrange(desc(age_difference), movie_name, birthdate) %&gt;% \n    mutate(\n    position = row_number(),\n    .by = c(\"movie_name\", \"couple_number\")\n  ) %&gt;% \n  pivot_wider(\n    names_from = \"position\",\n    names_glue = \"actor_{position}_{.value}\",\n    values_from = c(\"name\", \"gender\", \"birthdate\", \"age\")\n  ) %&gt;% \n  mutate(\n    couple_structure = case_when(\n      actor_1_gender == \"woman\" & actor_2_gender == \"woman\" ~ 1,\n      actor_1_gender == \"man\" & actor_2_gender == \"man\" ~ 2,\n      actor_1_gender != \"man\" ~ 3, \n      actor_1_gender == \"man\" ~ 4,\n    ),\n    older_male_hetero  = sjmisc::rec(\n      couple_structure, \n      rec=\"3=0; 4=1; ELSE=NA\", \n      to.factor = TRUE\n    )\n  )\n\n\n\n🔎 Die zweite Datenexploration\n\n\n📋 Exercise 2: Alterskombinationen im Überblick\n\n\n\n\n\n\nArbeitauftrag 2\n\n\n\nNutzen Sie die Funktion sjmisc::frq() und schauen Sie sich im Datensatz age_gaps_consistent die Variablen couple_structure und older_male_hetero an.\n\n\n\n# INSERT CODE HERE\n\n\n\n📋 Exercise 3: Wie sind die Altersunterschiede unterteilt, unter Berücksichtiung des Geschlechts?\n\n\n\n\n\n\nArbeitsauftrag 3.1 (graphische Überprüfung)\n\n\n\n\nErstellen Sie, auf Basis des Datensatzes age_gaps_consistent, einen ggplot.\nNutzen Sie im Argument aes() die Variable age_difference als x-Variable und older_male_hetero für das Argument fill.\nNutzen Sie geom_bar zur Erzeugung des Plots.\nOptional: Verwenden Sie theme_pubr\n\n\n\n\n# INSERT CODE HERE\n\n\n\n\n\n\n\nArbeitsauftrag 3.2 (Überprüfung durch Modellierung)\n\n\n\n\nErstellen Sie ein lineares Modell (lm), das die Variable age_difference als abhängige Variable und die Variablen release_year und older_male_hetero als unabhängige Variablen verwendet. Nutzen Sie dazu den Datensatz age_gaps_consistent.\nGeben Sie die Parameter des Modells mit der Funktion parameters::parameters() aus.\nBewerten Sie die Modellleistung mit der Funktion performance::model_performance().\nErstellen Sie einen Bericht über das Modell mit der Funktion report::report().\n\n\n\n\n# INSERT CODE HERE"
+  },
+  {
+    "objectID": "exercises/exercise-03_solution.html",
+    "href": "exercises/exercise-03_solution.html",
+    "title": "Exercise: Hollywood Age Gaps",
+    "section": "",
+    "text": "Link to slides\n Download source file"
+  },
+  {
+    "objectID": "exercises/exercise-03_solution.html#background",
+    "href": "exercises/exercise-03_solution.html#background",
+    "title": "Exercise: Hollywood Age Gaps",
+    "section": "Background",
+    "text": "Background\n\n\n\n\n\n\nTodays’s data basis: Hollywood Age Gaps\n\n\n\n\nAn informational site showing the age gap between movie love interests.\n\nThe data follows certain rules:\n\nThe two (or more) actors play actual love interests (not just friends, coworkers, or some other non-romantic type of relationship)\nThe youngest of the two actors is at least 17 years old\nNot animated characters\n\n\n\n\nThe best way to learn R is by trying. This document tries to display a version of the “normal” data processing procedure.\nUse tidytuesday data as an example to showcase the potential"
+  },
+  {
+    "objectID": "exercises/exercise-03_solution.html#preparation",
+    "href": "exercises/exercise-03_solution.html#preparation",
+    "title": "Exercise: Hollywood Age Gaps",
+    "section": "Preparation",
+    "text": "Preparation\n\nPackages\nThe pacman::p_load() package is used to load the packages, which has several advantages over the conventional method with library():\n\nConcise syntax\nAutomatic installation (if the package is not already installed)\nLoading multiple packages at once\nAutomatic search for dependencies\n\n\npacman::p_load(\n  here, \n  magrittr, \n  tidyverse,\n  janitor,\n  easystats,\n  sjmisc,\n  ggpubr)\n\n\n\nImport und Vorverarbeitung der Daten\n\nVariablennamen und -beschreibungen\n\n\n\n\n\n\nVariable\nDescription\n\n\n\n\nmovie_name\nName of the film\n\n\nrelease_year\nRelease year\n\n\ndirector\nDirector of the film\n\n\nage_difference\nAge difference between the characters in whole years\n\n\ncouple_number\nAn identifier for the couple in case multiple couples are listed for this film\n\n\nactor_1_name\nThe name of the older actor in this couple\n\n\nactor_2_name\nThe name of the younger actor in this couple\n\n\nactor_1_birthdate\nThe birthdate of the older member of the couple\n\n\nactor_2_birthdate\nThe birthdate of the younger member of the couple\n\n\nactor_1_age\nThe age of the older actor when the film was released\n\n\nactor_2_age\nThe age of the younger actor when the film was released\n\n\n\n\n# Import data from URL\nage_gaps &lt;- read_csv(\"http://hollywoodagegap.com/movies.csv\") %&gt;% \n  janitor::clean_names()\n\n\n# Correct data\nage_gaps_correct &lt;- age_gaps %&gt;% \n  mutate(\n    across(ends_with(\"_birthdate\"), ~as.Date(.)) # set dates to dates\n  )"
+  },
+  {
+    "objectID": "exercises/exercise-03_solution.html#praktische-übung",
+    "href": "exercises/exercise-03_solution.html#praktische-übung",
+    "title": "Exercise: Hollywood Age Gaps",
+    "section": "🛠️ Praktische Übung",
+    "text": "🛠️ Praktische Übung\n\n\n\n\n\n\nAchtung, bitte lesen!\n\n\n\n\nBevor Sie mit der Arbeit an den folgenden 📋 Exercises beginnen, stellen Sie bitte sicher, dass Sie alle Chunks des Abschnitts Preparation ausgeführt haben. Das können Sie tun, indem Sie den “Run all chunks above”-Knopf  des nächsten Chunks benutzen.\nBei Fragen zum Code lohnt sich ein Blick in den Showcase (.qmd oder .html). Beim Showcase handelt es sich um eine kompakte Darstellung des in der Präsentation verwenden R-Codes. Sie können das Showcase also nutzen, um sich die Code-Bausteine anzusehen, die für die R-Outputs auf den Slides benutzt wurden.\n\n\n\n\n🔎 Welche Rolle spielt das Geschlecht?\n\n\n\n\n\n\nSpielt das Geschlecht eine Rolle?\n\n\n\n\nDer folgende Abschitt befasst sich nun ergänzend mit der Frage, welche Rolle das Geschlecht mit Blick auf die “Gültigkeit” der vorherigen Ergebnisse spielt\nDazu sind jedoch weitere Explorations- und Überarbeitungsschritte notwendig\n\n\n\n\n\n📋 Exercise 1: Übeprüfung der _gender-Variablen\n\n\n\n\n\n\nArbeitsauftrag 1.1\n\n\n\nNutzen Sie die Funktion sjmisc::frq() und schauen Sie sich im Datensatz age_gaps_correct die Variablen actor_1_gender und actor_2_gender an.\n\n\n\nage_gaps_correct %&gt;% \n  sjmisc::frq(actor_1_gender, actor_2_gender)\n\nactor_1_gender &lt;character&gt; \n# total N=1198 valid N=1198 mean=1.01 sd=0.11\n\nValue |    N | Raw % | Valid % | Cum. %\n---------------------------------------\nman   | 1183 | 98.75 |   98.75 |  98.75\nwoman |   15 |  1.25 |    1.25 | 100.00\n&lt;NA&gt;  |    0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;\n\nactor_2_gender &lt;character&gt; \n# total N=1198 valid N=1198 mean=1.99 sd=0.11\n\nValue |    N | Raw % | Valid % | Cum. %\n---------------------------------------\nman   |   16 |  1.34 |    1.34 |   1.34\nwoman | 1182 | 98.66 |   98.66 | 100.00\n&lt;NA&gt;  |    0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;\n\n\n\n\n\n\n\n\nArbeitsauftrag 1.2\n\n\n\nNutzen Sie die Funktion sjmisc::flat_talbe() und den Datensatz age_gaps_correct um eine Kreuztabelle der Variablen actor_1_gender und actor_2_gender zu erstellen.\n\n\n\nage_gaps_correct %&gt;% \n  select(actor_1_gender, actor_2_gender) %&gt;% \n  sjmisc::flat_table()\n\n               actor_2_gender  man woman\nactor_1_gender                          \nman                             12  1171\nwoman                            4    11\n\n\n\n\n🔎 Sind die Daten “konsistent”?\n\nÜberprüfung der Sortierung\n\nage_gaps_correct %&gt;% \n  summarise(\n      p1_older = mean(actor_1_age &gt; actor_2_age), # older person first?\n      p1_male  = mean(actor_1_gender == \"man\"),  # male person first? \n      p_1_first_alpha = mean(actor_1_name &lt; actor_2_name) # alphabetical order?\n  )\n\n# A tibble: 1 × 3\n  p1_older p1_male p_1_first_alpha\n     &lt;dbl&gt;   &lt;dbl&gt;           &lt;dbl&gt;\n1    0.813   0.987           0.496\n\n\n\n\n\nÜberprüfung der Anzahl pro Paare pro Film\n\n# Create data\ncouples &lt;- age_gaps_correct %&gt;% \n  group_by(movie_name) %&gt;% \n  summarise(n = n()) \n\n# Distribution\ncouples %&gt;% frq(n)\n\nn &lt;integer&gt; \n# total N=863 valid N=863 mean=1.39 sd=0.75\n\nValue |   N | Raw % | Valid % | Cum. %\n--------------------------------------\n    1 | 628 | 72.77 |   72.77 |  72.77\n    2 | 162 | 18.77 |   18.77 |  91.54\n    3 |  54 |  6.26 |    6.26 |  97.80\n    4 |  14 |  1.62 |    1.62 |  99.42\n    5 |   3 |  0.35 |    0.35 |  99.77\n    6 |   1 |  0.12 |    0.12 |  99.88\n    7 |   1 |  0.12 |    0.12 | 100.00\n &lt;NA&gt; |   0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;\n\n# Movies with a loot of couples \ncouples %&gt;% \n  filter(n &gt; 3) %&gt;% \n  arrange(desc(n))\n\n# A tibble: 19 × 2\n   movie_name                      n\n   &lt;chr&gt;                       &lt;int&gt;\n 1 Love Actually                   7\n 2 The Family Stone                6\n 3 A View to a Kill                5\n 4 He's Just Not That Into You     5\n 5 Mona Lisa Smile                 5\n 6 A Star Is Born                  4\n 7 American Pie                    4\n 8 Boogie Nights                   4\n 9 Book Club                       4\n10 Closer                          4\n11 Pushing Tin                     4\n12 Sex and the City                4\n13 Soul Food                       4\n14 Tag                             4\n15 The Favourite                   4\n16 The Girl on the Train           4\n17 The Other Woman                 4\n18 Tomorrow Never Dies             4\n19 Twilight                        4\n\n\n\n\nKorrekturen\n\nage_gaps_consistent &lt;- age_gaps_correct %&gt;% \n  # If multiple couples, assign couple number by movie\n  mutate(\n      couple_number = row_number(),\n      .by = \"movie_name\"\n  ) %&gt;% \n  # Change data structure (one line per actor in a coulpe of a movie)\n  pivot_longer(\n    cols = starts_with(c(\"actor_1_\", \"actor_2_\")),\n    names_to = c(NA, NA, \".value\"),\n    names_sep = \"_\"\n  ) %&gt;% \n  # Put older actor first\n  arrange(desc(age_difference), movie_name, birthdate) %&gt;% \n    mutate(\n    position = row_number(),\n    .by = c(\"movie_name\", \"couple_number\")\n  ) %&gt;% \n  pivot_wider(\n    names_from = \"position\",\n    names_glue = \"actor_{position}_{.value}\",\n    values_from = c(\"name\", \"gender\", \"birthdate\", \"age\")\n  ) %&gt;% \n  mutate(\n    couple_structure = case_when(\n      actor_1_gender == \"woman\" & actor_2_gender == \"woman\" ~ 1,\n      actor_1_gender == \"man\" & actor_2_gender == \"man\" ~ 2,\n      actor_1_gender != \"man\" ~ 3, \n      actor_1_gender == \"man\" ~ 4,\n    ),\n    older_male_hetero  = sjmisc::rec(\n      couple_structure, \n      rec=\"3=0; 4=1; ELSE=NA\", \n      to.factor = TRUE\n    )\n  )\n\n\n\n🔎 Die zweite Datenexploration\n\n\n📋 Exercise 2: Alterskombinationen im Überblick\n\n\n\n\n\n\nArbeitauftrag 2\n\n\n\nNutzen Sie die Funktion sjmisc::frq() und schauen Sie sich im Datensatz age_gaps_consistent die Variablen couple_structure und older_male_hetero an.\n\n\n\nage_gaps_consistent %&gt;% \n  frq(couple_structure, older_male_hetero)\n\ncouple_structure &lt;numeric&gt; \n# total N=1198 valid N=1198 mean=3.78 sd=0.50\n\nValue |   N | Raw % | Valid % | Cum. %\n--------------------------------------\n    1 |  11 |  0.92 |    0.92 |   0.92\n    2 |  12 |  1.00 |    1.00 |   1.92\n    3 | 210 | 17.53 |   17.53 |  19.45\n    4 | 965 | 80.55 |   80.55 | 100.00\n &lt;NA&gt; |   0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;\n\nolder_male_hetero &lt;categorical&gt; \n# total N=1198 valid N=1175 mean=0.82 sd=0.38\n\nValue |   N | Raw % | Valid % | Cum. %\n--------------------------------------\n    0 | 210 | 17.53 |   17.87 |  17.87\n    1 | 965 | 80.55 |   82.13 | 100.00\n &lt;NA&gt; |  23 |  1.92 |    &lt;NA&gt; |   &lt;NA&gt;\n\n\n\n\n📋 Exercise 3: Wie sind die Altersunterschiede unterteilt, unter Berücksichtiung des Geschlechts?\n\n\n\n\n\n\nArbeitsauftrag 3.1 (graphische Überprüfung)\n\n\n\n\nErstellen Sie, auf Basis des Datensatzes age_gaps_consistent, einen ggplot.\nNutzen Sie im Argument aes() die Variable age_difference als x-Variable und older_male_hetero für das Argument fill.\nNutzen Sie geom_bar zur Erzeugung des Plots.\nOptional: Verwenden Sie theme_pubr\n\n\n\n\n# Simple \nage_gaps_consistent %&gt;% \n  ggplot(aes(age_difference, fill = older_male_hetero)) +\n  geom_bar() +\n  theme_pubr()\n\n\n\n\n\n\n\n# Detailed\nage_gaps_consistent %&gt;% \n  ggplot(aes(age_difference, fill = older_male_hetero)) +\n  geom_bar() +\n  labs(\n    x = \"Altersdifferenz (in Jahren)\",\n    y = 'Anzahl der \"Beziehungen\"'\n  ) +\n   scale_fill_manual(\n    name = \"Older partner in couple\",\n    values = c(\"0\" = \"#F8766D\", \"1\" = \"#00BFC4\", \"NA\" = \"grey\"),\n    labels = c(\"0\" = \"Woman\", \"1\" = \"Man\", \"NA\" = \"Same sex couples\")\n  ) +\n  theme_pubr() \n\n\n\n\n\n\n\n\n\n\n\n\n\n\nArbeitsauftrag 3.2 (Überprüfung durch Modellierung)\n\n\n\n\nErstellen Sie ein lineares Modell (lm), das die Variable age_difference als abhängige Variable und die Variablen release_year und older_male_hetero als unabhängige Variablen verwendet. Nutzen Sie dazu den Datensatz age_gaps_consistent.\nGeben Sie die Parameter des Modells mit der Funktion parameters::parameters() aus.\nBewerten Sie die Modellleistung mit der Funktion performance::model_performance().\nErstellen Sie einen Bericht über das Modell mit der Funktion report::report().\n\n\n\n\nmdl &lt;- lm(age_difference ~ release_year + older_male_hetero, data = age_gaps_consistent)\n\n# Output\nmdl %&gt;% parameters::parameters()\n\nParameter             | Coefficient |    SE |           95% CI | t(1172) |      p\n---------------------------------------------------------------------------------\n(Intercept)           |      200.02 | 27.60 | [145.87, 254.17] |    7.25 | &lt; .001\nrelease year          |       -0.10 |  0.01 | [ -0.12,  -0.07] |   -7.06 | &lt; .001\nolder male hetero [1] |        6.11 |  0.61 | [  4.90,   7.31] |    9.94 | &lt; .001\n\nmdl %&gt;% performance::model_performance()\n\n# Indices of model performance\n\nAIC      |     AICc |      BIC |    R2 | R2 (adj.) |  RMSE | Sigma\n------------------------------------------------------------------\n8229.371 | 8229.405 | 8249.647 | 0.126 |     0.124 | 8.001 | 8.011\n\nmdl %&gt;% report::report()\n\nWe fitted a linear model (estimated using OLS) to predict age_difference with\nrelease_year and older_male_hetero (formula: age_difference ~ release_year +\nolder_male_hetero). The model explains a statistically significant and weak\nproportion of variance (R2 = 0.13, F(2, 1172) = 84.16, p &lt; .001, adj. R2 =\n0.12). The model's intercept, corresponding to release_year = 0 and\nolder_male_hetero = 0, is at 200.02 (95% CI [145.87, 254.17], t(1172) = 7.25, p\n&lt; .001). Within this model:\n\n  - The effect of release year is statistically significant and negative (beta =\n-0.10, 95% CI [-0.12, -0.07], t(1172) = -7.06, p &lt; .001; Std. beta = -0.19, 95%\nCI [-0.25, -0.14])\n  - The effect of older male hetero [1] is statistically significant and positive\n(beta = 6.11, 95% CI [4.90, 7.31], t(1172) = 9.94, p &lt; .001; Std. beta = 0.71,\n95% CI [0.57, 0.85])\n\nStandardized parameters were obtained by fitting the model on a standardized\nversion of the dataset. 95% Confidence Intervals (CIs) and p-values were\ncomputed using a Wald t-distribution approximation."
+  },
+  {
+    "objectID": "sessions/session-04.html",
+    "href": "sessions/session-04.html",
+    "title": "Session 4",
+    "section": "",
+    "text": "🖥️ 🚧 Session 04"
+  },
+  {
+    "objectID": "sessions/session-04.html#participate",
+    "href": "sessions/session-04.html#participate",
+    "title": "Session 4",
+    "section": "",
+    "text": "🖥️ 🚧 Session 04"
+  },
+  {
+    "objectID": "sessions/session-04.html#literature",
+    "href": "sessions/session-04.html#literature",
+    "title": "Session 4",
     "section": "Literature",
-    "text": "Literature\n\n\n\n\n\n\nThe following sections list the mandatory articles for the each presenting group. Additional optional articles are provided under Further reading.\n\n\n\n\n📚 Thema 5: Wechselwirkung zwischen TV-Debatten und Twitter\n\nTrilling, D. (2015). Two Different Debates? Investigating the Relationship Between a Political Debate on TV and Simultaneous Comments on Twitter. Social Science Computer Review, 33(3), 259–276. https://doi.org/10.1177/0894439314537886\nRobertson, C. T., Dutton, W. H., Ackland, R., & Peng, T.-Q. (2019). The democratic role of social media in political debates: The use of Twitter in the first televised US presidential debate of 2016. Journal of Information Technology & Politics, 16(2), 105–118. https://doi.org/10.1080/19331681.2019.1590283\nJennings, F. J., Warner, B. R., McKinney, M. S., Kearney, C. C., Funk, M. E., & Bramlett, J. C. (2020). Learning from Presidential Debates: Who Learns the Most and Why? Communication Studies, 71(5), 896–910. https://doi.org/10.1080/10510974.2020.1807377\n\n\nFurther Readings\n\nCoddington, M., Molyneux, L., & Lawrence, R. G. (2014). Fact Checking the Campaign: How Political Reporters Use Twitter to Set the Record Straight (or Not). The International Journal of Press/Politics, 19(4), 391–409. https://doi.org/10.1177/1940161214540942\nGoovaerts, I., & Turkenburg, E. (2023). How Contextual Features Shape Incivility Over Time: An Analysis of the Evolution and Determinants of Political Incivility in Televised Election Debates (19852019). Communication Research, 50(4), 480–507. https://doi.org/10.1177/00936502221135694\n\n\n\n\n📚 Thema 6: Live-Chat(-Kommentare) in politischen Debatten\n\nAsbury-Kimmel, V., Chang, K.-C., McCabe, K. T., Munger, K., & Ventura, T. (2021). The effect of streaming chat on perceptions of political debates. Journal of Communication, 71(6), 947–974. https://doi.org/10.1093/joc/jqab041\nRuiz-Bravo, N., Selander, L., & Roshan, M. (2022). The Political Turn of Twitch  Understanding Live Chat as an Emergent Political Space. http://hdl.handle.net/10125/79723\nRiddick, S., & Shivener, R. (2022). Affective spamming on twitch: Rhetorics of an emote-only audience in a presidential inauguration livestream. Computers and Composition, 64. https://doi.org/10.1016/j.compcom.2022.102711\nEaton, J. (2024). From the comments section: Analyzing online public discourse on the first 2020 presidential debate. Research & Politics, 11(3), 20531680241271758. https://doi.org/10.1177/20531680241271758\n\n\nFurther reading\n\nPowell, A., & Williams-Johnson, D. (2023). “You dumb cracker b*tch”: The legitimizing of White supremacy during a Twitch ban of HasanAbi. New Media & Society, 14614448231191776. https://doi.org/10.1177/14614448231191776\n\n\n\n\n\n\nBack to course schedule ⏎"
+    "text": "Literature\n\n\n\n\n\n\nThe following sections list the mandatory articles for the each presenting group. Additional optional articles are provided under Further reading.\n\n\n\n\n📚 Thema 1: Motivation für die Nutzung von Twitch\n\nHilvert-Bruce, Z., Neill, J. T., Sjöblom, M., & Hamari, J. (2018). Social motivations of live-streaming viewer engagement on twitch. Computers in Human Behavior, 84, 58–67. https://doi.org/10.1016/j.chb.2018.02.013\nCastro-Agirre, I., & Martínez-Fernández, G. (2024). From gamer niche to mainstream media: Twitch’s most popular media figures and content. Communication & Society, 179–196. https://doi.org/10.15581/003.37.2.179-196\nNguyen, T. T., & Veer, E. (2024). Why people watch user-generated videos? A systematic review and meta-analysis. International Journal of Human-Computer Studies, 181, 103144. https://doi.org/10.1016/j.ijhcs.2023.103144\n\n\nFurther Readings\n\nGros, D., Hackenholt, A., Zawadzki, P., & Wanner, B. (2018). Interactions of Twitch Users and Their Usage Behavior (G. Meiselwitz, Ed.; pp. 201–213). Springer International Publishing. https://doi.org/10.1007/978-3-319-91485-5_15\nZimmer, F., Scheibe, K., & Stock, W. G. (2018). A Model for Information Behavior Research on Social Live Streaming Services (SLSSs) (G. Meiselwitz, Ed.; pp. 429–448). Springer International Publishing. https://doi.org/10.1007/978-3-319-91485-5_33\nXu, X.-Y., Niu, W.-B., Jia, Q.-D., Nthoiwa, L., & Li, L.-W. (2021). Why Do Viewers Engage in Video Game Streaming? The Perspective of Cognitive Emotion Theory and the Moderation Effect of Personal Characteristics. Sustainability, 13(21), 11990. https://doi.org/10.3390/su132111990\nKneisel, A., & Sternadori, M. (2023). Effects of parasocial affinity and gender on live streaming fans’ motivations. Convergence, 29(2), 322–341. https://doi.org/10.1177/13548565221114461\n\n\n\n\n📚 Thema 2: Kommunikation und Interaktion auf Twitch\n\nJacobs, N., & Booth, P. (2021). Converging experiences, converging audiences: An analysis of doctor who on Twitch. Convergence: The International Journal of Research into New Media Technologies, 27(5), 1324–1342. https://doi.org/10.1177/1354856520976447\nDutt, S., & Graham, S. (2023). Video, talk and text: How do parties communicate coherently across modalities in live videostreams? Discourse, Context and Media, 55. https://doi.org/10.1016/j.dcm.2023.100726\nNavarro, A., & Tapiador, F. J. (2023). Twitch as a privileged locus to analyze young people’s attitudes in the climate change debate: a quantitative analysis. Humanities and Social Sciences Communications, 10(1), 1–13. https://doi.org/10.1057/s41599-023-02377-4\n\n\nFurther Readings\n\nYoung, A., & Wiedenfeld, G. (2022). A Motivation Analysis of Video Game Microstreamers: “Finding My People and Myself” on YouTube and Twitch. Journal of Broadcasting & Electronic Media, 66(2), 381–399. https://doi.org/10.1080/08838151.2022.2086549\nLessel, P., Altmeyer, M., Sahner, J., & Krüger, A. (2022). Streamer’s hell - investigating audience influence in live-streams beyond the game. Proc. ACM Hum.-Comput. Interact., 6(CHI PLAY), 252:1252:27. https://doi.org/10.1145/3549515\nMao, E. (2022). How live stream content types impact viewers’ support behaviors? Mediational analysis on psychological and social gratifications. Frontiers in Psychology, 13. https://doi.org/10.3389/fpsyg.2022.951055\n\n\n\nBack to course schedule ⏎"
   },
   {
-    "objectID": "sessions/session-05.html",
-    "href": "sessions/session-05.html",
-    "title": "Session 5",
+    "objectID": "sessions/session-01.html",
+    "href": "sessions/session-01.html",
+    "title": "Session 1",
     "section": "",
-    "text": "🖥️ 🚧 Session 05"
+    "text": "Important\n\n\n\nPlease make sure that you answered the survey send to you by (StudOn) mail."
   },
   {
-    "objectID": "sessions/session-05.html#participate",
-    "href": "sessions/session-05.html#participate",
-    "title": "Session 5",
-    "section": "",
-    "text": "🖥️ 🚧 Session 05"
+    "objectID": "sessions/session-01.html#prepare",
+    "href": "sessions/session-01.html#prepare",
+    "title": "Session 1",
+    "section": "Prepare",
+    "text": "Prepare\n✍️ Fill out the short survey before the 22.10.2024 (see  StudOn for Link)\n📖 Read the syllabus"
   },
   {
-    "objectID": "sessions/session-05.html#literature",
-    "href": "sessions/session-05.html#literature",
-    "title": "Session 5",
-    "section": "Literature",
-    "text": "Literature\n\n\n\n\n\n\nThe following sections list the mandatory articles for the each presenting group. Additional optional articles are provided under Further reading.\n\n\n\n\n📚 Thema 3: (Wirkungs-)Effekte der -Nutzung/Interaktion\n\nXi, D., Xu, W., Tang, L., & Han, B. (2024). The impact of streamer emotions on viewer gifting behavior: Evidence from entertainment live streaming. Internet Research, 34(3), 748–783. https://doi.org/10.1108/INTR-05-2022-0350\nBründl, S., Matt, C., Hess, T., & Engert, S. (2023). How synchronous participation affects the willingness to subscribe to social live streaming services: The role of co-interactive behavior on twitch. European Journal of Information Systems, 32(5), 800–817. https://doi.org/10.1080/0960085X.2022.2062468\nWolff, G. H., & Shen, C. (2022). Audience size, moderator activity, gender, and content diversity: Exploring user participation and financial commitment on Twitch.tv. New Media & Society, 146144482110699. https://doi.org/10.1177/14614448211069996\n\n\nFurther Readings\n\nHan, C., Seering, J., Kumar, D., Hancock, J. T., & Durumeric, Z. (2023). Hate Raids on Twitch: Echoes of the Past, New Modalities, and Implications for Platform Governance. Proceedings of the ACM on Human-Computer Interaction, 7(CSCW1), 1–28. https://doi.org/10.1145/3579609\nMeisner, C. (2023). Networked Responses to Networked Harassment? Creators’ Coordinated Management of “Hate Raids” on Twitch. Social Media + Society, 9(2), 20563051231179696. https://doi.org/10.1177/20563051231179696\nTomlinson, C. (2024). Community Grievances, personal responsibility, and DIY protection: Frustrations and solution-seeking among marginalized Twitch streamers. Convergence: The International Journal of Research into New Media Technologies, 30(1), 358–374. https://doi.org/10.1177/13548565231184060\nHou, F., Guan, Z., Li, B., & Chong, A. Y. L. (2020). Factors influencing people’s continuous watching intention and consumption intention in live streaming. Internet Research, 30(1), 141–163. https://doi.org/10.1108/INTR-04-2018-0177\nChinchilla, P., & Kim, J. (2024). “Let’s Chill and Chat”: Exploring the Effects of Streamers’ Self-Disclosure on Parasocial Interaction via Social Presence. International Journal of HumanComputer Interaction, 1–11. https://doi.org/10.1080/10447318.2024.2390263\n\n\n\n\n📚 Thema 4: (Wirkungs-)Effekte von TV-Wahldebatten\n\nLe Pennec, C., & Pons, V. (2023). How do campaigns shape vote choice? Multicountry evidence from 62 elections and 56 TV debates*. The Quarterly Journal of Economics, 138(2), 703–767. https://doi.org/10.1093/qje/qjad002\nWaldvogel, T., König, P., Wagschal, U., Becker, B., & Weishaupt, S. (2022). It’s the emotion, stupid! Emotional responses to televised debates and their impact on voting intention. Open Political Science, 5(1), 13–28. https://doi.org/10.1515/openps-2022-0146\nJennings, F. J., Bramlett, J. C., McKinney, M. S., & Hardy, M. M. (2020). Tweeting Along Partisan Lines: Identity-Motivated Elaboration and Presidential Debates. Social Media + Society, 6(4), 2056305120965518. https://doi.org/10.1177/2056305120965518\nWarner, B. R., Park, J., Kim, G.-E., McKinney, M. S., & Paul, Wm. B. (2024). Do Presidential Primary Debates Increase Political Polarization? American Behavioral Scientist, 68(1), 80–96. https://doi.org/10.1177/00027642211026613\n\n\nFurther Readings\n\nBenoit, W. L., Hansen, G. J., & Verser, R. M. (2003). A meta-analysis of the effects of viewing u.s. Presidential debates. Communication Monographs, 70(4), 335–350. https://doi.org/10.1080/0363775032000179133\nMcKinney, M. S., & Warner, B. R. (2013). Do Presidential Debates Matter? Examining a Decade of Campaign Debate Effects. Argumentation and Advocacy, 49(4), 238–258. https://doi.org/10.1080/00028533.2013.11821800\n\n\n\n\n\n\nBack to course schedule ⏎"
-  },
-  {
-    "objectID": "sessions/session-02.html",
-    "href": "sessions/session-02.html",
-    "title": "Session 2",
-    "section": "",
-    "text": "✍️ Start working on R-Video-Tutorials.\n✍️ Book your time slot for the mandatory feedback session on StudOn.\n✍️ Remeber the registration deadline (28./29.10) for the seminar examination on campo."
-  },
-  {
-    "objectID": "sessions/session-02.html#prepare",
-    "href": "sessions/session-02.html#prepare",
-    "title": "Session 2",
-    "section": "",
-    "text": "✍️ Start working on R-Video-Tutorials.\n✍️ Book your time slot for the mandatory feedback session on StudOn.\n✍️ Remeber the registration deadline (28./29.10) for the seminar examination on campo."
-  },
-  {
-    "objectID": "sessions/session-02.html#participate",
-    "href": "sessions/session-02.html#participate",
-    "title": "Session 2",
+    "objectID": "sessions/session-01.html#participate",
+    "href": "sessions/session-01.html#participate",
+    "title": "Session 1",
     "section": "Participate",
-    "text": "Participate\n🖥️ Session 02"
+    "text": "Participate\n🖥️ Session 01\n\n\nBack to course schedule ⏎"
   },
   {
-    "objectID": "sessions/session-02.html#suggested-readings",
-    "href": "sessions/session-02.html#suggested-readings",
-    "title": "Session 2",
+    "objectID": "sessions/session-03.html",
+    "href": "sessions/session-03.html",
+    "title": "Session 3",
+    "section": "",
+    "text": "✍️ Keep working on R-Video-Tutorials.\n🔍 Check out the resources in the section “Working with R” (z.B. R Textbooks & Useful R sources)"
+  },
+  {
+    "objectID": "sessions/session-03.html#prepare",
+    "href": "sessions/session-03.html#prepare",
+    "title": "Session 3",
+    "section": "",
+    "text": "✍️ Keep working on R-Video-Tutorials.\n🔍 Check out the resources in the section “Working with R” (z.B. R Textbooks & Useful R sources)"
+  },
+  {
+    "objectID": "sessions/session-03.html#participate",
+    "href": "sessions/session-03.html#participate",
+    "title": "Session 3",
+    "section": "Participate",
+    "text": "Participate\n🖥️ Session 03"
+  },
+  {
+    "objectID": "sessions/session-03.html#suggested-readings",
+    "href": "sessions/session-03.html#suggested-readings",
+    "title": "Session 3",
     "section": "Suggested readings",
-    "text": "Suggested readings\n\nDavidson, B. I., Wischerath, D., Racek, D., Parry, D. A., Godwin, E., Hinds, J., Van Der Linden, D., Roscoe, J. F., Ayravainen, L. E. M., & Cork, A. (2023). Platform-controlled social media APIs threaten open science. https://osf.io/ps32z\nDriel, I. I. van, Giachanou, A., Pouwels, J. L., Boeschoten, L., Beyens, I., & Valkenburg, P. M. (2022). Promises and Pitfalls of Social Media Data Donations. Communication Methods and Measures, 1–17. https://doi.org/10.1080/19312458.2022.2109608\nEngel, U., Quan-Haase, A., Liu, S. X., & Lyberg, L. (2021). Digital trace data (1st ed., pp. 100–118). Routledge. https://www.taylorfrancis.com/books/9781003024583/chapters/10.4324/9781003024583-8\nOlteanu, A., Castillo, C., Diaz, F., & Kıcıman, E. (2019). Social data: Biases, methodological pitfalls, and ethical boundaries. Frontiers in Big Data, 2, 13. https://doi.org/10.3389/fdata.2019.00013\nReeves, B., Ram, N., Robinson, T. N., Cummings, J. J., Giles, C. L., Pan, J., Chiatti, A., Cho, M., Roehrick, K., Yang, X., Gagneja, A., Brinberg, M., Muise, D., Lu, Y., Luo, M., Fitzgerald, A., & Yeykelis, L. (2021). Screenomics : A Framework to Capture and Analyze Personal Life Experiences and the Ways that Technology Shapes Them. HumanComputer Interaction, 36(2), 150–201. https://doi.org/10.1080/07370024.2019.1578652"
+    "text": "Suggested readings\n\nBauer, P. C., & Landesvatter, C. (2023). Writing a reproducible paper with RStudio and quarto. https://osf.io/ur4xn\nJonge, E. de, & Loo, M. van der. (2013). An introduction to data cleaning with R.\nPearson, R. K. (2018). Exploratory data analysis using r. CRC Press/Taylor & Francis Group."
   },
   {
-    "objectID": "sessions/session-02.html#useful-tools-resources",
-    "href": "sessions/session-02.html#useful-tools-resources",
-    "title": "Session 2",
+    "objectID": "sessions/session-03.html#useful-tools-resources",
+    "href": "sessions/session-03.html#useful-tools-resources",
+    "title": "Session 3",
     "section": "Useful tools & resources",
-    "text": "Useful tools & resources\n\nPeeters, S., & Hagen, S. (2022). The 4CAT Capture and Analysis Toolkit: A Modular Tool for Transparent and Traceable Social Media Research. Computational Communication Research, 4(2), 571–589. https://doi.org/10.5117/ccr2022.2.007.hage\nPeeters, S. (2022). Zeeschuimer. Zenodo. https://zenodo.org/record/6826877"
-  },
-  {
-    "objectID": "sessions/session-02.html#section",
-    "href": "sessions/session-02.html#section",
-    "title": "Session 2",
-    "section": "",
-    "text": "Back to course schedule ⏎"
-  },
-  {
-    "objectID": "slides/slides-01.html#und-nun-zu-ihnen",
-    "href": "slides/slides-01.html#und-nun-zu-ihnen",
-    "title": "Kick-Off",
-    "section": "Und nun zu Ihnen!",
-    "text": "Und nun zu Ihnen!\nVorstellungsrunde\n\nWie heißen Sie?\nWas studieren Sie aktuell?\nWas und wo haben Sie im Bachelor studiert?\nWelches soziale Netzwerk/Medium haben Sie letzte Woche am meisten genutzt und warum?\nBeteiligen Sie sich an Online-Diskussionen und wenn ja, wo und warum?\n\n\n\nHintegrund und Vorwissen\nMediennutzung"
-  },
-  {
-    "objectID": "slides/slides-01.html#mehr-daten-durch-fortschreitende-digitalisierung",
-    "href": "slides/slides-01.html#mehr-daten-durch-fortschreitende-digitalisierung",
-    "title": "Kick-Off",
-    "section": "Mehr Daten durch fortschreitende Digitalisierung",
-    "text": "Mehr Daten durch fortschreitende Digitalisierung\nBeispiel: Wachsenden Anzahl eingebauter Smartphone-Sensoren\n\nGraphik aus Struminskaya et al. (2020)"
-  },
-  {
-    "objectID": "slides/slides-01.html#verlagerung-in-den-digitalen-raum",
-    "href": "slides/slides-01.html#verlagerung-in-den-digitalen-raum",
-    "title": "Kick-Off",
-    "section": "Verlagerung in den digitalen Raum",
-    "text": "Verlagerung in den digitalen Raum\nTrend der Digitalisierung von Verhaltensweisen und Aktivitäten\n\n\n\n\n\nQuelle: Engel et al. (2021)\n\n\n\n\nEinschränkungen\n\nSelektive Nutzung von bestimmten digitalen Geräten bzw. Funktionen\nKategorisierung ist Momentaufnahme und nicht überschneidungsfrei\n\n\n\n\nEinige inhärent digitale Verhalten (z.B. Web Searches) bei zunehmender Digitalisierung von analogen Verhalten (z.B. Collaborative Work)\nFehlen digitaler Spurendaten in all diesen Quadranten für bestimmte Personen und bestimmte Verhaltensweisen durch selektive Nutzung digitaler Geräte."
-  },
-  {
-    "objectID": "slides/slides-01.html#ein-definitionsversuch-von-dbd",
-    "href": "slides/slides-01.html#ein-definitionsversuch-von-dbd",
-    "title": "Kick-Off",
-    "section": "Ein Definitionsversuch von DBD",
-    "text": "Ein Definitionsversuch von DBD\nnach Weller (2021)\n\n\n… fasst eine Vielzahl von möglichen Datenquellen zusammen, die verschiedene Arten von Aktivitäten aufzeichnen\n… können dabei helfen, Meinungen, Verhalten und Merkmale der menschlichen Nutzung digitaler Technologien zu erkennen"
-  },
-  {
-    "objectID": "slides/slides-01.html#lernziele",
-    "href": "slides/slides-01.html#lernziele",
-    "title": "Kick-Off",
-    "section": "Lernziele",
-    "text": "Lernziele\nDie Studierenden werden …\n\neinen Überblick über die zentralen Möglichkeiten von DBD und die damit verbundenen Herausforderungen bei der Datenerhebung und -aufbereitung bekommen\nlernen die Stärken und Schwächen verschiedener Methoden zur Erhebung von DBD bewerten\nzentrale Anforderungen an Datenschutz, Forschungsethik und Datenqualität kennen und verstehen lernen\nzentrale sozialwissenschaftliche Methoden zur Analyse von DBD kennenlernen\ndas Wissen über DBD, Statistik und Datenanalyse in eigenen kleinen Projekten zu üben und anzuwenden"
-  },
-  {
-    "objectID": "slides/slides-01.html#themen-blocks",
-    "href": "slides/slides-01.html#themen-blocks",
-    "title": "Kick-Off",
-    "section": "4 (Themen-)Blocks",
-    "text": "4 (Themen-)Blocks\nStruktur und Aufbau des Seminars"
-  },
-  {
-    "objectID": "slides/slides-01.html#twitch-meets-politics-meets-nlp",
-    "href": "slides/slides-01.html#twitch-meets-politics-meets-nlp",
-    "title": "Kick-Off",
-    "section": "Twitch meets Politics meets NLP",
-    "text": "Twitch meets Politics meets NLP\nAuswertung von Live-Stream(-Chats) zur US-Presidential Debates\n\n\nEntwicklung eigener kleiner Forschungsprojekte mit\n\nDBD in Form von Live-Chats & Transcripten\nNatrual Language Processing (NLP) für die Analyse von\nLive-(Reactions)-Streams von  Twitch-Streamer:innen\nauf die (Vice-)Presidential Debates 2024"
-  },
-  {
-    "objectID": "slides/slides-01.html#warum-twitch",
-    "href": "slides/slides-01.html#warum-twitch",
-    "title": "Kick-Off",
-    "section": "Warum  Twitch?",
-    "text": "Warum  Twitch?\nPlattform für Live-Streaming von User-generated content\n\nführende Live-Streaming-Plattform, hauptsächlich für Videospiele, zunehmend aber andere Kategorien (z.B. “Just Chatting”)\nermöglicht Streamern:innen Echtzeit-Interaktionen mit Community via Chat\nbietet Monetarisierungsmöglichkeiten durch Abonnements, Spenden und Werbung\nin Zahlen: 2023 hat Twitch $3 Milliarden Umsatz generiert, 7,1 Millionen aktive Streamer:innen und 2,41 Millionen aktive Zuschauer:innen, die ingesamt 21,4 Milliarden Stunden an Content konsumiert haben\n\nTrend: Plattform für politische Diskussionen und Debatten"
-  },
-  {
-    "objectID": "slides/slides-01.html#nlp-angewendet-auf-chat-logs-und-transkripte",
-    "href": "slides/slides-01.html#nlp-angewendet-auf-chat-logs-und-transkripte",
-    "title": "Kick-Off",
-    "section": "NLP angewendet auf Chat-Logs und Transkripte",
-    "text": "NLP angewendet auf Chat-Logs und Transkripte\nInformationen zur Datenanalyse & potentielle Analysestrategien\n\nTranskripte & Chats der Live-Streams von  hasanabi und  zackrawrr und | TheMajorityReport zu der Presidential (Harris vs. Trump) und Vice-Presidential (Vance vs. Walz) Debates 2024\n\nDownload der VODs mit dem  Paket twitch-dl\nDownload & Stream des Live-Chats mit dem  Paket chat_downloader\nTranskription der Streams & der Debatte mit AI-based Transkriptionstool NoScribe\n\nAuswertung mit NLP-Methoden (z.B. Topic Modeling, Sentimentanalyse etc.)"
-  },
-  {
-    "objectID": "slides/slides-01.html#kurzer-exkurs-zur-auswertung-analyse",
-    "href": "slides/slides-01.html#kurzer-exkurs-zur-auswertung-analyse",
-    "title": "Kick-Off",
-    "section": "Kurzer Exkurs zur Auswertung & Analyse",
-    "text": "Kurzer Exkurs zur Auswertung & Analyse\nHäufig gestellte Fragen zu notwendigen Methodenvorkenntnissen\n\nWelchen Vorkenntnisse sind für den Kurs vorausgesetzt? Interesse an sozialwissenschaftlichen Perspektiven auf Medien, Kommunikation und digitale Technologien & Grundkenntnisse in der Arbeit mit Statistikprogrammen (z.B. R, Python, Stata, SPSS)\nWerden wir praktisch mit Statistikprogrammen arbeiten? Ja. Dazu werden wir R bzw. RStudio nutzen.\n\nDeswegen: Bitte 💻 mitbringen!\n\nWerden wir die mathematische Grundlagen der vorgestellten Methoden lernen? Ja und Nein. Der Kurs konzentriert sich in erster Linie auf die Anwendung; einige mathematische Parameter der vorgestellten Methoden werden jedoch für die Anwendung benötigt und deswegen kurz erörtert."
-  },
-  {
-    "objectID": "slides/slides-01.html#vorläufiger-seminarplan",
-    "href": "slides/slides-01.html#vorläufiger-seminarplan",
-    "title": "Kick-Off",
-    "section": "(Vorläufiger) Seminarplan",
-    "text": "(Vorläufiger) Seminarplan\n\n\n\n\n\n\n\n\nSession\nDatum\nTopic\nPresenter\n\n\n\n\n\n📂 Block 1\nIntroduction\n\n\n\n1\n23.10.2024\nKick-Off\nChristoph Adrian\n\n\n2\n30.10.2024\nDBD: Overview & Introduction\nChristoph Adrian\n\n\n3\n06.11.2024\n🔨 Introduction to working with R\nChristoph Adrian\n\n\n\n📂 Block 2\nTheoretical Background: Twitch & TV Election Debates\n\n\n\n4\n13.11.2024\n📚 Twitch-Nutzung im Fokus\nStudent groups (TBD)\n\n\n5\n20.11.2024\n📚 (Wirkungs-)Effekte von Twitch & TV-Debatten\nStudent groups (TBD)\n\n\n6\n27.11.2024\n📚 Politische Debatten & Social Media\nStudent groups (TBD)\n\n\n\n📂 Block 3\nMethod: Natural Language Processing\n\n\n\n7\n04.12.2024\n🔨 Text as data I: Introduction\nChristoph Adrian\n\n\n8\n11.12.2024\n🔨 Text as data I: Advanced Methods\nChristoph Adrian\n\n\n9\n18.12.2024\n🔨 Advanced Method I: Topic Modeling\nChristoph Adrian\n\n\n\nNo lecture\n🎄Christmas Break\n\n\n\n10\n08.01.2025\n🔨 Advanced Method I: Machine Learning\nChristoph Adrian\n\n\n\n📂 Block 4\nProject Work\n\n\n\n11\n15.01.2025\n🔨 Project work\nStudent groups\n\n\n12\n22.01.2025\n🔨 Project work\nStudent groups\n\n\n13\n29.01.2025\n📊 Project Presentation I\nStudent groups (TBD)\n\n\n14\n05.02.2025\n📊 Project Presentation & 🏁 Evaluation\nStudentds (TBD) & Christoph Adrian"
-  },
-  {
-    "objectID": "slides/slides-01.html#studon-github",
-    "href": "slides/slides-01.html#studon-github",
-    "title": "Kick-Off",
-    "section": "StudOn & Github",
-    "text": "StudOn & Github\nMaterialien und Kommunikation im Kurs\n\nInformationen zu Kurs (Semesterplan, Syllabus, Prüfungleistungen etc.) & den einzelnen Sitzungen (Slides, Literatur und ggf. Übungsmaterial) finden sich auf der Github-Kursseite\nPflichtliteratur der Präsentationen & Beispieldatensätze werden auf StudOn bereitgestellt\nFür die Kommunikation gilt\n\nAnkündigungen werden über den StudOn-Verteiler versendet\nfür Fragen, allgemein zum Kurs oder spezifische zu R nutzten Sie bitte das Forum\nKontakt über E-Mail bitte nur bei persönlichen Anliegen, die nicht für die Gruppe relvevant sind.\n\n\n\n\nKurze Vorführung der Webseite\nZulip Frage/Probleme bei Registrierung?\nOptional: Github/OSF"
-  },
-  {
-    "objectID": "slides/slides-01.html#what-is-expected",
-    "href": "slides/slides-01.html#what-is-expected",
-    "title": "Kick-Off",
-    "section": "What is expected",
-    "text": "What is expected\nLeistungsanforderungen & Prüfungsleistungen\n\nRegelmäßig aktive Teilnahme an Sitzungen\n\nmax. zwei unentschuldigte Fehltermine (Kulanzregelung), bei Krankheit zählen die Fehltermine mit\n\nBearbeitung von vier Assignments im Rahmen eines Portfolios:\n\n👥 Gruppenpräsentation zu wissenschaftlichen Grundlagen 📚 (30 Pkt.)\n👥 Gruppenpräsentation zum Forschungsprojekt 📊 (15 Pkt.)\n👤 Peer Review (15 Pkt.)\n👥 Projektbericht (40 Pkt.)"
-  },
-  {
-    "objectID": "slides/slides-01.html#die-grundlagenpräsentation",
-    "href": "slides/slides-01.html#die-grundlagenpräsentation",
-    "title": "Kick-Off",
-    "section": "Die “Grundlagenpräsentation”",
-    "text": "Die “Grundlagenpräsentation”\nInformationen zur Gruppenpräsentation zu wissenschaftlichen Grundlagen 📚\n\nliefert Überblick über das zentrale Thema der Pflichtlektüre, z.B. zentrale Begriffe, Definitionen, Datengrundlage & - aufbereitung sowie methodische Vorgehensweise (inklusive Analyse)\nvermittelt theoretische Grundlage für Forschungsprojekt\nalle bereitgestellten Pflichtexte müssen in der Präsentation berücksichtigt werden, die Gruppe kann aber eigene Schwerpunkte setzen und eigene Quellen hinzufügen\nzwischen 20 und 30 Minuten, danach Zeit für Fragen und Diskussion\n\nBesonderheit: vorher verpflichtendes Feedbackgespräch"
-  },
-  {
-    "objectID": "slides/slides-01.html#feedback-dann-wenn-es-am-meisten-hilft",
-    "href": "slides/slides-01.html#feedback-dann-wenn-es-am-meisten-hilft",
-    "title": "Kick-Off",
-    "section": "Feedback dann, wenn es am meisten hilft",
-    "text": "Feedback dann, wenn es am meisten hilft\nInformationen zum verpflichtenden Feedbackgespräch\n\n\nStudierende erhalten Feedback und Tipps, wie sie ihre Präsentation überarbeiten bzw. optimieren können\n30-minütiges Gespräch in der Sprechstunde (mittwochs, 15:30 bis 16:30 Uhr), eine Woche vor der Präsentation\n\nBuchung des Termins über StudOn\n\nAbgabe des ersten vollständigen Präsentationsentwurfs als PowerPoint- oder PDF-Datei spätestens bis 12:00 Uhr am Vortag des Feedback-Gesprächs"
-  },
-  {
-    "objectID": "slides/slides-01.html#die-projektpräsentation",
-    "href": "slides/slides-01.html#die-projektpräsentation",
-    "title": "Kick-Off",
-    "section": "Die “Projektpräsentation”",
-    "text": "Die “Projektpräsentation”\nInformationen zur Gruppenpräsentation zum Forschungsprojekt 📊\n\nPräsentation des (aktuellen Stand des) Projekts, inklusive Vorstellung des theoretischen Hintergrundes, Forschungsfrage Datenaufbereitung, Analyse und ersten Ergebnisse\nzwischen 15 bis 20 Minuten (inklusive mind. 5 Minuten für Nachfragen), maximal 10 Folien\nbietet Möglichkeit für Problembesprechung, Feedback und Diskussion\nzur Vereinfachung der Koordination werden Google Slides Vorlagen zur Verfügung gestellt\n\nBesonderheit: Grundlage für das Peer Review"
-  },
-  {
-    "objectID": "slides/slides-01.html#feedback-geben-lernen",
-    "href": "slides/slides-01.html#feedback-geben-lernen",
-    "title": "Kick-Off",
-    "section": "Feedback geben (lernen)",
-    "text": "Feedback geben (lernen)\nInformationen zum Peer Review der Gruppenpräsentationen\n\nPeer-Review-Formularen (Ratingskalen sowie offenen Fragen) für Präsentationen anderer Gruppen ausfüllen\nlernen, andere Projekte zu bewerten und konstruktives Feedback zu geben\nGruppen erhalten zusätzliches Feedback zum eigenen Projekt, dass für die Präsentation bzw. den Projektbericht verwendet werden kann\n\nBesonderheit: Individuelles Assigment!"
-  },
-  {
-    "objectID": "slides/slides-01.html#zusammenführung-aller-assignments",
-    "href": "slides/slides-01.html#zusammenführung-aller-assignments",
-    "title": "Kick-Off",
-    "section": "Zusammenführung aller Assignments",
-    "text": "Zusammenführung aller Assignments\nInformationen zum Projektberichtch\n\nProjektbericht ist die schriftliche Ausarbeitung des Forschungsprojekts und führt damit die Arbeit aus den Präsentationen und dem (Feedback der) Peer Reviews zusammen\nmindestens eine der vorgestellten Methoden auf ein selbstgewählte Stichprobe der bereitgestellten Daten anwenden, um ein Thema Ihrer Wahl zu erforschen.\n750 bis 1000 Wörter pro Personn, bei einem Gruppenbericht skaliert die Anzal der Wörter mit einem Faktor von 0,8 pro Person (z.B. sollte eine Zweiergruppe 1200 bis 1600 Wörter schreiben, eine Dreiergruppe 1800 bis 2400 Wörter)\nAbgabe als Quarto-Dokument (& PDF), d.h. der Bericht sowie alle Komponenten (z.B. Tabellen, Grafiken) werden in RStudio erstellt und müssen komplett reproduzierbar sein"
-  },
-  {
-    "objectID": "slides/slides-01.html#short-summary",
-    "href": "slides/slides-01.html#short-summary",
-    "title": "Kick-Off",
-    "section": "Short summary",
-    "text": "Short summary\nFahrplan für die Prüfungsleistungen\n\n\n\n\n\n\n\n\n\nZeitpunkte\nLeistung\n\n\n\n\nBlock II (13./20./27.11)\n“Themenpräsentation” 📚\n\n\nbis zum 4.12.\nR-Tutorials abschließen (Grundlage für Methodenblock)\n\n\nbis zum 15.01.\nErster vollständiger Entwurf “Projektpräsentation” 📊\n\n\nvom 16.01. bis zum 21.01.\nAusfüllen der Peer-Review-Formulare\n\n\nvom 22.01 bis 29.01/05.02\nEinarbeitung des Feedback in “Projektpräsentation” 📊\n\n\n29.01./05.02\n“Projektpräsentation” 📊\n\n\nbis zum 02.03.25\nAbgabe des Projektberichts"
-  },
-  {
-    "objectID": "slides/slides-01.html#warum",
-    "href": "slides/slides-01.html#warum",
-    "title": "Kick-Off",
-    "section": "Warum ?",
-    "text": "Warum ?\nDer Einsatz von R bzw. RStudio im Kurs\n\nKostenlose Software mit vielen nützlichen und beginner-friendly Tutorials\n or ? Both!\n\nIm Kurs:\n\nBestehende R-Kenntnisse sind förderlich, aber nicht zwigend notwendig, wichtiger sind praktische Erfahrung im syntaxbasierten Arbeiten\nLearn to code by example: Code von Sitzungen & Beispielen wird bereitgestellt (ggf. durch Showcases)\nPflicht: Tutorials auf Kurshomepage"
-  },
-  {
-    "objectID": "slides/slides-01.html#building-a-common-knowledge-base",
-    "href": "slides/slides-01.html#building-a-common-knowledge-base",
-    "title": "Kick-Off",
-    "section": "Building a common knowledge base",
-    "text": "Building a common knowledge base\nInformationen zu den -Tutorials\n\nVermittlung des notwendigen Basiswissens für die Arbeit mit R, RStudio und Quarto mit Hilfe von zwei (Video-)Tutorials:\n\nEinführung in R, RStudio und Quarto von Andy Field für die Vermittlung der Grundlagen & den allgemeinen Umgang mit den Programmen\nPraktisches Arbeiten mit R des CCS Amsterdam legt Schwerpunkt auf das „inhaltliche“ Arbeiten mit R (Vorstellung von Verwendung von wichtigen Funktionen)\n\nWeitere nützliche Quellen finden Sie in dem Bereich Working with R auf der Kursseite"
-  },
-  {
-    "objectID": "slides/slides-01.html#sonderanmeldetermin-für-prüfung",
-    "href": "slides/slides-01.html#sonderanmeldetermin-für-prüfung",
-    "title": "Kick-Off",
-    "section": "Sonderanmeldetermin für Prüfung",
-    "text": "Sonderanmeldetermin für Prüfung\nWichtige Informationen zur Prüfungsanmeldung\n\nÄrgerlicherweise gibt es immer wieder Studierende, die sich anmelden und betreuen lassen, aber dann einfach irgendwann (teilweise sehr kurzfristig) “verschwinden”.\nDeshalb: Nutzung des WiSo-Sonderanmeldetermin für Prüfung am 28./29.10.\n\nBitte berücksichtigen Sie unbedingt:\n\n⚠️ Nehmen Sie bitte kein Thema an, wenn absehbar ist, dass Sie nicht teilnehmen werden.\n⚠️ Wir behalten uns vor, bei Rückzug trotz abgeschlossener Themenvergabe, Sie trotzdem für die Prüfung zu melden"
-  },
-  {
-    "objectID": "slides/slides-01.html#please-state-your-preference",
-    "href": "slides/slides-01.html#please-state-your-preference",
-    "title": "Kick-Off",
-    "section": "Please state your preference",
-    "text": "Please state your preference\nVergabe der Präsentationsthemen mit SimpleAssign\n\n\n\n\nBitte scannen Sie den QR-Code oder nutzen Sie folgenden Link und geben Sie Ihre Themenpräferenz an:\n\nhttps://simpleassign.net/poll/-O9lSn9X3pAIOdHyNQNu\n\n\n\n\n\n\n\n    \n\n\n\n−+\n02:00"
-  },
-  {
-    "objectID": "slides/slides-01.html#before-we-meet-again",
-    "href": "slides/slides-01.html#before-we-meet-again",
-    "title": "Kick-Off",
-    "section": "Before we meet again",
-    "text": "Before we meet again\nHinweise und offene Fragen\n\nLernen Sie die Kursseite kennen! Und checken Sie die Infos () zur nächten Sitzung.\nVerschaffen Sie sich einen Überblick über die R-Tutorials\n\nEin paar Fragen an Sie:\n\nWhy no English? 🤷\nWarum das große Interesse an Zeitreihenanalyse?\nWelche Erwartung an “Machine Learning”?"
-  },
-  {
-    "objectID": "slides/slides-01.html#literatur",
-    "href": "slides/slides-01.html#literatur",
-    "title": "Kick-Off",
-    "section": "Literatur",
-    "text": "Literatur\n\n\nEngel, U., Quan-Haase, A., Liu, S. X., & Lyberg, L. (2021). Digital trace data (1st ed., pp. 100–118). Routledge. https://www.taylorfrancis.com/books/9781003024583/chapters/10.4324/9781003024583-8\n\n\nStruminskaya, B., Lugtig, P., Keusch, F., & Höhne, J. K. (2020). Augmenting Surveys With Data From Sensors and Apps: Opportunities and Challenges. Social Science Computer Review, 089443932097995. https://doi.org/10.1177/0894439320979951\n\n\nWeller, K. (2021). A short introduction to computational social science and digital behavioral data. https://www.gesis.org/fileadmin/user_upload/MeettheExperts/GESIS_Meettheexperts_Introductioncss.pdf\n\n\n\n\n\n\nHome"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Digital Behavioral Data",
-    "section": "",
-    "text": "Note\n\n\n\nThis page provides an outline of the topics, contents, and assignments for the semester. Please note that the contents of the course sessions ( background information,  slides,  exercises and  showcases) will be updated continuously throughout the semester, with all changes being documented here.",
-    "crumbs": [
-      "Course information",
-      "Schedule"
-    ]
-  },
-  {
-    "objectID": "index.html#copyright",
-    "href": "index.html#copyright",
-    "title": "Digital Behavioral Data",
-    "section": "Copyright",
-    "text": "Copyright\nThis content is licensed under a GPL-3.0 License.",
-    "crumbs": [
-      "Course information",
-      "Schedule"
-    ]
-  },
-  {
-    "objectID": "course-presentations.html",
-    "href": "course-presentations.html",
-    "title": "Course presentations",
-    "section": "",
-    "text": "Zimmer, F., Scheibe, K., & Stock, W. G. (2018). A Model for Information Behavior Research on Social Live Streaming Services (SLSSs) (G. Meiselwitz, Ed.; pp. 429–448). Springer International Publishing. https://doi.org/10.1007/978-3-319-91485-5_33\nHou, F., Guan, Z., Li, B., & Chong, A. Y. L. (2020). Factors influencing people’s continuous watching intention and consumption intention in live streaming. Internet Research, 30(1), 141–163. https://doi.org/10.1108/INTR-04-2018-0177\nCabeza-Ramírez, L. J., Fuentes-García, F. J., & Muñoz-Fernandez, G. A. (2021). Exploring the Emerging Domain of Research on Video Game Live Streaming in Web of Science: State of the Art, Changes and Trends. International Journal of Environmental Research and Public Health, 18(6), 2917. https://doi.org/10.3390/ijerph18062917\nNguyen, T. T., & Veer, E. (2024). Why people watch user-generated videos? A systematic review and meta-analysis. International Journal of Human-Computer Studies, 181, 103144. https://doi.org/10.1016/j.ijhcs.2023.103144\n\n\nXu, Y., Kapitan, S., & Phillips, M. (2023). The commercial impact of live streaming: A systematic literature review and future research agenda. International Journal of Consumer Studies, 47(6), 2495–2527. https://doi.org/10.1111/ijcs.12960\n\n\n\n\nGros, D., Hackenholt, A., Zawadzki, P., & Wanner, B. (2018). Interactions of Twitch Users and Their Usage Behavior (G. Meiselwitz, Ed.; pp. 201–213). Springer International Publishing. https://doi.org/10.1007/978-3-319-91485-5_15\nWolff, G. H., & Shen, C. (2022). Audience size, moderator activity, gender, and content diversity: Exploring user participation and financial commitment on Twitch.tv. New Media & Society, 146144482110699. https://doi.org/10.1177/14614448211069996\nGamir-Ríos, J., Cano-Orón, L., & García-Casas, D. (2024). Twitch’s Second Phase of Development: Analyzing Streamer Profiles and Content Trends That Boost Its Evolution into a Mass Media. Games and Culture, 15554120241257030. https://doi.org/10.1177/15554120241257030\nCastro-Agirre, I., & Martínez-Fernández, G. (2024). From gamer niche to mainstream media: Twitch’s most popular media figures and content. Communication & Society, 179–196. https://doi.org/10.15581/003.37.2.179-196"
-  },
-  {
-    "objectID": "course-presentations.html#introduction-to-social-live-streaming-services",
-    "href": "course-presentations.html#introduction-to-social-live-streaming-services",
-    "title": "Course presentations",
-    "section": "",
-    "text": "Zimmer, F., Scheibe, K., & Stock, W. G. (2018). A Model for Information Behavior Research on Social Live Streaming Services (SLSSs) (G. Meiselwitz, Ed.; pp. 429–448). Springer International Publishing. https://doi.org/10.1007/978-3-319-91485-5_33\nHou, F., Guan, Z., Li, B., & Chong, A. Y. L. (2020). Factors influencing people’s continuous watching intention and consumption intention in live streaming. Internet Research, 30(1), 141–163. https://doi.org/10.1108/INTR-04-2018-0177\nCabeza-Ramírez, L. J., Fuentes-García, F. J., & Muñoz-Fernandez, G. A. (2021). Exploring the Emerging Domain of Research on Video Game Live Streaming in Web of Science: State of the Art, Changes and Trends. International Journal of Environmental Research and Public Health, 18(6), 2917. https://doi.org/10.3390/ijerph18062917\nNguyen, T. T., & Veer, E. (2024). Why people watch user-generated videos? A systematic review and meta-analysis. International Journal of Human-Computer Studies, 181, 103144. https://doi.org/10.1016/j.ijhcs.2023.103144\n\n\nXu, Y., Kapitan, S., & Phillips, M. (2023). The commercial impact of live streaming: A systematic literature review and future research agenda. International Journal of Consumer Studies, 47(6), 2495–2527. https://doi.org/10.1111/ijcs.12960\n\n\n\n\nGros, D., Hackenholt, A., Zawadzki, P., & Wanner, B. (2018). Interactions of Twitch Users and Their Usage Behavior (G. Meiselwitz, Ed.; pp. 201–213). Springer International Publishing. https://doi.org/10.1007/978-3-319-91485-5_15\nWolff, G. H., & Shen, C. (2022). Audience size, moderator activity, gender, and content diversity: Exploring user participation and financial commitment on Twitch.tv. New Media & Society, 146144482110699. https://doi.org/10.1177/14614448211069996\nGamir-Ríos, J., Cano-Orón, L., & García-Casas, D. (2024). Twitch’s Second Phase of Development: Analyzing Streamer Profiles and Content Trends That Boost Its Evolution into a Mass Media. Games and Culture, 15554120241257030. https://doi.org/10.1177/15554120241257030\nCastro-Agirre, I., & Martínez-Fernández, G. (2024). From gamer niche to mainstream media: Twitch’s most popular media figures and content. Communication & Society, 179–196. https://doi.org/10.15581/003.37.2.179-196"
-  },
-  {
-    "objectID": "course-presentations.html#motivations-for-using-slss",
-    "href": "course-presentations.html#motivations-for-using-slss",
-    "title": "Course presentations",
-    "section": "Motivations for using SLSS",
-    "text": "Motivations for using SLSS\n\nTopic 3: By streamers\nZimmer, F., & Scheibe, K. (2019). Hawaii international conference on system sciences. https://doi.org/10.24251/HICSS.2019.306\nScheibe, K., Zimmer, F., Fietkiewicz, K., & Stock, W. (2022). Interpersonal Relations and Social Actions on Live Streaming Services. A Systematic Review on Cyber-social Relations. http://hdl.handle.net/10125/79744\nYoung, A., & Wiedenfeld, G. (2022). A Motivation Analysis of Video Game Microstreamers: “Finding My People and Myself” on YouTube and Twitch. Journal of Broadcasting & Electronic Media, 66(2), 381–399. https://doi.org/10.1080/08838151.2022.2086549\nXi, D., Xu, W., Tang, L., & Han, B. (2024). The impact of streamer emotions on viewer gifting behavior: Evidence from entertainment live streaming. Internet Research, 34(3), 748–783. https://doi.org/10.1108/INTR-05-2022-0350\nTomlinson, C. (2024). Community Grievances, personal responsibility, and DIY protection: Frustrations and solution-seeking among marginalized Twitch streamers. Convergence: The International Journal of Research into New Media Technologies, 30(1), 358–374. https://doi.org/10.1177/13548565231184060\n\nOptional:\nChinchilla, P., & Kim, J. (2024). “Let’s Chill and Chat”: Exploring the Effects of Streamers’ Self-Disclosure on Parasocial Interaction via Social Presence. International Journal of HumanComputer Interaction, 1–11. https://doi.org/10.1080/10447318.2024.2390263\n\n\n\nTopic 4: By users\nHilvert-Bruce, Z., Neill, J. T., Sjöblom, M., & Hamari, J. (2018). Social motivations of live-streaming viewer engagement on twitch. Computers in Human Behavior, 84, 58–67. https://doi.org/10.1016/j.chb.2018.02.013\nGoh, Z. H., Tandoc, E. C., & Ng, B. (2021). “Live” Together with You: Livestream Views Mitigate the Effects of Loneliness on Well-being. Journal of Broadcasting & Electronic Media, 65(4), 505–524. https://doi.org/10.1080/08838151.2021.1994970\nLeith, A. P., & Gheen, E. (2022). Twitch in the time of quarantine: The role of engagement in needs fulfillment. Psychology of Popular Media, 11(3), 275–280. https://doi.org/10.1037/ppm0000372\nLessel, P., Altmeyer, M., Sahner, J., & Krüger, A. (2022). Streamer’s hell - investigating audience influence in live-streams beyond the game. Proc. ACM Hum.-Comput. Interact., 6(CHI PLAY), 252:1252:27. https://doi.org/10.1145/3549515\nZsila, Á., Shabahang, R., Aruguete, M. S., Bőthe, B., Gregor-Tóth, P., & Orosz, G. (2024). Exploring the association between Twitch use and well-being. Psychology of Popular Media, 13(4), 620–632. https://doi.org/10.1037/ppm0000486\nKneisel, A., & Sternadori, M. (2023). Effects of parasocial affinity and gender on live streaming fans’ motivations. Convergence, 29(2), 322–341. https://doi.org/10.1177/13548565221114461"
-  },
-  {
-    "objectID": "course-presentations.html#effects-of-slss",
-    "href": "course-presentations.html#effects-of-slss",
-    "title": "Course presentations",
-    "section": "Effects of SLSS",
-    "text": "Effects of SLSS\n\nUse specific\nBründl, S., Matt, C., Hess, T., & Engert, S. (2023). How synchronous participation affects the willingness to subscribe to social live streaming services: The role of co-interactive behavior on twitch. European Journal of Information Systems, 32(5), 800–817. https://doi.org/10.1080/0960085X.2022.2062468\nNavarro, A., & Tapiador, F. J. (2023). Twitch as a privileged locus to analyze young people’s attitudes in the climate change debate: a quantitative analysis. Humanities and Social Sciences Communications, 10(1), 1–13. https://doi.org/10.1057/s41599-023-02377-4\n\n\nContent specific\nDutt, S., & Graham, S. (2023). Video, talk and text: How do parties communicate coherently across modalities in live videostreams? Discourse, Context and Media, 55. https://doi.org/10.1016/j.dcm.2023.100726\nMao, E. (2022). How live stream content types impact viewers’ support behaviors? Mediational analysis on psychological and social gratifications. Frontiers in Psychology, 13. https://doi.org/10.3389/fpsyg.2022.951055\nRiddick, S., & Shivener, R. (2022). Affective spamming on twitch: Rhetorics of an emote-only audience in a presidential inauguration livestream. Computers and Composition, 64. https://doi.org/10.1016/j.compcom.2022.102711\n\nEmotions\nLacko, D., Dufková, E., & Machackova, H. (2023). Does aggressive commentary by streamers during violent video game affect state aggression in adolescents? New Media & Society, 14614448231182620. https://doi.org/10.1177/14614448231182620\nLacko, D., Macháčková, H., & Smahel, D. (n.d.). Does violence in video games impact aggression and empathy? A longitudinal study of czech adolescents to differentiate within- and between-person effects. https://doi.org/10.31234/osf.io/dns8t"
-  },
-  {
-    "objectID": "course-team.html",
-    "href": "course-team.html",
-    "title": "Teaching team",
-    "section": "",
-    "text": "Christoph Adrian (he/him)     is a Research Assistant at the Chair of Communication Science at Friedrich-Alexander-Universität (FAU) Erlangen-Nürnberg.\nHis work focuses on computational methods, especially Text as Data Approaches and workin with Digital behavioral data, with an emphasis on computing, reproducible research, student-centered learning, and open-source education.\n\n\n\nOffice hours\nLocation\n\n\n\n\nWednesday 15:30 - 16:30\nFG 2.031",
-    "crumbs": [
-      "Course information",
-      "Teaching team"
-    ]
-  },
-  {
-    "objectID": "course-team.html#instructor",
-    "href": "course-team.html#instructor",
-    "title": "Teaching team",
-    "section": "",
-    "text": "Christoph Adrian (he/him)     is a Research Assistant at the Chair of Communication Science at Friedrich-Alexander-Universität (FAU) Erlangen-Nürnberg.\nHis work focuses on computational methods, especially Text as Data Approaches and workin with Digital behavioral data, with an emphasis on computing, reproducible research, student-centered learning, and open-source education.\n\n\n\nOffice hours\nLocation\n\n\n\n\nWednesday 15:30 - 16:30\nFG 2.031",
-    "crumbs": [
-      "Course information",
-      "Teaching team"
-    ]
+    "text": "Useful tools & resources\n\n📖 Useful and detailed tutorial to use git/github with RStudio\n📖 Happy Git and GitHub for the useR\n\n\n\nBack to course schedule ⏎"
   },
   {
     "objectID": "slides/slides-02.html#kurzes-update",
@@ -707,46 +509,573 @@
     "text": "Literatur\n\n\nBaeza-Yates, R. A. (2013). Big data or right data.\n\n\nBarocas, S., & Selbst, A. D. (2016). Big Data’s Disparate Impact. SSRN Electronic Journal. https://doi.org/10.2139/ssrn.2477899\n\n\nboyd, danah m., & Crawford, K. (2012). Critical questions for big data: Provocations for a cultural, technological, and scholarly phenomenon. Information, Communication & Society, 15(5), 662–679. https://doi.org/10.1080/1369118X.2012.678878\n\n\nBurnett, S., & Feamster, N. (2014). Encore: Lightweight measurement of web censorship with cross-origin requests. https://doi.org/10.48550/ARXIV.1410.1211\n\n\nCroskerry, P. (2002). Achieving Quality in Clinical Decision Making: Cognitive Strategies and Detection of Bias. Academic Emergency Medicine, 9(11), 1184–1204. https://doi.org/10.1197/aemj.9.11.1184\n\n\nDavidson, B. I., Wischerath, D., Racek, D., Parry, D. A., Godwin, E., Hinds, J., Van Der Linden, D., Roscoe, J. F., Ayravainen, L. E. M., & Cork, A. (2023). Platform-controlled social media APIs threaten open science. https://osf.io/ps32z\n\n\nDriel, I. I. van, Giachanou, A., Pouwels, J. L., Boeschoten, L., Beyens, I., & Valkenburg, P. M. (2022). Promises and Pitfalls of Social Media Data Donations. Communication Methods and Measures, 1–17. https://doi.org/10.1080/19312458.2022.2109608\n\n\nEngel, U., Quan-Haase, A., Liu, S. X., & Lyberg, L. (2021). Digital trace data (1st ed., pp. 100–118). Routledge. https://www.taylorfrancis.com/books/9781003024583/chapters/10.4324/9781003024583-8\n\n\nFlöck, F., & Sen, I. (2022). Digital traces of human behaviour in online platforms  research design and error sources. https://www.gesis.org/fileadmin/user_upload/MeettheExperts/GESIS_Meet_the_experts_Digitaltraces_humanbehaviour.pdf\n\n\nFriedman, B., & Nissenbaum, H. (1996). Bias in computer systems. ACM Transactions on Information Systems, 14(3), 330–347. https://doi.org/10.1145/230538.230561\n\n\nGoroff, D. L. (2015). Balancing privacy versus accuracy in research protocols. Science, 347(6221), 479–480. https://doi.org/10.1126/science.aaa3483\n\n\nKramer, A. D. I., Guillory, J. E., & Hancock, J. T. (2014). Experimental evidence of massive-scale emotional contagion through social networks. Proceedings of the National Academy of Sciences, 111(24), 8788–8790. https://doi.org/10.1073/pnas.1320040111\n\n\nNaveed, N., Gottron, T., Kunegis, J., & Alhadi, A. C. (2011). the 20th ACM international conference. 183. https://doi.org/10.1145/2063576.2063607\n\n\nOlteanu, A., Castillo, C., Diaz, F., & Kıcıman, E. (2019). Social data: Biases, methodological pitfalls, and ethical boundaries. Frontiers in Big Data, 2, 13. https://doi.org/10.3389/fdata.2019.00013\n\n\nPeeters, S. (2022). Zeeschuimer. Zenodo. https://zenodo.org/record/6826877\n\n\nPeeters, S., & Hagen, S. (2022). The 4CAT Capture and Analysis Toolkit: A Modular Tool for Transparent and Traceable Social Media Research. Computational Communication Research, 4(2), 571–589. https://doi.org/10.5117/ccr2022.2.007.hage\n\n\nReeves, B., Ram, N., Robinson, T. N., Cummings, J. J., Giles, C. L., Pan, J., Chiatti, A., Cho, M., Roehrick, K., Yang, X., Gagneja, A., Brinberg, M., Muise, D., Lu, Y., Luo, M., Fitzgerald, A., & Yeykelis, L. (2021). Screenomics : A Framework to Capture and Analyze Personal Life Experiences and the Ways that Technology Shapes Them. HumanComputer Interaction, 36(2), 150–201. https://doi.org/10.1080/07370024.2019.1578652\n\n\nSalganik, M. J. (2018). Bit by bit: Social research in the digital age. Princeton University Press.\n\n\nSweeney, L. (2013). Discrimination in Online Ad Delivery: Google ads, black names and white names, racial discrimination, and click advertising. Queue, 11(3), 10–29. https://doi.org/10.1145/2460276.2460278\n\n\nUlloa, R. (2021). Introduction to online data acquisition. https://www.gesis.org/fileadmin/user_upload/MeettheExperts/GESIS_Meettheexperts_Introductioncss.pdf\n\n\nWeller, K. (2021). A short introduction to computational social science and digital behavioral data. https://www.gesis.org/fileadmin/user_upload/MeettheExperts/GESIS_Meettheexperts_Introductioncss.pdf\n\n\nZimmer, M. (2010). “But the data is already public”: on the ethics of research in Facebook. Ethics and Information Technology, 12(4), 313–325. https://doi.org/10.1007/s10676-010-9227-5\n\n\n\n\n\n\nHome"
   },
   {
-    "objectID": "sessions/session-01.html",
-    "href": "sessions/session-01.html",
-    "title": "Session 1",
+    "objectID": "course-team.html",
+    "href": "course-team.html",
+    "title": "Teaching team",
     "section": "",
-    "text": "Important\n\n\n\nPlease make sure that you answered the survey send to you by (StudOn) mail."
+    "text": "Christoph Adrian (he/him)     is a Research Assistant at the Chair of Communication Science at Friedrich-Alexander-Universität (FAU) Erlangen-Nürnberg.\nHis work focuses on computational methods, especially Text as Data Approaches and workin with Digital behavioral data, with an emphasis on computing, reproducible research, student-centered learning, and open-source education.\n\n\n\nOffice hours\nLocation\n\n\n\n\nWednesday 15:30 - 16:30\nFG 2.031",
+    "crumbs": [
+      "Course information",
+      "Teaching team"
+    ]
   },
   {
-    "objectID": "sessions/session-01.html#prepare",
-    "href": "sessions/session-01.html#prepare",
-    "title": "Session 1",
-    "section": "Prepare",
-    "text": "Prepare\n✍️ Fill out the short survey before the 22.10.2024 (see  StudOn for Link)\n📖 Read the syllabus"
+    "objectID": "course-team.html#instructor",
+    "href": "course-team.html#instructor",
+    "title": "Teaching team",
+    "section": "",
+    "text": "Christoph Adrian (he/him)     is a Research Assistant at the Chair of Communication Science at Friedrich-Alexander-Universität (FAU) Erlangen-Nürnberg.\nHis work focuses on computational methods, especially Text as Data Approaches and workin with Digital behavioral data, with an emphasis on computing, reproducible research, student-centered learning, and open-source education.\n\n\n\nOffice hours\nLocation\n\n\n\n\nWednesday 15:30 - 16:30\nFG 2.031",
+    "crumbs": [
+      "Course information",
+      "Teaching team"
+    ]
   },
   {
-    "objectID": "sessions/session-01.html#participate",
-    "href": "sessions/session-01.html#participate",
-    "title": "Session 1",
+    "objectID": "course-presentations.html",
+    "href": "course-presentations.html",
+    "title": "Course presentations",
+    "section": "",
+    "text": "Zimmer, F., Scheibe, K., & Stock, W. G. (2018). A Model for Information Behavior Research on Social Live Streaming Services (SLSSs) (G. Meiselwitz, Ed.; pp. 429–448). Springer International Publishing. https://doi.org/10.1007/978-3-319-91485-5_33\nHou, F., Guan, Z., Li, B., & Chong, A. Y. L. (2020). Factors influencing people’s continuous watching intention and consumption intention in live streaming. Internet Research, 30(1), 141–163. https://doi.org/10.1108/INTR-04-2018-0177\nCabeza-Ramírez, L. J., Fuentes-García, F. J., & Muñoz-Fernandez, G. A. (2021). Exploring the Emerging Domain of Research on Video Game Live Streaming in Web of Science: State of the Art, Changes and Trends. International Journal of Environmental Research and Public Health, 18(6), 2917. https://doi.org/10.3390/ijerph18062917\nNguyen, T. T., & Veer, E. (2024). Why people watch user-generated videos? A systematic review and meta-analysis. International Journal of Human-Computer Studies, 181, 103144. https://doi.org/10.1016/j.ijhcs.2023.103144\n\n\nXu, Y., Kapitan, S., & Phillips, M. (2023). The commercial impact of live streaming: A systematic literature review and future research agenda. International Journal of Consumer Studies, 47(6), 2495–2527. https://doi.org/10.1111/ijcs.12960\n\n\n\n\nGros, D., Hackenholt, A., Zawadzki, P., & Wanner, B. (2018). Interactions of Twitch Users and Their Usage Behavior (G. Meiselwitz, Ed.; pp. 201–213). Springer International Publishing. https://doi.org/10.1007/978-3-319-91485-5_15\nWolff, G. H., & Shen, C. (2022). Audience size, moderator activity, gender, and content diversity: Exploring user participation and financial commitment on Twitch.tv. New Media & Society, 146144482110699. https://doi.org/10.1177/14614448211069996\nGamir-Ríos, J., Cano-Orón, L., & García-Casas, D. (2024). Twitch’s Second Phase of Development: Analyzing Streamer Profiles and Content Trends That Boost Its Evolution into a Mass Media. Games and Culture, 15554120241257030. https://doi.org/10.1177/15554120241257030\nCastro-Agirre, I., & Martínez-Fernández, G. (2024). From gamer niche to mainstream media: Twitch’s most popular media figures and content. Communication & Society, 179–196. https://doi.org/10.15581/003.37.2.179-196"
+  },
+  {
+    "objectID": "course-presentations.html#introduction-to-social-live-streaming-services",
+    "href": "course-presentations.html#introduction-to-social-live-streaming-services",
+    "title": "Course presentations",
+    "section": "",
+    "text": "Zimmer, F., Scheibe, K., & Stock, W. G. (2018). A Model for Information Behavior Research on Social Live Streaming Services (SLSSs) (G. Meiselwitz, Ed.; pp. 429–448). Springer International Publishing. https://doi.org/10.1007/978-3-319-91485-5_33\nHou, F., Guan, Z., Li, B., & Chong, A. Y. L. (2020). Factors influencing people’s continuous watching intention and consumption intention in live streaming. Internet Research, 30(1), 141–163. https://doi.org/10.1108/INTR-04-2018-0177\nCabeza-Ramírez, L. J., Fuentes-García, F. J., & Muñoz-Fernandez, G. A. (2021). Exploring the Emerging Domain of Research on Video Game Live Streaming in Web of Science: State of the Art, Changes and Trends. International Journal of Environmental Research and Public Health, 18(6), 2917. https://doi.org/10.3390/ijerph18062917\nNguyen, T. T., & Veer, E. (2024). Why people watch user-generated videos? A systematic review and meta-analysis. International Journal of Human-Computer Studies, 181, 103144. https://doi.org/10.1016/j.ijhcs.2023.103144\n\n\nXu, Y., Kapitan, S., & Phillips, M. (2023). The commercial impact of live streaming: A systematic literature review and future research agenda. International Journal of Consumer Studies, 47(6), 2495–2527. https://doi.org/10.1111/ijcs.12960\n\n\n\n\nGros, D., Hackenholt, A., Zawadzki, P., & Wanner, B. (2018). Interactions of Twitch Users and Their Usage Behavior (G. Meiselwitz, Ed.; pp. 201–213). Springer International Publishing. https://doi.org/10.1007/978-3-319-91485-5_15\nWolff, G. H., & Shen, C. (2022). Audience size, moderator activity, gender, and content diversity: Exploring user participation and financial commitment on Twitch.tv. New Media & Society, 146144482110699. https://doi.org/10.1177/14614448211069996\nGamir-Ríos, J., Cano-Orón, L., & García-Casas, D. (2024). Twitch’s Second Phase of Development: Analyzing Streamer Profiles and Content Trends That Boost Its Evolution into a Mass Media. Games and Culture, 15554120241257030. https://doi.org/10.1177/15554120241257030\nCastro-Agirre, I., & Martínez-Fernández, G. (2024). From gamer niche to mainstream media: Twitch’s most popular media figures and content. Communication & Society, 179–196. https://doi.org/10.15581/003.37.2.179-196"
+  },
+  {
+    "objectID": "course-presentations.html#motivations-for-using-slss",
+    "href": "course-presentations.html#motivations-for-using-slss",
+    "title": "Course presentations",
+    "section": "Motivations for using SLSS",
+    "text": "Motivations for using SLSS\n\nTopic 3: By streamers\nZimmer, F., & Scheibe, K. (2019). Hawaii international conference on system sciences. https://doi.org/10.24251/HICSS.2019.306\nScheibe, K., Zimmer, F., Fietkiewicz, K., & Stock, W. (2022). Interpersonal Relations and Social Actions on Live Streaming Services. A Systematic Review on Cyber-social Relations. http://hdl.handle.net/10125/79744\nYoung, A., & Wiedenfeld, G. (2022). A Motivation Analysis of Video Game Microstreamers: “Finding My People and Myself” on YouTube and Twitch. Journal of Broadcasting & Electronic Media, 66(2), 381–399. https://doi.org/10.1080/08838151.2022.2086549\nXi, D., Xu, W., Tang, L., & Han, B. (2024). The impact of streamer emotions on viewer gifting behavior: Evidence from entertainment live streaming. Internet Research, 34(3), 748–783. https://doi.org/10.1108/INTR-05-2022-0350\nTomlinson, C. (2024). Community Grievances, personal responsibility, and DIY protection: Frustrations and solution-seeking among marginalized Twitch streamers. Convergence: The International Journal of Research into New Media Technologies, 30(1), 358–374. https://doi.org/10.1177/13548565231184060\n\nOptional:\nChinchilla, P., & Kim, J. (2024). “Let’s Chill and Chat”: Exploring the Effects of Streamers’ Self-Disclosure on Parasocial Interaction via Social Presence. International Journal of HumanComputer Interaction, 1–11. https://doi.org/10.1080/10447318.2024.2390263\n\n\n\nTopic 4: By users\nHilvert-Bruce, Z., Neill, J. T., Sjöblom, M., & Hamari, J. (2018). Social motivations of live-streaming viewer engagement on twitch. Computers in Human Behavior, 84, 58–67. https://doi.org/10.1016/j.chb.2018.02.013\nGoh, Z. H., Tandoc, E. C., & Ng, B. (2021). “Live” Together with You: Livestream Views Mitigate the Effects of Loneliness on Well-being. Journal of Broadcasting & Electronic Media, 65(4), 505–524. https://doi.org/10.1080/08838151.2021.1994970\nLeith, A. P., & Gheen, E. (2022). Twitch in the time of quarantine: The role of engagement in needs fulfillment. Psychology of Popular Media, 11(3), 275–280. https://doi.org/10.1037/ppm0000372\nLessel, P., Altmeyer, M., Sahner, J., & Krüger, A. (2022). Streamer’s hell - investigating audience influence in live-streams beyond the game. Proc. ACM Hum.-Comput. Interact., 6(CHI PLAY), 252:1252:27. https://doi.org/10.1145/3549515\nZsila, Á., Shabahang, R., Aruguete, M. S., Bőthe, B., Gregor-Tóth, P., & Orosz, G. (2024). Exploring the association between Twitch use and well-being. Psychology of Popular Media, 13(4), 620–632. https://doi.org/10.1037/ppm0000486\nKneisel, A., & Sternadori, M. (2023). Effects of parasocial affinity and gender on live streaming fans’ motivations. Convergence, 29(2), 322–341. https://doi.org/10.1177/13548565221114461"
+  },
+  {
+    "objectID": "course-presentations.html#effects-of-slss",
+    "href": "course-presentations.html#effects-of-slss",
+    "title": "Course presentations",
+    "section": "Effects of SLSS",
+    "text": "Effects of SLSS\n\nUse specific\nBründl, S., Matt, C., Hess, T., & Engert, S. (2023). How synchronous participation affects the willingness to subscribe to social live streaming services: The role of co-interactive behavior on twitch. European Journal of Information Systems, 32(5), 800–817. https://doi.org/10.1080/0960085X.2022.2062468\nNavarro, A., & Tapiador, F. J. (2023). Twitch as a privileged locus to analyze young people’s attitudes in the climate change debate: a quantitative analysis. Humanities and Social Sciences Communications, 10(1), 1–13. https://doi.org/10.1057/s41599-023-02377-4\n\n\nContent specific\nDutt, S., & Graham, S. (2023). Video, talk and text: How do parties communicate coherently across modalities in live videostreams? Discourse, Context and Media, 55. https://doi.org/10.1016/j.dcm.2023.100726\nMao, E. (2022). How live stream content types impact viewers’ support behaviors? Mediational analysis on psychological and social gratifications. Frontiers in Psychology, 13. https://doi.org/10.3389/fpsyg.2022.951055\nRiddick, S., & Shivener, R. (2022). Affective spamming on twitch: Rhetorics of an emote-only audience in a presidential inauguration livestream. Computers and Composition, 64. https://doi.org/10.1016/j.compcom.2022.102711\n\nEmotions\nLacko, D., Dufková, E., & Machackova, H. (2023). Does aggressive commentary by streamers during violent video game affect state aggression in adolescents? New Media & Society, 14614448231182620. https://doi.org/10.1177/14614448231182620\nLacko, D., Macháčková, H., & Smahel, D. (n.d.). Does violence in video games impact aggression and empathy? A longitudinal study of czech adolescents to differentiate within- and between-person effects. https://doi.org/10.31234/osf.io/dns8t"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Digital Behavioral Data",
+    "section": "",
+    "text": "Note\n\n\n\nThis page provides an outline of the topics, contents, and assignments for the semester. Please note that the contents of the course sessions ( background information,  slides,  exercises and  showcases) will be updated continuously throughout the semester, with all changes being documented here.",
+    "crumbs": [
+      "Course information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#copyright",
+    "href": "index.html#copyright",
+    "title": "Digital Behavioral Data",
+    "section": "Copyright",
+    "text": "Copyright\nThis content is licensed under a GPL-3.0 License.",
+    "crumbs": [
+      "Course information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "slides/slides-01.html#und-nun-zu-ihnen",
+    "href": "slides/slides-01.html#und-nun-zu-ihnen",
+    "title": "Kick-Off",
+    "section": "Und nun zu Ihnen!",
+    "text": "Und nun zu Ihnen!\nVorstellungsrunde\n\nWie heißen Sie?\nWas studieren Sie aktuell?\nWas und wo haben Sie im Bachelor studiert?\nWelches soziale Netzwerk/Medium haben Sie letzte Woche am meisten genutzt und warum?\nBeteiligen Sie sich an Online-Diskussionen und wenn ja, wo und warum?\n\n\n\nHintegrund und Vorwissen\nMediennutzung"
+  },
+  {
+    "objectID": "slides/slides-01.html#mehr-daten-durch-fortschreitende-digitalisierung",
+    "href": "slides/slides-01.html#mehr-daten-durch-fortschreitende-digitalisierung",
+    "title": "Kick-Off",
+    "section": "Mehr Daten durch fortschreitende Digitalisierung",
+    "text": "Mehr Daten durch fortschreitende Digitalisierung\nBeispiel: Wachsenden Anzahl eingebauter Smartphone-Sensoren\n\nGraphik aus Struminskaya et al. (2020)"
+  },
+  {
+    "objectID": "slides/slides-01.html#verlagerung-in-den-digitalen-raum",
+    "href": "slides/slides-01.html#verlagerung-in-den-digitalen-raum",
+    "title": "Kick-Off",
+    "section": "Verlagerung in den digitalen Raum",
+    "text": "Verlagerung in den digitalen Raum\nTrend der Digitalisierung von Verhaltensweisen und Aktivitäten\n\n\n\n\n\nQuelle: Engel et al. (2021)\n\n\n\n\nEinschränkungen\n\nSelektive Nutzung von bestimmten digitalen Geräten bzw. Funktionen\nKategorisierung ist Momentaufnahme und nicht überschneidungsfrei\n\n\n\n\nEinige inhärent digitale Verhalten (z.B. Web Searches) bei zunehmender Digitalisierung von analogen Verhalten (z.B. Collaborative Work)\nFehlen digitaler Spurendaten in all diesen Quadranten für bestimmte Personen und bestimmte Verhaltensweisen durch selektive Nutzung digitaler Geräte."
+  },
+  {
+    "objectID": "slides/slides-01.html#ein-definitionsversuch-von-dbd",
+    "href": "slides/slides-01.html#ein-definitionsversuch-von-dbd",
+    "title": "Kick-Off",
+    "section": "Ein Definitionsversuch von DBD",
+    "text": "Ein Definitionsversuch von DBD\nnach Weller (2021)\n\n\n… fasst eine Vielzahl von möglichen Datenquellen zusammen, die verschiedene Arten von Aktivitäten aufzeichnen\n… können dabei helfen, Meinungen, Verhalten und Merkmale der menschlichen Nutzung digitaler Technologien zu erkennen"
+  },
+  {
+    "objectID": "slides/slides-01.html#lernziele",
+    "href": "slides/slides-01.html#lernziele",
+    "title": "Kick-Off",
+    "section": "Lernziele",
+    "text": "Lernziele\nDie Studierenden werden …\n\neinen Überblick über die zentralen Möglichkeiten von DBD und die damit verbundenen Herausforderungen bei der Datenerhebung und -aufbereitung bekommen\nlernen die Stärken und Schwächen verschiedener Methoden zur Erhebung von DBD bewerten\nzentrale Anforderungen an Datenschutz, Forschungsethik und Datenqualität kennen und verstehen lernen\nzentrale sozialwissenschaftliche Methoden zur Analyse von DBD kennenlernen\ndas Wissen über DBD, Statistik und Datenanalyse in eigenen kleinen Projekten zu üben und anzuwenden"
+  },
+  {
+    "objectID": "slides/slides-01.html#themen-blocks",
+    "href": "slides/slides-01.html#themen-blocks",
+    "title": "Kick-Off",
+    "section": "4 (Themen-)Blocks",
+    "text": "4 (Themen-)Blocks\nStruktur und Aufbau des Seminars"
+  },
+  {
+    "objectID": "slides/slides-01.html#twitch-meets-politics-meets-nlp",
+    "href": "slides/slides-01.html#twitch-meets-politics-meets-nlp",
+    "title": "Kick-Off",
+    "section": "Twitch meets Politics meets NLP",
+    "text": "Twitch meets Politics meets NLP\nAuswertung von Live-Stream(-Chats) zur US-Presidential Debates\n\n\nEntwicklung eigener kleiner Forschungsprojekte mit\n\nDBD in Form von Live-Chats & Transcripten\nNatrual Language Processing (NLP) für die Analyse von\nLive-(Reactions)-Streams von  Twitch-Streamer:innen\nauf die (Vice-)Presidential Debates 2024"
+  },
+  {
+    "objectID": "slides/slides-01.html#warum-twitch",
+    "href": "slides/slides-01.html#warum-twitch",
+    "title": "Kick-Off",
+    "section": "Warum  Twitch?",
+    "text": "Warum  Twitch?\nPlattform für Live-Streaming von User-generated content\n\nführende Live-Streaming-Plattform, hauptsächlich für Videospiele, zunehmend aber andere Kategorien (z.B. “Just Chatting”)\nermöglicht Streamern:innen Echtzeit-Interaktionen mit Community via Chat\nbietet Monetarisierungsmöglichkeiten durch Abonnements, Spenden und Werbung\nin Zahlen: 2023 hat Twitch $3 Milliarden Umsatz generiert, 7,1 Millionen aktive Streamer:innen und 2,41 Millionen aktive Zuschauer:innen, die ingesamt 21,4 Milliarden Stunden an Content konsumiert haben\n\nTrend: Plattform für politische Diskussionen und Debatten"
+  },
+  {
+    "objectID": "slides/slides-01.html#nlp-angewendet-auf-chat-logs-und-transkripte",
+    "href": "slides/slides-01.html#nlp-angewendet-auf-chat-logs-und-transkripte",
+    "title": "Kick-Off",
+    "section": "NLP angewendet auf Chat-Logs und Transkripte",
+    "text": "NLP angewendet auf Chat-Logs und Transkripte\nInformationen zur Datenanalyse & potentielle Analysestrategien\n\nTranskripte & Chats der Live-Streams von  hasanabi und  zackrawrr und | TheMajorityReport zu der Presidential (Harris vs. Trump) und Vice-Presidential (Vance vs. Walz) Debates 2024\n\nDownload der VODs mit dem  Paket twitch-dl\nDownload & Stream des Live-Chats mit dem  Paket chat_downloader\nTranskription der Streams & der Debatte mit AI-based Transkriptionstool NoScribe\n\nAuswertung mit NLP-Methoden (z.B. Topic Modeling, Sentimentanalyse etc.)"
+  },
+  {
+    "objectID": "slides/slides-01.html#kurzer-exkurs-zur-auswertung-analyse",
+    "href": "slides/slides-01.html#kurzer-exkurs-zur-auswertung-analyse",
+    "title": "Kick-Off",
+    "section": "Kurzer Exkurs zur Auswertung & Analyse",
+    "text": "Kurzer Exkurs zur Auswertung & Analyse\nHäufig gestellte Fragen zu notwendigen Methodenvorkenntnissen\n\nWelchen Vorkenntnisse sind für den Kurs vorausgesetzt? Interesse an sozialwissenschaftlichen Perspektiven auf Medien, Kommunikation und digitale Technologien & Grundkenntnisse in der Arbeit mit Statistikprogrammen (z.B. R, Python, Stata, SPSS)\nWerden wir praktisch mit Statistikprogrammen arbeiten? Ja. Dazu werden wir R bzw. RStudio nutzen.\n\nDeswegen: Bitte 💻 mitbringen!\n\nWerden wir die mathematische Grundlagen der vorgestellten Methoden lernen? Ja und Nein. Der Kurs konzentriert sich in erster Linie auf die Anwendung; einige mathematische Parameter der vorgestellten Methoden werden jedoch für die Anwendung benötigt und deswegen kurz erörtert."
+  },
+  {
+    "objectID": "slides/slides-01.html#vorläufiger-seminarplan",
+    "href": "slides/slides-01.html#vorläufiger-seminarplan",
+    "title": "Kick-Off",
+    "section": "(Vorläufiger) Seminarplan",
+    "text": "(Vorläufiger) Seminarplan\n\n\n\n\n\n\n\n\nSession\nDatum\nTopic\nPresenter\n\n\n\n\n\n📂 Block 1\nIntroduction\n\n\n\n1\n23.10.2024\nKick-Off\nChristoph Adrian\n\n\n2\n30.10.2024\nDBD: Overview & Introduction\nChristoph Adrian\n\n\n3\n06.11.2024\n🔨 Introduction to working with R\nChristoph Adrian\n\n\n\n📂 Block 2\nTheoretical Background: Twitch & TV Election Debates\n\n\n\n4\n13.11.2024\n📚 Twitch-Nutzung im Fokus\nStudent groups (TBD)\n\n\n5\n20.11.2024\n📚 (Wirkungs-)Effekte von Twitch & TV-Debatten\nStudent groups (TBD)\n\n\n6\n27.11.2024\n📚 Politische Debatten & Social Media\nStudent groups (TBD)\n\n\n\n📂 Block 3\nMethod: Natural Language Processing\n\n\n\n7\n04.12.2024\n🔨 Text as data I: Introduction\nChristoph Adrian\n\n\n8\n11.12.2024\n🔨 Text as data I: Advanced Methods\nChristoph Adrian\n\n\n9\n18.12.2024\n🔨 Advanced Method I: Topic Modeling\nChristoph Adrian\n\n\n\nNo lecture\n🎄Christmas Break\n\n\n\n10\n08.01.2025\n🔨 Advanced Method I: Machine Learning\nChristoph Adrian\n\n\n\n📂 Block 4\nProject Work\n\n\n\n11\n15.01.2025\n🔨 Project work\nStudent groups\n\n\n12\n22.01.2025\n🔨 Project work\nStudent groups\n\n\n13\n29.01.2025\n📊 Project Presentation I\nStudent groups (TBD)\n\n\n14\n05.02.2025\n📊 Project Presentation & 🏁 Evaluation\nStudentds (TBD) & Christoph Adrian"
+  },
+  {
+    "objectID": "slides/slides-01.html#studon-github",
+    "href": "slides/slides-01.html#studon-github",
+    "title": "Kick-Off",
+    "section": "StudOn & Github",
+    "text": "StudOn & Github\nMaterialien und Kommunikation im Kurs\n\nInformationen zu Kurs (Semesterplan, Syllabus, Prüfungleistungen etc.) & den einzelnen Sitzungen (Slides, Literatur und ggf. Übungsmaterial) finden sich auf der Github-Kursseite\nPflichtliteratur der Präsentationen & Beispieldatensätze werden auf StudOn bereitgestellt\nFür die Kommunikation gilt\n\nAnkündigungen werden über den StudOn-Verteiler versendet\nfür Fragen, allgemein zum Kurs oder spezifische zu R nutzten Sie bitte das Forum\nKontakt über E-Mail bitte nur bei persönlichen Anliegen, die nicht für die Gruppe relvevant sind.\n\n\n\n\nKurze Vorführung der Webseite\nZulip Frage/Probleme bei Registrierung?\nOptional: Github/OSF"
+  },
+  {
+    "objectID": "slides/slides-01.html#what-is-expected",
+    "href": "slides/slides-01.html#what-is-expected",
+    "title": "Kick-Off",
+    "section": "What is expected",
+    "text": "What is expected\nLeistungsanforderungen & Prüfungsleistungen\n\nRegelmäßig aktive Teilnahme an Sitzungen\n\nmax. zwei unentschuldigte Fehltermine (Kulanzregelung), bei Krankheit zählen die Fehltermine mit\n\nBearbeitung von vier Assignments im Rahmen eines Portfolios:\n\n👥 Gruppenpräsentation zu wissenschaftlichen Grundlagen 📚 (30 Pkt.)\n👥 Gruppenpräsentation zum Forschungsprojekt 📊 (15 Pkt.)\n👤 Peer Review (15 Pkt.)\n👥 Projektbericht (40 Pkt.)"
+  },
+  {
+    "objectID": "slides/slides-01.html#die-grundlagenpräsentation",
+    "href": "slides/slides-01.html#die-grundlagenpräsentation",
+    "title": "Kick-Off",
+    "section": "Die “Grundlagenpräsentation”",
+    "text": "Die “Grundlagenpräsentation”\nInformationen zur Gruppenpräsentation zu wissenschaftlichen Grundlagen 📚\n\nliefert Überblick über das zentrale Thema der Pflichtlektüre, z.B. zentrale Begriffe, Definitionen, Datengrundlage & - aufbereitung sowie methodische Vorgehensweise (inklusive Analyse)\nvermittelt theoretische Grundlage für Forschungsprojekt\nalle bereitgestellten Pflichtexte müssen in der Präsentation berücksichtigt werden, die Gruppe kann aber eigene Schwerpunkte setzen und eigene Quellen hinzufügen\nzwischen 20 und 30 Minuten, danach Zeit für Fragen und Diskussion\n\nBesonderheit: vorher verpflichtendes Feedbackgespräch"
+  },
+  {
+    "objectID": "slides/slides-01.html#feedback-dann-wenn-es-am-meisten-hilft",
+    "href": "slides/slides-01.html#feedback-dann-wenn-es-am-meisten-hilft",
+    "title": "Kick-Off",
+    "section": "Feedback dann, wenn es am meisten hilft",
+    "text": "Feedback dann, wenn es am meisten hilft\nInformationen zum verpflichtenden Feedbackgespräch\n\n\nStudierende erhalten Feedback und Tipps, wie sie ihre Präsentation überarbeiten bzw. optimieren können\n30-minütiges Gespräch in der Sprechstunde (mittwochs, 15:30 bis 16:30 Uhr), eine Woche vor der Präsentation\n\nBuchung des Termins über StudOn\n\nAbgabe des ersten vollständigen Präsentationsentwurfs als PowerPoint- oder PDF-Datei spätestens bis 12:00 Uhr am Vortag des Feedback-Gesprächs"
+  },
+  {
+    "objectID": "slides/slides-01.html#die-projektpräsentation",
+    "href": "slides/slides-01.html#die-projektpräsentation",
+    "title": "Kick-Off",
+    "section": "Die “Projektpräsentation”",
+    "text": "Die “Projektpräsentation”\nInformationen zur Gruppenpräsentation zum Forschungsprojekt 📊\n\nPräsentation des (aktuellen Stand des) Projekts, inklusive Vorstellung des theoretischen Hintergrundes, Forschungsfrage Datenaufbereitung, Analyse und ersten Ergebnisse\nzwischen 15 bis 20 Minuten (inklusive mind. 5 Minuten für Nachfragen), maximal 10 Folien\nbietet Möglichkeit für Problembesprechung, Feedback und Diskussion\nzur Vereinfachung der Koordination werden Google Slides Vorlagen zur Verfügung gestellt\n\nBesonderheit: Grundlage für das Peer Review"
+  },
+  {
+    "objectID": "slides/slides-01.html#feedback-geben-lernen",
+    "href": "slides/slides-01.html#feedback-geben-lernen",
+    "title": "Kick-Off",
+    "section": "Feedback geben (lernen)",
+    "text": "Feedback geben (lernen)\nInformationen zum Peer Review der Gruppenpräsentationen\n\nPeer-Review-Formularen (Ratingskalen sowie offenen Fragen) für Präsentationen anderer Gruppen ausfüllen\nlernen, andere Projekte zu bewerten und konstruktives Feedback zu geben\nGruppen erhalten zusätzliches Feedback zum eigenen Projekt, dass für die Präsentation bzw. den Projektbericht verwendet werden kann\n\nBesonderheit: Individuelles Assigment!"
+  },
+  {
+    "objectID": "slides/slides-01.html#zusammenführung-aller-assignments",
+    "href": "slides/slides-01.html#zusammenführung-aller-assignments",
+    "title": "Kick-Off",
+    "section": "Zusammenführung aller Assignments",
+    "text": "Zusammenführung aller Assignments\nInformationen zum Projektberichtch\n\nProjektbericht ist die schriftliche Ausarbeitung des Forschungsprojekts und führt damit die Arbeit aus den Präsentationen und dem (Feedback der) Peer Reviews zusammen\nmindestens eine der vorgestellten Methoden auf ein selbstgewählte Stichprobe der bereitgestellten Daten anwenden, um ein Thema Ihrer Wahl zu erforschen.\n750 bis 1000 Wörter pro Personn, bei einem Gruppenbericht skaliert die Anzal der Wörter mit einem Faktor von 0,8 pro Person (z.B. sollte eine Zweiergruppe 1200 bis 1600 Wörter schreiben, eine Dreiergruppe 1800 bis 2400 Wörter)\nAbgabe als Quarto-Dokument (& PDF), d.h. der Bericht sowie alle Komponenten (z.B. Tabellen, Grafiken) werden in RStudio erstellt und müssen komplett reproduzierbar sein"
+  },
+  {
+    "objectID": "slides/slides-01.html#short-summary",
+    "href": "slides/slides-01.html#short-summary",
+    "title": "Kick-Off",
+    "section": "Short summary",
+    "text": "Short summary\nFahrplan für die Prüfungsleistungen\n\n\n\n\n\n\n\n\n\nZeitpunkte\nLeistung\n\n\n\n\nBlock II (13./20./27.11)\n“Themenpräsentation” 📚\n\n\nbis zum 4.12.\nR-Tutorials abschließen (Grundlage für Methodenblock)\n\n\nbis zum 15.01.\nErster vollständiger Entwurf “Projektpräsentation” 📊\n\n\nvom 16.01. bis zum 21.01.\nAusfüllen der Peer-Review-Formulare\n\n\nvom 22.01 bis 29.01/05.02\nEinarbeitung des Feedback in “Projektpräsentation” 📊\n\n\n29.01./05.02\n“Projektpräsentation” 📊\n\n\nbis zum 02.03.25\nAbgabe des Projektberichts"
+  },
+  {
+    "objectID": "slides/slides-01.html#warum",
+    "href": "slides/slides-01.html#warum",
+    "title": "Kick-Off",
+    "section": "Warum ?",
+    "text": "Warum ?\nDer Einsatz von R bzw. RStudio im Kurs\n\nKostenlose Software mit vielen nützlichen und beginner-friendly Tutorials\n or ? Both!\n\nIm Kurs:\n\nBestehende R-Kenntnisse sind förderlich, aber nicht zwigend notwendig, wichtiger sind praktische Erfahrung im syntaxbasierten Arbeiten\nLearn to code by example: Code von Sitzungen & Beispielen wird bereitgestellt (ggf. durch Showcases)\nPflicht: Tutorials auf Kurshomepage"
+  },
+  {
+    "objectID": "slides/slides-01.html#building-a-common-knowledge-base",
+    "href": "slides/slides-01.html#building-a-common-knowledge-base",
+    "title": "Kick-Off",
+    "section": "Building a common knowledge base",
+    "text": "Building a common knowledge base\nInformationen zu den -Tutorials\n\nVermittlung des notwendigen Basiswissens für die Arbeit mit R, RStudio und Quarto mit Hilfe von zwei (Video-)Tutorials:\n\nEinführung in R, RStudio und Quarto von Andy Field für die Vermittlung der Grundlagen & den allgemeinen Umgang mit den Programmen\nPraktisches Arbeiten mit R des CCS Amsterdam legt Schwerpunkt auf das „inhaltliche“ Arbeiten mit R (Vorstellung von Verwendung von wichtigen Funktionen)\n\nWeitere nützliche Quellen finden Sie in dem Bereich Working with R auf der Kursseite"
+  },
+  {
+    "objectID": "slides/slides-01.html#sonderanmeldetermin-für-prüfung",
+    "href": "slides/slides-01.html#sonderanmeldetermin-für-prüfung",
+    "title": "Kick-Off",
+    "section": "Sonderanmeldetermin für Prüfung",
+    "text": "Sonderanmeldetermin für Prüfung\nWichtige Informationen zur Prüfungsanmeldung\n\nÄrgerlicherweise gibt es immer wieder Studierende, die sich anmelden und betreuen lassen, aber dann einfach irgendwann (teilweise sehr kurzfristig) “verschwinden”.\nDeshalb: Nutzung des WiSo-Sonderanmeldetermin für Prüfung am 28./29.10.\n\nBitte berücksichtigen Sie unbedingt:\n\n⚠️ Nehmen Sie bitte kein Thema an, wenn absehbar ist, dass Sie nicht teilnehmen werden.\n⚠️ Wir behalten uns vor, bei Rückzug trotz abgeschlossener Themenvergabe, Sie trotzdem für die Prüfung zu melden"
+  },
+  {
+    "objectID": "slides/slides-01.html#please-state-your-preference",
+    "href": "slides/slides-01.html#please-state-your-preference",
+    "title": "Kick-Off",
+    "section": "Please state your preference",
+    "text": "Please state your preference\nVergabe der Präsentationsthemen mit SimpleAssign\n\n\n\n\nBitte scannen Sie den QR-Code oder nutzen Sie folgenden Link und geben Sie Ihre Themenpräferenz an:\n\nhttps://simpleassign.net/poll/-O9lSn9X3pAIOdHyNQNu\n\n\n\n\n\n\n\n    \n\n\n\n−+\n02:00"
+  },
+  {
+    "objectID": "slides/slides-01.html#before-we-meet-again",
+    "href": "slides/slides-01.html#before-we-meet-again",
+    "title": "Kick-Off",
+    "section": "Before we meet again",
+    "text": "Before we meet again\nHinweise und offene Fragen\n\nLernen Sie die Kursseite kennen! Und checken Sie die Infos () zur nächten Sitzung.\nVerschaffen Sie sich einen Überblick über die R-Tutorials\n\nEin paar Fragen an Sie:\n\nWhy no English? 🤷\nWarum das große Interesse an Zeitreihenanalyse?\nWelche Erwartung an “Machine Learning”?"
+  },
+  {
+    "objectID": "slides/slides-01.html#literatur",
+    "href": "slides/slides-01.html#literatur",
+    "title": "Kick-Off",
+    "section": "Literatur",
+    "text": "Literatur\n\n\nEngel, U., Quan-Haase, A., Liu, S. X., & Lyberg, L. (2021). Digital trace data (1st ed., pp. 100–118). Routledge. https://www.taylorfrancis.com/books/9781003024583/chapters/10.4324/9781003024583-8\n\n\nStruminskaya, B., Lugtig, P., Keusch, F., & Höhne, J. K. (2020). Augmenting Surveys With Data From Sensors and Apps: Opportunities and Challenges. Social Science Computer Review, 089443932097995. https://doi.org/10.1177/0894439320979951\n\n\nWeller, K. (2021). A short introduction to computational social science and digital behavioral data. https://www.gesis.org/fileadmin/user_upload/MeettheExperts/GESIS_Meettheexperts_Introductioncss.pdf\n\n\n\n\n\n\nHome"
+  },
+  {
+    "objectID": "slides/slides-03.html#seminarplan",
+    "href": "slides/slides-03.html#seminarplan",
+    "title": "🔨 Working with R",
+    "section": "Seminarplan",
+    "text": "Seminarplan\n\n\n\n\n\n\n\n\nSession\nDatum\nTopic\nPresenter\n\n\n\n\n\n📂 Block 1\nIntroduction\n\n\n\n1\n23.10.2024\nKick-Off\nChristoph Adrian\n\n\n2\n30.10.2024\nDBD: Overview & Introduction\nChristoph Adrian\n\n\n3\n06.11.2024\n🔨 Introduction to working with R\nChristoph Adrian\n\n\n\n📂 Block 2\nTheoretical Background: Twitch & TV Election Debates\n\n\n\n4\n13.11.2024\n📚 Twitch-Nutzung im Fokus\nStudent groups\n\n\n5\n20.11.2024\n📚 (Wirkungs-)Effekte von Twitch & TV-Debatten\nStudent groups\n\n\n6\n27.11.2024\n📚 Politische Debatten & Social Media\nStudent groups\n\n\n\n📂 Block 3\nMethod: Natural Language Processing\n\n\n\n7\n04.12.2024\n🔨 Text as data I: Introduction\nChristoph Adrian\n\n\n8\n11.12.2024\n🔨 Text as data I: Advanced Methods\nChristoph Adrian\n\n\n9\n18.12.2024\n🔨 Advanced Method I: Topic Modeling\nChristoph Adrian\n\n\n\nNo lecture\n🎄Christmas Break\n\n\n\n10\n08.01.2025\n🔨 Advanced Method I: Machine Learning\nChristoph Adrian\n\n\n\n📂 Block 4\nProject Work\n\n\n\n11\n15.01.2025\n🔨 Project work\nStudent groups\n\n\n12\n22.01.2025\n🔨 Project work\nStudent groups\n\n\n13\n29.01.2025\n📊 Project Presentation I\nStudent groups (TBD)\n\n\n14\n05.02.2025\n📊 Project Presentation & 🏁 Evaluation\nStudentds (TBD) & Christoph Adrian"
+  },
+  {
+    "objectID": "slides/slides-03.html#kurzes-organisatorische-update",
+    "href": "slides/slides-03.html#kurzes-organisatorische-update",
+    "title": "🔨 Working with R",
+    "section": "Kurzes organisatorische Update",
+    "text": "Kurzes organisatorische Update\nInformationen zu Kursdetails und Prüfungsleistungen\n\nInfos zur Zuteilung der Feedbackgespräche\n\nKeine Anmeldung für Feedback notwendig, stattdessen Reihenfolge wie bei Präsentation\nBei Terminproblemen könnt ihr gerne auf mich zukommen\n\n🗣️ 2. Präsentationsgruppe: Bitte denkt\n\nan die Zusendung des Entwurf der Präsentationsfolien bis spätestens nächste Woche Dienstag 12:00!\ndas Feedbackgespräch am Mittwoch im Anschluss an das Seminar."
+  },
+  {
+    "objectID": "slides/slides-03.html#building-best-practice",
+    "href": "slides/slides-03.html#building-best-practice",
+    "title": "🔨 Working with R",
+    "section": "Building best practice",
+    "text": "Building best practice\nWillkommen (zurück) zu \n\n\n\nHow most academics learn R:\n\n\n\n\n\n\n\nHow you should learn R:\n\nR nicht systematisch lernen, sondern spezifisch anwenden.\nOrganisation der Arbeit mit RStudio-Projekten\nLesbaren und nachvollziehbaren Code schreiben!\n(Nach-)Fragen!"
+  },
+  {
+    "objectID": "slides/slides-03.html#ein-repository-voller-daten",
+    "href": "slides/slides-03.html#ein-repository-voller-daten",
+    "title": "🔨 Working with R",
+    "section": "Ein Repository voller Daten",
+    "text": "Ein Repository voller Daten\nBeispiel für Übung durch Anwendung:  tidytuesday (social data project)\n\n\n\nData is posted to social media every Monday morning.\nExplore the data, watching out for interesting relationships.\nCreate a visualization, a model, a shiny app, or some other piece of data-science-related output, using R or another programming language.\nShare your output and the code used to generate it on social media with the #TidyTuesday hashtag."
+  },
+  {
+    "objectID": "slides/slides-03.html#beispiele-für-tidytuesday",
+    "href": "slides/slides-03.html#beispiele-für-tidytuesday",
+    "title": "🔨 Working with R",
+    "section": "Beispiele für #tidytuesday",
+    "text": "Beispiele für #tidytuesday"
+  },
+  {
+    "objectID": "slides/slides-03.html#everything-you-need-in-one-place",
+    "href": "slides/slides-03.html#everything-you-need-in-one-place",
+    "title": "🔨 Working with R",
+    "section": "Everything you need in one place",
+    "text": "Everything you need in one place\nOrganisation der Arbeit mit RStudio-Projekten\n\n\n\n\n\n\n\n\nEmpfehlungen:\n\nFür jedes Projekt ein RStudio-Projekt.\nSicherung und Organisation von Daten, Skripte und Ouput an einem Ort, z.B. mit Unterstützung durch R-Pakete wie z.B. prodigenr\nVerwendung von relative, keine absoluten Pfade. Empfehlung: here R-Paket"
+  },
+  {
+    "objectID": "slides/slides-03.html#versionskontrolle-als-kür",
+    "href": "slides/slides-03.html#versionskontrolle-als-kür",
+    "title": "🔨 Working with R",
+    "section": "Versionskontrolle als Kür",
+    "text": "Versionskontrolle als Kür\nCrashkurs zu Git(Hub)\n\n MalikaIhle\nVersionkontrolle für Code, gesichert in der Cloud\nVollständige Rückverfolgbarkeit von (gesicherten) Änderungen\nGreat effort, great return."
+  },
+  {
+    "objectID": "slides/slides-03.html#run-chunks-not-whole-scripts",
+    "href": "slides/slides-03.html#run-chunks-not-whole-scripts",
+    "title": "🔨 Working with R",
+    "section": "Run chunks, not (whole) scripts",
+    "text": "Run chunks, not (whole) scripts\nOutputorientiertes Coding mit Quarto"
+  },
+  {
+    "objectID": "slides/slides-03.html#quarto-rmarkdown-rscript",
+    "href": "slides/slides-03.html#quarto-rmarkdown-rscript",
+    "title": "🔨 Working with R",
+    "section": "Quarto ≥ RMarkdown ≥ RScript",
+    "text": "Quarto ≥ RMarkdown ≥ RScript\nDer Weg vom Code zum Output\n\n\nGrundidee von Quarto : ein Quelldokument kann in eine Vielzahl von Ausgabeformaten umgewandelt werden\nMarkdown-Syntax für Text, verschiedene Programmiersprachen (wie z.B. R und Python) in einem Dokument"
+  },
+  {
+    "objectID": "slides/slides-03.html#develop-your-style",
+    "href": "slides/slides-03.html#develop-your-style",
+    "title": "🔨 Working with R",
+    "section": "Develop your style",
+    "text": "Develop your style\nWichtigkeit der Codeformatierung und -dokumentierung\n\n# Strive for \nshort_flights &lt;- flights |&gt; filter(air_time &lt; 60)\n\n# Avoid:\nSHTFTS &lt;- flights |&gt; filter(air_time &lt; 60)\n\n\n# Strive for \nflights |&gt;  \n  filter(!is.na(arr_delay), !is.na(tailnum)) |&gt; \n  count(dest)\n\n# Avoid\nflights|&gt;filter(!is.na(arr_delay), !is.na(tailnum))|&gt;count(dest)\n\n\n\nDie Entwicklung (oder Aneignung) eines Codestils ist wichtig!\nWas sich zunächst willkürlich anfühlt, hilft mit der Zeit sehr\nUnterstützung durch den tidyverse style guide bzw. die Pakete styler oder lintr"
+  },
+  {
+    "objectID": "slides/slides-03.html#empfehlung-tidyverse-is-your-friend",
+    "href": "slides/slides-03.html#empfehlung-tidyverse-is-your-friend",
+    "title": "🔨 Working with R",
+    "section": "Empfehlung: tidyverse is your friend!",
+    "text": "Empfehlung: tidyverse is your friend!\nVerschiedenen Paketen für alle Schritte eines Projektes\n\nQuelle: RStudio"
+  },
+  {
+    "objectID": "slides/slides-03.html#the-friend-of-your-friend-easystats",
+    "href": "slides/slides-03.html#the-friend-of-your-friend-easystats",
+    "title": "🔨 Working with R",
+    "section": "The friend of your friend: easystats",
+    "text": "The friend of your friend: easystats\nFokus auf die Analyse\n\nQuelle: Lüdecke et al. (2022)"
+  },
+  {
+    "objectID": "slides/slides-03.html#am-anfang-steht-die-theorie",
+    "href": "slides/slides-03.html#am-anfang-steht-die-theorie",
+    "title": "🔨 Working with R",
+    "section": "Am Anfang steht die Theorie",
+    "text": "Am Anfang steht die Theorie\nTypischer “data science process” als Kontext der Sitzung\n\nQuelle: Wickham et al. (2023)\n\nAdditional steps (add if necessary):"
+  },
+  {
+    "objectID": "slides/slides-03.html#age-difference-in-years-between-move-love-interests",
+    "href": "slides/slides-03.html#age-difference-in-years-between-move-love-interests",
+    "title": "🔨 Working with R",
+    "section": "Age difference in years between move love interests",
+    "text": "Age difference in years between move love interests\nDatengrundlage für die Beispiele: Hollywood Age Gap ( |  )\n\n\n\n\n\n\n\n\n\n\n“An informational site showing the age gap between movie love interests.”\nCommunity-Projekt\n\nGuidlines for participation/submission:\n\nThe two (or more) actors play actual love interests (not just friends, coworkers, or some other non-romantic type of relationship)\nThe youngest of the two actors is at least 17 years old\nNot animated characters"
+  },
+  {
+    "objectID": "slides/slides-03.html#explore-adapt-repeat",
+    "href": "slides/slides-03.html#explore-adapt-repeat",
+    "title": "🔨 Working with R",
+    "section": "Explore ➞ Adapt ➞ Repeat ⟳",
+    "text": "Explore ➞ Adapt ➞ Repeat ⟳\nProzess der Datenaufbereitung\n\n\nnimmt in der Regel den Großteil der Zeit der Datenanalyse in Anspruch\nhäufig bedarf es der mehrfachen Wiederholung dreier Schritte:\n\nder (explorativen) Erkundung,\nder Standartdisierung und\nder (erneuten) Bereinung der Daten"
+  },
+  {
+    "objectID": "slides/slides-03.html#drei-stufen-der-datenqualität",
+    "href": "slides/slides-03.html#drei-stufen-der-datenqualität",
+    "title": "🔨 Working with R",
+    "section": "Drei Stufen der Datenqualität",
+    "text": "Drei Stufen der Datenqualität\nTypische Strategien zur Datenbereinigung nach Pearson (2018)\n\n\n\n\n\n\nQuelle: Jonge & Loo (2013)\n\n\n\n\n\n\n\nBewertung allgemeiner Merkmale des Datensatzes, z. B.:\n\nWie viele Fälle sind enthalten? Wie viele Variablen?\nWie lauten die Variablennamen? Sind sie sinnvoll?\nWelchen Typ hat jede Variable, z. B. numerisch, kategorisch, logisch?\nWie viele eindeutige Werte hat jede Variable?\nWelcher Wert tritt am häufigsten auf, und wie oft kommt er vor?\nGibt es fehlende Werte? Wenn ja, wie häufig ist dies der Fall?\n\nUntersuchung deskriptiver Statistiken für jede Variable;\nExplorative Visualisierung;\nVerschiedene Verfahren zur Suche nach Anomalien in den Daten;\nUntersuchung der Beziehungen zwischen Schlüsselvariablen mit Hilfe von Scatterplots/Boxplots/Mosaic-Plots;\nDokumentation des Vorgehens und der Ergebnisse (z.B. mit .rmd-Dokument). Dient als Grundlage für die anschließende Analyse und Erläuterung der Ergebnisse."
+  },
+  {
+    "objectID": "slides/slides-03.html#direkter-download-via-url",
+    "href": "slides/slides-03.html#direkter-download-via-url",
+    "title": "🔨 Working with R",
+    "section": "Direkter Download via URL",
+    "text": "Direkter Download via URL\nDatenimport und -preview\n\n\n\nBewertung allgemeiner Merkmale des Datensatzes, z. B.:\n\n🔍 Wie viele Fälle sind enthalten? Wie viele Variablen?\n🔍 Wie lauten die Variablennamen? Sind sie sinnvoll?\nWelchen Typ hat jede Variable, z. B. numerisch, kategorisch, logisch?\nWie viele eindeutige Werte hat jede Variable?\nWelcher Wert tritt am häufigsten auf, und wie oft kommt er vor?\nGibt es fehlende Werte? Wenn ja, wie häufig ist dies der Fall?\n\n\n\n\n\nage_gaps &lt;- read_csv(\"http://hollywoodagegap.com/movies.csv\") \nage_gaps \n\n# A tibble: 1,198 × 12\n   `Movie Name`       `Release Year` Director    `Age Difference` `Actor 1 Name`\n   &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;                  &lt;dbl&gt; &lt;chr&gt;         \n 1 Harold and Maude             1971 Hal Ashby                 52 Bud Cort      \n 2 Venus                        2006 Roger Mich…               50 Peter O'Toole \n 3 The Quiet American           2002 Phillip No…               49 Michael Caine \n 4 Solitary Man                 2009 Brian Kopp…               45 Michael Dougl…\n 5 The Big Lebowski             1998 Joel Coen                 45 David Huddles…\n 6 Beginners                    2010 Mike Mills                43 Christopher P…\n 7 Poison Ivy                   1992 Katt Shea                 42 Tom Skerritt  \n 8 Dirty Grandpa                2016 Dan Mazer                 41 Robert De Niro\n 9 Whatever Works               2009 Woody Allen               40 Larry David   \n10 Entrapment                   1999 Jon Amiel                 39 Sean Connery  \n# ℹ 1,188 more rows\n# ℹ 7 more variables: `Actor 1 Gender` &lt;chr&gt;, `Actor 1 Birthdate` &lt;date&gt;,\n#   `Actor 1 Age` &lt;dbl&gt;, `Actor 2 Name` &lt;chr&gt;, `Actor 2 Gender` &lt;chr&gt;,\n#   `Actor 2 Birthdate` &lt;chr&gt;, `Actor 2 Age` &lt;dbl&gt;"
+  },
+  {
+    "objectID": "slides/slides-03.html#let-the-cleaning-beginn",
+    "href": "slides/slides-03.html#let-the-cleaning-beginn",
+    "title": "🔨 Working with R",
+    "section": "Let the cleaning beginn",
+    "text": "Let the cleaning beginn\nErste Schritte der Datenbereinigung\n\n\n\nBewertung allgemeiner Merkmale des Datensatzes, z. B.:\n\n✅ Wie viele Fälle sind enthalten? Wie viele Variablen?\n✅ Wie lauten die Variablennamen? Sind sie sinnvoll?\n🔍 Welchen Typ hat jede Variable, z. B. numerisch, kategorisch, logisch?\nWie viele eindeutige Werte hat jede Variable?\nWelcher Wert tritt am häufigsten auf, und wie oft kommt er vor?\nGibt es fehlende Werte? Wenn ja, wie häufig ist dies der Fall?\n\n\n\n\n\nage_gaps %&lt;&gt;% janitor::clean_names()\nage_gaps %&gt;% glimpse()\n\nRows: 1,198\nColumns: 12\n$ movie_name        &lt;chr&gt; \"Harold and Maude\", \"Venus\", \"The Quiet American\", \"…\n$ release_year      &lt;dbl&gt; 1971, 2006, 2002, 2009, 1998, 2010, 1992, 2016, 2009…\n$ director          &lt;chr&gt; \"Hal Ashby\", \"Roger Michell\", \"Phillip Noyce\", \"Bria…\n$ age_difference    &lt;dbl&gt; 52, 50, 49, 45, 45, 43, 42, 41, 40, 39, 38, 38, 36, …\n$ actor_1_name      &lt;chr&gt; \"Bud Cort\", \"Peter O'Toole\", \"Michael Caine\", \"Micha…\n$ actor_1_gender    &lt;chr&gt; \"man\", \"man\", \"man\", \"man\", \"man\", \"man\", \"man\", \"ma…\n$ actor_1_birthdate &lt;date&gt; 1948-03-29, 1932-08-02, 1933-03-14, 1944-09-25, 193…\n$ actor_1_age       &lt;dbl&gt; 23, 74, 69, 65, 68, 81, 59, 73, 62, 69, 57, 77, 59, …\n$ actor_2_name      &lt;chr&gt; \"Ruth Gordon\", \"Jodie Whittaker\", \"Do Thi Hai Yen\", …\n$ actor_2_gender    &lt;chr&gt; \"woman\", \"woman\", \"woman\", \"woman\", \"woman\", \"man\", …\n$ actor_2_birthdate &lt;chr&gt; \"1896-10-30\", \"1982-06-03\", \"1982-10-01\", \"1989-01-0…\n$ actor_2_age       &lt;dbl&gt; 75, 24, 20, 20, 23, 38, 17, 32, 22, 30, 19, 39, 23, …"
+  },
+  {
+    "objectID": "slides/slides-03.html#building-the-habits",
+    "href": "slides/slides-03.html#building-the-habits",
+    "title": "🔨 Working with R",
+    "section": "Building the habits!",
+    "text": "Building the habits!\nErste Schritte der Datenbereinigung\n\n\n\nBewertung allgemeiner Merkmale des Datensatzes, z. B.:\n\n✅ Wie viele Fälle sind enthalten? Wie viele Variablen?\n✅ Wie lauten die Variablennamen? Sind sie sinnvoll?\n✅ Welchen Typ hat jede Variable, z. B. numerisch, kategorisch, logisch?\nWie viele eindeutige Werte hat jede Variable?\nWelcher Wert tritt am häufigsten auf, und wie oft kommt er vor?\nGibt es fehlende Werte? Wenn ja, wie häufig ist dies der Fall?\n\n\n\n\n\nage_gaps_correct &lt;- age_gaps %&gt;% \n  mutate(\n    across(ends_with(\"_birthdate\"), ~as.Date(.)) # set dates to dates\n  )\n\n\n\nReminder\n\nVeränderungen nicht im selben Datensatz speichern\nVerständliche Benennung & Kommentierung der Daten\nBearbeitungsschritte kommentieren"
+  },
+  {
+    "objectID": "slides/slides-03.html#kontrolle-der-lageparameter",
+    "href": "slides/slides-03.html#kontrolle-der-lageparameter",
+    "title": "🔨 Working with R",
+    "section": "Kontrolle der Lageparameter",
+    "text": "Kontrolle der Lageparameter\nErste Schritte der Datenbereinigung\n\n\n\nBewertung allgemeiner Merkmale des Datensatzes, z. B.:\n\n✅ Wie viele Fälle sind enthalten? Wie viele Variablen?\n✅ Wie lauten die Variablennamen? Sind sie sinnvoll?\n✅ Welchen Typ hat jede Variable, z. B. numerisch, kategorisch, logisch?\n🔍 Wie viele eindeutige Werte hat jede Variable?\n🔍 Welcher Wert tritt am häufigsten auf, und wie oft kommt er vor?\n🔍 Gibt es fehlende Werte? Wenn ja, wie häufig ist dies der Fall?\n\n\n\n\n\nage_gaps_correct %&gt;% \n    datawizard::describe_distribution() %&gt;% \n    print_html()\n\n\n\n\n\n\n\nVariable\nMean\nSD\nIQR\nMin\nMax\nSkewness\nKurtosis\nn\nn_Missing\n\n\n\n\nrelease_year\n2000.57\n17.03\n15\n1935\n2024\n-1.63\n2.55\n1198\n0\n\n\nage_difference\n10.60\n8.61\n12\n0\n52\n1.19\n1.56\n1198\n0\n\n\nactor_1_age\n40.07\n10.93\n15\n17\n81\n0.54\n0.22\n1198\n0\n\n\nactor_2_age\n31.23\n8.47\n10\n17\n81\n1.39\n3.71\n1198\n0"
+  },
+  {
+    "objectID": "slides/slides-03.html#lets-start-exploring",
+    "href": "slides/slides-03.html#lets-start-exploring",
+    "title": "🔨 Working with R",
+    "section": "Let’s start exploring!",
+    "text": "Let’s start exploring!\nWie sind die Altersunterschiede verteilt?\n\nage_gaps_correct %&gt;% \n    ggplot(aes(age_difference)) +\n    geom_bar() +\n    theme_pubr()"
+  },
+  {
+    "objectID": "slides/slides-03.html#a-recent-past",
+    "href": "slides/slides-03.html#a-recent-past",
+    "title": "🔨 Working with R",
+    "section": "A recent past …",
+    "text": "A recent past …\nIn welchen Filmen ist der Altersunterschied am höchsten?\n\nage_gaps_correct %&gt;% \n    arrange(desc(age_difference)) %&gt;% \n    select(movie_name, age_difference, release_year) \n\n# A tibble: 1,198 × 3\n   movie_name         age_difference release_year\n   &lt;chr&gt;                       &lt;dbl&gt;        &lt;dbl&gt;\n 1 Harold and Maude               52         1971\n 2 Venus                          50         2006\n 3 The Quiet American             49         2002\n 4 Solitary Man                   45         2009\n 5 The Big Lebowski               45         1998\n 6 Beginners                      43         2010\n 7 Poison Ivy                     42         1992\n 8 Dirty Grandpa                  41         2016\n 9 Whatever Works                 40         2009\n10 Entrapment                     39         1999\n# ℹ 1,188 more rows"
+  },
+  {
+    "objectID": "slides/slides-03.html#or-still-present",
+    "href": "slides/slides-03.html#or-still-present",
+    "title": "🔨 Working with R",
+    "section": "… or still present?",
+    "text": "… or still present?\nIn welchen Filmen ist der Altersunterschied am höchsten?\n\nage_gaps_correct %&gt;% \n    filter(release_year &gt;= 2022) %&gt;% \n    arrange(desc(age_difference)) %&gt;% \n    select(\n        movie_name, age_difference, release_year, \n        actor_1_name, actor_2_name)\n\n# A tibble: 19 × 5\n   movie_name              age_difference release_year actor_1_name actor_2_name\n   &lt;chr&gt;                            &lt;dbl&gt;        &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;       \n 1 Poor Things                         21         2023 Mark Ruffalo Emma Stone  \n 2 The Bubble                          21         2022 Pedro Pascal Maria Bakal…\n 3 Oppenheimer                         20         2023 Cillian Mur… Florence Pu…\n 4 The Northman                        20         2022 Alexander S… Anya Taylor…\n 5 Spaceman                            19         2024 Adam Sandler Carey Mulli…\n 6 The Lost City                       16         2022 Channing Ta… Sandra Bull…\n 7 We Live in Time                     13         2024 Andrew Garf… Florence Pu…\n 8 The Idea of You                     12         2024 Nicholas Ga… Anne Hathaw…\n 9 Barbie                              10         2023 Ryan Gosling Margot Robb…\n10 Twisters                            10         2024 Glen Powell  Daisy Edgar…\n11 Anyone but You                       9         2023 Glen Powell  Sydney Swee…\n12 Everything Everywhere …              9         2022 Ke Huy Quan  Michelle Ye…\n13 Top Gun: Maverick                    8         2022 Tom Cruise   Jennifer Co…\n14 Oppenheimer                          7         2023 Cillian Mur… Emily Blunt \n15 Your Place or Mine                   7         2023 Ashton Kutc… Zoë Chao    \n16 Your Place or Mine                   5         2023 Jesse Willi… Reese Withe…\n17 Poor Things                          2         2023 Christopher… Emma Stone  \n18 Your Place or Mine                   2         2023 Ashton Kutc… Reese Withe…\n19 You People                           1         2023 Jonah Hill   Lauren Lond…"
+  },
+  {
+    "objectID": "slides/slides-03.html#durchschnitts-unterschied-nach-jahren",
+    "href": "slides/slides-03.html#durchschnitts-unterschied-nach-jahren",
+    "title": "🔨 Working with R",
+    "section": "(Durchschnitts-)Unterschied nach Jahren",
+    "text": "(Durchschnitts-)Unterschied nach Jahren\nGibt es einen Zusammenhang zwischen Altersunterschied und Releasedatum?\n\nage_gaps_correct %&gt;% \n    group_by(release_year) %&gt;% \n    summarise(age_difference_mean = mean(age_difference)) %&gt;% \n    ggplot(aes(release_year, age_difference_mean)) +\n    geom_col() +\n    theme_pubr()"
+  },
+  {
+    "objectID": "slides/slides-03.html#verteilung-nach-jahren",
+    "href": "slides/slides-03.html#verteilung-nach-jahren",
+    "title": "🔨 Working with R",
+    "section": "Verteilung nach Jahren",
+    "text": "Verteilung nach Jahren\nGibt es einen Zusammenhang zwischen Altersunterschied und Releasedatum?\n\n\nggpubr::ggboxplot(\n    data = age_gaps_correct, \n    x = \"release_year\", \n    y = \"age_difference\"\n  ) +\n  # Rotate x-axis labels by 90 degrees\n  theme(\n    axis.text.x = element_text(\n        angle = 90,\n        vjust = 0.5,\n         hjust=1))"
+  },
+  {
+    "objectID": "slides/slides-03.html#ein-blick-auf-die-korrelation",
+    "href": "slides/slides-03.html#ein-blick-auf-die-korrelation",
+    "title": "🔨 Working with R",
+    "section": "Ein Blick auf die Korrelation",
+    "text": "Ein Blick auf die Korrelation\nGibt es einen Zusammenhang zwischen Altersunterschied und Releasedatum?\n\nage_gaps %&gt;%\n  select(release_year, age_difference) %&gt;% \n  correlation::correlation()\n\n# Correlation Matrix (pearson-method)\n\nParameter1   |     Parameter2 |     r |         95% CI | t(1196) |         p\n----------------------------------------------------------------------------\nrelease_year | age_difference | -0.22 | [-0.27, -0.16] |   -7.73 | &lt; .001***\n\np-value adjustment method: Holm (1979)\nObservations: 1198"
+  },
+  {
+    "objectID": "slides/slides-03.html#mit-kanonen-auf-spatzen-schießen",
+    "href": "slides/slides-03.html#mit-kanonen-auf-spatzen-schießen",
+    "title": "🔨 Working with R",
+    "section": "Mit Kanonen auf Spatzen schießen",
+    "text": "Mit Kanonen auf Spatzen schießen\nGibt es einen Zusammenhang zwischen Altersunterschied und Releasedatum?\n\n# Schätzung des Models\nmdl &lt;- lm(age_difference ~ release_year, data = age_gaps_correct)\n\n\n\nmdl %&gt;% parameters::parameters()\n\nParameter    | Coefficient |    SE |           95% CI | t(1196) |      p\n------------------------------------------------------------------------\n(Intercept)  |      231.32 | 28.55 | [175.30, 287.33] |    8.10 | &lt; .001\nrelease year |       -0.11 |  0.01 | [ -0.14,  -0.08] |   -7.73 | &lt; .001\n\n\n\n\nmdl %&gt;% performance::model_performance()\n\n# Indices of model performance\n\nAIC      |     AICc |      BIC |    R2 | R2 (adj.) |  RMSE | Sigma\n------------------------------------------------------------------\n8505.472 | 8505.492 | 8520.737 | 0.048 |     0.047 | 8.402 | 8.409"
+  },
+  {
+    "objectID": "slides/slides-03.html#convenience-wrapper",
+    "href": "slides/slides-03.html#convenience-wrapper",
+    "title": "🔨 Working with R",
+    "section": "Convenience wrapper",
+    "text": "Convenience wrapper\nGibt es einen Zusammenhang zwischen Altersunterschied und Releasedatum?\n\nmdl %&gt;% report::report()\n\nWe fitted a linear model (estimated using OLS) to predict age_difference with\nrelease_year (formula: age_difference ~ release_year). The model explains a\nstatistically significant and weak proportion of variance (R2 = 0.05, F(1,\n1196) = 59.77, p &lt; .001, adj. R2 = 0.05). The model's intercept, corresponding\nto release_year = 0, is at 231.32 (95% CI [175.30, 287.33], t(1196) = 8.10, p &lt;\n.001). Within this model:\n\n  - The effect of release year is statistically significant and negative (beta =\n-0.11, 95% CI [-0.14, -0.08], t(1196) = -7.73, p &lt; .001; Std. beta = -0.22, 95%\nCI [-0.27, -0.16])\n\nStandardized parameters were obtained by fitting the model on a standardized\nversion of the dataset. 95% Confidence Intervals (CIs) and p-values were\ncomputed using a Wald t-distribution approximation."
+  },
+  {
+    "objectID": "slides/slides-03.html#try---fail---repeat",
+    "href": "slides/slides-03.html#try---fail---repeat",
+    "title": "🔨 Working with R",
+    "section": "Try - Fail - Repeat",
+    "text": "Try - Fail - Repeat\nKurzes Fazit der heutigen Sitzung\n\n\n\n\nWenn R, dann mit RStudio + Quarto!\nAnschauen - nachmachen - ausprobieren\nKeep it tidy\n(Gute) Routinen bilden\n“There is almost always a package for that …”"
+  },
+  {
+    "objectID": "slides/slides-03.html#literatur",
+    "href": "slides/slides-03.html#literatur",
+    "title": "🔨 Working with R",
+    "section": "Literatur",
+    "text": "Literatur\n\n\nJonge, E. de, & Loo, M. van der. (2013). An introduction to data cleaning with R.\n\n\nLüdecke, D., Ben-Shachar, M. S., Patil, I., Wiernik, B. M., Bacher, E., Thériault, R., & Makowski, D. (2022). Easystats: Framework for easy statistical modeling, visualization, and reporting. CRAN. https://easystats.github.io/easystats/\n\n\nPearson, R. K. (2018). Exploratory data analysis using r. CRC Press/Taylor & Francis Group.\n\n\nWickham, H., Çetinkaya-Rundel, M., & Grolemund, G. (2023). R for data science: import, tidy, transform, visualize, and model data (2nd edition). O’Reilly.\n\n\n\n\n\n\nHome"
+  },
+  {
+    "objectID": "sessions/session-02.html",
+    "href": "sessions/session-02.html",
+    "title": "Session 2",
+    "section": "",
+    "text": "✍️ Start working on R-Video-Tutorials.\n✍️ Book your time slot for the mandatory feedback session on StudOn.\n✍️ Remeber the registration deadline (28./29.10) for the seminar examination on campo."
+  },
+  {
+    "objectID": "sessions/session-02.html#prepare",
+    "href": "sessions/session-02.html#prepare",
+    "title": "Session 2",
+    "section": "",
+    "text": "✍️ Start working on R-Video-Tutorials.\n✍️ Book your time slot for the mandatory feedback session on StudOn.\n✍️ Remeber the registration deadline (28./29.10) for the seminar examination on campo."
+  },
+  {
+    "objectID": "sessions/session-02.html#participate",
+    "href": "sessions/session-02.html#participate",
+    "title": "Session 2",
     "section": "Participate",
-    "text": "Participate\n🖥️ Session 01\n\n\nBack to course schedule ⏎"
+    "text": "Participate\n🖥️ Session 02"
   },
   {
-    "objectID": "sessions/session-04.html",
-    "href": "sessions/session-04.html",
-    "title": "Session 4",
+    "objectID": "sessions/session-02.html#suggested-readings",
+    "href": "sessions/session-02.html#suggested-readings",
+    "title": "Session 2",
+    "section": "Suggested readings",
+    "text": "Suggested readings\n\nDavidson, B. I., Wischerath, D., Racek, D., Parry, D. A., Godwin, E., Hinds, J., Van Der Linden, D., Roscoe, J. F., Ayravainen, L. E. M., & Cork, A. (2023). Platform-controlled social media APIs threaten open science. https://osf.io/ps32z\nDriel, I. I. van, Giachanou, A., Pouwels, J. L., Boeschoten, L., Beyens, I., & Valkenburg, P. M. (2022). Promises and Pitfalls of Social Media Data Donations. Communication Methods and Measures, 1–17. https://doi.org/10.1080/19312458.2022.2109608\nEngel, U., Quan-Haase, A., Liu, S. X., & Lyberg, L. (2021). Digital trace data (1st ed., pp. 100–118). Routledge. https://www.taylorfrancis.com/books/9781003024583/chapters/10.4324/9781003024583-8\nOlteanu, A., Castillo, C., Diaz, F., & Kıcıman, E. (2019). Social data: Biases, methodological pitfalls, and ethical boundaries. Frontiers in Big Data, 2, 13. https://doi.org/10.3389/fdata.2019.00013\nReeves, B., Ram, N., Robinson, T. N., Cummings, J. J., Giles, C. L., Pan, J., Chiatti, A., Cho, M., Roehrick, K., Yang, X., Gagneja, A., Brinberg, M., Muise, D., Lu, Y., Luo, M., Fitzgerald, A., & Yeykelis, L. (2021). Screenomics : A Framework to Capture and Analyze Personal Life Experiences and the Ways that Technology Shapes Them. HumanComputer Interaction, 36(2), 150–201. https://doi.org/10.1080/07370024.2019.1578652"
+  },
+  {
+    "objectID": "sessions/session-02.html#useful-tools-resources",
+    "href": "sessions/session-02.html#useful-tools-resources",
+    "title": "Session 2",
+    "section": "Useful tools & resources",
+    "text": "Useful tools & resources\n\nPeeters, S., & Hagen, S. (2022). The 4CAT Capture and Analysis Toolkit: A Modular Tool for Transparent and Traceable Social Media Research. Computational Communication Research, 4(2), 571–589. https://doi.org/10.5117/ccr2022.2.007.hage\nPeeters, S. (2022). Zeeschuimer. Zenodo. https://zenodo.org/record/6826877"
+  },
+  {
+    "objectID": "sessions/session-02.html#section",
+    "href": "sessions/session-02.html#section",
+    "title": "Session 2",
     "section": "",
-    "text": "🖥️ 🚧 Session 04"
+    "text": "Back to course schedule ⏎"
   },
   {
-    "objectID": "sessions/session-04.html#participate",
-    "href": "sessions/session-04.html#participate",
-    "title": "Session 4",
+    "objectID": "sessions/session-05.html",
+    "href": "sessions/session-05.html",
+    "title": "Session 5",
     "section": "",
-    "text": "🖥️ 🚧 Session 04"
+    "text": "🖥️ 🚧 Session 05"
   },
   {
-    "objectID": "sessions/session-04.html#literature",
-    "href": "sessions/session-04.html#literature",
-    "title": "Session 4",
+    "objectID": "sessions/session-05.html#participate",
+    "href": "sessions/session-05.html#participate",
+    "title": "Session 5",
+    "section": "",
+    "text": "🖥️ 🚧 Session 05"
+  },
+  {
+    "objectID": "sessions/session-05.html#literature",
+    "href": "sessions/session-05.html#literature",
+    "title": "Session 5",
     "section": "Literature",
-    "text": "Literature\n\n\n\n\n\n\nThe following sections list the mandatory articles for the each presenting group. Additional optional articles are provided under Further reading.\n\n\n\n\n📚 Thema 1: Motivation für die Nutzung von Twitch\n\nHilvert-Bruce, Z., Neill, J. T., Sjöblom, M., & Hamari, J. (2018). Social motivations of live-streaming viewer engagement on twitch. Computers in Human Behavior, 84, 58–67. https://doi.org/10.1016/j.chb.2018.02.013\nCastro-Agirre, I., & Martínez-Fernández, G. (2024). From gamer niche to mainstream media: Twitch’s most popular media figures and content. Communication & Society, 179–196. https://doi.org/10.15581/003.37.2.179-196\nNguyen, T. T., & Veer, E. (2024). Why people watch user-generated videos? A systematic review and meta-analysis. International Journal of Human-Computer Studies, 181, 103144. https://doi.org/10.1016/j.ijhcs.2023.103144\n\n\nFurther Readings\n\nGros, D., Hackenholt, A., Zawadzki, P., & Wanner, B. (2018). Interactions of Twitch Users and Their Usage Behavior (G. Meiselwitz, Ed.; pp. 201–213). Springer International Publishing. https://doi.org/10.1007/978-3-319-91485-5_15\nZimmer, F., Scheibe, K., & Stock, W. G. (2018). A Model for Information Behavior Research on Social Live Streaming Services (SLSSs) (G. Meiselwitz, Ed.; pp. 429–448). Springer International Publishing. https://doi.org/10.1007/978-3-319-91485-5_33\nXu, X.-Y., Niu, W.-B., Jia, Q.-D., Nthoiwa, L., & Li, L.-W. (2021). Why Do Viewers Engage in Video Game Streaming? The Perspective of Cognitive Emotion Theory and the Moderation Effect of Personal Characteristics. Sustainability, 13(21), 11990. https://doi.org/10.3390/su132111990\nKneisel, A., & Sternadori, M. (2023). Effects of parasocial affinity and gender on live streaming fans’ motivations. Convergence, 29(2), 322–341. https://doi.org/10.1177/13548565221114461\n\n\n\n\n📚 Thema 2: Kommunikation und Interaktion auf Twitch\n\nJacobs, N., & Booth, P. (2021). Converging experiences, converging audiences: An analysis of doctor who on Twitch. Convergence: The International Journal of Research into New Media Technologies, 27(5), 1324–1342. https://doi.org/10.1177/1354856520976447\nDutt, S., & Graham, S. (2023). Video, talk and text: How do parties communicate coherently across modalities in live videostreams? Discourse, Context and Media, 55. https://doi.org/10.1016/j.dcm.2023.100726\nNavarro, A., & Tapiador, F. J. (2023). Twitch as a privileged locus to analyze young people’s attitudes in the climate change debate: a quantitative analysis. Humanities and Social Sciences Communications, 10(1), 1–13. https://doi.org/10.1057/s41599-023-02377-4\n\n\nFurther Readings\n\nYoung, A., & Wiedenfeld, G. (2022). A Motivation Analysis of Video Game Microstreamers: “Finding My People and Myself” on YouTube and Twitch. Journal of Broadcasting & Electronic Media, 66(2), 381–399. https://doi.org/10.1080/08838151.2022.2086549\nLessel, P., Altmeyer, M., Sahner, J., & Krüger, A. (2022). Streamer’s hell - investigating audience influence in live-streams beyond the game. Proc. ACM Hum.-Comput. Interact., 6(CHI PLAY), 252:1252:27. https://doi.org/10.1145/3549515\nMao, E. (2022). How live stream content types impact viewers’ support behaviors? Mediational analysis on psychological and social gratifications. Frontiers in Psychology, 13. https://doi.org/10.3389/fpsyg.2022.951055\n\n\n\nBack to course schedule ⏎"
+    "text": "Literature\n\n\n\n\n\n\nThe following sections list the mandatory articles for the each presenting group. Additional optional articles are provided under Further reading.\n\n\n\n\n📚 Thema 3: (Wirkungs-)Effekte der -Nutzung/Interaktion\n\nXi, D., Xu, W., Tang, L., & Han, B. (2024). The impact of streamer emotions on viewer gifting behavior: Evidence from entertainment live streaming. Internet Research, 34(3), 748–783. https://doi.org/10.1108/INTR-05-2022-0350\nBründl, S., Matt, C., Hess, T., & Engert, S. (2023). How synchronous participation affects the willingness to subscribe to social live streaming services: The role of co-interactive behavior on twitch. European Journal of Information Systems, 32(5), 800–817. https://doi.org/10.1080/0960085X.2022.2062468\nWolff, G. H., & Shen, C. (2022). Audience size, moderator activity, gender, and content diversity: Exploring user participation and financial commitment on Twitch.tv. New Media & Society, 146144482110699. https://doi.org/10.1177/14614448211069996\n\n\nFurther Readings\n\nHan, C., Seering, J., Kumar, D., Hancock, J. T., & Durumeric, Z. (2023). Hate Raids on Twitch: Echoes of the Past, New Modalities, and Implications for Platform Governance. Proceedings of the ACM on Human-Computer Interaction, 7(CSCW1), 1–28. https://doi.org/10.1145/3579609\nMeisner, C. (2023). Networked Responses to Networked Harassment? Creators’ Coordinated Management of “Hate Raids” on Twitch. Social Media + Society, 9(2), 20563051231179696. https://doi.org/10.1177/20563051231179696\nTomlinson, C. (2024). Community Grievances, personal responsibility, and DIY protection: Frustrations and solution-seeking among marginalized Twitch streamers. Convergence: The International Journal of Research into New Media Technologies, 30(1), 358–374. https://doi.org/10.1177/13548565231184060\nHou, F., Guan, Z., Li, B., & Chong, A. Y. L. (2020). Factors influencing people’s continuous watching intention and consumption intention in live streaming. Internet Research, 30(1), 141–163. https://doi.org/10.1108/INTR-04-2018-0177\nChinchilla, P., & Kim, J. (2024). “Let’s Chill and Chat”: Exploring the Effects of Streamers’ Self-Disclosure on Parasocial Interaction via Social Presence. International Journal of HumanComputer Interaction, 1–11. https://doi.org/10.1080/10447318.2024.2390263\n\n\n\n\n📚 Thema 4: (Wirkungs-)Effekte von TV-Wahldebatten\n\nLe Pennec, C., & Pons, V. (2023). How do campaigns shape vote choice? Multicountry evidence from 62 elections and 56 TV debates*. The Quarterly Journal of Economics, 138(2), 703–767. https://doi.org/10.1093/qje/qjad002\nWaldvogel, T., König, P., Wagschal, U., Becker, B., & Weishaupt, S. (2022). It’s the emotion, stupid! Emotional responses to televised debates and their impact on voting intention. Open Political Science, 5(1), 13–28. https://doi.org/10.1515/openps-2022-0146\nJennings, F. J., Bramlett, J. C., McKinney, M. S., & Hardy, M. M. (2020). Tweeting Along Partisan Lines: Identity-Motivated Elaboration and Presidential Debates. Social Media + Society, 6(4), 2056305120965518. https://doi.org/10.1177/2056305120965518\nWarner, B. R., Park, J., Kim, G.-E., McKinney, M. S., & Paul, Wm. B. (2024). Do Presidential Primary Debates Increase Political Polarization? American Behavioral Scientist, 68(1), 80–96. https://doi.org/10.1177/00027642211026613\n\n\nFurther Readings\n\nBenoit, W. L., Hansen, G. J., & Verser, R. M. (2003). A meta-analysis of the effects of viewing u.s. Presidential debates. Communication Monographs, 70(4), 335–350. https://doi.org/10.1080/0363775032000179133\nMcKinney, M. S., & Warner, B. R. (2013). Do Presidential Debates Matter? Examining a Decade of Campaign Debate Effects. Argumentation and Advocacy, 49(4), 238–258. https://doi.org/10.1080/00028533.2013.11821800\n\n\n\n\n\n\nBack to course schedule ⏎"
+  },
+  {
+    "objectID": "sessions/session-06.html",
+    "href": "sessions/session-06.html",
+    "title": "Session 6",
+    "section": "",
+    "text": "🖥️ 🚧 Session 06"
+  },
+  {
+    "objectID": "sessions/session-06.html#participate",
+    "href": "sessions/session-06.html#participate",
+    "title": "Session 6",
+    "section": "",
+    "text": "🖥️ 🚧 Session 06"
+  },
+  {
+    "objectID": "sessions/session-06.html#literature",
+    "href": "sessions/session-06.html#literature",
+    "title": "Session 6",
+    "section": "Literature",
+    "text": "Literature\n\n\n\n\n\n\nThe following sections list the mandatory articles for the each presenting group. Additional optional articles are provided under Further reading.\n\n\n\n\n📚 Thema 5: Wechselwirkung zwischen TV-Debatten und Twitter\n\nTrilling, D. (2015). Two Different Debates? Investigating the Relationship Between a Political Debate on TV and Simultaneous Comments on Twitter. Social Science Computer Review, 33(3), 259–276. https://doi.org/10.1177/0894439314537886\nRobertson, C. T., Dutton, W. H., Ackland, R., & Peng, T.-Q. (2019). The democratic role of social media in political debates: The use of Twitter in the first televised US presidential debate of 2016. Journal of Information Technology & Politics, 16(2), 105–118. https://doi.org/10.1080/19331681.2019.1590283\nJennings, F. J., Warner, B. R., McKinney, M. S., Kearney, C. C., Funk, M. E., & Bramlett, J. C. (2020). Learning from Presidential Debates: Who Learns the Most and Why? Communication Studies, 71(5), 896–910. https://doi.org/10.1080/10510974.2020.1807377\n\n\nFurther Readings\n\nCoddington, M., Molyneux, L., & Lawrence, R. G. (2014). Fact Checking the Campaign: How Political Reporters Use Twitter to Set the Record Straight (or Not). The International Journal of Press/Politics, 19(4), 391–409. https://doi.org/10.1177/1940161214540942\nGoovaerts, I., & Turkenburg, E. (2023). How Contextual Features Shape Incivility Over Time: An Analysis of the Evolution and Determinants of Political Incivility in Televised Election Debates (19852019). Communication Research, 50(4), 480–507. https://doi.org/10.1177/00936502221135694\n\n\n\n\n📚 Thema 6: Live-Chat(-Kommentare) in politischen Debatten\n\nAsbury-Kimmel, V., Chang, K.-C., McCabe, K. T., Munger, K., & Ventura, T. (2021). The effect of streaming chat on perceptions of political debates. Journal of Communication, 71(6), 947–974. https://doi.org/10.1093/joc/jqab041\nRuiz-Bravo, N., Selander, L., & Roshan, M. (2022). The Political Turn of Twitch  Understanding Live Chat as an Emergent Political Space. http://hdl.handle.net/10125/79723\nRiddick, S., & Shivener, R. (2022). Affective spamming on twitch: Rhetorics of an emote-only audience in a presidential inauguration livestream. Computers and Composition, 64. https://doi.org/10.1016/j.compcom.2022.102711\nEaton, J. (2024). From the comments section: Analyzing online public discourse on the first 2020 presidential debate. Research & Politics, 11(3), 20531680241271758. https://doi.org/10.1177/20531680241271758\n\n\nFurther reading\n\nPowell, A., & Williams-Johnson, D. (2023). “You dumb cracker b*tch”: The legitimizing of White supremacy during a Twitch ban of HasanAbi. New Media & Society, 14614448231191776. https://doi.org/10.1177/14614448231191776\n\n\n\n\n\n\nBack to course schedule ⏎"
+  },
+  {
+    "objectID": "exercises/showcase-03.html",
+    "href": "exercises/showcase-03.html",
+    "title": "Showcase",
+    "section": "",
+    "text": "Link to slides\n Download source file"
+  },
+  {
+    "objectID": "exercises/showcase-03.html#background",
+    "href": "exercises/showcase-03.html#background",
+    "title": "Showcase",
+    "section": "Background",
+    "text": "Background\n\n\n\n\n\n\nTodays’s data basis: Hollywood Age Gaps\n\n\n\n\nAn informational site showing the age gap between movie love interests.\n\nThe data follows certain rules:\n\nThe two (or more) actors play actual love interests (not just friends, coworkers, or some other non-romantic type of relationship)\nThe youngest of the two actors is at least 17 years old\nNot animated characters\n\n\n\n\nThe best way to learn R is by trying. This document tries to display a version of the “normal” data processing procedure.\nUse tidytuesday data as an example to showcase the potential"
+  },
+  {
+    "objectID": "exercises/showcase-03.html#packages",
+    "href": "exercises/showcase-03.html#packages",
+    "title": "Showcase",
+    "section": "Packages",
+    "text": "Packages\n\nThe pacman::p_load() package is used to load the packages, which has several advantages over the conventional method with library():\nConcise syntax\nAutomatic installation (if the package is not already installed)\nLoading multiple packages at once\nAutomatic search for dependencies\n\n\npacman::p_load(\n  here, \n  magrittr, \n  tidyverse,\n  janitor,\n  easystats,\n  sjmisc,\n  ggpubr)"
+  },
+  {
+    "objectID": "exercises/showcase-03.html#codechunks-aus-der-sitzung",
+    "href": "exercises/showcase-03.html#codechunks-aus-der-sitzung",
+    "title": "Showcase",
+    "section": "Codechunks aus der Sitzung",
+    "text": "Codechunks aus der Sitzung\n\nDie erste “Runde” der Datenaufbereitung\n\nDatenimport via URL\n\nVariablennamen und -beschreibungen\n\n\n\n\n\n\nVariable\nDescription\n\n\n\n\nmovie_name\nName of the film\n\n\nrelease_year\nRelease year\n\n\ndirector\nDirector of the film\n\n\nage_difference\nAge difference between the characters in whole years\n\n\ncouple_number\nAn identifier for the couple in case multiple couples are listed for this film\n\n\nactor_1_name\nThe name of the older actor in this couple\n\n\nactor_2_name\nThe name of the younger actor in this couple\n\n\nactor_1_birthdate\nThe birthdate of the older member of the couple\n\n\nactor_2_birthdate\nThe birthdate of the younger member of the couple\n\n\nactor_1_age\nThe age of the older actor when the film was released\n\n\nactor_2_age\nThe age of the younger actor when the film was released\n\n\n\n\n# Import data from URL\nage_gaps &lt;- read_csv(\"http://hollywoodagegap.com/movies.csv\") %&gt;% \n  janitor::clean_names()\n\n# Check data set\nage_gaps\n\n# A tibble: 1,198 × 12\n   movie_name   release_year director age_difference actor_1_name actor_1_gender\n   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;         \n 1 Harold and …         1971 Hal Ash…             52 Bud Cort     man           \n 2 Venus                2006 Roger M…             50 Peter O'Too… man           \n 3 The Quiet A…         2002 Phillip…             49 Michael Cai… man           \n 4 Solitary Man         2009 Brian K…             45 Michael Dou… man           \n 5 The Big Leb…         1998 Joel Co…             45 David Huddl… man           \n 6 Beginners            2010 Mike Mi…             43 Christopher… man           \n 7 Poison Ivy           1992 Katt Sh…             42 Tom Skerritt man           \n 8 Dirty Grand…         2016 Dan Maz…             41 Robert De N… man           \n 9 Whatever Wo…         2009 Woody A…             40 Larry David  man           \n10 Entrapment           1999 Jon Ami…             39 Sean Connery man           \n# ℹ 1,188 more rows\n# ℹ 6 more variables: actor_1_birthdate &lt;date&gt;, actor_1_age &lt;dbl&gt;,\n#   actor_2_name &lt;chr&gt;, actor_2_gender &lt;chr&gt;, actor_2_birthdate &lt;chr&gt;,\n#   actor_2_age &lt;dbl&gt;\n\n\n\n\nInitiale Überprüfung der Daten\n\n\n\n\n\n\nSind die Daten “technisch korrekt”?\n\n\n\n\n✅ Wie viele Fälle sind enthalten? Wie viele Variablen?\n✅ Wie lauten die Variablennamen? Sind sie sinnvoll?\n✅ Welchen Typ hat jede Variable, z. B. numerisch, kategorisch, logisch?\n✅ Wie viele eindeutige Werte hat jede Variable?\n✅ Welcher Wert tritt am häufigsten auf, und wie oft kommt er vor?\n✅ Gibt es fehlende Werte? Wenn ja, wie häufig ist dies der Fall?\n\n\n\n\nÜberblick über die Daten\n\nage_gaps %&gt;% glimpse()\n\nRows: 1,198\nColumns: 12\n$ movie_name        &lt;chr&gt; \"Harold and Maude\", \"Venus\", \"The Quiet American\", \"…\n$ release_year      &lt;dbl&gt; 1971, 2006, 2002, 2009, 1998, 2010, 1992, 2016, 2009…\n$ director          &lt;chr&gt; \"Hal Ashby\", \"Roger Michell\", \"Phillip Noyce\", \"Bria…\n$ age_difference    &lt;dbl&gt; 52, 50, 49, 45, 45, 43, 42, 41, 40, 39, 38, 38, 36, …\n$ actor_1_name      &lt;chr&gt; \"Bud Cort\", \"Peter O'Toole\", \"Michael Caine\", \"Micha…\n$ actor_1_gender    &lt;chr&gt; \"man\", \"man\", \"man\", \"man\", \"man\", \"man\", \"man\", \"ma…\n$ actor_1_birthdate &lt;date&gt; 1948-03-29, 1932-08-02, 1933-03-14, 1944-09-25, 193…\n$ actor_1_age       &lt;dbl&gt; 23, 74, 69, 65, 68, 81, 59, 73, 62, 69, 57, 77, 59, …\n$ actor_2_name      &lt;chr&gt; \"Ruth Gordon\", \"Jodie Whittaker\", \"Do Thi Hai Yen\", …\n$ actor_2_gender    &lt;chr&gt; \"woman\", \"woman\", \"woman\", \"woman\", \"woman\", \"man\", …\n$ actor_2_birthdate &lt;chr&gt; \"1896-10-30\", \"1982-06-03\", \"1982-10-01\", \"1989-01-0…\n$ actor_2_age       &lt;dbl&gt; 75, 24, 20, 20, 23, 38, 17, 32, 22, 30, 19, 39, 23, …\n\n\n\n\nKorrekturen\n\nage_gaps_correct &lt;- age_gaps %&gt;% \n  mutate(\n    across(ends_with(\"_birthdate\"), ~as.Date(.)) # set dates to dates\n  )\n\n\n\nÜberprüfung Lageparameter\n\nage_gaps_correct %&gt;% descr()\n\n\n## Basic descriptive statistics\n\n            var    type          label    n NA.prc    mean    sd   se   md\n   release_year numeric   release_year 1198      0 2000.57 17.03 0.49 2004\n age_difference numeric age_difference 1198      0   10.60  8.61 0.25    8\n    actor_1_age numeric    actor_1_age 1198      0   40.07 10.93 0.32   39\n    actor_2_age numeric    actor_2_age 1198      0   31.23  8.47 0.24   30\n trimmed          range iqr  skew\n 2003.51 89 (1935-2024)  15 -1.63\n    9.53      52 (0-52)  12  1.19\n   39.50     64 (17-81)  15  0.54\n   30.38     64 (17-81)  10  1.39\n\n\n\n\n\n\nDie ersten Datenexplorationen\n\nWie sind die Altersunterschiede verteilt?\n\nage_gaps_correct %&gt;% \n    ggplot(aes(x = age_difference)) +\n    geom_bar() +\n    theme_pubr()\n\n\n\n\n\n\n\n\n\n\nIn welchen Filmen ist der Altersunterschied am höchsten?\n\nage_gaps_correct %&gt;% \n    arrange(desc(age_difference)) %&gt;% \n    select(movie_name, age_difference, release_year) \n\n# A tibble: 1,198 × 3\n   movie_name         age_difference release_year\n   &lt;chr&gt;                       &lt;dbl&gt;        &lt;dbl&gt;\n 1 Harold and Maude               52         1971\n 2 Venus                          50         2006\n 3 The Quiet American             49         2002\n 4 Solitary Man                   45         2009\n 5 The Big Lebowski               45         1998\n 6 Beginners                      43         2010\n 7 Poison Ivy                     42         1992\n 8 Dirty Grandpa                  41         2016\n 9 Whatever Works                 40         2009\n10 Entrapment                     39         1999\n# ℹ 1,188 more rows\n\n\n\nage_gaps_correct %&gt;% \n    filter(release_year &gt;= 2022) %&gt;% \n    arrange(desc(age_difference)) %&gt;% \n    select(\n        movie_name, age_difference, release_year, \n        actor_1_name, actor_2_name) \n\n# A tibble: 19 × 5\n   movie_name              age_difference release_year actor_1_name actor_2_name\n   &lt;chr&gt;                            &lt;dbl&gt;        &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;       \n 1 Poor Things                         21         2023 Mark Ruffalo Emma Stone  \n 2 The Bubble                          21         2022 Pedro Pascal Maria Bakal…\n 3 Oppenheimer                         20         2023 Cillian Mur… Florence Pu…\n 4 The Northman                        20         2022 Alexander S… Anya Taylor…\n 5 Spaceman                            19         2024 Adam Sandler Carey Mulli…\n 6 The Lost City                       16         2022 Channing Ta… Sandra Bull…\n 7 We Live in Time                     13         2024 Andrew Garf… Florence Pu…\n 8 The Idea of You                     12         2024 Nicholas Ga… Anne Hathaw…\n 9 Barbie                              10         2023 Ryan Gosling Margot Robb…\n10 Twisters                            10         2024 Glen Powell  Daisy Edgar…\n11 Anyone but You                       9         2023 Glen Powell  Sydney Swee…\n12 Everything Everywhere …              9         2022 Ke Huy Quan  Michelle Ye…\n13 Top Gun: Maverick                    8         2022 Tom Cruise   Jennifer Co…\n14 Oppenheimer                          7         2023 Cillian Mur… Emily Blunt \n15 Your Place or Mine                   7         2023 Ashton Kutc… Zoë Chao    \n16 Your Place or Mine                   5         2023 Jesse Willi… Reese Withe…\n17 Poor Things                          2         2023 Christopher… Emma Stone  \n18 Your Place or Mine                   2         2023 Ashton Kutc… Reese Withe…\n19 You People                           1         2023 Jonah Hill   Lauren Lond…\n\n\n\n\nGibt es einen Zusammenhang zwischen Altersunterschied und Release?\n\n(Durchschnitts-)Unterschied nach Jahren\n\nage_gaps_correct %&gt;% \n    group_by(release_year) %&gt;% \n    summarise(age_difference_mean = mean(age_difference)) %&gt;% \n    ggplot(aes(release_year, age_difference_mean)) +\n    geom_col() +\n    theme_pubr()\n\n\n\n\n\n\n\n\n\n\nVerteilung nach Jahren\n\nggpubr::ggboxplot(\n    data = age_gaps_correct, \n    x = \"release_year\", \n    y = \"age_difference\", \n  ) + \n   # Rotate x-axis labels by 90 degrees\n  theme(\n    axis.text.x = element_text(\n        angle = 90,\n        vjust = 0.5,\n         hjust=1))  \n\n\n\n\n\n\n\n\n\n\nÜberprüfung der Korrelation\n\nage_gaps %&gt;%\n  select(release_year, age_difference) %&gt;% \n  correlation::correlation()\n\n# Correlation Matrix (pearson-method)\n\nParameter1   |     Parameter2 |     r |         95% CI | t(1196) |         p\n----------------------------------------------------------------------------\nrelease_year | age_difference | -0.22 | [-0.27, -0.16] |   -7.73 | &lt; .001***\n\np-value adjustment method: Holm (1979)\nObservations: 1198\n\n\n\n\nSchätzung OLS\n\n# Schätzung des Models\nmdl &lt;- lm(age_difference ~ release_year, data = age_gaps_correct)\n\n# Output\nmdl %&gt;% parameters::parameters()\n\nParameter    | Coefficient |    SE |           95% CI | t(1196) |      p\n------------------------------------------------------------------------\n(Intercept)  |      231.32 | 28.55 | [175.30, 287.33] |    8.10 | &lt; .001\nrelease year |       -0.11 |  0.01 | [ -0.14,  -0.08] |   -7.73 | &lt; .001\n\nmdl %&gt;% performance::model_performance()\n\n# Indices of model performance\n\nAIC      |     AICc |      BIC |    R2 | R2 (adj.) |  RMSE | Sigma\n------------------------------------------------------------------\n8505.472 | 8505.492 | 8520.737 | 0.048 |     0.047 | 8.402 | 8.409\n\n\n\nmdl %&gt;% report::report()\n\nWe fitted a linear model (estimated using OLS) to predict age_difference with\nrelease_year (formula: age_difference ~ release_year). The model explains a\nstatistically significant and weak proportion of variance (R2 = 0.05, F(1,\n1196) = 59.77, p &lt; .001, adj. R2 = 0.05). The model's intercept, corresponding\nto release_year = 0, is at 231.32 (95% CI [175.30, 287.33], t(1196) = 8.10, p &lt;\n.001). Within this model:\n\n  - The effect of release year is statistically significant and negative (beta =\n-0.11, 95% CI [-0.14, -0.08], t(1196) = -7.73, p &lt; .001; Std. beta = -0.22, 95%\nCI [-0.27, -0.16])\n\nStandardized parameters were obtained by fitting the model on a standardized\nversion of the dataset. 95% Confidence Intervals (CIs) and p-values were\ncomputed using a Wald t-distribution approximation."
   },
   {
     "objectID": "computing/computing-useful_links.html",
