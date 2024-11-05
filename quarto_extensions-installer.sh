@@ -10,7 +10,6 @@ quarto install extension sellorm/quarto-social-embeds
 
 # Code related extensions
 quarto add shafayetShafee/line-highlight
-quarto install extension jmbuhr/quarto-qrcode
 quarto install extension sellorm/quarto-social-embeds
 
 
