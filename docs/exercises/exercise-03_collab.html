@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Showcase – Digital behavioral data</title>
+<title>Exercise: Hollywood Age Gaps – Digital behavioral data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -106,7 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="../styles.css">
-<meta property="og:title" content="Showcase – Digital behavioral data">
+<meta property="og:title" content="Exercise: Hollywood Age Gaps – Digital behavioral data">
 <meta property="og:description" content="Session 03 - 🔨 Working with R">
 <meta property="og:site_name" content="Digital behavioral data">
 </head>
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Showcase</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Exercise: Hollywood Age Gaps</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -232,30 +232,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a></li>
-  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
-  <li><a href="#codechunks-aus-der-sitzung" id="toc-codechunks-aus-der-sitzung" class="nav-link" data-scroll-target="#codechunks-aus-der-sitzung">Codechunks aus der Sitzung</a>
+  <li><a href="#preparation" id="toc-preparation" class="nav-link" data-scroll-target="#preparation">Preparation</a>
   <ul>
-  <li><a href="#die-erste-runde-der-datenaufbereitung" id="toc-die-erste-runde-der-datenaufbereitung" class="nav-link" data-scroll-target="#die-erste-runde-der-datenaufbereitung">Die erste “Runde” der Datenaufbereitung</a>
-  <ul class="collapse">
-  <li><a href="#datenimport-via-url" id="toc-datenimport-via-url" class="nav-link" data-scroll-target="#datenimport-via-url">Datenimport via URL</a></li>
-  <li><a href="#initiale-überprüfung-der-daten" id="toc-initiale-überprüfung-der-daten" class="nav-link" data-scroll-target="#initiale-überprüfung-der-daten">Initiale Überprüfung der Daten</a></li>
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#import-und-vorverarbeitung-der-daten" id="toc-import-und-vorverarbeitung-der-daten" class="nav-link" data-scroll-target="#import-und-vorverarbeitung-der-daten">Import und Vorverarbeitung der Daten</a></li>
   </ul></li>
-  <li><a href="#die-ersten-datenexplorationen" id="toc-die-ersten-datenexplorationen" class="nav-link" data-scroll-target="#die-ersten-datenexplorationen">Die ersten Datenexplorationen</a>
+  <li><a href="#praktische-übung" id="toc-praktische-übung" class="nav-link" data-scroll-target="#praktische-übung">🛠️ Praktische Übung</a>
+  <ul>
+  <li><a href="#welche-rolle-spielt-das-geschlecht" id="toc-welche-rolle-spielt-das-geschlecht" class="nav-link" data-scroll-target="#welche-rolle-spielt-das-geschlecht">🔎 Welche Rolle spielt das Geschlecht?</a></li>
+  <li><a href="#exercise-1-übeprüfung-der-_gender-variablen" id="toc-exercise-1-übeprüfung-der-_gender-variablen" class="nav-link" data-scroll-target="#exercise-1-übeprüfung-der-_gender-variablen">📋 Exercise 1: Übeprüfung der <code>_gender</code>-Variablen</a></li>
+  <li><a href="#sind-die-daten-konsistent" id="toc-sind-die-daten-konsistent" class="nav-link" data-scroll-target="#sind-die-daten-konsistent">🔎 Sind die Daten “konsistent”?</a>
   <ul class="collapse">
-  <li><a href="#wie-sind-die-altersunterschiede-verteilt" id="toc-wie-sind-die-altersunterschiede-verteilt" class="nav-link" data-scroll-target="#wie-sind-die-altersunterschiede-verteilt">Wie sind die Altersunterschiede verteilt?</a></li>
-  <li><a href="#in-welchen-filmen-ist-der-altersunterschied-am-höchsten" id="toc-in-welchen-filmen-ist-der-altersunterschied-am-höchsten" class="nav-link" data-scroll-target="#in-welchen-filmen-ist-der-altersunterschied-am-höchsten">In welchen Filmen ist der Altersunterschied am höchsten?</a></li>
-  <li><a href="#gibt-es-einen-zusammenhang-zwischen-altersunterschied-und-release" id="toc-gibt-es-einen-zusammenhang-zwischen-altersunterschied-und-release" class="nav-link" data-scroll-target="#gibt-es-einen-zusammenhang-zwischen-altersunterschied-und-release">Gibt es einen Zusammenhang zwischen Altersunterschied und Release?</a></li>
+  <li><a href="#überprüfung-der-sortierung" id="toc-überprüfung-der-sortierung" class="nav-link" data-scroll-target="#überprüfung-der-sortierung">Überprüfung der Sortierung</a></li>
   </ul></li>
+  <li><a href="#überprüfung-der-anzahl-pro-paare-pro-film" id="toc-überprüfung-der-anzahl-pro-paare-pro-film" class="nav-link" data-scroll-target="#überprüfung-der-anzahl-pro-paare-pro-film">Überprüfung der Anzahl pro Paare pro Film</a></li>
+  <li><a href="#korrekturen" id="toc-korrekturen" class="nav-link" data-scroll-target="#korrekturen">Korrekturen</a></li>
+  <li><a href="#die-zweite-datenexploration" id="toc-die-zweite-datenexploration" class="nav-link" data-scroll-target="#die-zweite-datenexploration">🔎 Die zweite Datenexploration</a></li>
+  <li><a href="#exercise-2-alterskombinationen-im-überblick" id="toc-exercise-2-alterskombinationen-im-überblick" class="nav-link" data-scroll-target="#exercise-2-alterskombinationen-im-überblick">📋 Exercise 2: Alterskombinationen im Überblick</a></li>
+  <li><a href="#exercise-3-wie-sind-die-altersunterschiede-unterteilt-unter-berücksichtiung-des-geschlechts" id="toc-exercise-3-wie-sind-die-altersunterschiede-unterteilt-unter-berücksichtiung-des-geschlechts" class="nav-link" data-scroll-target="#exercise-3-wie-sind-die-altersunterschiede-unterteilt-unter-berücksichtiung-des-geschlechts">📋 Exercise 3: Wie sind die Altersunterschiede unterteilt, unter Berücksichtiung des Geschlechts?</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/chrdrn/dbd_2024/edit/main/exercises/showcase-03.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/chrdrn/dbd_2024/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/chrdrn/dbd_2024/edit/main/exercises/exercise-03_collab.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/chrdrn/dbd_2024/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Showcase</h1>
+<h1 class="title">Exercise: Hollywood Age Gaps</h1>
 <p class="subtitle lead">Session 03 - 🔨 Working with R</p>
 </div>
 
@@ -267,7 +271,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">06.11.2024</p>
+      <p class="date">05.11.2024</p>
     </div>
   </div>
   
@@ -285,10 +289,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p><a href="../slides/slides-03.html"><img src="https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto-slide.svg" class="img-fluid" alt="Quarto Slides"> Link to slides</a></p>
-<p><a href="https://github.com/chrdrn/dbd_2024/blob/main/exercises/showcase-03.qmd"><img src="https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto_document.svg" class="img-fluid"> Download source file</a></p>
-<p><a href="https://mybinder.org/v2/gh/faucommsci/dbd_binder/HEAD?urlpath=rstudio"><img src="https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-binder_rstudio.svg" class="img-fluid"> Open interactive and executable RStudio environment</a></p>
+<p><img src="https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto-slide.svg" class="img-fluid" alt="Quarto Slides"> Link to slides</p>
+<p><a href="https://github.com/chrdrn/dbd_2024/blob/main/exercises/exercise-03.qmd"><img src="https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto_document.svg" class="img-fluid"> Download source file</a> <!-- ![](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-binder_rstudio.svg) Open this exercise in interactive and executable environment --></p>
 </div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ziel der Anwendung: Grundlagen der Datenexploration in R
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Auffrischung der Grundkenntnisse im Umgang mit R, tidyverse und ggplot2</li>
+<li>Nützliche Funktionen aus dem <code>easystats</code>-verse kennenlernen</li>
+</ul>
 </div>
 </div>
 <section id="background" class="level2">
@@ -319,10 +338,12 @@ Todays’s data basis: Hollywood Age Gaps
 <li>Use <code>tidytuesday</code> data as an example to showcase the potential</li>
 </ul>
 </section>
-<section id="packages" class="level2">
-<h2 class="anchored" data-anchor-id="packages">Packages</h2>
+<section id="preparation" class="level2">
+<h2 class="anchored" data-anchor-id="preparation">Preparation</h2>
+<section id="packages" class="level3">
+<h3 class="anchored" data-anchor-id="packages">Packages</h3>
+<p>The <code>pacman::p_load()</code> package is used to load the packages, which has several advantages over the conventional method with <code>library()</code>:</p>
 <ul>
-<li>The <code>pacman::p_load()</code> package is used to load the packages, which has several advantages over the conventional method with <code>library()</code>:</li>
 <li>Concise syntax</li>
 <li>Automatic installation (if the package is not already installed)</li>
 <li>Loading multiple packages at once</li>
@@ -339,12 +360,8 @@ Todays’s data basis: Hollywood Age Gaps
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  ggpubr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="codechunks-aus-der-sitzung" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="codechunks-aus-der-sitzung">Codechunks aus der Sitzung</h2>
-<section id="die-erste-runde-der-datenaufbereitung" class="level3">
-<h3 class="anchored" data-anchor-id="die-erste-runde-der-datenaufbereitung">Die erste “Runde” der Datenaufbereitung</h3>
-<section id="datenimport-via-url" class="level4">
-<h4 class="anchored" data-anchor-id="datenimport-via-url">Datenimport via URL</h4>
+<section id="import-und-vorverarbeitung-der-daten" class="level3">
+<h3 class="anchored" data-anchor-id="import-und-vorverarbeitung-der-daten">Import und Vorverarbeitung der Daten</h3>
 <table class="caption-top table">
 <caption>Variablennamen und -beschreibungen</caption>
 <colgroup>
@@ -407,288 +424,273 @@ Todays’s data basis: Hollywood Age Gaps
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import data from URL</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>age_gaps <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"http://hollywoodagegap.com/movies.csv"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Check data set</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>age_gaps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,198 × 12
-   movie_name   release_year director age_difference actor_1_name actor_1_gender
-   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;         
- 1 Harold and …         1971 Hal Ash…             52 Bud Cort     man           
- 2 Venus                2006 Roger M…             50 Peter O'Too… man           
- 3 The Quiet A…         2002 Phillip…             49 Michael Cai… man           
- 4 Solitary Man         2009 Brian K…             45 Michael Dou… man           
- 5 The Big Leb…         1998 Joel Co…             45 David Huddl… man           
- 6 Beginners            2010 Mike Mi…             43 Christopher… man           
- 7 Poison Ivy           1992 Katt Sh…             42 Tom Skerritt man           
- 8 Dirty Grand…         2016 Dan Maz…             41 Robert De N… man           
- 9 Whatever Wo…         2009 Woody A…             40 Larry David  man           
-10 Entrapment           1999 Jon Ami…             39 Sean Connery man           
-# ℹ 1,188 more rows
-# ℹ 6 more variables: actor_1_birthdate &lt;date&gt;, actor_1_age &lt;dbl&gt;,
-#   actor_2_name &lt;chr&gt;, actor_2_gender &lt;chr&gt;, actor_2_birthdate &lt;chr&gt;,
-#   actor_2_age &lt;dbl&gt;</code></pre>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correct data</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>age_gaps_correct <span class="ot">&lt;-</span> age_gaps <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">ends_with</span>(<span class="st">"_birthdate"</span>), <span class="sc">~</span><span class="fu">as.Date</span>(.)) <span class="co"># set dates to dates</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="initiale-überprüfung-der-daten" class="level4">
-<h4 class="anchored" data-anchor-id="initiale-überprüfung-der-daten">Initiale Überprüfung der Daten</h4>
+</section>
+<section id="praktische-übung" class="level2">
+<h2 class="anchored" data-anchor-id="praktische-übung">🛠️ Praktische Übung</h2>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Achtung, bitte lesen!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Bevor Sie mit der Arbeit an den folgenden 📋 <strong>Exercises</strong> beginnen, stellen Sie bitte sicher, dass Sie alle Chunks des Abschnitts <a href="#preparation">Preparation</a> ausgeführt haben. Das können Sie tun, indem Sie den “<em>Run all chunks above</em>”-Knopf <img src="https://raw.githubusercontent.com/faucommsci/teaching_materials/main/images/buttons/rstudio-button-render_all_chunks_above.png" class="img-fluid"> des nächsten Chunks benutzen.</li>
+<li>Bei Fragen zum Code lohnt sich ein Blick in den <strong>Showcase</strong> (.qmd oder .html). Beim Showcase handelt es sich um eine kompakte Darstellung des in der Präsentation verwenden R-Codes. Sie können das Showcase also nutzen, um sich die Code-Bausteine anzusehen, die für die R-Outputs auf den Slides benutzt wurden.</li>
+</ul>
+</div>
+</div>
+<section id="welche-rolle-spielt-das-geschlecht" class="level3">
+<h3 class="anchored" data-anchor-id="welche-rolle-spielt-das-geschlecht">🔎 Welche Rolle spielt das Geschlecht?</h3>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Sind die Daten <em>“technisch korrekt</em>”?
+Spielt das Geschlecht eine Rolle?
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li><p>✅ <a href="#check-overview">Wie viele Fälle sind enthalten? Wie viele Variablen?</a></p></li>
-<li><p>✅ <a href="#check-overview">Wie lauten die Variablennamen? Sind sie sinnvoll?</a></p></li>
-<li><p>✅ <a href="#check-overview-correction">Welchen Typ hat jede Variable, z. B. numerisch, kategorisch, logisch?</a></p></li>
-<li><p>✅ <a href="#check-location-parameter">Wie viele eindeutige Werte hat jede Variable?</a></p></li>
-<li><p>✅ <a href="#check-location-parameter">Welcher Wert tritt am häufigsten auf, und wie oft kommt er vor?</a></p></li>
-<li><p>✅ <a href="#check-location-parameter">Gibt es fehlende Werte? Wenn ja, wie häufig ist dies der Fall?</a></p></li>
+<li>Der folgende Abschitt befasst sich nun ergänzend mit der Frage, welche Rolle das Geschlecht mit Blick auf die “Gültigkeit” der vorherigen Ergebnisse spielt</li>
+<li>Dazu sind jedoch weitere Explorations- und Überarbeitungsschritte notwendig</li>
 </ul>
 </div>
 </div>
-<section id="check-overview" class="level5">
-<h5 class="anchored" data-anchor-id="check-overview">Überblick über die Daten</h5>
+</section>
+<section id="exercise-1-übeprüfung-der-_gender-variablen" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-1-übeprüfung-der-_gender-variablen">📋 Exercise 1: Übeprüfung der <code>_gender</code>-Variablen</h3>
+<div class="callout callout-style-simple callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Arbeitsauftrag 1.1
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Nutzen Sie die Funktion <code>sjmisc::frq()</code> und schauen Sie sich im Datensatz <code>age_gaps_correct</code> die Variablen <code>actor_1_gender</code> und <code>actor_2_gender</code> an.</p>
+</div>
+</div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>age_gaps <span class="sc">%&gt;%</span> <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># INSERT CODE HERE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-simple callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Arbeitsauftrag 1.2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Nutzen Sie die Funktion <code>sjmisc::flat_talbe()</code> und den Datensatz <code>age_gaps_correct</code> um eine Kreuztabelle der Variablen <code>actor_1_gender</code> und <code>actor_2_gender</code> zu erstellen.</p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># INSERT CODE HERE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="sind-die-daten-konsistent" class="level3">
+<h3 class="anchored" data-anchor-id="sind-die-daten-konsistent">🔎 Sind die Daten “konsistent”?</h3>
+<section id="überprüfung-der-sortierung" class="level4">
+<h4 class="anchored" data-anchor-id="überprüfung-der-sortierung">Überprüfung der Sortierung</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>age_gaps_correct <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">p1_older =</span> <span class="fu">mean</span>(actor_1_age <span class="sc">&gt;</span> actor_2_age), <span class="co"># older person first?</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">p1_male  =</span> <span class="fu">mean</span>(actor_1_gender <span class="sc">==</span> <span class="st">"man"</span>),  <span class="co"># male person first? </span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">p_1_first_alpha =</span> <span class="fu">mean</span>(actor_1_name <span class="sc">&lt;</span> actor_2_name) <span class="co"># alphabetical order?</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Rows: 1,198
-Columns: 12
-$ movie_name        &lt;chr&gt; "Harold and Maude", "Venus", "The Quiet American", "…
-$ release_year      &lt;dbl&gt; 1971, 2006, 2002, 2009, 1998, 2010, 1992, 2016, 2009…
-$ director          &lt;chr&gt; "Hal Ashby", "Roger Michell", "Phillip Noyce", "Bria…
-$ age_difference    &lt;dbl&gt; 52, 50, 49, 45, 45, 43, 42, 41, 40, 39, 38, 38, 36, …
-$ actor_1_name      &lt;chr&gt; "Bud Cort", "Peter O'Toole", "Michael Caine", "Micha…
-$ actor_1_gender    &lt;chr&gt; "man", "man", "man", "man", "man", "man", "man", "ma…
-$ actor_1_birthdate &lt;date&gt; 1948-03-29, 1932-08-02, 1933-03-14, 1944-09-25, 193…
-$ actor_1_age       &lt;dbl&gt; 23, 74, 69, 65, 68, 81, 59, 73, 62, 69, 57, 77, 59, …
-$ actor_2_name      &lt;chr&gt; "Ruth Gordon", "Jodie Whittaker", "Do Thi Hai Yen", …
-$ actor_2_gender    &lt;chr&gt; "woman", "woman", "woman", "woman", "woman", "man", …
-$ actor_2_birthdate &lt;chr&gt; "1896-10-30", "1982-06-03", "1982-10-01", "1989-01-0…
-$ actor_2_age       &lt;dbl&gt; 75, 24, 20, 20, 23, 38, 17, 32, 22, 30, 19, 39, 23, …</code></pre>
+<pre><code># A tibble: 1 × 3
+  p1_older p1_male p_1_first_alpha
+     &lt;dbl&gt;   &lt;dbl&gt;           &lt;dbl&gt;
+1    0.813   0.987           0.496</code></pre>
 </div>
 </div>
 </section>
-<section id="check-overview-correction" class="level5">
-<h5 class="anchored" data-anchor-id="check-overview-correction">Korrekturen</h5>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>age_gaps_correct <span class="ot">&lt;-</span> age_gaps <span class="sc">%&gt;%</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">ends_with</span>(<span class="st">"_birthdate"</span>), <span class="sc">~</span><span class="fu">as.Date</span>(.)) <span class="co"># set dates to dates</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
-<section id="check-location-parameter" class="level5">
-<h5 class="anchored" data-anchor-id="check-location-parameter">Überprüfung Lageparameter</h5>
+<section id="überprüfung-der-anzahl-pro-paare-pro-film" class="level3">
+<h3 class="anchored" data-anchor-id="überprüfung-der-anzahl-pro-paare-pro-film">Überprüfung der Anzahl pro Paare pro Film</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>age_gaps_correct <span class="sc">%&gt;%</span> <span class="fu">descr</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>couples <span class="ot">&lt;-</span> age_gaps_correct <span class="sc">%&gt;%</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(movie_name) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribution</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>couples <span class="sc">%&gt;%</span> <span class="fu">frq</span>(n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>
-## Basic descriptive statistics
+<pre><code>n &lt;integer&gt; 
+# total N=863 valid N=863 mean=1.39 sd=0.75
 
-            var    type          label    n NA.prc    mean    sd   se   md
-   release_year numeric   release_year 1198      0 2000.57 17.03 0.49 2004
- age_difference numeric age_difference 1198      0   10.60  8.61 0.25    8
-    actor_1_age numeric    actor_1_age 1198      0   40.07 10.93 0.32   39
-    actor_2_age numeric    actor_2_age 1198      0   31.23  8.47 0.24   30
- trimmed          range iqr  skew
- 2003.51 89 (1935-2024)  15 -1.63
-    9.53      52 (0-52)  12  1.19
-   39.50     64 (17-81)  15  0.54
-   30.38     64 (17-81)  10  1.39</code></pre>
+Value |   N | Raw % | Valid % | Cum. %
+--------------------------------------
+    1 | 628 | 72.77 |   72.77 |  72.77
+    2 | 162 | 18.77 |   18.77 |  91.54
+    3 |  54 |  6.26 |    6.26 |  97.80
+    4 |  14 |  1.62 |    1.62 |  99.42
+    5 |   3 |  0.35 |    0.35 |  99.77
+    6 |   1 |  0.12 |    0.12 |  99.88
+    7 |   1 |  0.12 |    0.12 | 100.00
+ &lt;NA&gt; |   0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
 </div>
-</div>
-</section>
-</section>
-</section>
-<section id="die-ersten-datenexplorationen" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="die-ersten-datenexplorationen">Die ersten Datenexplorationen</h3>
-<section id="wie-sind-die-altersunterschiede-verteilt" class="level4">
-<h4 class="anchored" data-anchor-id="wie-sind-die-altersunterschiede-verteilt">Wie sind die Altersunterschiede verteilt?</h4>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>age_gaps_correct <span class="sc">%&gt;%</span> </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> age_difference)) <span class="sc">+</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_pubr</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="showcase-03_files/figure-html/figure-age-difference-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="in-welchen-filmen-ist-der-altersunterschied-am-höchsten" class="level4">
-<h4 class="anchored" data-anchor-id="in-welchen-filmen-ist-der-altersunterschied-am-höchsten">In welchen Filmen ist der Altersunterschied am höchsten?</h4>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>age_gaps_correct <span class="sc">%&gt;%</span> </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(age_difference)) <span class="sc">%&gt;%</span> </span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(movie_name, age_difference, release_year) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Movies with a loot of couples </span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>couples <span class="sc">%&gt;%</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,198 × 3
-   movie_name         age_difference release_year
-   &lt;chr&gt;                       &lt;dbl&gt;        &lt;dbl&gt;
- 1 Harold and Maude               52         1971
- 2 Venus                          50         2006
- 3 The Quiet American             49         2002
- 4 Solitary Man                   45         2009
- 5 The Big Lebowski               45         1998
- 6 Beginners                      43         2010
- 7 Poison Ivy                     42         1992
- 8 Dirty Grandpa                  41         2016
- 9 Whatever Works                 40         2009
-10 Entrapment                     39         1999
-# ℹ 1,188 more rows</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>age_gaps_correct <span class="sc">%&gt;%</span> </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(release_year <span class="sc">&gt;=</span> <span class="dv">2022</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(age_difference)) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        movie_name, age_difference, release_year, </span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>        actor_1_name, actor_2_name) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 19 × 5
-   movie_name              age_difference release_year actor_1_name actor_2_name
-   &lt;chr&gt;                            &lt;dbl&gt;        &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;       
- 1 Poor Things                         21         2023 Mark Ruffalo Emma Stone  
- 2 The Bubble                          21         2022 Pedro Pascal Maria Bakal…
- 3 Oppenheimer                         20         2023 Cillian Mur… Florence Pu…
- 4 The Northman                        20         2022 Alexander S… Anya Taylor…
- 5 Spaceman                            19         2024 Adam Sandler Carey Mulli…
- 6 The Lost City                       16         2022 Channing Ta… Sandra Bull…
- 7 We Live in Time                     13         2024 Andrew Garf… Florence Pu…
- 8 The Idea of You                     12         2024 Nicholas Ga… Anne Hathaw…
- 9 Barbie                              10         2023 Ryan Gosling Margot Robb…
-10 Twisters                            10         2024 Glen Powell  Daisy Edgar…
-11 Anyone but You                       9         2023 Glen Powell  Sydney Swee…
-12 Everything Everywhere …              9         2022 Ke Huy Quan  Michelle Ye…
-13 Top Gun: Maverick                    8         2022 Tom Cruise   Jennifer Co…
-14 Oppenheimer                          7         2023 Cillian Mur… Emily Blunt 
-15 Your Place or Mine                   7         2023 Ashton Kutc… Zoë Chao    
-16 Your Place or Mine                   5         2023 Jesse Willi… Reese Withe…
-17 Poor Things                          2         2023 Christopher… Emma Stone  
-18 Your Place or Mine                   2         2023 Ashton Kutc… Reese Withe…
-19 You People                           1         2023 Jonah Hill   Lauren Lond…</code></pre>
+<pre><code># A tibble: 19 × 2
+   movie_name                      n
+   &lt;chr&gt;                       &lt;int&gt;
+ 1 Love Actually                   7
+ 2 The Family Stone                6
+ 3 A View to a Kill                5
+ 4 He's Just Not That Into You     5
+ 5 Mona Lisa Smile                 5
+ 6 A Star Is Born                  4
+ 7 American Pie                    4
+ 8 Boogie Nights                   4
+ 9 Book Club                       4
+10 Closer                          4
+11 Pushing Tin                     4
+12 Sex and the City                4
+13 Soul Food                       4
+14 Tag                             4
+15 The Favourite                   4
+16 The Girl on the Train           4
+17 The Other Woman                 4
+18 Tomorrow Never Dies             4
+19 Twilight                        4</code></pre>
 </div>
 </div>
 </section>
-<section id="gibt-es-einen-zusammenhang-zwischen-altersunterschied-und-release" class="level4 page-columns page-full">
-<h4 class="anchored" data-anchor-id="gibt-es-einen-zusammenhang-zwischen-altersunterschied-und-release">Gibt es einen Zusammenhang zwischen Altersunterschied und Release?</h4>
-<section id="durchschnitts-unterschied-nach-jahren" class="level5">
-<h5 class="anchored" data-anchor-id="durchschnitts-unterschied-nach-jahren">(Durchschnitts-)Unterschied nach Jahren</h5>
+<section id="korrekturen" class="level3">
+<h3 class="anchored" data-anchor-id="korrekturen">Korrekturen</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>age_gaps_correct <span class="sc">%&gt;%</span> </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(release_year) <span class="sc">%&gt;%</span> </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">age_difference_mean =</span> <span class="fu">mean</span>(age_difference)) <span class="sc">%&gt;%</span> </span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(release_year, age_difference_mean)) <span class="sc">+</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_pubr</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="showcase-03_files/figure-html/figure-age-difference-mean-by-year-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>age_gaps_consistent <span class="ot">&lt;-</span> age_gaps_correct <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># If multiple couples, assign couple number by movie</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">couple_number =</span> <span class="fu">row_number</span>(),</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">.by =</span> <span class="st">"movie_name"</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Change data structure (one line per actor in a coulpe of a movie)</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="fu">c</span>(<span class="st">"actor_1_"</span>, <span class="st">"actor_2_"</span>)),</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="cn">NA</span>, <span class="st">".value"</span>),</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_sep =</span> <span class="st">"_"</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Put older actor first</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(age_difference), movie_name, birthdate) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="fu">row_number</span>(),</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> <span class="fu">c</span>(<span class="st">"movie_name"</span>, <span class="st">"couple_number"</span>)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> <span class="st">"position"</span>,</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_glue =</span> <span class="st">"actor_{position}_{.value}"</span>,</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> <span class="fu">c</span>(<span class="st">"name"</span>, <span class="st">"gender"</span>, <span class="st">"birthdate"</span>, <span class="st">"age"</span>)</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">couple_structure =</span> <span class="fu">case_when</span>(</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>      actor_1_gender <span class="sc">==</span> <span class="st">"woman"</span> <span class="sc">&amp;</span> actor_2_gender <span class="sc">==</span> <span class="st">"woman"</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>      actor_1_gender <span class="sc">==</span> <span class="st">"man"</span> <span class="sc">&amp;</span> actor_2_gender <span class="sc">==</span> <span class="st">"man"</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>      actor_1_gender <span class="sc">!=</span> <span class="st">"man"</span> <span class="sc">~</span> <span class="dv">3</span>, </span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>      actor_1_gender <span class="sc">==</span> <span class="st">"man"</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">older_male_hetero  =</span> sjmisc<span class="sc">::</span><span class="fu">rec</span>(</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>      couple_structure, </span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">rec=</span><span class="st">"3=0; 4=1; ELSE=NA"</span>, </span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>      <span class="at">to.factor =</span> <span class="cn">TRUE</span></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="verteilung-nach-jahren" class="level5 page-columns page-full">
-<h5 class="anchored" data-anchor-id="verteilung-nach-jahren">Verteilung nach Jahren</h5>
-<div class="cell page-columns page-full">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggboxplot</span>(</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> age_gaps_correct, </span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"release_year"</span>, </span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"age_difference"</span>, </span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>   <span class="co"># Rotate x-axis labels by 90 degrees</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">angle =</span> <span class="dv">90</span>,</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">vjust =</span> <span class="fl">0.5</span>,</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">hjust=</span><span class="dv">1</span>))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display page-columns page-full">
-<div class="page-columns page-full">
-<figure class="figure page-columns page-full">
-<p class="page-columns page-full"><img src="showcase-03_files/figure-html/figure-age-difference-by-year-1.png" class="img-fluid figure-img column-page" width="1536"></p>
-</figure>
+<section id="die-zweite-datenexploration" class="level3">
+<h3 class="anchored" data-anchor-id="die-zweite-datenexploration">🔎 Die zweite Datenexploration</h3>
+</section>
+<section id="exercise-2-alterskombinationen-im-überblick" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-2-alterskombinationen-im-überblick">📋 Exercise 2: Alterskombinationen im Überblick</h3>
+<div class="callout callout-style-simple callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Arbeitauftrag 2
 </div>
 </div>
+<div class="callout-body-container callout-body">
+<p>Nutzen Sie die Funktion <code>sjmisc::frq()</code> und schauen Sie sich im Datensatz <code>age_gaps_consistent</code> die Variablen <code>couple_structure</code> und <code>older_male_hetero</code> an.</p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># INSERT CODE HERE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="überprüfung-der-korrelation" class="level5">
-<h5 class="anchored" data-anchor-id="überprüfung-der-korrelation">Überprüfung der Korrelation</h5>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>age_gaps <span class="sc">%&gt;%</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(release_year, age_difference) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  correlation<span class="sc">::</span><span class="fu">correlation</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># Correlation Matrix (pearson-method)
-
-Parameter1   |     Parameter2 |     r |         95% CI | t(1196) |         p
-----------------------------------------------------------------------------
-release_year | age_difference | -0.22 | [-0.27, -0.16] |   -7.73 | &lt; .001***
-
-p-value adjustment method: Holm (1979)
-Observations: 1198</code></pre>
+<section id="exercise-3-wie-sind-die-altersunterschiede-unterteilt-unter-berücksichtiung-des-geschlechts" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-3-wie-sind-die-altersunterschiede-unterteilt-unter-berücksichtiung-des-geschlechts">📋 Exercise 3: Wie sind die Altersunterschiede unterteilt, unter Berücksichtiung des Geschlechts?</h3>
+<div class="callout callout-style-simple callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Arbeitsauftrag 3.1 (graphische Überprüfung)
 </div>
 </div>
-</section>
-<section id="schätzung-ols" class="level5">
-<h5 class="anchored" data-anchor-id="schätzung-ols">Schätzung OLS</h5>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Schätzung des Models</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lm</span>(age_difference <span class="sc">~</span> release_year, <span class="at">data =</span> age_gaps_correct)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Output</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>mdl <span class="sc">%&gt;%</span> parameters<span class="sc">::</span><span class="fu">parameters</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Parameter    | Coefficient |    SE |           95% CI | t(1196) |      p
-------------------------------------------------------------------------
-(Intercept)  |      231.32 | 28.55 | [175.30, 287.33] |    8.10 | &lt; .001
-release year |       -0.11 |  0.01 | [ -0.14,  -0.08] |   -7.73 | &lt; .001</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>mdl <span class="sc">%&gt;%</span> performance<span class="sc">::</span><span class="fu">model_performance</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># Indices of model performance
-
-AIC      |     AICc |      BIC |    R2 | R2 (adj.) |  RMSE | Sigma
-------------------------------------------------------------------
-8505.472 | 8505.492 | 8520.737 | 0.048 |     0.047 | 8.402 | 8.409</code></pre>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Erstellen Sie, auf Basis des Datensatzes <code>age_gaps_consistent</code>, einen <code>ggplot</code>.</li>
+<li>Nutzen Sie im Argument <code>aes()</code> die Variable <code>age_difference</code> als <code>x</code>-Variable und <code>older_male_hetero</code> für das Argument <code>fill</code>.</li>
+<li>Nutzen Sie <code>geom_bar</code> zur Erzeugung des Plots.</li>
+<li><em>Optional: Verwenden Sie <code>theme_pubr</code></em></li>
+</ul>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>mdl <span class="sc">%&gt;%</span> report<span class="sc">::</span><span class="fu">report</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>We fitted a linear model (estimated using OLS) to predict age_difference with
-release_year (formula: age_difference ~ release_year). The model explains a
-statistically significant and weak proportion of variance (R2 = 0.05, F(1,
-1196) = 59.77, p &lt; .001, adj. R2 = 0.05). The model's intercept, corresponding
-to release_year = 0, is at 231.32 (95% CI [175.30, 287.33], t(1196) = 8.10, p &lt;
-.001). Within this model:
-
-  - The effect of release year is statistically significant and negative (beta =
--0.11, 95% CI [-0.14, -0.08], t(1196) = -7.73, p &lt; .001; Std. beta = -0.22, 95%
-CI [-0.27, -0.16])
-
-Standardized parameters were obtained by fitting the model on a standardized
-version of the dataset. 95% Confidence Intervals (CIs) and p-values were
-computed using a Wald t-distribution approximation.</code></pre>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># INSERT CODE HERE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="callout callout-style-simple callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Arbeitsauftrag 3.2 (Überprüfung durch Modellierung)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Erstellen Sie ein lineares Modell (<code>lm</code>), das die Variable <code>age_difference</code> als abhängige Variable und die Variablen <code>release_year</code> und <code>older_male_hetero</code> als unabhängige Variablen verwendet. Nutzen Sie dazu den Datensatz <code>age_gaps_consistent</code>.</li>
+<li>Geben Sie die Parameter des Modells mit der Funktion <code>parameters::parameters()</code> aus.</li>
+<li>Bewerten Sie die Modellleistung mit der Funktion <code>performance::model_performance()</code>.</li>
+<li>Erstellen Sie einen Bericht über das Modell mit der Funktion <code>report::report()</code>.</li>
+</ol>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># INSERT CODE HERE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
-</section>
-</section>
 </section>
 </section>
 
@@ -1265,7 +1267,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/chrdrn/dbd_2024/edit/main/exercises/showcase-03.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/chrdrn/dbd_2024/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/chrdrn/dbd_2024/edit/main/exercises/exercise-03_collab.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/chrdrn/dbd_2024/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This page is built with ☕ &amp; <a href="https://quarto.org/">Quarto</a>.</p>
 </div>
