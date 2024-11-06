@@ -6,9 +6,11 @@ date-format: "DD.MM.YYYY"
 ---
 
 ::: {.callout-tip icon="false"}
-![Quarto Slides](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto-slide.svg) Link to slides
+[![Quarto Slides](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto-slide.svg) Link to slides](../slides/slides-03.html)
 
-[![](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto_document.svg) Download source file](https://github.com/chrdrn/dbd_2024/blob/main/exercises/exercise-03.qmd) <!-- ![](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-binder_rstudio.svg) Open this exercise in interactive and executable environment -->
+[![](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto_document.svg) Download source file](https://github.com/chrdrn/dbd_2024/blob/main/exercises/exercise-03.qmd)
+
+[![](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-binder_rstudio.svg) Open interactive and executable RStudio environment](https://mybinder.org/v2/gh/faucommsci/dbd_binder/HEAD?urlpath=rstudio)
 :::
 
 ::: callout-note
@@ -229,7 +231,6 @@ Nutzen Sie die Funktion `sjmisc::frq()` und schauen Sie sich im Datensatz `age_g
 ```{r exercise_3_1}
 # INSERT CODE HERE
 ```
-
 
 ::: callout-caution
 #### Arbeitsauftrag 3.2 (Überprüfung durch Modellierung)
