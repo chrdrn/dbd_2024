@@ -1,5 +1,5 @@
 ---
-title: "Processing"
+title: "Processing: Transcripts"
 # subtitle: "Vice-Presidential debate (Vance/Walz) - 02.10.2024"
 execute: 
   eval: false
@@ -158,6 +158,7 @@ transcripts$correct <- transcripts$raw %>%
 
 ```{r recode-data-transcripts-valid}
 #| eval: false
+#| echo: false
 
 transcripts$valid <- chat$correct %>% 
     mutate(

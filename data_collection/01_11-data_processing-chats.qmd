@@ -189,6 +189,7 @@ chat$correct <- bind_rows(
 
 ```{r recode-data-chats-valid}
 #| eval: false
+#| echo: false
 
 chat$valid <- chat$correct %>% 
     mutate(

@@ -1,6 +1,7 @@
 ---
 title: "Mining: Twitch streamer statistics"
-format: html
+execute: 
+  eval: false
 ---
 
 
