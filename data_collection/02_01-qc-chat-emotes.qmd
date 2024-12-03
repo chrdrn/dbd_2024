@@ -1,0 +1,171 @@
+---
+title: "Quality Control: Chat Emotes"
+editor_options: 
+  chunk_output_type: console
+---
+
+::: callout-tip
+## Information
+This document outlines the process of quality control for chat emotes in a dataset. The key steps include:
+
+- Extracting and processing emote information from chat messages.
+- Generating frequency tables for emotes and the number of emotes per message.
+- Identifying and handling cases where emote names are missing.
+- Creating and saving a dictionary of unique emotes for further analysis.
+
+:::
+
+## Preparation
+
+```{r setup-session}
+#| warning: false
+#| message: false
+ 
+# Load packages
+source(here::here("data_collection/00_02-setup-session.R"))
+```
+
+```{r import-data}
+# Load data
+chat <- qs::qread(here("local_data/chat-debates_full.qs"))
+```
+
+## Create list of emotes
+
+::: callout-note
+For example images of the emojis visit <https://twitchemotes.com/> or <https://www.twitchmetrics.net/emotes>
+:::
+
+```{r data-emotes-creation}
+emotes <- chat$correct %>%
+    select(message_id, message_emotes) %>%
+    unnest(message_emotes) %>%
+    mutate(
+        emote_id = sapply(message_emotes, function(emote) emote$id),
+        emote_name = sapply(message_emotes, function(emote) emote$name),
+        emote_locations = sapply(message_emotes, function(emote) paste(emote$locations, collapse = ", "))
+    ) %>%
+    select(message_id, emote_id, emote_name, emote_locations)
+```
+
+```{r tbl-emotes-frequencies}
+emotes %>% 
+    frq(emote_name, sort.frq = "desc", min.frq = 25) %>% 
+    data.frame() %>% 
+    select(val, frq, raw.prc, cum.prc) %>% 
+    rownames_to_column("rank") %>%
+    rename("Emote" = val, "n" = frq) %>%
+    gt() %>% 
+    gtExtras::gt_theme_538() %>% 
+    tab_options(table.width = pct(80))
+```
+
+```{r tbl-emotes-number-frequency}
+emotes %>% 
+    group_by(message_id) %>% 
+    summarise( n = n()) %>% 
+    frq(n) %>% 
+    data.frame() %>% 
+    select(val, frq, raw.prc, cum.prc) %>%
+    rename("Number of Emotes" = val, "n" = frq) %>%
+    gt() %>% 
+    gtExtras::gt_theme_538()    
+```
+
+## Check: "Empty emotes"
+
+```{r}
+emotes %>% 
+    group_by(emote_name, emote_id) %>% 
+    summarise(n = n()) %>% 
+    arrange(desc(n)) %>% 
+    filter(emote_name == "") %>%
+    gt() %>% 
+    gtExtras::gt_theme_538()
+```
+
+```{r}
+emote_name_recode <- emotes %>%
+    group_by(emote_id, emote_name) %>%
+    summarise(n = n(), .groups = 'drop') %>%
+    arrange(desc(n)) %>%
+    group_by(emote_id) %>%
+    filter(n == max(n)) %>%
+    slice(1) %>%
+    select(emote_id, emote_name)
+
+emotes_recoded <- emotes %>%
+    left_join(emote_name_recode, by = "emote_id", suffix = c("", "_recode")) %>%
+    mutate(emote_name = ifelse(!is.na(emote_name_recode), emote_name_recode, emote_name)) %>%
+    select(-emote_name_recode)
+```
+
+## Create emote dictionary
+
+```{r}
+#| eval: false
+
+# Extract unique emotes
+emotes_recoded_names <- emotes_recoded %>% 
+    distinct(emote_name, .keep_all = TRUE) %>% 
+    arrange(emote_name) %>% 
+    filter(emote_name != "") %>%
+    pull(emote_name)
+
+# Ensure the list is named
+named_emotes_recoded_names <- setNames(
+  as.list(emotes_recoded_names), emotes_recoded_names)
+
+# Create a dictionary
+dict_emotes <- dictionary(named_emotes_recoded_names)
+
+# Save the dictionary to a file
+saveRDS(dict_emotes, file = here(project_dir, "local_data/dictionary_chat_emotes.RDS"))
+```
+
+```{r}
+#| eval: false
+#| echo: false
+
+
+library(dplyr)
+
+# Function to replace emotes in a single row
+replace_emotes <- function(message_content, message_emotes, emote_name_recode) {
+  if (is.list(message_emotes) && length(message_emotes) > 0) {
+    for (emote_info in message_emotes[[1]]) {
+      if (is.list(emote_info)) { # Ensure emote_info is a list
+        emote_id <- emote_info$id
+        location <- as.character(emote_info$locations) # Ensure locations is a character string
+        
+        if (!is.na(location)) { # Check if location is not NA
+          # Split location into start and end indices
+          start_end <- as.integer(strsplit(location, "-")[[1]])
+          start <- start_end[1]
+          end <- start_end[2]
+          
+          # Lookup the replacement value from emote_name_recode
+          if (!is.null(emote_name_recode[[emote_id]])) {
+            replacement <- emote_name_recode[[emote_id]]
+            
+            # Replace the specific text in message_content
+            substr(message_content, start, end) <- replacement
+          }
+        }
+      }
+    }
+  }
+  return(message_content)
+}
+
+# Use mutate to create a new variable
+chat$correct <- chat$correct %>%
+  mutate(
+    message_content_new = mapply(
+      replace_emotes,
+      message_content,
+      message_emotes,
+      MoreArgs = list(emote_name_recode = emote_name_recode)
+    )
+  )
+```

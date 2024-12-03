@@ -1,0 +1,201 @@
+---
+title: "Mining: Presidential Debate"
+subtitle: "Trump vs. Harris - 10.09.2024"
+execute: 
+  eval: false
+editor_options: 
+  chunk_output_type: console
+---
+
+::: callout-note
+## Information
+This document outlines the process of collecting live chat data from Twitch and YouTube VODs of the Presidential debate held on 10.09.2024. The steps taken include:
+
+- Setting up the R and Python environments, including installing necessary packages.
+- Authenticating with Twitch using the `twitchr` package.
+- Preparing a list of VOD URLs to be processed.
+- Downloading the VODs using the `twitch-dl` tool.
+- Collecting live chat messages from the VODs using the `chat_downloader` Python package.
+- Converting the collected chat data into a pandas DataFrame and then into an R tibble.
+- Exporting the collected chat data to a local file for further analysis.
+:::
+
+## Preparation
+```{r setup-session-r-backend}
+#| warning: false
+#| message: false
+#| echo: false
+
+# Load packages
+source("00_02-setup_sessions.R")
+```
+
+```{python session-preparation-python}
+#| echo: false
+
+# Install necessary packages
+!pip install twitch-dl
+!pip install chat_downloader
+!pip install rpy2
+!pip install subprocess
+!pip install sh
+```
+
+```{r session-setup-r}
+#| eval: false 
+
+# Setup R environment
+pacman::p_load(
+    here, fs, 
+    twitchr,
+    tidyverse,
+    reticulate
+)
+```
+
+```{python session-setup-python}
+# Setup Python environment
+import datetime
+import email, smtplib, ssl
+import pandas as pd
+import rpy2.robjects as robjects
+import twitchdl
+
+from chat_downloader import ChatDownloader
+from chat_downloader.sites import TwitchChatDownloader 
+```
+
+```{r authentication-twitch}
+# twitch authorization
+twitchr::twitch_auth() 
+```
+
+## Prepare list of VODs
+
+```{r create-list-vod-urls}
+debate_vods_urls <- c(
+    # Twitch
+    "https://www.twitch.tv/videos/2247664726", #hasanabi
+    "https://www.twitch.tv/videos/2247617457", #zackrawrr
+    # # YouTube
+    "https://www.youtube.com/watch?v=lzobJil9Sgc" # Majority Report Live
+)
+```
+
+## Prepare the download links
+
+```{bash download-twitch-vods}
+#| eval: false
+
+# HasanAbi
+twitch-dl download https://www.twitch.tv/videos/2247664726 --quality 720p30
+# zackrawrr
+twitch-dl download https://www.twitch.tv/videos/2247617457 --quality 720p60
+```
+
+## Collect live chat
+
+```{python live-stream-chat-download}
+# Assuming url_py is already a Python list of URLs from R
+url_py = list(robjects.globalenv['debate_vods_urls'])
+
+# Initialize the ChatDownloader
+chat_downloader = ChatDownloader()
+
+# Initialize an empty list to store message data
+message_list = []
+
+# Function to generate a unique stream ID (can be URL or index-based)
+def generate_stream_id(url, index):
+    return f"stream_{index+1}"
+
+# Debugging: Print the list of URLs
+print("URLs to process:", url_py)
+
+# Loop through each URL and download the chat
+for idx, url in enumerate(url_py):
+    try:
+        print(f"Processing URL: {url}")
+        
+        # Fetch chat
+        chat = chat_downloader.get_chat(url)
+        if not chat:
+            print(f"No chat data found for {url}")
+            continue  # Skip to the next URL if no chat found
+
+        stream_id = generate_stream_id(url, idx)  # Generate a unique stream ID
+        
+        print(f"Downloading chat for {url}")
+        
+        for message in chat:
+            # Log message info for debugging
+            
+            # Extract message details
+            message_content = message.get('message', '')
+            message_id = message.get('message_id', None)
+            message_type = message.get('message_type', 'None')
+            timestamp = message.get('time_in_seconds', None)
+
+            # Extract author details (ensure the author field exists)
+            author_info = message.get('author', {})  # Unpack dictionary with author info
+            author_id = author_info.get('id', 'NA')  # Extract author ID
+            author_name = author_info.get('name', 'NA')  # Extract author name
+            author_type = author_info.get('type', 'NA')  # Extract type of author
+            author_gender = author_info.get('gender', 'NA')  # Extract gender of the author
+            author_bot = author_info.get('is_bot', 'NA')  # True if the user is a bot, False otherwise.
+            author_poster = author_info.get('is_original_poster', 'NA')  # True if the user is the original poster, False otherwise.
+            author_verified = author_info.get('is_verified', 'NA')  # True if the user is verified, False otherwise.
+            display_name = author_info.get('display_name', author_name)  # Extract display name
+            badges = author_info.get('badges', [])  # Keep badges as a list
+            emotes = message.get('emotes', [])  # Keep emotes as a list
+
+            # Create a dictionary representing one row of the tibble
+            message_with_info = {
+                'stream_id': stream_id,  # Add the stream ID
+                'url': url,  # Add the stream URL
+                'username': author_name,  
+                'user_id': author_id,  
+                'display_name': display_name,  
+                'user_type': author_type, 
+                'user_gender': author_gender,
+                'user_is_bot': author_bot,
+                'user_is_original_poster': author_poster,
+                'user_is_verified': author_verified,
+                'badges': badges,  # Add the badges as a list
+                'emotes': emotes,  # Add the emotes as a list
+                'timestamp': timestamp,  # Add the message timestamp
+                'message_id': message_id,  # Add the message ID
+                'message_type': message_type,  # Add the message type
+                'message_content': message_content  # Add the actual message text
+            }
+
+            # Append the dictionary to the list
+            message_list.append(message_with_info)
+                
+    except Exception as e:
+        print(f"Error processing {url}: {e}")
+
+# Print the final list of messages collected
+print("Collection finished")
+```
+
+```{python livechat-vods-create-dataframe }
+# Convert the list of dictionaries to a pandas DataFrame
+message_df = pd.DataFrame(message_list)
+```
+
+```{r livecaht-vods-create-tibble}
+# Access the message_df from Python
+df <- py$message_df %>% 
+    as_tibble()
+
+# Check the structure of the tibble
+df %>% glimpse
+```
+
+```{r livechat-vods-export-to-local}
+# Name of subdirectory for easier path managment
+project_dir <- here::here("2024-nlp_of_live_stream_chat")
+
+qs::qsave(df, file = here(project_dir, "local_data/chat_raw-vods_presidential_debate.qs"))
+```

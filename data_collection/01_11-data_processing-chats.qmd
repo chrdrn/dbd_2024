@@ -1,0 +1,211 @@
+---
+title: "Processing: Chats"
+execute: 
+  eval: false
+editor_options: 
+  chunk_output_type: console
+---
+
+::: callout-note
+## Information
+
+- Processes chat data from presidential and vice-presidential debates.
+- Imports raw data and combines it for analysis.
+- Recodes variables and adds new information.
+- Renames and reorders variables for clarity.
+- Saves the processed data for further use.
+
+:::
+
+## Preparation
+
+```{r setup-session}
+#| warning: false
+#| message: false
+
+# Name of subdirectory for easier path managment
+project_dir <- here::here("2024-nlp_of_live_stream_chat")
+
+# Load packages
+source(here::here(project_dir, "00_02-setup-session.R"))
+```
+
+```{r data-import}
+chat <- list(
+    raw = list(
+        presidential = qs::qread(here(project_dir, "local_data/chat_raw-vods_presidential_debate.qs")),
+        vice_presidential = qs::qread(here(project_dir, "local_data/chat_raw-vods_vice_presidential_debate.qs"))
+    )
+)
+```
+
+## Process data
+
+::: callout-note
+## Changelog
+- Combined data from presidential and vice-presidential debates.
+- Dropped "empty" meta variables: `user_is_*`, `user_type`, `user_gender`.
+- Added `debate` variable to indicate the source of the data.
+- Recoded `user_id` to character type.
+- Recoded `stream_id` to streamer names.
+- Added `platform` variable based on the URL.
+- Added `message_length`, `message_timecode`, `message_time`, and `message_during_debate` variables.
+- Added user information variables: `user_has_badge`, `user_is_premium`, `user_is_subscriber`, `user_is_turbo`, `user_is_moderator`, `user_is_partner`, `user_is_subgifter`, `user_is_broadcaster`, `user_is_vip`, `user_is_twitchdj`, `user_is_founder`, `user_is_staff`, `user_is_game_dev`, `user_is_ambassador`, `user_no_audio`, `user_no_video`.
+- Converted user information variables to numeric type.
+- Renamed variables: `stream_id` to `streamer`, `username` to `user_name`, `display_name` to `user_display_name`, `badges` to `user_badges`, `timestamp` to `message_timestamp`, `emotes` to `message_emotes`.
+- Reordered variables: moved `platform` and `debate` after `url`, and `message_emotes` after `message_content`.
+:::
+
+```{r recode-data-chats-correct}
+chat$correct <- bind_rows(
+    # Combine data from presidential and vicepresidental debate
+    chat$raw$presidential %>%
+        select(!c(starts_with("user_is_"), user_type, user_gender)) %>% # drop "empty" meta variables
+        mutate(debate = "presidential"), # add source 
+    chat$raw$vice_presidential %>% 
+        select(!c(starts_with("user_is_"), user_type, user_gender)) %>% # drop "empty" meta variables
+        mutate(debate = "vice presidential")
+    ) %>% 
+    # Manual wrangling
+    mutate(
+        # Correction / recoding variables
+        across(user_id, ~as.character(.)), 
+        across(stream_id, ~case_when(
+            str_detect(.x, "stream_1") ~ "hasanabi",
+            str_detect(.x, "stream_2") ~ "zackrawrr",
+            str_detect(.x, "stream_3") ~ "the_majority_report",
+            TRUE ~ "unknown")
+        ), 
+        # Add information
+        platform = case_when(
+            str_detect(url, "twitch") ~ "twitch",
+            str_detect(url, "youtube") ~ "youtube",
+            TRUE ~ "unknown"),
+        message_length = nchar(message_content), 
+        message_timecode = seconds_to_period(timestamp),
+        message_time = format(as.POSIXct(timestamp, origin = "1970-01-01", tz = "UTC"), "%H:%M:%S"),
+        message_during_debate = case_when(
+            # Presidential debate
+            stream_id == "hasanabi" & debate == "presidential" &
+            timestamp >= hms::as_hms("07:00:11") & timestamp <= hms::as_hms("08:45:21") |
+            stream_id == "zackrawrr" & debate == "presidential" &
+            timestamp >= hms::as_hms("08:02:12") & timestamp <= hms::as_hms("09:46:15") |
+            stream_id == "the_majority_report" & debate == "presidential" &
+            timestamp >= hms::as_hms("00:12:53") & timestamp <= hms::as_hms("01:57:49") |
+            # # Vice-Presidential debate
+            stream_id == "hasanabi" & debate == "vice presidential" &
+            timestamp >= hms::as_hms("06:57:00") & timestamp <= hms::as_hms("08:43:17") |
+            stream_id == "zackrawrr" & debate == "vice presidential" &
+            timestamp >= hms::as_hms("07:19:26") & timestamp <= hms::as_hms("09:05:41") |
+            stream_id == "the_majority_report" & debate == "vice presidential" &
+            timestamp >= hms::as_hms("00:09:52") & timestamp <= hms::as_hms("01:57:07")        
+             ~ 1,
+            TRUE ~ 0
+        ), 
+        # Add user information
+        user_has_badge = map_lgl(badges, ~ length(.x) > 0),
+        user_is_premium = map_lgl(badges, ~ any(map_chr(.x, ~ .x$name %||% NA_character_) == "premium")), 
+        user_is_subscriber = map_lgl(badges, ~ any(map_chr(.x, ~ .x$name %||% NA_character_) == "subscriber")), 
+        user_is_turbo = map_lgl(badges, ~ any(map_chr(.x, ~ .x$name %||% NA_character_) == "turbo")),
+        user_is_moderator = map_lgl(badges, ~ any(map_chr(.x, ~ .x$name %||% NA_character_) == "moderator")),
+        user_is_partner = map_lgl(badges, ~ any(map_chr(.x, ~ .x$name %||% NA_character_) == "partner")),
+        user_is_subgifter = map_lgl(badges, ~ any(map_chr(.x, ~ .x$name %||% NA_character_) == "subgifter")),
+        user_is_broadcaster = map_lgl(badges, ~ any(map_chr(.x, ~ .x$name %||% NA_character_) == "broadcaster")),
+        user_is_vip = map_lgl(badges, ~ any(map_chr(.x, ~ .x$name %||% NA_character_) == "vip")),
+        user_is_twitchdj = map_lgl(badges, ~ any(map_chr(.x, ~ .x$name %||% NA_character_) == "twitch_dj")),
+        user_is_founder = map_lgl(badges, ~ any(map_chr(.x, ~ .x$name %||% NA_character_) == "founder")),
+        user_is_staff = map_lgl(badges, ~ any(map_chr(.x, ~ .x$name %||% NA_character_) == "staff")),
+        user_is_game_dev = map_lgl(badges, ~ any(map_chr(.x, ~ .x$name %||% NA_character_) == "game_developer")),
+        user_is_ambassador = map_lgl(badges, ~ any(map_chr(.x, ~ .x$name %||% NA_character_) == "ambassador")),
+        user_no_audio = map_lgl(badges, ~ any(map_chr(.x, ~ .x$name %||% NA_character_) == "no_audio")),
+        user_no_video = map_lgl(badges, ~ any(map_chr(.x, ~ .x$name %||% NA_character_) == "no_video")),
+        across(starts_with("user_is_"), ~as.numeric(.)),
+        across(starts_with("user_no_"), ~as.numeric(.)),
+        across(starts_with("user_has_"), ~as.numeric(.))
+    ) %>% 
+    # Rename and reorder variables
+    rename(
+        streamer = stream_id,
+        user_name = username,
+        user_display_name = display_name,
+        user_badges = badges,
+        message_timestamp = timestamp,
+        message_emotes = emotes,
+    ) %>% 
+    relocate(platform, debate, .after = url) %>% 
+    relocate(message_emotes, .after = message_content)
+```
+
+| Variable                | Description                                                                 |
+|-------------------------|-----------------------------------------------------------------------------|
+| streamer                | Name of the streamer.                                                       |
+| url                     | URL of the video.                                                           |
+| platform                | Platform where the video is hosted (e.g., Twitch, YouTube).                 |
+| debate                  | Type of debate (e.g., presidential, vice presidential).                     |
+| user_name               | Username of the user.                                                       |
+| user_id                 | Unique identifier for the user.                                             |
+| user_display_name       | Display name of the user.                                                   |
+| user_badges             | List of badges associated with the user.                                    |
+| message_timestamp       | Timestamp of the message in seconds.                                        |
+| message_id              | Unique identifier for the message.                                          |
+| message_type            | Type of message (e.g., text_message).                                       |
+| message_content         | Content of the message.                                                     |
+| message_emotes          | List of emotes used in the message.                                         |
+| message_length          | Length of the message content.                                              |
+| message_timecode        | Timecode of the message in Period format.                                   |
+| message_time            | Time of the message in HH:MM:SS format.                                     |
+| message_during_debate   | Indicator if the message was sent during the debate (1 for yes, 0 for no).  |
+| user_has_badge          | Indicator if the user has any badge (1 for yes, 0 for no).                  |
+| user_is_premium         | Indicator if the user is a premium member (1 for yes, 0 for no).            |
+| user_is_subscriber      | Indicator if the user is a subscriber (1 for yes, 0 for no).                |
+| user_is_turbo           | Indicator if the user is a Turbo member (1 for yes, 0 for no).              |
+| user_is_moderator       | Indicator if the user is a moderator (1 for yes, 0 for no).                 |
+| user_is_partner         | Indicator if the user is a partner (1 for yes, 0 for no).                   |
+| user_is_subgifter       | Indicator if the user is a subgifter (1 for yes, 0 for no).                 |
+| user_is_broadcaster     | Indicator if the user is the broadcaster (1 for yes, 0 for no).             |
+| user_is_vip             | Indicator if the user is a VIP (1 for yes, 0 for no).                       |
+| user_is_twitchdj        | Indicator if the user is a Twitch DJ (1 for yes, 0 for no).                 |
+| user_is_founder         | Indicator if the user is a founder (1 for yes, 0 for no).                   |
+| user_is_staff           | Indicator if the user is a staff member (1 for yes, 0 for no).              |
+| user_is_game_dev        | Indicator if the user is a game developer (1 for yes, 0 for no).            |
+| user_is_ambassador      | Indicator if the user is an ambassador (1 for yes, 0 for no).               |
+| user_no_audio           | Indicator if the user has no audio (1 for yes, 0 for no).                   |
+| user_no_video           | Indicator if the user has no video (1 for yes, 0 for no).                   |
+
+
+
+<!-- TODO #5 Check message information -->   
+<!-- TODO Check "empty"/very short messages
+<!-- TODO Create "dictionary"/list of emotes (from message_emotes list variable "name") -->
+<!-- TODO Identify "emotes" in message (and add prefix for easier identification? ) -->
+
+<!-- TODO #6  Check user information -->
+<!-- TODO Create "dictionary"/list of badges (from user_badges list variable "name") -->
+<!-- TODO Identify user groups (moderators? subscribers?) based on badge(s) -->
+
+<!-- TODO #7 Debate timestamps -->
+<!-- TODO Identify timestamps/codes for the beginning/end of the debate on each stream -->
+<!-- TODO Create dummy to mark if a comment was made during the debate or not -->
+
+```{r recode-data-chats-valid}
+#| eval: false
+
+chat$valid <- chat$correct %>% 
+    mutate(
+        # TODO Add changes here
+    )
+```
+
+## Save output
+
+```{r export-data-chats-local}
+qs::qsave(
+    chat,
+    file = here(project_dir, "local_data/chat-debates_full.qs")
+)
+
+qs::qsave(
+    chat$correct, 
+    file = here(project_dir, "local_data/chat-debates.qs")
+)
+```

@@ -1,0 +1,58 @@
+---
+title: "Quality Control: Chat Badges"
+editor_options: 
+  chunk_output_type: console
+---
+
+::: callout-tip
+## Information
+- The document sets up the session by sourcing a setup script.
+- It imports chat data from a local file.
+- It creates a list of user badges from the chat data.
+- It provides a link to example images of the badges.
+- It analyzes the frequency and distribution of badges per message.
+:::
+
+## Preparation
+
+```{r setup-session}
+#| warning: false
+#| message: false
+
+source(here::here("data_collection/00_02-setup-session.R"))
+```
+
+```{r import-data}
+# Load data
+chat <- qs::qread(here("local_data/chat-debates_full.qs"))
+```
+
+## Create list of badges
+
+```{r data-badges-creation}
+badges <- chat$correct %>%
+    select(message_id, user_badges) %>%
+    unnest(user_badges) %>%
+    mutate(
+        badge_name = sapply(user_badges, function(badge) badge$name),
+    ) %>%
+    unnest(badge_name)
+```
+
+::: callout-note
+For example images of the emojis visit https://twitchinsights.net/badges
+:::
+
+```{r}
+badges %>% 
+    frq(badge_name)
+```
+
+## Distribution of badges per message
+
+```{r}
+badges %>% 
+    group_by(message_id) %>% 
+    summarise( n = n()) %>% 
+    describe_distribution()
+```

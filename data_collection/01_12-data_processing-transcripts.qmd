@@ -1,0 +1,182 @@
+---
+title: "Processing"
+# subtitle: "Vice-Presidential debate (Vance/Walz) - 02.10.2024"
+execute: 
+  eval: false
+editor_options: 
+  chunk_output_type: console
+---
+
+::: callout-note
+## Information
+
+- Processes transcripts of live-streamed debates.
+- Imports, cleans, and transforms the data.
+- Saves the processed data for further analysis.
+:::
+
+## Preparation
+
+```{r setup-session}
+#| warning: false
+#| message: false
+
+# Name of subdirectory for easier path managment
+project_dir <- here::here("2024-nlp_of_live_stream_chat")
+
+# Load packages
+source(here::here(project_dir, "00_02-setup-session.R"))
+```
+
+```{r data-import}
+transcripts <- list(
+    raw = fs::dir_ls(
+        path = here(project_dir, "local_data/transcripts"), 
+        glob = "*.txt"
+        ) %>%
+        # Read the files into the list
+        map(~ read_file(.)) %>%
+        # Set the list names to the base file names (without the path)
+        set_names(~ str_extract(basename(.), "^(.*)(?=\\.txt)"))
+)
+```
+
+
+## Process data
+
+::: callout-note
+## Changelog
+- Added extraction of speaker and timestamp from each line of the transcript.
+- Removed brackets from the timestamp.
+- Extracted dialogue text and calculated its length.
+- Filtered out lines without speaker or dialogue.
+- Converted timestamp to hms object and calculated duration between dialogues.
+- Merged all processed files into a single data frame with source identifiers.
+- Added columns for debate type, streamer, and numeric streamer identifier.
+- Created unique speaker identifiers combining debate type, streamer, and speaker.
+- Added sequence_during_debate indicator based on timestamp ranges for each source.
+- Generated unique id_sequence for each speaking sequence.
+- Removed unnecessary columns (line, prefix) and reordered columns.
+:::
+
+```{r recode-data-transcripts-correct}
+transcripts$correct <- transcripts$raw %>% 
+    # Import and process each file
+    map(~ read_file(.) %>%
+            str_split("\n") %>%
+            .[[1]] %>%
+            tibble(line = .) %>%
+            mutate(
+                speaker = str_extract(line, "S\\d+"),  # Extract speaker 
+                timestamp = str_extract(line, "\\[\\d{2}:\\d{2}:\\d{2}\\]"),  # Extract timestamps
+                across(timestamp, ~str_remove_all(., "[\\[\\]]")),  # Remove the brackets from timestamp
+                dialogue = str_remove(line, "S\\d+ \\[\\d{2}:\\d{2}:\\d{2}\\]: "),  # Extract dialogue text
+                dialogue_length = nchar(dialogue),
+            ) %>% 
+            filter( # Filter out lines without speaker or dialogue
+                !is.na(speaker) &
+                !is.na(dialogue)
+                ) %>% 
+            mutate(
+                timestamp = hms::as_hms(timestamp),  # Convert timestamp to hms object
+                duration = as.numeric(difftime(lead(timestamp), timestamp, , units = "secs"))  # Calculate duration
+            )
+    ) %>%
+    bind_rows(.id = "source") %>% 
+    mutate(
+        debate = case_when(
+            str_detect(source, "vice_presidential") ~ "vice_presidential",
+            TRUE ~ "presidential"), 
+        streamer = case_when(
+            str_detect(source, "abc") | str_detect(source, "cbs") ~ "tv_station",
+            str_detect(source, "hasanabi") ~ "hasanabi",
+            str_detect(source, "zackrawrr") ~ "zackrawrr",
+            str_detect(source, "the_majority_report") ~ "the_majority_report",
+            TRUE ~ "unknown"
+        ),
+        id_streamer = case_when(
+            streamer == "tv_station" ~ 1,
+            streamer == "hasanabi" ~ 2,
+            streamer == "the_majority_report" ~ 3,
+            streamer == "zackrawrr" ~ 4,
+            TRUE ~ 0
+        ),
+        prefix = paste0(
+            ifelse(debate == "presidential", "p", "vp"),
+            id_streamer, "_"
+        ),
+        id_speaker = paste0(prefix, tolower(speaker)),
+        sequence_during_debate = case_when(
+            # Presidential debate
+            source == "presidential_debate-abc" &
+            timestamp >= hms::as_hms("00:00:00") & timestamp <= hms::as_hms("01:45:07") |
+            source == "presidential_debate-hasanabi" & 
+            timestamp >= hms::as_hms("07:00:11") & timestamp <= hms::as_hms("08:45:21") |
+            source == "presidential_debate-zackrawrr" & 
+            timestamp >= hms::as_hms("08:02:12") & timestamp <= hms::as_hms("09:46:15") |
+            source == "presidential_debate-the_majority_report" & 
+            timestamp >= hms::as_hms("00:12:53") & timestamp <= hms::as_hms("01:57:49") |
+            # Vice-Presidential debate
+            source == "vice_presidential_debate-cbs" &
+            timestamp >= hms::as_hms("00:00:00") & timestamp <= hms::as_hms("01:47:48") |
+            source == "vice_presidential_debate-hasanabi" & 
+            timestamp >= hms::as_hms("06:57:00") & timestamp <= hms::as_hms("08:43:17") |
+            source == "presidential_debate-zackrawrr" & 
+            timestamp >= hms::as_hms("07:19:26") & timestamp <= hms::as_hms("09:05:41") |
+            source == "vice_presidential_debate-the_majority_report" & 
+            timestamp >= hms::as_hms("00:09:52") & timestamp <= hms::as_hms("01:57:07")        
+             ~ 1,
+            TRUE ~ 0
+        )
+    ) %>% 
+    group_by(prefix, id_streamer) %>%
+    mutate(id_sequence = paste0(prefix, "s", sprintf("%04d", row_number()))) %>%
+    ungroup() %>% 
+    relocate(id_sequence) %>% 
+    select(-line, -prefix) 
+```
+
+
+| Variable               | Description                                                                 |
+|------------------------|-----------------------------------------------------------------------------|
+| id_sequence            | Unique identifier for each speaking sequence                                |
+| source                 | Source of the transcript (e.g., presidential_debate-abc)                     |
+| speaker                | Identifier for the speaker (e.g., S27)                                       |
+| timestamp              | Timestamp of the dialogue in HH:MM:SS format                                 |
+| dialogue               | Text of the dialogue                                                         |
+| dialogue_length        | Length of the dialogue text in characters                                    |
+| duration               | Duration of the dialogue in seconds                                          |
+| debate                 | Type of debate (e.g., presidential, vice_presidential)                       |
+| streamer               | Source of the stream (e.g., tv_station, hasanabi)                            |
+| id_streamer            | Numeric identifier for the streamer                                          |
+| id_speaker             | Unique identifier for the speaker, combining debate type, streamer, and speaker|
+| sequence_during_debate | Indicator if the sequence occurred during the debate (1 = yes, 0 = no)       |
+
+
+<!-- TODO #9 Check speaker information -->
+<!-- TODO Identify and recode prominent speakers (e.g. by the number of speaking sequences by stream)  -->
+
+```{r recode-data-transcripts-valid}
+#| eval: false
+
+transcripts$valid <- chat$correct %>% 
+    mutate(
+        # TODO Add changes here
+    )
+```
+
+## Save output
+
+```{r export-data-chats-local}
+qs::qsave(
+    transcripts,
+    file = here(project_dir, "local_data/transcripts-debates_full.qs")
+)
+
+qs::qsave(
+    transcripts$correct,
+    file = here(project_dir, "local_data/transcripts-debates.qs")
+)
+```
+
+
