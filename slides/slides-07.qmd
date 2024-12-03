@@ -1,0 +1,604 @@
+---
+title: "🔨 Text as data in R"
+subtitle: "Session 09"
+date: 04 12 2024
+date-format: "DD.MM.YYYY"
+bibliography: references_slides.bib
+---
+
+## Seminarplan
+
+```{r setup-slide-session}
+#| echo: false
+#| message: false
+
+# Load packages
+# Load schedule
+source(here::here("slides/schedule.R"))
+
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(
+    here, taylor,
+    magrittr, janitor,
+    ggpubr, 
+    gt, gtExtras,
+    countdown, 
+    quanteda, # quanteda text processing
+    quanteda.textplots, 
+    easystats, tidyverse
+)
+```
+
+```{r table-schedule}
+#| echo: false 
+
+schedule %>%
+    gt::gt() %>%
+    gt::fmt_markdown(columns = c(Datum, Topic)) %>% 
+    gtExtras::gt_theme_538() %>% 
+    gt::tab_options(
+        table.width = gt::pct(75), 
+        table.font.size = "12px"
+    ) %>%
+    # mark current session
+    gtExtras::gt_highlight_rows(
+        rows = 10,
+        fill = "#C50F3C", 
+        alpha = 0.2,
+        bold_target_only = TRUE,
+        target_col = Topic       
+    ) %>% 
+    # fade out past sessions
+    gt::tab_style(
+        style = cell_text(
+            style = "italic", 
+            color = "grey"),
+        location = cells_body(
+            columns = everything(), 
+            rows = 2:8)
+    )
+```
+
+# Agenda {background-image="img/slide_bg-agenda.png"}
+
+1.  [Datengrundlage des Seminars](#intro)
+2.  [Theoretische Grundlagen](#nlp-introduction)
+3.  [Text as data in R](#r-introduction)
+4.  [👥 Group activity](#group-activity)
+
+# US-Wahldebatten auf {{< bi twitch >}} {#intro background-image="img/slide_bg-section.png"}
+
+Hintergrund zu den Daten bzw. der Erhebung
+
+```{r import-data-silent}
+#| echo: false
+
+# Import data from URL
+chats <- qs::qread(here("local_data/chat-debates_full.qs"))$correct
+transcripts <- qs::qread(here("local_data/transcripts-debates_full.qs"))$correct
+```
+
+## Wahldebatte am digitalen Lagerfeuer
+
+#### Was wir (bisher) aus der Literatur gelernt haben
+
+-   **Wahldebaten** sind ein spezifischer Teil des politischen Diskurses und haben **Einfluss auf Emotionen, Einstellungen und Handlungen** von Menschen
+-   **Soziale Medien** haben die **Kommunikation und Interaktion** zwischen Politikern und Bürgern **verändert**
+-   {{< bi twitch >}} **Twitch** ist eine Social Networking Site (SNS) mit **besonderen Eigenschaften** (z.B. "Live"-Aspekt & die Bedeutung der *community*) & zunehmend Ort für **politische Diskurse**
+
+## Who are we looking at? 
+
+#### Überblick über verschiedenen Statistiken der betrachteten Streamer
+
+```{r figure-streamer-statistics}
+#| code-fold: true
+#| code-summary: "Expand for full code"
+
+streamer_stats <- qs::qread(here("local_data/twitch_streamer_stats.qs"))
+
+streamer_stats %>% 
+  pivot_longer(cols = c(avg_viewers, followers, hours_streamed), names_to = "statistic", values_to = "value") %>%
+  ggplot(aes(x = month, y = value, fill = streamer)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_grid(statistic ~ ., scales = "free_y", labeller = as_labeller(c(
+    avg_viewers = "Average Viewers",
+    followers = "Followers",
+    hours_streamed = "Hours Streamed"))) +
+  theme_minimal() +
+  labs(
+    x = "Month",
+    y = "",
+    title = "Streamer Statistics Over Time", 
+    fill = "Streamer") +
+  scale_y_continuous(labels = scales::comma) +
+  ggsci::scale_fill_cosmic()
+```
+
+
+## Wie wurden die Daten erhoben?
+
+#### Überblick über den Prozess der Datenerhebung
+
+1.  **Erhebung** des **Live-Stream-Chats** mit {{< iconify devicon python >}} Paket [`chat_downloader`](https://chat-downloader.readthedocs.io/en/latest/)
+2.  Download der **Twitch & TV VoDs** mit dem {{< iconify devicon python >}} Paket [`twitch-dl`](https://twitch-dl.bezdomni.net/)
+3.  **Transkription** der Streams & der Debatte mit AI-based Transkriptionstool [NoScribe](https://github.com/kaixxx/noScribe)
+
+##### Herausforderungen
+
+-   Eingeschränkte {{< bi twitch >}} Twitch API ➜ nicht alle (ursprünglich verfügbaren) Informationen abrufbar
+-   Limitierte Verfügbarkeit der VoDs auf {{< bi twitch >}} Twitch ➜ Re-Upload auf unserem {{< bi youtube >}} YouTube-Kanal (ungelistet)
+-   Qualität der Transkription ist gut, Identifkation der sprechenden Person(en) ausbaufähig
+
+## Welche Daten stehen zur Verfügung?
+
+#### Überblick über die Daten
+
+<!-- TODO Dokumentation verlinken -->
+
+-   **Links zu den (Uploads der) VoDs** auf StudOn im Ordner [Kursmaterialien/VODs](https://www.studon.fau.de/fold6108037.html)
+-   **Datensatz `chats.qs`** (& Dokumentation) mit den Chatnachrichten aller Live-Streams ([{{< bi twitch >}} hasanabi](https://www.twitch.tv/hasanabi), [{{< bi twitch >}} zackrawrr](https://www.twitch.tv/zackrawrr) und [{{< bi youtube >}}](https://www.youtube.com/majorityreportlive)\|[{{< bi twitch >}} TheMajorityReport](https://www.twitch.tv/themajorityreport))
+-   **Datensatz `transcripts.qs`** (& Dokumentation) mit den Transkripten der TV-Debatten (Presidential auf ABC, Vice Presidential auf CBS) & aller Live-Streams ([{{< bi twitch >}} hasanabi](https://www.twitch.tv/hasanabi), [{{< bi twitch >}} zackrawrr](https://www.twitch.tv/zackrawrr) und [{{< bi youtube >}}](https://www.youtube.com/majorityreportlive)\|[{{< bi twitch >}} TheMajorityReport](https://www.twitch.tv/themajorityreport))
+-   **Dictionary `dictionary_chat_emotes.RDS`** mit den Emojis und Emotes, die in den hier analyisierten {{< bi twitch >}} Twitch & {{< bi youtube >}} YouTube-Chats verwendet wurden
+
+## Chats als Rohform von DBD
+
+#### Kurzer Überblick über den `chats`-Datensatz
+
+```{r data-chats-overview}
+chats %>% glimpse 
+```
+
+## Möglichkeite zum Data Linking mit Transkripten
+
+#### Kurzer Überblick über den `transcripts`-Datensatz
+
+```{r data-transcripts-overview}
+transcripts %>% glimpse 
+```
+
+## Nicht Roh, aber auch nicht fehlerfrei {visibility="hidden"}
+
+#### Stand & Herausforderungen der Daten
+
+-   Datenerhebung inklusive Dokumentation für die Datensätze auf Homepage
+-   Oberflächliche Qualitätskontrolle wurde durchgeführt, aber keine systematische Validierung
+-   Datensatzspezfisch:
+    -   `speaker` nicht komplett codiert
+
+# Theoretische Grundlagen {#nlp-introduction background-image="img/slide_bg-section.png"}
+
+Vorstellung des Prozesses der automatisierten Inhaltsanalyse
+
+## Where the "magic" happends
+
+#### Automatisierte Inhaltsanalyse: Definition und Ablauf
+
+> Automatisierte Inhaltsanalyse beschreibt die **automatisierte** (z. B. via Programmierskript) **Analyse von Inhalten** (z. B. Text, Bilder). Dabei **unterstützen Forschende/manuelle Codierer:innen**, etwa durch die Validierung von Ergebnissen. [@hase2023]
+
+##### Aber:
+
+-   Automatisierte Methoden “augment humans, not replace them” [@grimmer2013, S.270]
+-   „English before everything“ [@baden2022, S.9]
+-   (Systematische) Fehler: “All quantitative models of language are wrong — but some are useful” (@grimmer2013, S.269)
+
+## Workflow, demystified
+
+#### Typische Schritte der automatisierten Inhaltsanalyse
+
+![](img/session-07/graphics-dbd-session_07.png){fig-align="center"}
+
+## Building a shared vocabulary
+
+#### Grundbegriffe und Terminologien I
+
+![](https://cdn.analyticsvidhya.com/wp-content/uploads/2021/10/Text_heirarchy_crop.png)
+
+::: notes
+Token: A token is a string with a known meaning, and a token may be a word, number or just characters like punctuation. “Hello”, “123”, and “-” are some examples of tokens.
+
+Sentence: A sentence is a group of tokens that is complete in meaning. “The weather looks good” is an example of a sentence, and the tokens of the sentence are \[“The”, “weather”, “looks”, “good\].
+
+Paragraph: A paragraph is a collection of sentences or phrases, and a sentence can alternatively be viewed as a token of a paragraph.
+
+Documents: A document might be a sentence, a paragraph, or a set of paragraphs. A text message sent to an individual is an example of a document.
+
+Corpus: A corpus is typically an extensive collection of documents as a Bag-of-words. A corpus comprises each word’s id and frequency count in each record. An example of a corpus is a collection of emails or text messages sent to a particular person.
+:::
+
+## Building a shared vocabulary
+
+#### Grundbegriffe und Terminologien II
+
+-   **Lemma**: Die **Grundform eines Wortes**. Zum Beispiel ist "*run*"" das Lemma von "*running*"".
+-   **Stoppwörter**: Wörter, die in der Regel **keine inhaltliche Bedeutung** haben und daher aus dem Text entfernt werden, z.B. "*and*", "*or*" & "*the*".
+-   **Parts of speech (POS)**: **Linguistische Marker**, die die allgemeine Kategorie einer sprachlichen Eigenschaft eines Wortes anzeigen, z.B. Nomen, Verb, Adjektiv usw.
+-   **Named entities**: Ein reales **Objekt, wie Personen, Orte, Organisationen, Produkte** usw., das mit einem Eigennamen bezeichnet werden kann, z.B. "Donald Trump“ oder „Vereinigte Staaten".
+-   **Multi-word expressions**: Wortfolgen, die ein einzelnes Konzept bezeichnen (und im Deutschen wären), z.B. "*Mehrwertsteuer*" (im Englischen: "*value added tax*").
+
+## Was ist Preprocessing und warum ist es wichtig?
+
+#### Typische Schritte des Preprocessings
+
+-   **Reduziert** die **Komplexität** von Textdaten, **ohne** deren substanzielle **Bedeutung** zu **minimieren**
+
+-   Umfasst die **Bereinigung** (Reduzierung von systematischen Fehlern, z.B. Encoding) & **Normalisierung** (Texte über Dokumente, Sprache, Plattformen, etc. vergleichbar machen)
+
+-   Typische Bestandteile der Normalisierung sind **Tokenisierung**, **Kleinschreibung**, **Entfernung von Stoppwörtern, Satz- &Sonderzeichen**, **Lemmatisierung**/Stemming und "**Pruning**" (häufige/seltene Features entfernen)
+
+## Abwägungen beim Preprocessing
+
+#### Herausforderungen und Entscheidungen
+
+-   Oft verändert **Kleinschreibung** die **Bedeutung** von Features **nicht**, aber es gibt **Ausnahmen** ("*Bild*" vs. *BILD*-Zeitung)
+-   Oft sind **Sonderzeichen** (z.B. Satzzeichen) **nicht** von substanzieller **Bedeutung**, aber es gibt **Ausnahmen** (z.B. #metoo, G7, Emojis)
+-   **Stoppwörter** sind stark **kontextabhängig**! ➜ oft ist es sinnvoll, **eigene "organische" Stoppwortlisten** zu erstellen
+-   **Lemmatisierung** (*"running" "ran" ➜ "run"*) häufig "besser", Stemming (*"running" "ran" ➜ "run" "ran"*) häufig schneller
+-   **Reihenfolge** des Preprocessings kann **Ergebnisse beeinflussen** (z.B. Entfernung von Stoppwörtern vor oder nach Lemmatisierung)
+
+## Wenn aus Wörtern Zahlen werden
+
+#### Die einfachste Form der Textrepräsentation: bag-of-words
+
+-   Damit Computer Text verstehen bzw. verarbeiten können, muss der Text in ein numerisches Format umgewandelt werden
+-   Eine einfache und weit verbreitete Methode zur Textrepräsentation in der natürlichen Sprachverarbeitung (NLP) ist das **bag-of-words Modell**
+    -   repräsentiert einen Text (z.B. einen Satz oder ein Dokument) als eine Sammlung von Wörtern, ohne Berücksichtigung der Reihenfolge oder Grammatik
+    -   Annahme: Reihenfolge und Kontext von Wörtern haben keinen Einfluss auf Ihre Bedeutung
+
+## Ugly, but efficient
+
+#### Warum die bag-of-words Annahme problematisch ist ...
+
+-   **Polysemie**: Fliege (Tier & Kleidungsstück), "Maus" (Tier & Computerzubehör)
+-   **Verneinung**: "Nicht schlecht!"
+-   **Named entities**: "Olaf Scholz", "Vereinigte Staaten"
+-   **Wörter mit ähnlichen Bedeutungen**: "Gemüse" & "Grünzeug"
+
+#### ... und doch so häufig verwendet wird
+
+-   schnell, resourcenschonend und "robust"
+-   leichte Anpassung bzw. Erweiterung steigern Aussagekraft
+
+## Beyond "bag-of-words"
+
+#### Text-as-Data Repräsentationen, die Reihenfolge und Kontext berücksichtigen
+
+-   **Ngram-basierte Repräsentation** (z. B. Collocations & Keywords-in-Context)
+-   **Syntax-basierte Repräsentation** (z. B. Part-of-Speech Tagging & Dependency Parsing)
+-   **Vektor-basierte Repräsentation** in semantischen, n-dimensionalen Räumen (z. B. Word Embeddings)
+
+# Preprocessing mit `quanteda` {#r-introduction background-image="img/slide_bg-example.png"}
+
+Working with text as data in R
+
+## Flexible for power users, simple for beginners
+
+#### Hintergrund zu Paket & Projekt `quanteda` [@benoit2018]
+
+-   **quanteda** ist ein **umfassendes R-Paket** für die **Textverarbeitung** und **Textanalyse**
+-   Sehr aktives **Open-Source-Projekt** mit **umfangreicher Dokumentation** und **Community-Support**
+-   Britische gemeinnützige Organisation, die sich der Förderung von Open-Source-Software für die Textanalyse widmet
+-   Alternative: [`tidytext`](https://www.tidytextmining.com/tidytext)[@silge2017]
+
+## Grundlage ist immer das Korpus
+
+#### Arbeiten mit quanteda: `corpus`
+
+```{r create-corpus-transcripts}
+#| output-location: column
+
+# Create corpus
+corp_transcripts <- transcripts %>% 
+  quanteda::corpus(
+    docid_field = "id_sequence", 
+    text_field = "dialogue"
+  )
+
+# Output
+corp_transcripts
+```
+
+## Einfache Tokenisierung ...
+
+#### Einfluss der Preporcessing-Schritte am Beispiel (I)
+
+```{r create-tokens-simple}
+# Tokenize corpus
+toks_simple <- corp_transcripts %>% 
+  quanteda::tokens() 
+
+# Output
+head(toks_simple[[1]], 100)
+```
+
+## ... mit Entfernung von Satz- und Sonderzeichen ...
+
+#### Einfluss der Preporcessing-Schritte am Beispiel (II)
+
+```{r create-tokens-nosymbols}
+#| code-line-numbers: "3-8"
+
+toks_nopunct <- corp_transcripts %>% 
+  quanteda::tokens(
+    remove_punct = TRUE, 
+    remove_symbols = TRUE,
+    remove_numbers = TRUE,
+    remove_url = TRUE, 
+    split_hyphens = FALSE,
+    split_tags = FALSE
+  )
+
+head(toks_nopunct[[1]], 100)
+```
+
+## ... und ohne Stopwörter
+
+#### Einfluss der Preporcessing-Schritte am Beispiel (III)
+
+```{r create-tokens-nostopw}
+#| code-line-numbers: "10-12"
+
+toks_nostopw <- corp_transcripts %>% 
+  quanteda::tokens(
+    remove_punct = TRUE, 
+    remove_symbols = TRUE,
+    remove_numbers = TRUE,
+    remove_url = TRUE, 
+    split_hyphens = FALSE,
+    split_tags = FALSE
+  ) %>% 
+  quanteda::tokens_remove(
+    pattern = quanteda::stopwords("en")
+  )
+
+head(toks_nostopw[[1]], 100)
+```
+
+## Direkter Vergleich
+
+#### Einfluss der Preporcessing-Schritte am Beispiel (IV)
+
+```{r tokenization-comparison}
+head(toks_simple[[1]], 100)
+head(toks_nopunct[[1]], 100)
+head(toks_nostopw[[1]], 100)
+```
+
+## Ngrams für mehr Kontext
+
+#### Tokenisierung von Bi & Skipgrams
+
+```{r create-tokens-ngrams}
+# Bigrams
+toks_nostopw %>% 
+  tokens_ngrams(n = 2) %>% 
+  .[[1]]
+```
+
+```{r create-tokens-skipgrams}
+# Skipgrams
+toks_nostopw %>% 
+  tokens_ngrams(n = 2, skip = 0:1) %>% 
+  .[[1]]
+```
+
+## Welche Features treten häufig nacheinander auf?
+
+#### Kollokationen für Identifkation prominenter Bigramme
+
+```{r create-collocations}
+#| output-location: column
+
+toks_nostopw %>% 
+  quanteda.textstats::textstat_collocations(
+    size = 2, 
+    min_count = 5
+  ) %>% 
+  head(25)
+```
+
+## Von Tokens zur DFM
+
+#### Erklärung der Dokument-Feature-Matrix (DFM)
+
+:::::: columns
+::: {.column width="50%"}
+Sehr häufig genutzten Stukturen der "klassischen" Textverarbeitung mit folgende Merkmale:
+
+-   **jede Zeile ein Dokument** (wie z.B. eine Chatnachricht oder eine Sprecher:innensequenz),
+
+-   **jede Spalte repräsentiert einen Begriff**, und
+
+-   **jeder Wert** enthält (typischerweise) die **Anzahl der Häufigkeit dieses Begriffs** in diesem Dokument.
+:::
+
+:::: {.column width="50%"}
+![](https://www.oreilly.com/api/v2/epubs/9781491953235/files/assets/feml_0405.png){fig-align="center"}
+
+::: {style="text-align: center"}
+[@zheng2018]
+:::
+::::
+::::::
+
+## Überprüfung häufigster Token
+
+#### Anwendung der DFM
+
+```{r top-features-transcripts}
+#| output-location: column
+
+# Check top 25 features
+toks_nostopw %>%
+  quanteda::dfm() %>% 
+  quanteda.textstats::textstat_frequency(
+    n = 25) 
+```
+
+## Corpus ➞ ( Tokens ➞ DFM ) ⟳
+
+#### Beispiel für den Loop des (Pre-)Processing
+
+```{r top-feautres-transcripts-processing}
+#| output-location: column
+
+# Customize stopwords
+custom_stopwords <- c("uh", "oh")
+
+# Remove custom stopwords
+toks_no_custom_stopw <- toks_nostopw %>% 
+  quanteda::tokens_remove(
+    pattern = custom_stopwords
+  )
+
+# Check top 25 features
+toks_no_custom_stopw %>%
+  quanteda::dfm() %>% 
+  quanteda.textstats::textstat_frequency(
+    n = 25) 
+```
+
+## Welche User werden am häufigsten erwähnt?
+
+#### Beispiele für Analysen auf Basis der DFM: Auswahl bestimmter Muster
+
+```{r chats-top-metions}
+#| output-location: column
+
+# Create corpus
+corp_chats <- chats %>% 
+  quanteda::corpus(
+    docid_field = "message_id", 
+    text_field = "message_content"
+  )
+
+# Create DFM
+dfm_chats <- corp_chats %>% 
+  quanteda::tokens(
+    remove_punct = TRUE, 
+    remove_symbols = TRUE,
+    remove_numbers = TRUE,
+    remove_url = TRUE, 
+    split_hyphens = FALSE,
+    split_tags = FALSE
+  ) %>% 
+  quanteda::dfm() 
+
+# Output
+dfm_chats %>% 
+  quanteda::dfm_select(pattern = "@*") %>% 
+  quanteda.textstats::textstat_frequency(
+    n = 25) 
+```
+
+## Gezielte Suche nach spezifischen Worten
+
+#### Hintergrund und Anwendung von Diktionären
+
+-   **Listen von Features**, die ein bestimmtes **Konstrukt** (z.B. Emotionalisierung) beschreiben.
+-   In der **(klassischen) Diktionär-Analysen** wird gezählt, wie **häufig manifeste Features** vorkommen, um darauf zu schliessen, inwiefern ein **latentes Konstrukt vorkommt**.
+-   Verschiedene Unterscheidungen:
+    -   **Off-the-shelf** (z.B. LIWC, ANEW) vs. **organische** (eigene, domänenspezifische) Diktionäre
+    -   **Breite** (möglichst umfassende Wortliste) vs. **spezifische** (möglichst spezifische Wortliste) Diktionäre
+
+## Organisch, aber datenbasiert
+
+#### Vorstellung des (erstellen) Emoji-Diktionärs
+
+```{r emoji-dictionary}
+# Load custom emoji-dictionary
+dict_emojis <- readRDS(here("local_data/dict_emotes.rds"))
+
+# Output
+dict_emojis
+```
+
+## Welche emojis werden am häufigsten verwendet?
+
+#### Beispiele für Analysen auf Basis der DFM: Dictionary
+
+```{r top-emojis-chat}
+#| output-location: column
+
+# Lookup emojis in DFM of chats
+dfm_emojis <- dfm_chats %>% 
+  quanteda::dfm_lookup(
+    dictionary = dict_emojis)
+
+# Output frequency of emojis
+dfm_emojis %>% 
+  quanteda.textstats::textstat_frequency(
+    n = 25) 
+```
+
+# Wie bereinigen wir die Daten? {#group-activity background-image="img/slide_bg-group_activity.png"}
+
+👥 Group activity zur Datenbereinigung und -normalisierung
+
+## And now … you!
+
+#### Gruppenarbeit (ca. 15 Minuten) mit kurzer Ergebnisdiskussion (ca. 15 Minuten)
+
+::: callout-caution
+## Arbeitsauftrag
+
+1.  **Überlegt** zusammen mit eurer/m Präsentationspartner:in (ca. 5 Minuten), welche B**ereinigungschritte für die jeweiligen Daten** (Chats, Transkripte und Korpus) im Kontext euers Projekts notwendig sind.
+
+2.  **Diskutiert** eure Ergebnisse mit einer **anderen Präsentationsgruppe** (ca. 5 Minuten).
+
+3.  **Dokumentiert** euer Fazit (inklusive der konkreten Schritte) auf einer der **Folienvorlagen** (siehe nächste Slide).\
+:::
+
+```{r countdown-discussion}
+#| echo: false
+
+countdown(
+    minutes = 5,
+    warn_when = 60,
+    update_every = 10,
+    bottom = 0)
+```
+
+## Please discuss!
+
+#### Bitte nutzt die jeweilige Folienvorlage für die Dokumentation euerer Ergebnisse
+
+<br>
+
+:::::::: columns
+::: {.column width="30%"}
+{{< qrcode https://t1p.de/5bqsl qr1 width=300 height=300 colorDark='#C50F3C' >}} [Gruppe A](https://t1p.de/5bqsl)
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="30%"}
+{{< qrcode https://t1p.de/82yqe qr2 width=300 height=300 colorDark='#18B4F1' >}} [Gruppe B](https://t1p.de/82yqe)
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="30%"}
+{{< qrcode https://t1p.de/imcus qr4 width=300 height=300 colorDark='#FDB735' >}} [Gruppe C](https://t1p.de/imcus)
+:::
+::::::::
+
+```{r countdown-presentation}
+#| echo: false
+
+countdown(
+    minutes = 10,
+    warn_when = 300,
+    update_every = 10,
+    bottom = 0)
+```
+
+# Time for questions {background-image="img/slide_bg-question.png"}
+
+# Bis zur nächsten Sitzung! {background-image="img/slide_bg-end_session.png"}
+
+## References
+
+::: {#refs}
+:::
