@@ -506,10 +506,10 @@ dfm_chats %>%
 
 ```{r emoji-dictionary}
 # Load custom emoji-dictionary
-dict_emojis <- readRDS(here("local_data/dict_emotes.rds"))
+dict_chat_emotes <- readRDS(here("local_data/dictionary_chat_emotes.RDS"))
 
 # Output
-dict_emojis
+dict_chat_emotes
 ```
 
 ## Welche emojis werden am häufigsten verwendet?
@@ -520,12 +520,12 @@ dict_emojis
 #| output-location: column
 
 # Lookup emojis in DFM of chats
-dfm_emojis <- dfm_chats %>% 
+dfm_emotes <- dfm_chats %>% 
   quanteda::dfm_lookup(
-    dictionary = dict_emojis)
+    dictionary = dict_chat_emotes)
 
 # Output frequency of emojis
-dfm_emojis %>% 
+dfm_emotes %>% 
   quanteda.textstats::textstat_frequency(
     n = 25) 
 ```
