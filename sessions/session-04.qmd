@@ -8,10 +8,6 @@ link-citations: false
 citations-hover: false
 ---
 
-## Participate
-
-🖥️ [🚧 Session 04](TODO%20ADD%20links)
-
 ## Literature
 
 ::: {.callout-important appearance="simple"}

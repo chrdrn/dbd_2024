@@ -1,0 +1,31 @@
+---
+title: "Session 7"
+subtitle: "🔨 Text as data I: Introduction"
+bibliography: references_sessions.bib
+csl: ../apa-cv.csl 
+suppress-bibliography: true
+link-citations: false
+citations-hover: false
+---
+
+## Participate
+
+🖥️ [Session 07](/slides/slides-07.html)
+
+## Suggested readings
+
+-   [@atteveldt2021]
+
+-   [@silge2017]
+
+## Useful resources
+
+-   [🌐 twitchtracker.com](https://twitchtracker.com/)
+-   [🌐 twitchemotes.com](https://twitchemotes.com/ )
+-   [🌐 twitchmetrics.net/emotes]( https://www.twitchmetrics.net/emotes)
+
+<br>
+
+::: {style="font-size: 0.875em;"}
+Back to [course schedule](/index.html "Course schedule") ⏎
+:::

@@ -8,11 +8,7 @@ link-citations: false
 citations-hover: false
 ---
 
-## Participate
-
-🖥️ [🚧 Session 05](TODO%20ADD%20links)
-
-## Literature
+ ## Literature
 
 ::: {.callout-important appearance="simple"}
 The following sections list the **mandatory articles** for the each presenting group. Additional optional articles are provided under *Further reading*.
