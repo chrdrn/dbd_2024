@@ -69,7 +69,7 @@ schedule_json <- '[
     {
         "Session": "8",
         "Datum": "11.12.2024",
-        "Topic": "🔨 Text as data I: Advanced Methods",
+        "Topic": "🔨 Text as data II: Advanced Methods",
         "Presenter": "Christoph Adrian"
     },
     {
@@ -87,7 +87,7 @@ schedule_json <- '[
     {
         "Session": "10",
         "Datum": "08.01.2025",
-        "Topic": "🔨 Advanced Method I: Machine Learning",
+        "Topic": "🔨 Advanced Method II: Machine Learning",
         "Presenter": "Christoph Adrian"
     },
     {
