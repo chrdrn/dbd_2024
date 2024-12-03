@@ -55,6 +55,15 @@ website:
           - href: course-team.qmd
             text: Teaching team
 
+      - section: "Data collection"
+        contents:
+          - href: data_collection/01_01-data_collection-presidential_debate.qmd
+          - href: data_collection/01_02-data_collection-vice_presidential_debate.qmd
+          # - href: data_collection/01_03-data_collection-twitch_streamer_stats.qmd
+          - href: data_collection/01_11-data_processing-chats.qmd
+          - href: data_collection/01_12-data_processing-transcripts.qmd
+          - href: data_collection/02_01-qc-chats-emotes.qmd
+          - href: data_collection/02_02-qc-chats-badges.qmd
 
     #   - section: "Sessions"
     #     contents:
