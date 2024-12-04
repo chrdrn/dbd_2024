@@ -82,7 +82,7 @@ transcripts <- qs::qread(here("local_data/transcripts-debates_full.qs"))$correct
 
 #### Was wir (bisher) aus der Literatur gelernt haben
 
--   **Wahldebaten** sind ein spezifischer Teil des politischen Diskurses und haben **Einfluss auf Emotionen, Einstellungen und Handlungen** von Menschen
+-   **Wahldebatten** sind ein spezifischer Teil des politischen Diskurses und haben **Einfluss auf Emotionen, Einstellungen und Handlungen** von Menschen
 -   **Soziale Medien** haben die **Kommunikation und Interaktion** zwischen Politikern und Bürgern **verändert**
 -   {{< bi twitch >}} **Twitch** ist eine Social Networking Site (SNS) mit **besonderen Eigenschaften** (z.B. "Live"-Aspekt & die Bedeutung der *community*) & zunehmend Ort für **politische Diskurse**
 
@@ -179,7 +179,7 @@ Vorstellung des Prozesses der automatisierten Inhaltsanalyse
 
 -   Automatisierte Methoden “augment humans, not replace them” [@grimmer2013, S.270]
 -   „English before everything“ [@baden2022, S.9]
--   (Systematische) Fehler: “All quantitative models of language are wrong — but some are useful” (@grimmer2013, S.269)
+-   (Systematische) Fehler: “All quantitative models of language are wrong — but some are useful” [@grimmer2013, S.269]
 
 ## Workflow, demystified
 
@@ -227,7 +227,7 @@ Corpus: A corpus is typically an extensive collection of documents as a Bag-of-w
 
 ## Abwägungen beim Preprocessing
 
-#### Herausforderungen und Entscheidungen
+#### Herausforderungen und Konsequenzen der Entscheidungen beim Preprocessing
 
 -   Oft verändert **Kleinschreibung** die **Bedeutung** von Features **nicht**, aber es gibt **Ausnahmen** ("*Bild*" vs. *BILD*-Zeitung)
 -   Oft sind **Sonderzeichen** (z.B. Satzzeichen) **nicht** von substanzieller **Bedeutung**, aber es gibt **Ausnahmen** (z.B. #metoo, G7, Emojis)
