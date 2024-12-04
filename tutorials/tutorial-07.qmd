@@ -1,0 +1,270 @@
+---
+title: "🔨 Text as data in R"
+subtitle: "Tutorial - Session 07"
+date: last-modified
+date-format: "DD.MM.YYYY"
+---
+
+::: {.callout-tip icon="false"}
+[![Quarto Slides](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto-slide.svg) Link to slides](../slides/slides-07.html)
+
+[![](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto_document.svg) Download source file](https://github.com/chrdrn/dbd_2024/blob/main/tutorial/tutorial-07.qmd)
+
+[![](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-binder_rstudio.svg) Open interactive and executable RStudio environment](https://mybinder.org/v2/gh/faucommsci/dbd_binder/HEAD?urlpath=rstudio)
+:::
+
+## Background
+
+## Preparation
+
+```{r load-packages}
+
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(
+    here, taylor,
+    magrittr, janitor,
+    ggpubr, 
+    gt, gtExtras,
+    countdown, 
+    quanteda, # quanteda text processing
+    quanteda.textplots, 
+    easystats, tidyverse
+)
+```
+
+```{r import-data}
+
+# Import data from URL
+chats <- qs::qread(here("local_data/chat-debates_full.qs"))$correct
+transcripts <- qs::qread(here("local_data/transcripts-debates_full.qs"))$correct
+streamer_stats <- qs::qread(here("local_data/twitch_streamer_stats.qs"))
+```
+
+## Codechunks aus der Sitzung
+### Überblick über verschiedenen Statistiken der betrachteten Streamer
+
+```{r figure-streamer-statistics}
+streamer_stats %>% 
+  pivot_longer(cols = c(avg_viewers, followers, hours_streamed), names_to = "statistic", values_to = "value") %>%
+  ggplot(aes(x = month, y = value, fill = streamer)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_grid(statistic ~ ., scales = "free_y", labeller = as_labeller(c(
+    avg_viewers = "Average Viewers",
+    followers = "Followers",
+    hours_streamed = "Hours Streamed"))) +
+  theme_minimal() +
+  labs(
+    x = "Month",
+    y = "",
+    title = "Streamer Statistics Over Time", 
+    fill = "Streamer") +
+  scale_y_continuous(labels = scales::comma) +
+  ggsci::scale_fill_cosmic()
+```
+
+
+### Überblick über den `chats`-Datensatz
+
+```{r data-chats-overview}
+chats %>% glimpse
+chats %>% skimr::skim()
+```
+
+### Kurzer Überblick über den `transcripts`-Datensatz
+
+```{r data-transcripts-overview}
+transcripts %>% glimpse 
+transcripts %>% skimr::skim()
+```
+
+### Arbeiten mit quanteda: `corpus`
+
+```{r create-corpus-transcripts}
+# Create corpus
+corp_transcripts <- transcripts %>% 
+  quanteda::corpus(
+    docid_field = "id_sequence", 
+    text_field = "dialogue"
+  )
+
+# Output
+corp_transcripts
+```
+
+### Einfluss der Preporcessing-Schritte am Beispiel
+#### Einfache Tokenisierung
+
+```{r create-tokens-simple}
+# Tokenize corpus
+toks_simple <- corp_transcripts %>% 
+  quanteda::tokens() 
+
+# Output
+head(toks_simple[[1]], 100)
+```
+
+#### mit Entfernung von Satz- und Sonderzeichen
+
+```{r create-tokens-nosymbols}
+#| code-line-numbers: "3-8"
+
+toks_nopunct <- corp_transcripts %>% 
+  quanteda::tokens(
+    remove_punct = TRUE, 
+    remove_symbols = TRUE,
+    remove_numbers = TRUE,
+    remove_url = TRUE, 
+    split_hyphens = FALSE,
+    split_tags = FALSE
+  )
+
+head(toks_nopunct[[1]], 100)
+```
+
+#### und ohne Stopwörter
+
+```{r create-tokens-nostopw}
+#| code-line-numbers: "10-12"
+
+toks_nostopw <- corp_transcripts %>% 
+  quanteda::tokens(
+    remove_punct = TRUE, 
+    remove_symbols = TRUE,
+    remove_numbers = TRUE,
+    remove_url = TRUE, 
+    split_hyphens = FALSE,
+    split_tags = FALSE
+  ) %>% 
+  quanteda::tokens_remove(
+    pattern = quanteda::stopwords("en")
+  )
+
+head(toks_nostopw[[1]], 100)
+```
+
+#### Direkter Vergleich
+
+```{r tokenization-comparison}
+head(toks_simple[[1]], 100)
+head(toks_nopunct[[1]], 100)
+head(toks_nostopw[[1]], 100)
+```
+
+### Tokenisierung von Bi & Skipgrams
+
+```{r create-tokens-ngrams}
+# Bigrams
+toks_nostopw %>% 
+  tokens_ngrams(n = 2) %>% 
+  .[[1]]
+```
+
+```{r create-tokens-skipgrams}
+# Skipgrams
+toks_nostopw %>% 
+  tokens_ngrams(n = 2, skip = 0:1) %>% 
+  .[[1]]
+```
+
+### Kollokationen für Identifkation prominenter Bigramme
+
+```{r create-collocations}
+#| output-location: column
+
+toks_nostopw %>% 
+  quanteda.textstats::textstat_collocations(
+    size = 2, 
+    min_count = 5
+  ) %>% 
+  head(25)
+```
+
+### Anwendung der DFM
+
+```{r top-features-transcripts}
+#| output-location: column
+
+# Check top 25 features
+toks_nostopw %>%
+  quanteda::dfm() %>% 
+  quanteda.textstats::textstat_frequency(
+    n = 25) 
+```
+
+#### Beispiel für den Loop des (Pre-)Processing
+
+```{r top-feautres-transcripts-processing}
+#| output-location: column
+
+# Customize stopwords
+custom_stopwords <- c("uh", "oh")
+
+# Remove custom stopwords
+toks_no_custom_stopw <- toks_nostopw %>% 
+  quanteda::tokens_remove(
+    pattern = custom_stopwords
+  )
+
+# Check top 25 features
+toks_no_custom_stopw %>%
+  quanteda::dfm() %>% 
+  quanteda.textstats::textstat_frequency(
+    n = 25) 
+```
+
+### Verschiedene Analysen auf Basis der DFM
+
+#### Auswahl bestimmter Muster/Features
+
+```{r chats-top-metions}
+#| output-location: column
+
+# Create corpus
+corp_chats <- chats %>% 
+  quanteda::corpus(
+    docid_field = "message_id", 
+    text_field = "message_content"
+  )
+
+# Create DFM
+dfm_chats <- corp_chats %>% 
+  quanteda::tokens(
+    remove_punct = TRUE, 
+    remove_symbols = TRUE,
+    remove_numbers = TRUE,
+    remove_url = TRUE, 
+    split_hyphens = FALSE,
+    split_tags = FALSE
+  ) %>% 
+  quanteda::dfm() 
+
+# Output
+dfm_chats %>% 
+  quanteda::dfm_select(pattern = "@*") %>% 
+  quanteda.textstats::textstat_frequency(
+    n = 25) 
+```
+
+### Gezielte Suche nach spezifischen Worten
+
+```{r emoji-dictionary}
+# Load custom emoji-dictionary
+dict_chat_emotes <- readRDS(here("local_data/dictionary_chat_emotes.RDS"))
+
+# Output
+dict_chat_emotes
+```
+
+```{r top-emojis-chat}
+#| output-location: column
+
+# Lookup emojis in DFM of chats
+dfm_emotes <- dfm_chats %>% 
+  quanteda::dfm_lookup(
+    dictionary = dict_chat_emotes)
+
+# Output frequency of emojis
+dfm_emotes %>% 
+  quanteda.textstats::textstat_frequency(
+    n = 25) 
+```
