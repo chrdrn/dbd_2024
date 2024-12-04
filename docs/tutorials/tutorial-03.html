@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Showcase – Digital behavioral data</title>
+<title>🔨 Working with R – Digital behavioral data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -106,9 +106,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="../styles.css">
-<meta property="og:title" content="Showcase – Digital behavioral data">
-<meta property="og:description" content="Session 03 - 🔨 Working with R">
-<meta property="og:image" content="showcase-03_files/figure-html/figure-age-difference-1.png">
+<meta property="og:title" content="🔨 Working with R – Digital behavioral data">
+<meta property="og:description" content="Tutorial - Session 03">
+<meta property="og:image" content="tutorial-03_files/figure-html/figure-age-difference-1.png">
 <meta property="og:site_name" content="Digital behavioral data">
 </head>
 
@@ -121,7 +121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Showcase</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">🔨 Working with R</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -284,15 +284,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/chrdrn/dbd_2024/edit/main/exercises/showcase-03.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/chrdrn/dbd_2024/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/chrdrn/dbd_2024/edit/main/tutorials/tutorial-03.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/chrdrn/dbd_2024/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Showcase</h1>
-<p class="subtitle lead">Session 03 - 🔨 Working with R</p>
+<h1 class="title">🔨 Working with R</h1>
+<p class="subtitle lead">Tutorial - Session 03</p>
 </div>
 
 
@@ -303,7 +303,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">06.11.2024</p>
+      <p class="date">04.12.2024</p>
     </div>
   </div>
   
@@ -322,7 +322,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-body-container">
 <p><a href="../slides/slides-03.html"><img src="https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto-slide.svg" class="img-fluid" alt="Quarto Slides"> Link to slides</a></p>
-<p><a href="https://github.com/chrdrn/dbd_2024/blob/main/exercises/showcase-03.qmd"><img src="https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto_document.svg" class="img-fluid"> Download source file</a></p>
+<p><a href="https://github.com/chrdrn/dbd_2024/blob/main/tutorial/tutorial-03.qmd"><img src="https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto_document.svg" class="img-fluid"> Download source file</a></p>
 <p><a href="https://mybinder.org/v2/gh/faucommsci/dbd_binder/HEAD?urlpath=rstudio"><img src="https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-binder_rstudio.svg" class="img-fluid"> Open interactive and executable RStudio environment</a></p>
 </div>
 </div>
@@ -448,7 +448,7 @@ Todays’s data basis: Hollywood Age Gaps
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Check data set</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>age_gaps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,198 × 12
+<pre><code># A tibble: 1,199 × 12
    movie_name   release_year director age_difference actor_1_name actor_1_gender
    &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;         
  1 Harold and …         1971 Hal Ash…             52 Bud Cort     man           
@@ -461,7 +461,7 @@ Todays’s data basis: Hollywood Age Gaps
  8 Dirty Grand…         2016 Dan Maz…             41 Robert De N… man           
  9 Whatever Wo…         2009 Woody A…             40 Larry David  man           
 10 Entrapment           1999 Jon Ami…             39 Sean Connery man           
-# ℹ 1,188 more rows
+# ℹ 1,189 more rows
 # ℹ 6 more variables: actor_1_birthdate &lt;date&gt;, actor_1_age &lt;dbl&gt;,
 #   actor_2_name &lt;chr&gt;, actor_2_gender &lt;chr&gt;, actor_2_birthdate &lt;chr&gt;,
 #   actor_2_age &lt;dbl&gt;</code></pre>
@@ -495,7 +495,7 @@ Sind die Daten <em>“technisch korrekt</em>”?
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>age_gaps <span class="sc">%&gt;%</span> <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Rows: 1,198
+<pre><code>Rows: 1,199
 Columns: 12
 $ movie_name        &lt;chr&gt; "Harold and Maude", "Venus", "The Quiet American", "…
 $ release_year      &lt;dbl&gt; 1971, 2006, 2002, 2009, 1998, 2010, 1992, 2016, 2009…
@@ -530,14 +530,14 @@ $ actor_2_age       &lt;dbl&gt; 75, 24, 20, 20, 23, 38, 17, 32, 22, 30, 19, 39, 
 ## Basic descriptive statistics
 
             var    type          label    n NA.prc    mean    sd   se   md
-   release_year numeric   release_year 1198      0 2000.57 17.03 0.49 2004
- age_difference numeric age_difference 1198      0   10.60  8.61 0.25    8
-    actor_1_age numeric    actor_1_age 1198      0   40.07 10.93 0.32   39
-    actor_2_age numeric    actor_2_age 1198      0   31.23  8.47 0.24   30
+   release_year numeric   release_year 1199      0 2000.53 17.07 0.49 2004
+ age_difference numeric age_difference 1199      0   10.62  8.62 0.25    8
+    actor_1_age numeric    actor_1_age 1199      0   40.07 10.93 0.32   39
+    actor_2_age numeric    actor_2_age 1199      0   31.22  8.47 0.24   30
  trimmed          range iqr  skew
- 2003.51 89 (1935-2024)  15 -1.63
-    9.53      52 (0-52)  12  1.19
-   39.50     64 (17-81)  15  0.54
+ 2003.48 89 (1935-2024)  15 -1.62
+    9.55      52 (0-52)  12  1.19
+   39.51     64 (17-81)  15  0.54
    30.38     64 (17-81)  10  1.39</code></pre>
 </div>
 </div>
@@ -556,7 +556,7 @@ $ actor_2_age       &lt;dbl&gt; 75, 24, 20, 20, 23, 38, 17, 32, 22, 30, 19, 39, 
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="showcase-03_files/figure-html/figure-age-difference-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="tutorial-03_files/figure-html/figure-age-difference-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -569,7 +569,7 @@ $ actor_2_age       &lt;dbl&gt; 75, 24, 20, 20, 23, 38, 17, 32, 22, 30, 19, 39, 
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(age_difference)) <span class="sc">%&gt;%</span> </span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(movie_name, age_difference, release_year) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,198 × 3
+<pre><code># A tibble: 1,199 × 3
    movie_name         age_difference release_year
    &lt;chr&gt;                       &lt;dbl&gt;        &lt;dbl&gt;
  1 Harold and Maude               52         1971
@@ -582,7 +582,7 @@ $ actor_2_age       &lt;dbl&gt; 75, 24, 20, 20, 23, 38, 17, 32, 22, 30, 19, 39, 
  8 Dirty Grandpa                  41         2016
  9 Whatever Works                 40         2009
 10 Entrapment                     39         1999
-# ℹ 1,188 more rows</code></pre>
+# ℹ 1,189 more rows</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -632,7 +632,7 @@ $ actor_2_age       &lt;dbl&gt; 75, 24, 20, 20, 23, 38, 17, 32, 22, 30, 19, 39, 
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="showcase-03_files/figure-html/figure-age-difference-mean-by-year-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="tutorial-03_files/figure-html/figure-age-difference-mean-by-year-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -655,7 +655,7 @@ $ actor_2_age       &lt;dbl&gt; 75, 24, 20, 20, 23, 38, 17, 32, 22, 30, 19, 39, 
 <div class="cell-output-display page-columns page-full">
 <div class="page-columns page-full">
 <figure class="figure page-columns page-full">
-<p class="page-columns page-full"><img src="showcase-03_files/figure-html/figure-age-difference-by-year-1.png" class="img-fluid figure-img column-page" width="1536"></p>
+<p class="page-columns page-full"><img src="tutorial-03_files/figure-html/figure-age-difference-by-year-1.png" class="img-fluid figure-img column-page" width="1536"></p>
 </figure>
 </div>
 </div>
@@ -670,12 +670,12 @@ $ actor_2_age       &lt;dbl&gt; 75, 24, 20, 20, 23, 38, 17, 32, 22, 30, 19, 39, 
 <div class="cell-output cell-output-stdout">
 <pre><code># Correlation Matrix (pearson-method)
 
-Parameter1   |     Parameter2 |     r |         95% CI | t(1196) |         p
+Parameter1   |     Parameter2 |     r |         95% CI | t(1197) |         p
 ----------------------------------------------------------------------------
-release_year | age_difference | -0.22 | [-0.27, -0.16] |   -7.73 | &lt; .001***
+release_year | age_difference | -0.22 | [-0.27, -0.17] |   -7.83 | &lt; .001***
 
 p-value adjustment method: Holm (1979)
-Observations: 1198</code></pre>
+Observations: 1199</code></pre>
 </div>
 </div>
 </section>
@@ -688,10 +688,10 @@ Observations: 1198</code></pre>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Output</span></span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>mdl <span class="sc">%&gt;%</span> parameters<span class="sc">::</span><span class="fu">parameters</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Parameter    | Coefficient |    SE |           95% CI | t(1196) |      p
+<pre><code>Parameter    | Coefficient |    SE |           95% CI | t(1197) |      p
 ------------------------------------------------------------------------
-(Intercept)  |      231.32 | 28.55 | [175.30, 287.33] |    8.10 | &lt; .001
-release year |       -0.11 |  0.01 | [ -0.14,  -0.08] |   -7.73 | &lt; .001</code></pre>
+(Intercept)  |      233.69 | 28.48 | [177.82, 289.57] |    8.21 | &lt; .001
+release year |       -0.11 |  0.01 | [ -0.14,  -0.08] |   -7.83 | &lt; .001</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>mdl <span class="sc">%&gt;%</span> performance<span class="sc">::</span><span class="fu">model_performance</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -699,7 +699,7 @@ release year |       -0.11 |  0.01 | [ -0.14,  -0.08] |   -7.73 | &lt; .001</cod
 
 AIC      |     AICc |      BIC |    R2 | R2 (adj.) |  RMSE | Sigma
 ------------------------------------------------------------------
-8505.472 | 8505.492 | 8520.737 | 0.048 |     0.047 | 8.402 | 8.409</code></pre>
+8512.891 | 8512.911 | 8528.159 | 0.049 |     0.048 | 8.403 | 8.410</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -708,13 +708,13 @@ AIC      |     AICc |      BIC |    R2 | R2 (adj.) |  RMSE | Sigma
 <pre><code>We fitted a linear model (estimated using OLS) to predict age_difference with
 release_year (formula: age_difference ~ release_year). The model explains a
 statistically significant and weak proportion of variance (R2 = 0.05, F(1,
-1196) = 59.77, p &lt; .001, adj. R2 = 0.05). The model's intercept, corresponding
-to release_year = 0, is at 231.32 (95% CI [175.30, 287.33], t(1196) = 8.10, p &lt;
+1197) = 61.35, p &lt; .001, adj. R2 = 0.05). The model's intercept, corresponding
+to release_year = 0, is at 233.69 (95% CI [177.82, 289.57], t(1197) = 8.21, p &lt;
 .001). Within this model:
 
   - The effect of release year is statistically significant and negative (beta =
--0.11, 95% CI [-0.14, -0.08], t(1196) = -7.73, p &lt; .001; Std. beta = -0.22, 95%
-CI [-0.27, -0.16])
+-0.11, 95% CI [-0.14, -0.08], t(1197) = -7.83, p &lt; .001; Std. beta = -0.22, 95%
+CI [-0.28, -0.17])
 
 Standardized parameters were obtained by fitting the model on a standardized
 version of the dataset. 95% Confidence Intervals (CIs) and p-values were
@@ -1298,7 +1298,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/chrdrn/dbd_2024/edit/main/exercises/showcase-03.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/chrdrn/dbd_2024/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/chrdrn/dbd_2024/edit/main/tutorials/tutorial-03.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/chrdrn/dbd_2024/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This page is built with ☕ &amp; <a href="https://quarto.org/">Quarto</a>.</p>
 </div>

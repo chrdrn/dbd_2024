@@ -307,7 +307,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">05.11.2024</p>
+      <p class="date">04.12.2024</p>
     </div>
   </div>
   
@@ -485,7 +485,7 @@ Achtung, bitte lesen!
 <div class="callout-body-container callout-body">
 <ul>
 <li>Bevor Sie mit der Arbeit an den folgenden 📋 <strong>Exercises</strong> beginnen, stellen Sie bitte sicher, dass Sie alle Chunks des Abschnitts <a href="#preparation">Preparation</a> ausgeführt haben. Das können Sie tun, indem Sie den “<em>Run all chunks above</em>”-Knopf <img src="https://raw.githubusercontent.com/faucommsci/teaching_materials/main/images/buttons/rstudio-button-render_all_chunks_above.png" class="img-fluid"> des nächsten Chunks benutzen.</li>
-<li>Bei Fragen zum Code lohnt sich ein Blick in den <strong>Showcase</strong> (.qmd oder .html). Beim Showcase handelt es sich um eine kompakte Darstellung des in der Präsentation verwenden R-Codes. Sie können das Showcase also nutzen, um sich die Code-Bausteine anzusehen, die für die R-Outputs auf den Slides benutzt wurden.</li>
+<li>Bei Fragen zum Code lohnt sich ein Blick in das <strong>Tutorial</strong> (.qmd oder .html). Beim Tutorial handelt es sich um eine kompakte Darstellung des in der Präsentation verwenden R-Codes. Sie können das Tutorial also nutzen, um sich die Code-Bausteine anzusehen, die für die R-Outputs auf den Slides benutzt wurden.</li>
 </ul>
 </div>
 </div>
@@ -528,21 +528,21 @@ Arbeitsauftrag 1.1
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  sjmisc<span class="sc">::</span><span class="fu">frq</span>(actor_1_gender, actor_2_gender)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>actor_1_gender &lt;character&gt; 
-# total N=1198 valid N=1198 mean=1.01 sd=0.11
+# total N=1199 valid N=1199 mean=1.01 sd=0.11
 
 Value |    N | Raw % | Valid % | Cum. %
 ---------------------------------------
-man   | 1183 | 98.75 |   98.75 |  98.75
+man   | 1184 | 98.75 |   98.75 |  98.75
 woman |   15 |  1.25 |    1.25 | 100.00
 &lt;NA&gt;  |    0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;
 
 actor_2_gender &lt;character&gt; 
-# total N=1198 valid N=1198 mean=1.99 sd=0.11
+# total N=1199 valid N=1199 mean=1.99 sd=0.11
 
 Value |    N | Raw % | Valid % | Cum. %
 ---------------------------------------
-man   |   16 |  1.34 |    1.34 |   1.34
-woman | 1182 | 98.66 |   98.66 | 100.00
+man   |   16 |  1.33 |    1.33 |   1.33
+woman | 1183 | 98.67 |   98.67 | 100.00
 &lt;NA&gt;  |    0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
 </div>
 </div>
@@ -566,7 +566,7 @@ Arbeitsauftrag 1.2
 <div class="cell-output cell-output-stdout">
 <pre><code>               actor_2_gender  man woman
 actor_1_gender                          
-man                             12  1171
+man                             12  1172
 woman                            4    11</code></pre>
 </div>
 </div>
@@ -586,7 +586,7 @@ woman                            4    11</code></pre>
 <pre><code># A tibble: 1 × 3
   p1_older p1_male p_1_first_alpha
      &lt;dbl&gt;   &lt;dbl&gt;           &lt;dbl&gt;
-1    0.813   0.987           0.496</code></pre>
+1    0.813   0.987           0.495</code></pre>
 </div>
 </div>
 </section>
@@ -603,13 +603,13 @@ woman                            4    11</code></pre>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>couples <span class="sc">%&gt;%</span> <span class="fu">frq</span>(n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>n &lt;integer&gt; 
-# total N=863 valid N=863 mean=1.39 sd=0.75
+# total N=864 valid N=864 mean=1.39 sd=0.75
 
 Value |   N | Raw % | Valid % | Cum. %
 --------------------------------------
-    1 | 628 | 72.77 |   72.77 |  72.77
-    2 | 162 | 18.77 |   18.77 |  91.54
-    3 |  54 |  6.26 |    6.26 |  97.80
+    1 | 629 | 72.80 |   72.80 |  72.80
+    2 | 162 | 18.75 |   18.75 |  91.55
+    3 |  54 |  6.25 |    6.25 |  97.80
     4 |  14 |  1.62 |    1.62 |  99.42
     5 |   3 |  0.35 |    0.35 |  99.77
     6 |   1 |  0.12 |    0.12 |  99.88
@@ -710,23 +710,23 @@ Arbeitauftrag 2
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">frq</span>(couple_structure, older_male_hetero)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>couple_structure &lt;numeric&gt; 
-# total N=1198 valid N=1198 mean=3.78 sd=0.50
+# total N=1199 valid N=1199 mean=3.78 sd=0.50
 
 Value |   N | Raw % | Valid % | Cum. %
 --------------------------------------
     1 |  11 |  0.92 |    0.92 |   0.92
     2 |  12 |  1.00 |    1.00 |   1.92
-    3 | 210 | 17.53 |   17.53 |  19.45
-    4 | 965 | 80.55 |   80.55 | 100.00
+    3 | 210 | 17.51 |   17.51 |  19.43
+    4 | 966 | 80.57 |   80.57 | 100.00
  &lt;NA&gt; |   0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;
 
 older_male_hetero &lt;categorical&gt; 
-# total N=1198 valid N=1175 mean=0.82 sd=0.38
+# total N=1199 valid N=1176 mean=0.82 sd=0.38
 
 Value |   N | Raw % | Valid % | Cum. %
 --------------------------------------
-    0 | 210 | 17.53 |   17.87 |  17.87
-    1 | 965 | 80.55 |   82.13 | 100.00
+    0 | 210 | 17.51 |   17.86 |  17.86
+    1 | 966 | 80.57 |   82.14 | 100.00
  &lt;NA&gt; |  23 |  1.92 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
 </div>
 </div>
@@ -810,11 +810,11 @@ Arbeitsauftrag 3.2 (Überprüfung durch Modellierung)
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Output</span></span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>mdl <span class="sc">%&gt;%</span> parameters<span class="sc">::</span><span class="fu">parameters</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Parameter             | Coefficient |    SE |           95% CI | t(1172) |      p
+<pre><code>Parameter             | Coefficient |    SE |           95% CI | t(1173) |      p
 ---------------------------------------------------------------------------------
-(Intercept)           |      200.02 | 27.60 | [145.87, 254.17] |    7.25 | &lt; .001
-release year          |       -0.10 |  0.01 | [ -0.12,  -0.07] |   -7.06 | &lt; .001
-older male hetero [1] |        6.11 |  0.61 | [  4.90,   7.31] |    9.94 | &lt; .001</code></pre>
+(Intercept)           |      202.27 | 27.53 | [148.25, 256.29] |    7.35 | &lt; .001
+release year          |       -0.10 |  0.01 | [ -0.13,  -0.07] |   -7.16 | &lt; .001
+older male hetero [1] |        6.11 |  0.61 | [  4.90,   7.32] |    9.94 | &lt; .001</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>mdl <span class="sc">%&gt;%</span> performance<span class="sc">::</span><span class="fu">model_performance</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -822,23 +822,23 @@ older male hetero [1] |        6.11 |  0.61 | [  4.90,   7.31] |    9.94 | &lt; 
 
 AIC      |     AICc |      BIC |    R2 | R2 (adj.) |  RMSE | Sigma
 ------------------------------------------------------------------
-8229.371 | 8229.405 | 8249.647 | 0.126 |     0.124 | 8.001 | 8.011</code></pre>
+8236.693 | 8236.727 | 8256.972 | 0.127 |     0.125 | 8.002 | 8.012</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>mdl <span class="sc">%&gt;%</span> report<span class="sc">::</span><span class="fu">report</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>We fitted a linear model (estimated using OLS) to predict age_difference with
 release_year and older_male_hetero (formula: age_difference ~ release_year +
 older_male_hetero). The model explains a statistically significant and weak
-proportion of variance (R2 = 0.13, F(2, 1172) = 84.16, p &lt; .001, adj. R2 =
-0.12). The model's intercept, corresponding to release_year = 0 and
-older_male_hetero = 0, is at 200.02 (95% CI [145.87, 254.17], t(1172) = 7.25, p
+proportion of variance (R2 = 0.13, F(2, 1173) = 85.10, p &lt; .001, adj. R2 =
+0.13). The model's intercept, corresponding to release_year = 0 and
+older_male_hetero = 0, is at 202.27 (95% CI [148.25, 256.29], t(1173) = 7.35, p
 &lt; .001). Within this model:
 
   - The effect of release year is statistically significant and negative (beta =
--0.10, 95% CI [-0.12, -0.07], t(1172) = -7.06, p &lt; .001; Std. beta = -0.19, 95%
+-0.10, 95% CI [-0.13, -0.07], t(1173) = -7.16, p &lt; .001; Std. beta = -0.20, 95%
 CI [-0.25, -0.14])
   - The effect of older male hetero [1] is statistically significant and positive
-(beta = 6.11, 95% CI [4.90, 7.31], t(1172) = 9.94, p &lt; .001; Std. beta = 0.71,
+(beta = 6.11, 95% CI [4.90, 7.32], t(1173) = 9.94, p &lt; .001; Std. beta = 0.71,
 95% CI [0.57, 0.85])
 
 Standardized parameters were obtained by fitting the model on a standardized
