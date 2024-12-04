@@ -21,8 +21,8 @@ citations-hover: false
 ## Useful resources
 
 -   [🌐 twitchtracker.com](https://twitchtracker.com/)
--   [🌐 twitchemotes.com](https://twitchemotes.com/ )
--   [🌐 twitchmetrics.net/emotes]( https://www.twitchmetrics.net/emotes)
+-   [🌐 twitchemotes.com](https://twitchemotes.com/)
+-   [🌐 twitchmetrics.net/emotes](https://www.twitchmetrics.net/emotes)
 
 <br>
 
