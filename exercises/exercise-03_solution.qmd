@@ -95,7 +95,7 @@ age_gaps_correct <- age_gaps %>%
 ## Achtung, bitte lesen!
 
 -   Bevor Sie mit der Arbeit an den folgenden 📋 **Exercises** beginnen, stellen Sie bitte sicher, dass Sie alle Chunks des Abschnitts [Preparation] ausgeführt haben. Das können Sie tun, indem Sie den "*Run all chunks above*"-Knopf ![](https://raw.githubusercontent.com/faucommsci/teaching_materials/main/images/buttons/rstudio-button-render_all_chunks_above.png) des nächsten Chunks benutzen.
--   Bei Fragen zum Code lohnt sich ein Blick in den **Showcase** (.qmd oder .html). Beim Showcase handelt es sich um eine kompakte Darstellung des in der Präsentation verwenden R-Codes. Sie können das Showcase also nutzen, um sich die Code-Bausteine anzusehen, die für die R-Outputs auf den Slides benutzt wurden.
+-   Bei Fragen zum Code lohnt sich ein Blick in das **Tutorial** (.qmd oder .html). Beim Tutorial handelt es sich um eine kompakte Darstellung des in der Präsentation verwenden R-Codes. Sie können das Tutorial also nutzen, um sich die Code-Bausteine anzusehen, die für die R-Outputs auf den Slides benutzt wurden.
 :::
 
 ### 🔎 Welche Rolle spielt das Geschlecht?

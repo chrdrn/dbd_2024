@@ -1,6 +1,6 @@
 ---
-title: "Showcase"
-subtitle: "Session 03 - 🔨 Working with R"
+title: "🔨 Working with R"
+subtitle: "Tutorial - Session 03"
 date: last-modified
 date-format: "DD.MM.YYYY"
 ---
@@ -8,7 +8,7 @@ date-format: "DD.MM.YYYY"
 ::: {.callout-tip icon="false"}
 [![Quarto Slides](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto-slide.svg) Link to slides](../slides/slides-03.html)
 
-[![](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto_document.svg) Download source file](https://github.com/chrdrn/dbd_2024/blob/main/exercises/showcase-03.qmd)
+[![](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto_document.svg) Download source file](https://github.com/chrdrn/dbd_2024/blob/main/tutorial/tutorial-03.qmd)
 
 [![](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-binder_rstudio.svg) Open interactive and executable RStudio environment](https://mybinder.org/v2/gh/faucommsci/dbd_binder/HEAD?urlpath=rstudio)
 :::

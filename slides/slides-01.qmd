@@ -323,7 +323,7 @@ schedule %>%
 **Im Kurs:**
 
 -   Bestehende R-Kenntnisse sind förderlich, aber nicht zwigend notwendig, wichtiger sind **praktische Erfahrung im syntaxbasierten Arbeiten**
--   **Learn to code by example**: Code von Sitzungen & Beispielen wird bereitgestellt (ggf. durch Showcases)
+-   **Learn to code by example**: Code von Sitzungen & Beispielen wird bereitgestellt (ggf. durch Tutorials)
 -   **Pflicht: [Tutorials](https://chrdrn.github.io/dbd_2024/computing/computing-instructions_R.html) auf Kurshomepage**
 
 ## Building a common knowledge base
