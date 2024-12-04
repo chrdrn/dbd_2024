@@ -366,7 +366,7 @@
     "href": "slides/slides-03.html#beispiele-für-tidytuesday",
     "title": "🔨 Working with R",
     "section": "Beispiele für #tidytuesday",
-    "text": "Beispiele für #tidytuesday\n\n\n\n\n;document.getElementById(\"tweet-23519\").innerHTML = tweet[\"html\"];\n\n\n\n;document.getElementById(\"tweet-81549\").innerHTML = tweet[\"html\"];"
+    "text": "Beispiele für #tidytuesday"
   },
   {
     "objectID": "slides/slides-03.html#everything-you-need-in-one-place",
@@ -1059,7 +1059,7 @@
     "href": "slides/slides-07.html#wahldebatte-am-digitalen-lagerfeuer",
     "title": "🔨 Text as data in R",
     "section": "Wahldebatte am digitalen Lagerfeuer",
-    "text": "Wahldebatte am digitalen Lagerfeuer\nWas wir (bisher) aus der Literatur gelernt haben\n\nWahldebaten sind ein spezifischer Teil des politischen Diskurses und haben Einfluss auf Emotionen, Einstellungen und Handlungen von Menschen\nSoziale Medien haben die Kommunikation und Interaktion zwischen Politikern und Bürgern verändert\n Twitch ist eine Social Networking Site (SNS) mit besonderen Eigenschaften (z.B. “Live”-Aspekt & die Bedeutung der community) & zunehmend Ort für politische Diskurse"
+    "text": "Wahldebatte am digitalen Lagerfeuer\nWas wir (bisher) aus der Literatur gelernt haben\n\nWahldebatten sind ein spezifischer Teil des politischen Diskurses und haben Einfluss auf Emotionen, Einstellungen und Handlungen von Menschen\nSoziale Medien haben die Kommunikation und Interaktion zwischen Politikern und Bürgern verändert\n Twitch ist eine Social Networking Site (SNS) mit besonderen Eigenschaften (z.B. “Live”-Aspekt & die Bedeutung der community) & zunehmend Ort für politische Diskurse"
   },
   {
     "objectID": "slides/slides-07.html#who-are-we-looking-at",
@@ -1101,7 +1101,7 @@
     "href": "slides/slides-07.html#where-the-magic-happends",
     "title": "🔨 Text as data in R",
     "section": "Where the “magic” happends",
-    "text": "Where the “magic” happends\nAutomatisierte Inhaltsanalyse: Definition und Ablauf\n\nAutomatisierte Inhaltsanalyse beschreibt die automatisierte (z. B. via Programmierskript) Analyse von Inhalten (z. B. Text, Bilder). Dabei unterstützen Forschende/manuelle Codierer:innen, etwa durch die Validierung von Ergebnissen. (Hase, 2023)\n\nAber:\n\nAutomatisierte Methoden “augment humans, not replace them” (Grimmer & Stewart, 2013, p. S.270)\n„English before everything“ (Baden et al., 2022, p. S.9)\n(Systematische) Fehler: “All quantitative models of language are wrong — but some are useful” (Grimmer & Stewart (2013), S.269)"
+    "text": "Where the “magic” happends\nAutomatisierte Inhaltsanalyse: Definition und Ablauf\n\nAutomatisierte Inhaltsanalyse beschreibt die automatisierte (z. B. via Programmierskript) Analyse von Inhalten (z. B. Text, Bilder). Dabei unterstützen Forschende/manuelle Codierer:innen, etwa durch die Validierung von Ergebnissen. (Hase, 2023)\n\nAber:\n\nAutomatisierte Methoden “augment humans, not replace them” (Grimmer & Stewart, 2013, p. S.270)\n„English before everything“ (Baden et al., 2022, p. S.9)\n(Systematische) Fehler: “All quantitative models of language are wrong — but some are useful” (Grimmer & Stewart, 2013, p. S.269)"
   },
   {
     "objectID": "slides/slides-07.html#workflow-demystified",
@@ -1136,7 +1136,7 @@
     "href": "slides/slides-07.html#abwägungen-beim-preprocessing",
     "title": "🔨 Text as data in R",
     "section": "Abwägungen beim Preprocessing",
-    "text": "Abwägungen beim Preprocessing\nHerausforderungen und Entscheidungen\n\nOft verändert Kleinschreibung die Bedeutung von Features nicht, aber es gibt Ausnahmen (“Bild” vs. BILD-Zeitung)\nOft sind Sonderzeichen (z.B. Satzzeichen) nicht von substanzieller Bedeutung, aber es gibt Ausnahmen (z.B. #metoo, G7, Emojis)\nStoppwörter sind stark kontextabhängig! ➜ oft ist es sinnvoll, eigene “organische” Stoppwortlisten zu erstellen\nLemmatisierung (“running” “ran” ➜ “run”) häufig “besser”, Stemming (“running” “ran” ➜ “run” “ran”) häufig schneller\nReihenfolge des Preprocessings kann Ergebnisse beeinflussen (z.B. Entfernung von Stoppwörtern vor oder nach Lemmatisierung)"
+    "text": "Abwägungen beim Preprocessing\nHerausforderungen und Konsequenzen der Entscheidungen beim Preprocessing\n\nOft verändert Kleinschreibung die Bedeutung von Features nicht, aber es gibt Ausnahmen (“Bild” vs. BILD-Zeitung)\nOft sind Sonderzeichen (z.B. Satzzeichen) nicht von substanzieller Bedeutung, aber es gibt Ausnahmen (z.B. #metoo, G7, Emojis)\nStoppwörter sind stark kontextabhängig! ➜ oft ist es sinnvoll, eigene “organische” Stoppwortlisten zu erstellen\nLemmatisierung (“running” “ran” ➜ “run”) häufig “besser”, Stemming (“running” “ran” ➜ “run” “ran”) häufig schneller\nReihenfolge des Preprocessings kann Ergebnisse beeinflussen (z.B. Entfernung von Stoppwörtern vor oder nach Lemmatisierung)"
   },
   {
     "objectID": "slides/slides-07.html#wenn-aus-wörtern-zahlen-werden",
