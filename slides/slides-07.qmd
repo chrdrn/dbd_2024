@@ -1,6 +1,6 @@
 ---
 title: "🔨 Text as data in R"
-subtitle: "Session 09"
+subtitle: "Session 07"
 date: 04 12 2024
 date-format: "DD.MM.YYYY"
 bibliography: references_slides.bib
