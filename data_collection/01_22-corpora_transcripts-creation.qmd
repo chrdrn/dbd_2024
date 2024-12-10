@@ -1,0 +1,121 @@
+---
+title: "Corpus: transcripts"
+execute: 
+  eval: false
+editor_options: 
+  chunk_output_type: console
+bibliography: references.bib
+---
+
+::: callout-note
+## Information
+
+Based on the **transcript** data, this script:
+
+-   Creates a corpus, tokens, and a document-feature matrix with the `quanteda` package [`r glue::glue("v{packageVersion('quanteda')}")`, @benoit2018].
+-   Utilizes `udpipe` [`r glue::glue("v{packageVersion('udpipe')}")`, @wijffels2023] and `spacyr` [`r glue::glue("v{packageVersion('spacyr')}")`, @benoit2023] packages for additional linguistic processing, adding lemmatization, part-of-speech tagging, and named entity recognition.
+:::
+
+## Preparation
+
+```{r setup-session}
+#| warning: false
+#| message: false
+
+# Load packages
+source(file = here::here(
+  "data_collection/00_02-setup-session.R"
+))
+```
+
+```{r data-import}
+transcripts <- qs::qread(here("local_data/transcripts-debates_full.qs"))
+```
+
+## Process data
+
+```{r create-corpus}
+transcripts_corpora <- list()
+
+# Create corpus
+transcripts_corpora$corp <- transcripts$correct %>% 
+    quanteda::corpus(
+        docid_field = "id_sequence", 
+        text_field = "dialogue"
+  )
+
+# Create tokens
+transcripts_corpora$toks <- transcripts_corpora$corp %>% 
+    quanteda::tokens(
+        remove_punct = TRUE, 
+        remove_symbols = TRUE,
+        remove_numbers = TRUE,
+        remove_url = TRUE, 
+        split_hyphens = FALSE,
+        split_tags = FALSE
+        ) %>% 
+    quanteda::tokens_remove(
+        pattern = quanteda::stopwords("en")
+    )
+
+# Create Document Feature Matrix (DFM)
+transcripts_corpora$dfm <- transcripts_corpora$toks %>% 
+    quanteda::dfm()
+```
+
+```{r create-udpipe}
+# Execute on first run, to download the model 
+# udmodel <- udpipe::udpipe_download_model(
+#     language = "english",
+#     model_dir = here("models"))
+
+# Load udpipe model
+udmodel_english <- udpipe::udpipe_load_model(file = here("models/english-ewt-ud-2.5-191206.udpipe"))
+
+transcripts_corpora$udpipe <- transcripts$correct %>% 
+  rename(
+    doc_id = id_sequence,
+    text = dialogue
+  ) %>% 
+  udpipe::udpipe(udmodel_english)
+```
+
+```{r create-spacyr}
+# Define environment
+reticulate::use_virtualenv("r-spacyr")
+
+# Initialize
+spacyr::spacy_download_langmodel("en_core_web_sm")
+spacyr::spacy_initialize("en_core_web_sm")
+
+transcripts_corpora$spacyr <- transcripts_corpora$corp %>% 
+    spacyr::spacy_parse(.,
+        tag = TRUE,
+        pos = TRUE,
+        lemma = TRUE,
+        dependency = TRUE,
+        multithread = TRUE
+    )
+```
+
+## Save data
+
+```{r}
+# Save complete data
+qs::qsave(
+    transcripts_corpora,
+    file = here("local_data/transcripts-corpora_full.qs")
+)
+
+# Save udpipe corpus
+qs::qsave(
+    transcripts_corpora$udpipe, 
+    file = here("local_data/transcripts-corpus_udpipe.qs")
+)
+
+# Save spacyr corpus
+qs::qsave(
+    transcripts_corpora$spacyr, 
+    file = here("local_data/transcripts-corpus_spacyr.qs")
+)
+```

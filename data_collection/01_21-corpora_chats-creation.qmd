@@ -1,0 +1,113 @@
+---
+title: "Corpus: chat"
+execute: 
+  eval: false
+editor_options: 
+  chunk_output_type: console
+---
+
+::: callout-note
+## Information
+
+Based on the **chat** data, this script:
+-   Creates a corpus, tokens, and a document-feature matrix with the `quanteda` package [`r glue::glue("v{packageVersion('quanteda')}")`, @benoit2018].
+-   Utilizes `udpipe` [`r glue::glue("v{packageVersion('udpipe')}")`, @wijffels2023] and `spacyr` [`r glue::glue("v{packageVersion('spacyr')}")`, @benoit2023] packages for additional linguistic processing, adding lemmatization, part-of-speech tagging, and named entity recognition.
+
+:::
+
+## Preparation
+
+```{r setup-session}
+#| warning: false
+#| message: false
+
+# Load packages
+source(file = here::here(
+  "data_collection/00_02-setup-session.R"
+))
+```
+
+```{r data-import}
+
+chat <- qs::qread(here("local_data/chat-debates_full.qs"))
+chat_corpora <- qs::qread(here("local_data/chat-corpora_full.qs"))
+```
+
+## Process data
+
+```{r create-corpus}
+chat_corpora <- list()
+
+# Create corpus
+chat_corpora$corp <- chats$correct %>% 
+    quanteda::corpus(
+        docid_field = "message_id", 
+        text_field = "message_content"
+  )
+
+# Create tokens
+chat_corpora$toks <- chat_corpora$corp %>% 
+    quanteda::tokens() 
+
+# Create Document Feature Matrix (DFM)
+chat_corpora$dfm <- chat_corpora$toks %>% 
+    quanteda::dfm()
+```
+
+
+```{r create-udpipe}
+# Execute on first run, to download the model 
+# udmodel <- udpipe::udpipe_download_model(
+#     language = "english",
+#     model_dir = here("models"))
+
+# Load udpipe model
+udmodel_english <- udpipe::udpipe_load_model(file = here("models/english-ewt-ud-2.5-191206.udpipe"))
+
+chat_corpora$udpipe <- chat$correct %>% 
+  rename(
+    doc_id = message_id,
+    text = message_content
+  ) %>% 
+  udpipe::udpipe(udmodel_english)
+```
+
+
+```{r create-spacyr}
+# Define environment
+reticulate::use_virtualenv("r-spacyr")
+
+# Initialize
+spacyr::spacy_download_langmodel("en_core_web_sm")
+spacyr::spacy_initialize("en_core_web_sm")
+
+chat_corpora$spacyr <- chat_corpora$corp %>% 
+    spacyr::spacy_parse(.,
+        tag = TRUE,
+        pos = TRUE,
+        lemma = TRUE,
+        dependency = TRUE,
+        multithread = TRUE
+    )
+```
+
+## Save data
+```{r}
+# Save complete data
+qs::qsave(
+    chat_corpora,
+    file = here("local_data/chat-corpora_full.qs")
+)
+
+# Save udpipe corpus
+qs::qsave(
+    chat_corpora$udpipe, 
+    file = here("local_data/chat-corpus_udpipe.qs")
+)
+
+# Save spacyr corpus
+qs::qsave(
+    chat_corpora$spacyr, 
+    file = here("local_data/chat-corpus_spacyr.qs")
+)
+```
