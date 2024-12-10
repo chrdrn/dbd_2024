@@ -1,0 +1,185 @@
+---
+title: "Advanced Twitch Chat Analysis"
+subtitle: "Session 08 - 🔨 Advanced Methods in R"
+date: last-modified
+date-format: "DD.MM.YYYY"
+---
+
+::: {.callout-tip icon="false"}
+[![Quarto Slides](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto-slide.svg) Link to slides](../slides/slides-08.html)
+
+[![](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto_document.svg) Download source file](https://github.com/chrdrn/dbd_2024/blob/main/exercises/exercise-08.qmd)
+
+[![](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-binder_rstudio.svg) Open interactive and executable RStudio environment](https://mybinder.org/v2/gh/faucommsci/dbd_binder/HEAD?urlpath=rstudio)
+:::
+
+::: callout-note
+## Ziel der Anwendung: Fortgeschrittene Korpusanalyse in R
+
+-   Review advanced methods of working with R, tidyverse, and ggplot2
+-   Get to know the typical steps of advanced text analysis with `quanteda`, from tokenisation and summarisation to visualisation.
+:::
+
+## Background
+
+::: callout-tipa
+## Todays's data basis: Advanced Text Analysis
+
+**Transcripts & Chats of the Live-Streams** from [{{< bi twitch >}} hasanabi](https://www.twitch.tv/hasanabi) and [{{< bi twitch >}} zackrawrr](https://www.twitch.tv/zackrawrr) and [{{< bi youtube >}}](https://www.youtube.com/majorityreportlive)\|[{{< bi twitch >}} TheMajorityReport](https://www.twitch.tv/themajorityreport) for the **Presidential** (Harris vs. Trump) and **Vice-Presidential** (Vance vs. Walz) **Debates** 2024
+:::
+
+-   The best way to learn R is by trying. This document tries to display a version of the "normal" data processing procedure.
+-   Use `tidytuesday` data as an example to showcase the potential
+
+## Preparation
+
+### Packages
+
+The `pacman::p_load()` function from the `pacman` package is used to load the packages, which has several advantages over the conventional method with `library()`:
+
+-   Concise syntax
+-   Automatic installation (if the package is not already installed)
+-   Loading multiple packages at once
+-   Automatic search for dependencies
+
+```{r load-packages}
+pacman::p_load(
+    here, taylor,
+    magrittr, janitor,
+    ggpubr, 
+    gt, gtExtras,
+    countdown, 
+    quanteda, # quanteda text processing
+    quanteda.textplots, 
+    easystats, tidyverse
+)
+```
+
+### Import und Vorverarbeitung der Daten
+
+```{r import-data-raw}
+chats <- qs::qread(here("local_data/chats.qs"))
+transcripts <- qs::qread(here("local_data/transcripts.qs"))
+chats_spacyr <- qs::qread(here("local_data/chat-corpus_spacyr.qs"))
+```
+
+## 🛠️ Praktische Übung
+
+::: callout-important
+## Achtung, bitte lesen!
+
+-   Bevor Sie mit der Arbeit an den folgenden 📋 **Exercises** beginnen, stellen Sie bitte sicher, dass Sie alle Chunks des Abschnitts [Preparation] ausgeführt haben. Das können Sie tun, indem Sie den "*Run all chunks above*"-Knopf ![](https://raw.githubusercontent.com/faucommsci/teaching_materials/main/images/buttons/rstudio-button-render_all_chunks_above.png) des nächsten Chunks benutzen.
+-   Bei Fragen zum Code lohnt sich ein Blick in das **Tutorial** (.qmd oder .html). Beim Tutorial handelt es sich um eine kompakte Darstellung des in der Präsentation verwenden R-Codes. Sie können das Tutorial also nutzen, um sich die Code-Bausteine anzusehen, die für die R-Outputs auf den Slides benutzt wurden.
+:::
+
+## 🔎 Kennenlernen des Chat-Datensatzes
+
+### 📋 Exercise 1: Create corpus, token & DFM
+
+-   Create new dataset `corp_chats`
+    1.  Based on the dataset `chats`, create a corpus object with the `quanteda` package.
+    2.  Use the `corpus()` function with the `docid_field` argument set to "message_id" and the `text_field` argument set to "message_content".
+-   Create new dataset `toks_chats`
+    1.  Based on the dataset `corp_chats`, create tokens using the `tokens()` function from the `quanteda` package, including the removal of punctuation, symbols, numbers, URLs, and stopwords.
+    2.  Use the `tokens_remove()` function to remove stopwords (`en`).
+-   Create new dataset `dfm_chats`
+    1.  Convert the tokens to a document-feature matrix (DFM) using the `dfm()` function from the `quanteda` package.
+
+```{r exercise-1}
+# Create corpus 
+corp_chats <- chats %>% 
+  quanteda::corpus(
+    docid_field = "message_id", 
+    text_field = "message_content"
+  )
+
+# Create tokens
+toks_chats <- corp_chats %>% 
+  quanteda::tokens(
+    remove_punct = TRUE, 
+    remove_symbols = TRUE,
+    remove_numbers = TRUE,
+    remove_url = TRUE, 
+    split_hyphens = FALSE,
+    split_tags = FALSE
+  ) %>% 
+  quanteda::tokens_remove(
+    pattern = quanteda::stopwords("en")
+  ) 
+
+# Create DFM
+dfm_chats <- toks_chats %>% 
+    quanteda::dfm()
+```
+
+### 📋 Exercise 2: Semantisches Netzwerk
+
+-  Create a semantic network based on the top 50 tokens from `dfm_chats`.
+    1.  Based on `dfm_chats`, create an object called `top_50_tokens` by using the `topfeatures()` & `names()` function from the `quanteda` package to get the top 50 tokens.
+    2.  Based on `dfm_chats`, create a feature co-occurrence matrix (FCM) using the `fcm()` function from the `quanteda` package.
+    3.  Select the top 50 tokens from the FCM using the `fcm_select()` function.
+    4.  Create a network plot using the `textplot_network()` function from the `quanteda` package.
+
+```{r exercise_2}
+top50_tokens <- dfm_chats %>% 
+    topfeatures(n = 50) %>% 
+    names()
+
+dfm_chats %>% 
+    fcm() %>% 
+    fcm_select(pattern = top50_tokens) %>% 
+    textplot_network()
+```
+
+### 📋 Exercise 3: Analyse auf Basis von POS-Tagging
+
+-  Based on `chats_spacyr`, analyse the adjectives associated with Trump.
+    1.  Filter the dataset by using `filter()` and the arguments `pos == "NOUN"` and `lemma == "trump"`.
+    2.  Join the dataset with itself by using inner_join() and the arguments `doc_id`, `sentence_id`, and `relationship = "many-to-many"`.
+    5.  Filter the dataset again for adjectives with the head token id equal to the token id of the noun. To do that, use `filter()` and the arguments `pos.y == "ADJ"` and `head_token_id.y == token_id.x`.
+    6.  Rename the columns and select the relevant columns.
+    7.  Display the results using the `sjmisc::frq()` function.
+
+```{r exercise_3}
+chats_spacyr %>% 
+    filter(
+      pos == "NOUN" &
+      lemma == "trump") %>%
+    inner_join(
+      chats_spacyr,
+      by = c(
+        "doc_id",
+        "sentence_id"),
+      relationship = 
+        "many-to-many") %>% 
+    filter(
+      pos.y == "ADJ" &
+      head_token_id.y == token_id.x) %>% 
+    rename(
+      token_id = token_id.y,
+      token = token.y) %>% 
+    select(
+      doc_id, sentence_id,
+      token_id, token) %>%
+    sjmisc::frq(token, sort.frq = "desc") 
+```
+
+### 📋 Exercise 6: Named Entity Recognition (NER)
+
+-   Analyse the named entities in the chat data.
+    1.  Based on `chats_spacyr`, use the `frq()` function from the `sjmisc` package to get the frequency of named entities.
+    2.  Again based on `chats_spacyr`, filter the dataset for named entities of that indicate a person is mentioned (by using `filter` and the varialbe `entity`). Use the output of the previous step to identify the correct entity. Additionally, base all further analysis only on nouns, by using `filter` and the variable `pos== "NOUN`.
+    3.  Use the `frq()` function from the `sjmisc` package to get the frequency. To avoid display errors, use the `min.frq = 10` argument to only display tokens with a frequency of at least 10.
+
+
+```{r exercise_6}
+# Identify named entities
+chats_spacyr %>% 
+    sjmisc::frq(entity, sort.frq = "desc")
+
+# Analyse named entities
+chats_spacyr %>% 
+    filter(entity == "PERSON_B") %>%
+    filter(pos == "NOUN") %>% 
+    sjmisc::frq(token, sort.frq = "desc", min.frq = 10) 
+```
