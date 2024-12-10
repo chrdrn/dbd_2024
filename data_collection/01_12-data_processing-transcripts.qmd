@@ -21,17 +21,16 @@ editor_options:
 #| warning: false
 #| message: false
 
-# Name of subdirectory for easier path managment
-project_dir <- here::here("2024-nlp_of_live_stream_chat")
-
 # Load packages
-source(here::here(project_dir, "00_02-setup-session.R"))
+source(file = here::here(
+  "data_collection/00_02-setup-session.R"
+))
 ```
 
 ```{r data-import}
 transcripts <- list(
     raw = fs::dir_ls(
-        path = here(project_dir, "local_data/transcripts"), 
+        path = here("local_data/transcripts"), 
         glob = "*.txt"
         ) %>%
         # Read the files into the list
@@ -171,12 +170,12 @@ transcripts$valid <- chat$correct %>%
 ```{r export-data-chats-local}
 qs::qsave(
     transcripts,
-    file = here(project_dir, "local_data/transcripts-debates_full.qs")
+    file = here("local_data/transcripts-debates_full.qs")
 )
 
 qs::qsave(
     transcripts$correct,
-    file = here(project_dir, "local_data/transcripts-debates.qs")
+    file = here("local_data/transcripts-debates.qs")
 )
 ```
 

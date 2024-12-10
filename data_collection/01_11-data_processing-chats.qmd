@@ -23,18 +23,17 @@ editor_options:
 #| warning: false
 #| message: false
 
-# Name of subdirectory for easier path managment
-project_dir <- here::here("2024-nlp_of_live_stream_chat")
-
 # Load packages
-source(here::here(project_dir, "00_02-setup-session.R"))
+source(file = here::here(
+  "data_collection/00_02-setup-session.R"
+))
 ```
 
 ```{r data-import}
 chat <- list(
     raw = list(
-        presidential = qs::qread(here(project_dir, "local_data/chat_raw-vods_presidential_debate.qs")),
-        vice_presidential = qs::qread(here(project_dir, "local_data/chat_raw-vods_vice_presidential_debate.qs"))
+        presidential = qs::qread(here("local_data/chat_raw-vods_presidential_debate.qs")),
+        vice_presidential = qs::qread(here("local_data/chat_raw-vods_vice_presidential_debate.qs"))
     )
 )
 ```
@@ -202,11 +201,11 @@ chat$valid <- chat$correct %>%
 ```{r export-data-chats-local}
 qs::qsave(
     chat,
-    file = here(project_dir, "local_data/chat-debates_full.qs")
+    file = here("local_data/chat-debates_full.qs")
 )
 
 qs::qsave(
     chat$correct, 
-    file = here(project_dir, "local_data/chat-debates.qs")
+    file = here("local_data/chat-debates.qs")
 )
 ```
