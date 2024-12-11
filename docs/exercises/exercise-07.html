@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R textbooks – Digital behavioral data</title>
+<title>Twitch Chat Analysis – Digital behavioral data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,20 +64,19 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../computing/computing-cheatsheets.html" rel="next">
-<link href="../computing/computing-instructions_R.html" rel="prev">
 <link href="../img/logo_fau_red.svg" rel="icon" type="image/svg+xml">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e8fb9d25728d58bfeac61b497e4a6629.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-57a92833092fd6dc0d7710b6bdfff9c5.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a8319c1cf6773f4a5c9a0b7b7e89f344.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-0aec2d94dbdb5e6d406284aae2ad85c6.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-2bb03e02df4adaeba556f08ab559a131.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-5f5cb4bbd510998cb149aa2ff71fbc7b.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/quarto-contrib/bootstrap-icons-1.11.1/all.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -74,8 +107,8 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../styles.css">
-<meta property="og:title" content="R textbooks – Digital behavioral data">
-<meta property="og:description" content="Homepage of the course ’Digital behavioral data‘ at Friedrich-Alexander-Universtität (FAU) Erlangen-Nürnberg">
+<meta property="og:title" content="Twitch Chat Analysis – Digital behavioral data">
+<meta property="og:description" content="Session 07 - 🔨 Text as data in R">
 <meta property="og:site_name" content="Digital behavioral data">
 </head>
 
@@ -88,7 +121,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../computing/computing-instructions_R.html">Working with R</a></li><li class="breadcrumb-item"><a href="../computing/computing-textbooks.html">R Textbooks</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Twitch Chat Analysis</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -203,13 +236,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">Working with R</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../computing/computing-instructions_R.html" class="sidebar-item-text sidebar-link">
@@ -218,7 +251,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../computing/computing-textbooks.html" class="sidebar-item-text sidebar-link active">
+  <a href="../computing/computing-textbooks.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">R Textbooks</span></a>
   </div>
 </li>
@@ -241,15 +274,35 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a></li>
+  <li><a href="#preparation" id="toc-preparation" class="nav-link" data-scroll-target="#preparation">Preparation</a>
+  <ul>
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#import-und-vorverarbeitung-der-daten" id="toc-import-und-vorverarbeitung-der-daten" class="nav-link" data-scroll-target="#import-und-vorverarbeitung-der-daten">Import und Vorverarbeitung der Daten</a></li>
+  </ul></li>
+  <li><a href="#praktische-übung" id="toc-praktische-übung" class="nav-link" data-scroll-target="#praktische-übung">🛠️ Praktische Übung</a></li>
+  <li><a href="#kennenlernen-des-chat-datensatzes" id="toc-kennenlernen-des-chat-datensatzes" class="nav-link" data-scroll-target="#kennenlernen-des-chat-datensatzes">🔎 Kennenlernen des Chat-Datensatzes</a>
+  <ul>
+  <li><a href="#exercise-1-create-corpus" id="toc-exercise-1-create-corpus" class="nav-link" data-scroll-target="#exercise-1-create-corpus">📋 Exercise 1: Create corpus</a></li>
+  <li><a href="#exercise-2-tokenization-dfm-conversion" id="toc-exercise-2-tokenization-dfm-conversion" class="nav-link" data-scroll-target="#exercise-2-tokenization-dfm-conversion">📋 Exercise 2: Tokenization &amp; DFM conversion</a></li>
+  <li><a href="#exercise-3-analyse-dfm" id="toc-exercise-3-analyse-dfm" class="nav-link" data-scroll-target="#exercise-3-analyse-dfm">📋 Exercise 3: Analyse DFM</a></li>
+  <li><a href="#exercise-4-preprocessing" id="toc-exercise-4-preprocessing" class="nav-link" data-scroll-target="#exercise-4-preprocessing">📋 Exercise 4: Preprocessing</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/chrdrn/dbd_2024/edit/main/exercises/exercise-07.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/chrdrn/dbd_2024/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../computing/computing-instructions_R.html">Working with R</a></li><li class="breadcrumb-item"><a href="../computing/computing-textbooks.html">R Textbooks</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">R textbooks</h1>
+<h1 class="title">Twitch Chat Analysis</h1>
+<p class="subtitle lead">Session 07 - 🔨 Text as data in R</p>
 </div>
 
 
@@ -257,6 +310,12 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">11.12.2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -266,15 +325,167 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>While there is no official R textbook for the course, there are a few to look at:</p>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><a href="../slides/slides-07.html"><img src="https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto-slide.svg" class="img-fluid" alt="Quarto Slides"> Link to slides</a></p>
+<p><a href="https://github.com/chrdrn/dbd_2024/blob/main/exercises/exercise-07.qmd"><img src="https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto_document.svg" class="img-fluid"> Download source file</a></p>
+<p><a href="https://mybinder.org/v2/gh/faucommsci/dbd_binder/HEAD?urlpath=rstudio"><img src="https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-binder_rstudio.svg" class="img-fluid"> Open interactive and executable RStudio environment</a></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ziel der Anwendung: Grundlagen der Korpusexploration in R
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
-<li><p>🔗 <a href="https://r4ds.hadley.nz/">R for Data Science, 2nd Edition</a></p></li>
-<li><p>🔗 <a href="https://socviz.co/">Data Visualization: A Practical Introduction</a></p></li>
-<li><p>🔗 <a href="https://www.tmwr.org/">Tidy modeling with R</a></p></li>
-<li><p>🔗 <a href="https://www.tidytextmining.com/">Text Mining with R</a></p></li>
+<li>Review basic knowledge of working with R, tidyverse, and ggplot2</li>
+<li>Get to know the typical steps of tidy text analysis with <code>quanteda</code>, from tokenisation and summarisation to visualisation.</li>
 </ul>
+</div>
+</div>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Todays’s data basis: Twitch Chat &amp; Transcripts
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Transcripts &amp; Chats of the Live-Streams</strong> from <a href="https://www.twitch.tv/hasanabi"><i class="bi-twitch " style="" role="img" aria-hidden="true"></i> hasanabi</a> and <a href="https://www.twitch.tv/zackrawrr"><i class="bi-twitch " style="" role="img" aria-hidden="true"></i> zackrawrr</a> and <a href="https://www.youtube.com/majorityreportlive"><i class="bi-youtube " style="" role="img" aria-hidden="true"></i></a>|<a href="https://www.twitch.tv/themajorityreport"><i class="bi-twitch " style="" role="img" aria-hidden="true"></i> TheMajorityReport</a> for the <strong>Presidential</strong> (Harris vs.&nbsp;Trump) and <strong>Vice-Presidential</strong> (Vance vs.&nbsp;Walz) <strong>Debates</strong> 2024</p>
+</div>
+</div>
+<ul>
+<li>The best way to learn R is by trying. This document tries to display a version of the “normal” data processing procedure.</li>
+<li>Use <code>tidytuesday</code> data as an example to showcase the potential</li>
+</ul>
+</section>
+<section id="preparation" class="level2">
+<h2 class="anchored" data-anchor-id="preparation">Preparation</h2>
+<section id="packages" class="level3">
+<h3 class="anchored" data-anchor-id="packages">Packages</h3>
+<p>The <code>pacman::p_load()</code> function from the <code>pacman</code> package is used to load the packages, which has several advantages over the conventional method with <code>library()</code>:</p>
+<ul>
+<li>Concise syntax</li>
+<li>Automatic installation (if the package is not already installed)</li>
+<li>Loading multiple packages at once</li>
+<li>Automatic search for dependencies</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    here, taylor,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    magrittr, janitor,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    ggpubr, </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    gt, gtExtras,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    countdown, </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    quanteda, <span class="co"># quanteda text processing</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    quanteda.textplots, </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    easystats, tidyverse</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="import-und-vorverarbeitung-der-daten" class="level3">
+<h3 class="anchored" data-anchor-id="import-und-vorverarbeitung-der-daten">Import und Vorverarbeitung der Daten</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>chats <span class="ot">&lt;-</span> qs<span class="sc">::</span><span class="fu">qread</span>(<span class="fu">here</span>(<span class="st">"local_data/chat-debates_full.qs"</span>))<span class="sc">$</span>correct</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>transcripts <span class="ot">&lt;-</span> qs<span class="sc">::</span><span class="fu">qread</span>(<span class="fu">here</span>(<span class="st">"local_data/transcripts-debates_full.qs"</span>))<span class="sc">$</span>correct</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="praktische-übung" class="level2">
+<h2 class="anchored" data-anchor-id="praktische-übung">🛠️ Praktische Übung</h2>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Achtung, bitte lesen!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Bevor Sie mit der Arbeit an den folgenden 📋 <strong>Exercises</strong> beginnen, stellen Sie bitte sicher, dass Sie alle Chunks des Abschnitts <a href="#preparation">Preparation</a> ausgeführt haben. Das können Sie tun, indem Sie den “<em>Run all chunks above</em>”-Knopf <img src="https://raw.githubusercontent.com/faucommsci/teaching_materials/main/images/buttons/rstudio-button-render_all_chunks_above.png" class="img-fluid"> des nächsten Chunks benutzen.</li>
+<li>Bei Fragen zum Code lohnt sich ein Blick in das <strong>Tutorial</strong> (.qmd oder .html). Beim Tutorial handelt es sich um eine kompakte Darstellung des in der Präsentation verwenden R-Codes. Sie können das Tutorial also nutzen, um sich die Code-Bausteine anzusehen, die für die R-Outputs auf den Slides benutzt wurden.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="kennenlernen-des-chat-datensatzes" class="level2">
+<h2 class="anchored" data-anchor-id="kennenlernen-des-chat-datensatzes">🔎 Kennenlernen des Chat-Datensatzes</h2>
+<section id="exercise-1-create-corpus" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-1-create-corpus">📋 Exercise 1: Create corpus</h3>
+<ul>
+<li>Create new dataset <code>corp_chats</code>
+<ol type="1">
+<li>Based on the dataset <code>chats</code>, create a corpus object with the <code>quanteda</code> package.</li>
+<li>Use the <code>corpus()</code> function with the <code>docid_field</code> argument set to “message_id” and the <code>text_field</code> argument set to “message_content”.</li>
+<li>Check if the transformation was successful by using the <code>summary()</code> function.</li>
+</ol></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># INSERT CODE HERE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercise-2-tokenization-dfm-conversion" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-2-tokenization-dfm-conversion">📋 Exercise 2: Tokenization &amp; DFM conversion</h3>
+<ul>
+<li>Create new datasets <code>toks_chats</code> &amp; <code>dfm_chats</code></li>
+</ul>
+<ol type="1">
+<li>Based on the dataset <code>corp_chats</code>, create tokens using the <code>tokens()</code> function from the <code>quanteda</code> package.</li>
+<li>Convert the tokens to a document-feature matrix (DFM) using the <code>dfm()</code> function from the <code>quanteda</code> package.</li>
+<li>Check if the transformations were successful (e.g.&nbsp;by using the <code>print()</code> function).</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># INSERT CODE HERE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercise-3-analyse-dfm" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-3-analyse-dfm">📋 Exercise 3: Analyse DFM</h3>
+<ul>
+<li>Based on <code>dfm_chats</code>
+<ol type="1">
+<li>Use the <code>textstat_frequency()</code> function from the <code>quanteda</code> package to get the top 50 tokens.</li>
+<li>Display the results.</li>
+</ol></li>
+<li>Based on the results, what preprocessing steps could be useful?</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># INSERT CODE HERE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercise-4-preprocessing" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-4-preprocessing">📋 Exercise 4: Preprocessing</h3>
+<ul>
+<li>Create a new dataset <code>dfm_chats_preprocessed</code>
+<ol type="1">
+<li>Based on <code>corp_chats</code>, preprocess the data according to the steps you think are necessary (e.g.&nbsp;removing punctuation, symbols, numbers, URLs, and stopwords).</li>
+<li>Depending on the steps you choose, you might need to use the <code>tokens_remove()</code> function from the <code>quanteda</code> package.</li>
+<li>Create a new DFM object <code>dfm_chats_preprocessed</code>.</li>
+<li>Use the <code>textstat_frequency()</code> function from the <code>quanteda</code> package on the newly created dataset to get the top 50 tokens and compare the result with the results of Exercise 3.</li>
+</ol></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># INSERT CODE HERE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -838,18 +1049,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../computing/computing-instructions_R.html" class="pagination-link" aria-label="R Video Tutorials">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">R Video Tutorials</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../computing/computing-cheatsheets.html" class="pagination-link" aria-label="R Cheatsheets">
-        <span class="nav-page-text">R Cheatsheets</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
@@ -858,7 +1057,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/chrdrn/dbd_2024/edit/main/computing/computing-textbooks.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/chrdrn/dbd_2024/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/chrdrn/dbd_2024/edit/main/exercises/exercise-07.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/chrdrn/dbd_2024/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This page is built with ☕ &amp; <a href="https://quarto.org/">Quarto</a>.</p>
 </div>

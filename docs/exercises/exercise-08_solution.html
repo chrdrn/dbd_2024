@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R textbooks – Digital behavioral data</title>
+<title>Advanced Twitch Chat Analysis – Digital behavioral data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,20 +64,19 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../computing/computing-cheatsheets.html" rel="next">
-<link href="../computing/computing-instructions_R.html" rel="prev">
 <link href="../img/logo_fau_red.svg" rel="icon" type="image/svg+xml">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e8fb9d25728d58bfeac61b497e4a6629.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-57a92833092fd6dc0d7710b6bdfff9c5.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a8319c1cf6773f4a5c9a0b7b7e89f344.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-0aec2d94dbdb5e6d406284aae2ad85c6.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-2bb03e02df4adaeba556f08ab559a131.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-5f5cb4bbd510998cb149aa2ff71fbc7b.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/quarto-contrib/bootstrap-icons-1.11.1/all.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -74,8 +107,8 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../styles.css">
-<meta property="og:title" content="R textbooks – Digital behavioral data">
-<meta property="og:description" content="Homepage of the course ’Digital behavioral data‘ at Friedrich-Alexander-Universtität (FAU) Erlangen-Nürnberg">
+<meta property="og:title" content="Advanced Twitch Chat Analysis – Digital behavioral data">
+<meta property="og:description" content="Session 08 - 🔨 Advanced Methods in R">
 <meta property="og:site_name" content="Digital behavioral data">
 </head>
 
@@ -88,7 +121,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../computing/computing-instructions_R.html">Working with R</a></li><li class="breadcrumb-item"><a href="../computing/computing-textbooks.html">R Textbooks</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Advanced Twitch Chat Analysis</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -203,13 +236,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">Working with R</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../computing/computing-instructions_R.html" class="sidebar-item-text sidebar-link">
@@ -218,7 +251,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../computing/computing-textbooks.html" class="sidebar-item-text sidebar-link active">
+  <a href="../computing/computing-textbooks.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">R Textbooks</span></a>
   </div>
 </li>
@@ -241,15 +274,36 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a></li>
+  <li><a href="#todayss-data-basis-advanced-text-analysis" id="toc-todayss-data-basis-advanced-text-analysis" class="nav-link" data-scroll-target="#todayss-data-basis-advanced-text-analysis">Todays’s data basis: Advanced Text Analysis</a></li>
+  <li><a href="#preparation" id="toc-preparation" class="nav-link" data-scroll-target="#preparation">Preparation</a>
+  <ul>
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#import-und-vorverarbeitung-der-daten" id="toc-import-und-vorverarbeitung-der-daten" class="nav-link" data-scroll-target="#import-und-vorverarbeitung-der-daten">Import und Vorverarbeitung der Daten</a></li>
+  </ul></li>
+  <li><a href="#praktische-übung" id="toc-praktische-übung" class="nav-link" data-scroll-target="#praktische-übung">🛠️ Praktische Übung</a></li>
+  <li><a href="#kennenlernen-des-chat-datensatzes" id="toc-kennenlernen-des-chat-datensatzes" class="nav-link" data-scroll-target="#kennenlernen-des-chat-datensatzes">🔎 Kennenlernen des Chat-Datensatzes</a>
+  <ul>
+  <li><a href="#exercise-1-create-corpus-token-dfm" id="toc-exercise-1-create-corpus-token-dfm" class="nav-link" data-scroll-target="#exercise-1-create-corpus-token-dfm">📋 Exercise 1: Create corpus, token &amp; DFM</a></li>
+  <li><a href="#exercise-2-semantisches-netzwerk" id="toc-exercise-2-semantisches-netzwerk" class="nav-link" data-scroll-target="#exercise-2-semantisches-netzwerk">📋 Exercise 2: Semantisches Netzwerk</a></li>
+  <li><a href="#exercise-3-analyse-auf-basis-von-pos-tagging" id="toc-exercise-3-analyse-auf-basis-von-pos-tagging" class="nav-link" data-scroll-target="#exercise-3-analyse-auf-basis-von-pos-tagging">📋 Exercise 3: Analyse auf Basis von POS-Tagging</a></li>
+  <li><a href="#exercise-6-named-entity-recognition-ner" id="toc-exercise-6-named-entity-recognition-ner" class="nav-link" data-scroll-target="#exercise-6-named-entity-recognition-ner">📋 Exercise 6: Named Entity Recognition (NER)</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/chrdrn/dbd_2024/edit/main/exercises/exercise-08_solution.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/chrdrn/dbd_2024/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../computing/computing-instructions_R.html">Working with R</a></li><li class="breadcrumb-item"><a href="../computing/computing-textbooks.html">R Textbooks</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">R textbooks</h1>
+<h1 class="title">Advanced Twitch Chat Analysis</h1>
+<p class="subtitle lead">Session 08 - 🔨 Advanced Methods in R</p>
 </div>
 
 
@@ -257,6 +311,12 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">11.12.2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -266,15 +326,227 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>While there is no official R textbook for the course, there are a few to look at:</p>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><a href="../slides/slides-08.html"><img src="https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto-slide.svg" class="img-fluid" alt="Quarto Slides"> Link to slides</a></p>
+<p><a href="https://github.com/chrdrn/dbd_2024/blob/main/exercises/exercise-08.qmd"><img src="https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto_document.svg" class="img-fluid"> Download source file</a></p>
+<p><a href="https://mybinder.org/v2/gh/faucommsci/dbd_binder/HEAD?urlpath=rstudio"><img src="https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-binder_rstudio.svg" class="img-fluid"> Open interactive and executable RStudio environment</a></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ziel der Anwendung: Fortgeschrittene Korpusanalyse in R
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
-<li><p>🔗 <a href="https://r4ds.hadley.nz/">R for Data Science, 2nd Edition</a></p></li>
-<li><p>🔗 <a href="https://socviz.co/">Data Visualization: A Practical Introduction</a></p></li>
-<li><p>🔗 <a href="https://www.tmwr.org/">Tidy modeling with R</a></p></li>
-<li><p>🔗 <a href="https://www.tidytextmining.com/">Text Mining with R</a></p></li>
+<li>Review advanced methods of working with R, tidyverse, and ggplot2</li>
+<li>Get to know the typical steps of advanced text analysis with <code>quanteda</code>, from tokenisation and summarisation to visualisation.</li>
 </ul>
+</div>
+</div>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+</section>
+<section id="todayss-data-basis-advanced-text-analysis" class="level2 callout-tipa">
+<h2 class="anchored" data-anchor-id="todayss-data-basis-advanced-text-analysis">Todays’s data basis: Advanced Text Analysis</h2>
+<p><strong>Transcripts &amp; Chats of the Live-Streams</strong> from <a href="https://www.twitch.tv/hasanabi"><i class="bi-twitch " style="" role="img" aria-hidden="true"></i> hasanabi</a> and <a href="https://www.twitch.tv/zackrawrr"><i class="bi-twitch " style="" role="img" aria-hidden="true"></i> zackrawrr</a> and <a href="https://www.youtube.com/majorityreportlive"><i class="bi-youtube " style="" role="img" aria-hidden="true"></i></a>|<a href="https://www.twitch.tv/themajorityreport"><i class="bi-twitch " style="" role="img" aria-hidden="true"></i> TheMajorityReport</a> for the <strong>Presidential</strong> (Harris vs.&nbsp;Trump) and <strong>Vice-Presidential</strong> (Vance vs.&nbsp;Walz) <strong>Debates</strong> 2024</p>
+</section>
+<ul>
+<li>The best way to learn R is by trying. This document tries to display a version of the “normal” data processing procedure.</li>
+<li>Use <code>tidytuesday</code> data as an example to showcase the potential</li>
+</ul>
+<section id="preparation" class="level2">
+<h2 class="anchored" data-anchor-id="preparation">Preparation</h2>
+<section id="packages" class="level3">
+<h3 class="anchored" data-anchor-id="packages">Packages</h3>
+<p>The <code>pacman::p_load()</code> function from the <code>pacman</code> package is used to load the packages, which has several advantages over the conventional method with <code>library()</code>:</p>
+<ul>
+<li>Concise syntax</li>
+<li>Automatic installation (if the package is not already installed)</li>
+<li>Loading multiple packages at once</li>
+<li>Automatic search for dependencies</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    here, taylor,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    magrittr, janitor,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    ggpubr, </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    gt, gtExtras,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    countdown, </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    quanteda, <span class="co"># quanteda text processing</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    quanteda.textplots, </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    easystats, tidyverse</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="import-und-vorverarbeitung-der-daten" class="level3">
+<h3 class="anchored" data-anchor-id="import-und-vorverarbeitung-der-daten">Import und Vorverarbeitung der Daten</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>chats <span class="ot">&lt;-</span> qs<span class="sc">::</span><span class="fu">qread</span>(<span class="fu">here</span>(<span class="st">"local_data/chats.qs"</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>transcripts <span class="ot">&lt;-</span> qs<span class="sc">::</span><span class="fu">qread</span>(<span class="fu">here</span>(<span class="st">"local_data/transcripts.qs"</span>))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>chats_spacyr <span class="ot">&lt;-</span> qs<span class="sc">::</span><span class="fu">qread</span>(<span class="fu">here</span>(<span class="st">"local_data/chat-corpus_spacyr.qs"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="praktische-übung" class="level2">
+<h2 class="anchored" data-anchor-id="praktische-übung">🛠️ Praktische Übung</h2>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Achtung, bitte lesen!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Bevor Sie mit der Arbeit an den folgenden 📋 <strong>Exercises</strong> beginnen, stellen Sie bitte sicher, dass Sie alle Chunks des Abschnitts <a href="#preparation">Preparation</a> ausgeführt haben. Das können Sie tun, indem Sie den “<em>Run all chunks above</em>”-Knopf <img src="https://raw.githubusercontent.com/faucommsci/teaching_materials/main/images/buttons/rstudio-button-render_all_chunks_above.png" class="img-fluid"> des nächsten Chunks benutzen.</li>
+<li>Bei Fragen zum Code lohnt sich ein Blick in das <strong>Tutorial</strong> (.qmd oder .html). Beim Tutorial handelt es sich um eine kompakte Darstellung des in der Präsentation verwenden R-Codes. Sie können das Tutorial also nutzen, um sich die Code-Bausteine anzusehen, die für die R-Outputs auf den Slides benutzt wurden.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="kennenlernen-des-chat-datensatzes" class="level2">
+<h2 class="anchored" data-anchor-id="kennenlernen-des-chat-datensatzes">🔎 Kennenlernen des Chat-Datensatzes</h2>
+<section id="exercise-1-create-corpus-token-dfm" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-1-create-corpus-token-dfm">📋 Exercise 1: Create corpus, token &amp; DFM</h3>
+<ul>
+<li>Create new dataset <code>corp_chats</code>
+<ol type="1">
+<li>Based on the dataset <code>chats</code>, create a corpus object with the <code>quanteda</code> package.</li>
+<li>Use the <code>corpus()</code> function with the <code>docid_field</code> argument set to “message_id” and the <code>text_field</code> argument set to “message_content”.</li>
+</ol></li>
+<li>Create new dataset <code>toks_chats</code>
+<ol type="1">
+<li>Based on the dataset <code>corp_chats</code>, create tokens using the <code>tokens()</code> function from the <code>quanteda</code> package, including the removal of punctuation, symbols, numbers, URLs, and stopwords.</li>
+<li>Use the <code>tokens_remove()</code> function to remove stopwords (<code>en</code>).</li>
+</ol></li>
+<li>Create new dataset <code>dfm_chats</code>
+<ol type="1">
+<li>Convert the tokens to a document-feature matrix (DFM) using the <code>dfm()</code> function from the <code>quanteda</code> package.</li>
+</ol></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create corpus </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>corp_chats <span class="ot">&lt;-</span> chats <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  quanteda<span class="sc">::</span><span class="fu">corpus</span>(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">docid_field =</span> <span class="st">"message_id"</span>, </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">text_field =</span> <span class="st">"message_content"</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create tokens</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>toks_chats <span class="ot">&lt;-</span> corp_chats <span class="sc">%&gt;%</span> </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  quanteda<span class="sc">::</span><span class="fu">tokens</span>(</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">remove_punct =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">remove_symbols =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">remove_numbers =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">remove_url =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">split_hyphens =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">split_tags =</span> <span class="cn">FALSE</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  quanteda<span class="sc">::</span><span class="fu">tokens_remove</span>(</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">pattern =</span> quanteda<span class="sc">::</span><span class="fu">stopwords</span>(<span class="st">"en"</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  ) </span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Create DFM</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>dfm_chats <span class="ot">&lt;-</span> toks_chats <span class="sc">%&gt;%</span> </span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    quanteda<span class="sc">::</span><span class="fu">dfm</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercise-2-semantisches-netzwerk" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-2-semantisches-netzwerk">📋 Exercise 2: Semantisches Netzwerk</h3>
+<ul>
+<li>Create a semantic network based on the top 50 tokens from <code>dfm_chats</code>.
+<ol type="1">
+<li>Based on <code>dfm_chats</code>, create an object called <code>top_50_tokens</code> by using the <code>topfeatures()</code> &amp; <code>names()</code> function from the <code>quanteda</code> package to get the top 50 tokens.</li>
+<li>Based on <code>dfm_chats</code>, create a feature co-occurrence matrix (FCM) using the <code>fcm()</code> function from the <code>quanteda</code> package.</li>
+<li>Select the top 50 tokens from the FCM using the <code>fcm_select()</code> function.</li>
+<li>Create a network plot using the <code>textplot_network()</code> function from the <code>quanteda</code> package.</li>
+</ol></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>top50_tokens <span class="ot">&lt;-</span> dfm_chats <span class="sc">%&gt;%</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">topfeatures</span>(<span class="at">n =</span> <span class="dv">50</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">names</span>()</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>dfm_chats <span class="sc">%&gt;%</span> </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fcm</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fcm_select</span>(<span class="at">pattern =</span> top50_tokens) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">textplot_network</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercise-3-analyse-auf-basis-von-pos-tagging" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-3-analyse-auf-basis-von-pos-tagging">📋 Exercise 3: Analyse auf Basis von POS-Tagging</h3>
+<ul>
+<li>Based on <code>chats_spacyr</code>, analyse the adjectives associated with Trump.
+<ol type="1">
+<li>Filter the dataset by using <code>filter()</code> and the arguments <code>pos == "NOUN"</code> and <code>lemma == "trump"</code>.</li>
+<li>Join the dataset with itself by using inner_join() and the arguments <code>doc_id</code>, <code>sentence_id</code>, and <code>relationship = "many-to-many"</code>.</li>
+<li>Filter the dataset again for adjectives with the head token id equal to the token id of the noun. To do that, use <code>filter()</code> and the arguments <code>pos.y == "ADJ"</code> and <code>head_token_id.y == token_id.x</code>.</li>
+<li>Rename the columns and select the relevant columns.</li>
+<li>Display the results using the <code>sjmisc::frq()</code> function.</li>
+</ol></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>chats_spacyr <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>      pos <span class="sc">==</span> <span class="st">"NOUN"</span> <span class="sc">&amp;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>      lemma <span class="sc">==</span> <span class="st">"trump"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">inner_join</span>(</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      chats_spacyr,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">by =</span> <span class="fu">c</span>(</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"doc_id"</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"sentence_id"</span>),</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">relationship =</span> </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">"many-to-many"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>      pos.y <span class="sc">==</span> <span class="st">"ADJ"</span> <span class="sc">&amp;</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>      head_token_id.y <span class="sc">==</span> token_id.x) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename</span>(</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">token_id =</span> token_id.y,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">token =</span> token.y) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>      doc_id, sentence_id,</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>      token_id, token) <span class="sc">%&gt;%</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    sjmisc<span class="sc">::</span><span class="fu">frq</span>(token, <span class="at">sort.frq =</span> <span class="st">"desc"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercise-6-named-entity-recognition-ner" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-6-named-entity-recognition-ner">📋 Exercise 6: Named Entity Recognition (NER)</h3>
+<ul>
+<li>Analyse the named entities in the chat data.
+<ol type="1">
+<li>Based on <code>chats_spacyr</code>, use the <code>frq()</code> function from the <code>sjmisc</code> package to get the frequency of named entities.</li>
+<li>Again based on <code>chats_spacyr</code>, filter the dataset for named entities of that indicate a person is mentioned (by using <code>filter</code> and the varialbe <code>entity</code>). Use the output of the previous step to identify the correct entity. Additionally, base all further analysis only on nouns, by using <code>filter</code> and the variable <code>pos== "NOUN</code>.</li>
+<li>Use the <code>frq()</code> function from the <code>sjmisc</code> package to get the frequency. To avoid display errors, use the <code>min.frq = 10</code> argument to only display tokens with a frequency of at least 10.</li>
+</ol></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify named entities</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>chats_spacyr <span class="sc">%&gt;%</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    sjmisc<span class="sc">::</span><span class="fu">frq</span>(entity, <span class="at">sort.frq =</span> <span class="st">"desc"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Analyse named entities</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>chats_spacyr <span class="sc">%&gt;%</span> </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(entity <span class="sc">==</span> <span class="st">"PERSON_B"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(pos <span class="sc">==</span> <span class="st">"NOUN"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    sjmisc<span class="sc">::</span><span class="fu">frq</span>(token, <span class="at">sort.frq =</span> <span class="st">"desc"</span>, <span class="at">min.frq =</span> <span class="dv">10</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -838,18 +1110,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../computing/computing-instructions_R.html" class="pagination-link" aria-label="R Video Tutorials">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">R Video Tutorials</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../computing/computing-cheatsheets.html" class="pagination-link" aria-label="R Cheatsheets">
-        <span class="nav-page-text">R Cheatsheets</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
@@ -858,7 +1118,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/chrdrn/dbd_2024/edit/main/computing/computing-textbooks.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/chrdrn/dbd_2024/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/chrdrn/dbd_2024/edit/main/exercises/exercise-08_solution.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/chrdrn/dbd_2024/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This page is built with ☕ &amp; <a href="https://quarto.org/">Quarto</a>.</p>
 </div>
