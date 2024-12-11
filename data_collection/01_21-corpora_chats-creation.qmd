@@ -1,5 +1,5 @@
 ---
-title: "Corpus: chat"
+title: "Corpus: Chats"
 execute: 
   eval: false
 editor_options: 
