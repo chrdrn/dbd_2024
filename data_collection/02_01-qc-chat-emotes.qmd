@@ -6,13 +6,13 @@ editor_options:
 
 ::: callout-tip
 ## Information
+
 This document outlines the process of quality control for chat emotes in a dataset. The key steps include:
 
-- Extracting and processing emote information from chat messages.
-- Generating frequency tables for emotes and the number of emotes per message.
-- Identifying and handling cases where emote names are missing.
-- Creating and saving a dictionary of unique emotes for further analysis.
-
+-   Extracting and processing emote information from chat messages.
+-   Generating frequency tables for emotes and the number of emotes per message.
+-   Identifying and handling cases where emote names are missing.
+-   Creating and saving a dictionary of unique emotes for further analysis.
 :::
 
 ## Preparation
@@ -33,7 +33,10 @@ chat <- qs::qread(here("local_data/chat-debates_full.qs"))
 ## Create list of emotes
 
 ::: callout-note
-For example images of the emojis visit <https://twitchemotes.com/> or <https://www.twitchmetrics.net/emotes>
+For example images of the emojis visit
+
+-   <https://twitchemotes.com/> or
+-   <https://www.twitchmetrics.net/emotes>
 :::
 
 ```{r data-emotes-creation}
