@@ -64,8 +64,8 @@ website:
           - href: data_collection/01_12-data_processing-transcripts.qmd
           - href: data_collection/01_21-corpora_chats-creation.qmd
           - href: data_collection/01_22-corpora_transcripts-creation.qmd
-          - href: data_collection/02_01-qc-chats-emotes.qmd
-          - href: data_collection/02_02-qc-chats-badges.qmd
+          - href: data_collection/02_01-qc-chat-emotes.qmd
+          - href: data_collection/02_02-qc-chat-badges.qmd
 
     #   - section: "Sessions"
     #     contents:
