@@ -62,6 +62,8 @@ website:
           # - href: data_collection/01_03-data_collection-twitch_streamer_stats.qmd
           - href: data_collection/01_11-data_processing-chats.qmd
           - href: data_collection/01_12-data_processing-transcripts.qmd
+          - href: data_collection/01_21-corpora_chats-creation.qmd
+          - href: data_collection/01_22-corpora_transcripts-creation.qmd
           - href: data_collection/02_01-qc-chats-emotes.qmd
           - href: data_collection/02_02-qc-chats-badges.qmd
 
