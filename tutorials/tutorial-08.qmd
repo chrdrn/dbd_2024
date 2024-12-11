@@ -1,0 +1,269 @@
+---
+title: "🔨 Advanced Methods"
+subtitle: "Tutorial - Session 08"
+date: last-modified
+date-format: "DD.MM.YYYY"
+---
+
+::: {.callout-tip icon="false"}
+[![Quarto Slides](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto-slide.svg) Link to slides](../slides/slides-08.html)
+
+[![](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto_document.svg) Download source file](https://github.com/chrdrn/dbd_2024/blob/main/tutorials/tutorial-08.qmd)
+
+[![](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-binder_rstudio.svg) Open interactive and executable RStudio environment](https://mybinder.org/v2/gh/faucommsci/dbd_binder/HEAD?urlpath=rstudio)
+:::
+
+## Background
+
+## Preparation
+
+```{r load-packages}
+
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(
+    here, 
+    magrittr, janitor,
+    ggpubr, 
+    gt, gtExtras,
+    countdown, 
+    quanteda, # quanteda text processing
+    quanteda.textplots, quanteda.textstats, quanteda.textmodels,
+    udpipe, spacyr, # POS tagging
+    easystats, tidyverse
+)
+```
+
+```{r import-data}
+
+# Import base data
+chats <- qs::qread(here("local_data/chat-debates_full.qs"))$correct
+transcripts <- qs::qread(here("local_data/transcripts-debates_full.qs"))$correct
+dict_chat_emotes <- readRDS(here("local_data/dictionary_chat_emotes.RDS"))
+
+# Import corpora
+transcripts_udpipe <- qs::qread(here("local_data/transcripts-corpus_udpipe.qs"))
+transcripts_spacyr <- qs::qread(here("local_data/transcripts-corpus_spacyr.qs"))
+transcripts_pos <- transcripts_udpipe
+```
+
+## Codechunks aus der Sitzung
+### Erstellung der Datengrundlage
+
+```{r create-corpora-transcripts}
+# Create corpus
+corp_transcripts <- transcripts %>% 
+  quanteda::corpus(
+    docid_field = "id_sequence", 
+    text_field = "dialogue"
+  )
+
+# Tokenize corpus
+toks_transcripts <- corp_transcripts %>% 
+  quanteda::tokens(
+    remove_punct = TRUE, 
+    remove_symbols = TRUE,
+    remove_numbers = TRUE,
+    remove_url = TRUE, 
+    split_hyphens = FALSE,
+    split_tags = FALSE
+  ) %>% 
+  quanteda::tokens_remove(
+    pattern = quanteda::stopwords("en")
+  )
+
+# Add n_grams
+toks_transcripts_ngrams <- toks_transcripts %>% 
+  quanteda::tokens_ngrams(n = 1:3)
+
+# Convert to DFM
+dfm_transcripts <- toks_transcripts_ngrams %>% 
+  quanteda::dfm()
+```
+
+```{r create-corpora-chats}
+# Create corpus
+corp_chats <- chats %>% 
+  quanteda::corpus(docid_field = "message_id", text_field = "message_content")
+
+# Tokenize corpus
+toks_chats <- corp_chats %>% quanteda::tokens()
+
+# Convert to DFM
+dfm_chats <- toks_chats %>% quanteda::dfm()
+```
+
+### Ngrams: Sequenzen von N aufeinanderfolgenden Token
+
+```{r table-transcripts-ngrams-frequencies}
+toks_transcripts %>% 
+  quanteda::tokens_ngrams(n = 2) %>% 
+  quanteda::dfm() %>%  
+  quanteda.textstats::textstat_frequency() %>% 
+  head(25) 
+```
+
+### Kollokationen: Identifikation von bedeutungsvollen Wortkombinationen
+
+```{r table-transcripts-collocations}
+toks_transcripts %>% 
+  quanteda.textstats::textstat_collocations(
+    size = 2, 
+    min_count = 5
+  ) %>% 
+  head(25)
+```
+
+### Arbeiten mit quanteda: `corpus`
+
+```{r create-corpus-transcripts}
+# Create corpus
+corp_transcripts <- transcripts %>% 
+  quanteda::corpus(
+    docid_field = "id_sequence", 
+    text_field = "dialogue"
+  )
+
+# Output
+corp_transcripts
+```
+
+### Keywords-in-Context (KWIC)
+#### Unmittelbarer Wortkontext ohne statistische Gewichtung
+
+```{r table-transcripts-kwic-simple}
+toks_transcripts %>% 
+  kwic("know", window = 3) %>% 
+head(10)
+```
+
+#### Einsatz zur Qualitätskontrolle
+
+```{r table-transcripts-kwic-complex}
+#| output-location: column 
+
+toks_transcripts %>% 
+  kwic(
+    phrase("know know"),
+    window = 3) %>%
+  tibble() %>% 
+  select(-pattern) %>% 
+  slice(35:45) %>% 
+  gt() %>% 
+  gtExtras::gt_theme_538() %>% 
+  gt::tab_options(
+        table.width = gt::pct(100), 
+        table.font.size = "10px"
+    )
+```
+
+### Ngrams als Features definieren
+```{r table-transcripts-ngrams-features}
+# Definition von Features
+custom_ngrams <- c("donald trump", "joe biden", "kamala harris")
+
+# Anwendung auf DFM
+dfm_with_custom_ngrams <- toks_transcripts %>% 
+  tokens_compound(pattern = phrase(custom_ngrams)) %>% 
+  dfm() %>% 
+  dfm_trim(min_docfreq = 0.005, max_docfreq = 0.99, docfreq_type = "prop") 
+
+# Überprüfung
+dfm_with_custom_ngrams %>% 
+  convert(to = "data.frame") %>% 
+  select(doc_id, starts_with("donald")) %>% 
+  head()
+```
+
+
+### Semantische Netzwerke: Visualisierung von Tokenbeziehungen
+```{r figure-chats-semantic-network}
+# Lookup emotes in DFM of chats
+dfm_emotes <- dfm_chats %>% 
+  quanteda::dfm_lookup(
+    dictionary = dict_chat_emotes)
+
+# Output frequency of emojis
+top50_emotes <- dfm_emotes %>% 
+  topfeatures(50) %>% 
+  names()
+
+# Visualize
+dfm_emotes  %>% 
+  fcm() %>% 
+  fcm_select(pattern = top50_emotes) %>% 
+  textplot_network()
+```
+
+### POS-Tagging & Dependency Parsing
+
+```{r create-pos-tagging-udpipe}
+#| eval: false
+
+udmodel <- udpipe::udpipe_download_model(language = "english")
+
+transcripts_pos <- transcripts %>%
+  rename(doc_id = id_sequence, text = dialogue) %>% 
+  udpipe::udpipe(udmodel)
+```
+
+```{r table-transcripts-pos}
+transcripts_pos %>% 
+  select(doc_id, sentence_id, token_id, token, head_token_id, lemma, upos, xpos) %>% 
+  head(n = 7) %>% 
+  gt() %>% gtExtras::gt_theme_538() %>% 
+  gt::tab_options(table.width = gt::pct(100), table.font.size = "12px")
+```
+
+### Mit welchen Wörtern wird Trump beschrieben?
+
+```{r table-transcripts-pos-trump}
+#| output-location: column
+
+transcripts_pos %>% 
+    filter(
+      upos == "NOUN" &
+      lemma == "trump") %>%
+    inner_join(
+      transcripts_pos,
+      by = c(
+        "doc_id",
+        "sentence_id"),
+      relationship = 
+        "many-to-many") %>%
+    filter(
+      upos.y == "ADJ" &
+      head_token_id.y == token_id.x) %>% 
+    rename(
+      token_id = token_id.y,
+      token = token.y) %>% 
+    select(
+      doc_id, sentence_id,
+      token_id, token) %>%
+    sjmisc::frq(token, sort.frq = "desc") 
+```
+
+```{r table-transcripts-spacyr-trump}
+#| output-location: column
+
+transcripts_spacyr %>%  
+    filter(
+      pos == "NOUN" &
+      lemma == "trump") %>%
+    inner_join(
+      transcripts_spacyr,
+      by = c(
+        "doc_id",
+        "sentence_id"),
+      relationship = 
+        "many-to-many") %>%
+    filter(
+      pos.y == "ADJ" &
+      head_token_id.y == token_id.x) %>% 
+    rename(
+      token_id = token_id.y,
+      token = token.y) %>% 
+    select(
+      doc_id, sentence_id,
+      token_id, token) %>%
+    sjmisc::frq(token, sort.frq = "desc") 
+```

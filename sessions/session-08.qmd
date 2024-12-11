@@ -1,0 +1,31 @@
+---
+title: "Session 8"
+subtitle: "🔨 Text as data II: Advanced Methods"
+bibliography: references_sessions.bib
+csl: ../apa-cv.csl 
+suppress-bibliography: true
+link-citations: false
+citations-hover: false
+---
+
+## Participate
+
+🖥️ [Session 08](/slides/slides-08.html)
+
+## Suggested readings
+
+-   [@atteveldt2021]
+
+-   [@chen2023]
+
+-   [@hase2023]
+
+-   [@maier2018]
+
+-   [@silge2017]
+
+<br>
+
+::: {style="font-size: 0.875em;"}
+Back to [course schedule](/index.html "Course schedule") ⏎
+:::

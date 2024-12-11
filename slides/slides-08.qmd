@@ -1,0 +1,586 @@
+---
+title: "🔨 Advanced Methods"
+subtitle: "Session 08"
+date: 11 12 2024
+date-format: "DD.MM.YYYY"
+bibliography: references_slides.bib
+---
+
+## Seminarplan
+
+```{r setup-slide-session}
+#| echo: false
+#| message: false
+
+# Load packages
+# Load schedule
+source(here::here("slides/schedule.R"))
+
+if (!requireNamespace("pacman", quietly = TRUE)) install.packages("pacman")
+pacman::p_load(
+    here, taylor,
+    magrittr, janitor,
+    ggpubr, 
+    gt, gtExtras,
+    countdown, 
+    # quanteda text processing
+    quanteda, quanteda.textplots, quanteda.textstats,
+    # POS tagging
+    udpipe, spacyr,
+    udpipe, spacyr, # POS tagging
+    easystats, tidyverse
+)
+```
+
+```{r table-schedule}
+#| echo: false 
+
+schedule %>%
+    gt::gt() %>%
+    gt::fmt_markdown(columns = c(Datum, Topic)) %>% 
+    gtExtras::gt_theme_538() %>% 
+    gt::tab_options(
+        table.width = gt::pct(75), 
+        table.font.size = "12px"
+    ) %>%
+    # mark current session
+    gtExtras::gt_highlight_rows(
+        rows = 11,
+        fill = "#C50F3C", 
+        alpha = 0.2,
+        bold_target_only = TRUE,
+        target_col = Topic       
+    ) %>% 
+    # fade out past sessions
+    gt::tab_style(
+        style = cell_text(
+            style = "italic", 
+            color = "grey"),
+        location = cells_body(
+            columns = everything(), 
+            rows = c(2:8, 10))
+    )
+```
+
+```{r import-data-silent}
+#| echo: false
+
+# Import base data
+chats <- qs::qread(here("local_data/chat-debates_full.qs"))$correct
+transcripts <- qs::qread(here("local_data/transcripts-debates_full.qs"))$correct
+dict_chat_emotes <- readRDS(here("local_data/dictionary_chat_emotes.RDS"))
+
+# Import corpora
+transcripts_udpipe <- qs::qread(here("local_data/transcripts-corpus_udpipe.qs"))
+transcripts_spacyr <- qs::qread(here("local_data/transcripts-corpus_spacyr.qs"))
+transcripts_pos <- transcripts_udpipe
+```
+
+# Agenda {background-image="img/slide_bg-agenda.png"}
+
+<!-- TODO add chunks descriptions -->
+
+1.  [Theoretische Grundlagen: Machine Learning, (Un-)supervised](#theory)
+2.  [Text as data in R: Co-Occurence Analysen](#co-occurence)
+3.  [📋 Hands on working with R](#exercise)
+
+# Machine Learning, (Un-)Supervised {background-image="img/slide_bg-section.png"}
+
+Theoretische Grundlage für Topic Modeling & Sentiment Analysis
+
+## Possibilities over possibilities
+
+#### Überblick über verschiedene Methoden der Textanalyse [@grimmer2013]
+
+![](https://faucommsci.github.io/ps_24/slides/img/ms-session-07/text_as_data-methods_overview.png){fig-align="center"}
+
+## Clusteranalyse on 💉
+
+#### Grundidee des Topic Modelings
+
+> „computational content-analysis technique \[…\] used to investigate the “hidden” thematic structure of \[…\] texts” [@maier2018, S.93]
+
+-   Verfahren des ***unüberwachten maschinellen Lernens***, das sich daher insbesondere zur **Exploration und Deskription großer Textmengen** eignet
+
+-   **Themen** werden strikt auf Basis von **Worthäufigkeiten in den einzelnen Dokumenten** vermeintlich objektiv berechnet, ganz ohne subjektive Einschätzungen und damit einhergehenden etwaigen Verzerrungen
+
+-   Bekanntesten dieser Verfahren sind ***LDA*** **(Latent Dirichlet Allocation)** sowie die darauf aufbauenden ***CTM*** **(Correlated Topic Models)** und ***STM*** **(Structural Topic Models)**
+
+## Verteilung von Wörtern auf Themen auf Dokumente {visibility="hidden"}
+
+#### Die Grundidee des (LDA) Topic Modeling
+
+![[@blei2003]](https://faucommsci.github.io/ps_24/slides/img/ms-session-09/tpm.jpg)
+
+::: notes
+Each topic is a distribution of words
+
+Each document is a mixture of corpus-wide topics
+
+Each words is drawn from one of those topics
+:::
+
+## Vom Korpus zum Themenmodell
+
+#### Prozess des Topic Modelings nach @maier2018
+
+![](img/session-08/graphics-topic_modeling.png){fig-align="center"}
+
+## Prominente Wörter eines Themas
+
+#### Vorstellung der Word-topic oder Phi-Matrix
+
+::::: columns
+::: {.column width="50%"}
+<br>
+
+-   Bedingte Wahrscheinlichkeit (**beta**), mit der **Features in Themen prävalent** sind
+
+-   Wortlisten, die Themen beschreiben ("*Top Features*")
+:::
+
+::: {.column width="50%"}
+<br>
+
+![](img/session-08/graphics-topic_model-beta_matrix.png)
+:::
+:::::
+
+## Zugehörige Dokumente eines Themas
+
+#### Vorstellung der Document-topic oder Theta-Matrix
+
+::::: columns
+::: {.column width="50%"}
+<br>
+
+-   Bedingte Wahrscheinlichkeit (**beta**), mit der **Themen in Dokumenten prävalent** sind
+
+-   Dokumentenlisten, die Themen beschreiben ("*Top Documents*")
+:::
+
+::: {.column width="50%"}
+<br>
+
+![](img/session-08/graphics-topic_model-gamma_matrix.png)
+:::
+:::::
+
+## Themenmodelle sind ...
+
+#### Promises & Pitfalls von Themenmodellen
+
+-   **probabilistisch** ➜ Zuordnung von Wahrscheinlichkeiten, nicht eindeutigen Klassen
+    -   *Modell sagt nicht eindeutig, welches das „eine“ Thema je Dokument ist oder wie ein Thema zu interpretieren ist ➜ es gibt nur (probabilistische) Hinweise.*
+-   **generative** ➜ Prozess findet das statistische „passendste“ Modell, um unseren Korpus zu „generieren“
+    -   *Modell läuft in iterativen Schlaufen immer und immer wieder durch, bis eine "optimale" Lösung gefunden wurde*
+    -   *Aber: Es gibt z.T. **nicht-deterministische** (d.h. je nach Einstellungen unterschiedliche) Lösungen.*
+
+::: notes
+Proababilistisches Modell: - Features haben eine Wahrscheinlichkeit von größer gleich 0 je Thema (ϕ-matrix) - Themen haben eine Wahrscheinlichkeit von größer gleich 0 je Dokument (θ-matrix) Generatvies Modell: - Gemeinsame Modellierung der beobachteten Variablen (Features i in den Dokumenten d) & der latenten Variablen (ϕ, θ)
+:::
+
+## Beyond LDA
+
+#### Verschiedene Ansätze der Themenmodellierung
+
+::: {style="font-size: smaller"}
+-   *Latent Dirichlet Allocation \[`LDA`\]* [@blei2003] ist ein probabilistisches generatives Modell, das davon ausgeht, dass *jedes Dokument*in einem Korpuseine*Mischung von Themen ist* und *jedes Wort im Dokument einem der Themen des Dokuments zuzuordnen*ist.
+-   **Structural Topic Modeling \[`STM`\]** [@roberts2016; @roberts2019] erweitert LDA durch die Einbeziehung von Kovariaten auf Dokumentenebene und ermöglicht die Modellierung des Einflusses externer Faktoren auf die Themenprävalenz.
+-   *Word embeddings* (`Word2Vec` [@mikolov2013] , `Glove` [@pennington2014]) stellen Wörter als kontinuierliche Vektoren in einem hochdimensionalen Raum dar und erfassen semantische Beziehungen zwischen Wörtern basierend auf ihrem Kontext in den Daten.
+-   *Topic Modeling* mit *Neural Networks* (`BERTopic`[@devlin2019], `Doc2Vec`[@le2014]) nutzt Deep Learning-Architekturen, um automatisch latente Themen aus Textdaten zu lernen
+:::
+
+## Opinion matters
+
+#### Sentimentanalyse: Einführung und Anwedungsfälle
+
+-   Anwendung von **Natural Language Processing (NLP**), Textanalyse und Computational Linguistics, um
+
+    -   **subjektive Informationen** aus Texten zu extrahieren
+    -   **Meinung, Einstellung oder Emotionen** zu bestimmten Themen oder Entitäten zu bestimmen <!-- Add source: Pang, B., & Lee, L. (2008). Opinion mining and sentiment analysis. Foundations and Trends in Information Retrieval.  -->
+
+-   Wichtige Anwendungsgebiete sind Marketinganalysen, Produktbewertungen, **politische Meinungsforschung und soziale Medien**.
+
+## The very good, the good and the ugly
+
+#### Verschiedene Methode der Sentimentanalyse
+
+Verschiedene Methoden:
+
+-   **Regelbasierte Ansätze**: Verwenden von definierten Regeln und Wörterbüchern.
+-   **Maschinelles Lernen**: Verwendung von Klassifikatoren wie Naive Bayes, SVM.
+-   **Deep Learning**: Einsatz von neuronalen Netzen wie RNNs oder Transformers.
+
+Welche Aspekte werden untersucht?
+
+-   *Polarität*: positive, negative, neutrale.
+-   *Subjektfunktion*: Wer spricht? Wessen Meinung?
+-   *Intensität*: Stärke des Ausdrucks der Meinung.
+
+## Out of the box or DIY?
+
+#### Werkzeuge und Tools für Sentimentanalyse
+
+-   **LWIC**: Python-Bibliothek für Sentimentanalyse, die auf Machine Learning basiert.
+-   **VADER**: Regelbasierte Sentimentanalyse, die speziell für Social Media Texte entwickelt wurde.
+-   **TextBlob**: Python-Bibliothek für Textverarbeitung, die auch Sentimentanalyse unterstützt.
+-   **Commercial Tools**: IBM Watson, Google Cloud Natural Language API, Microsoft Text Analytics.
+
+##### ABER: Zunehmender Einsatz von Transformer-Modellen wie BERT [@devlin2019] und GPT für genauere Analysen.
+
+# Co-Occurence Analyse {#co-occurence background-image="img/slide_bg-example.png"}
+
+Ngrams, Part-of-Speech-Tagging & Dependency Parsing
+
+## Quick reminder
+
+#### Datengrundlage für die heutige Sitzung
+
+::::: columns
+::: {.column width="50%"}
+```{r create-corpora-transcripts-1}
+# Create corpus
+corp_transcripts <- transcripts %>% 
+  quanteda::corpus(
+    docid_field = "id_sequence", 
+    text_field = "dialogue"
+  )
+
+# Tokenize corpus
+toks_transcripts <- corp_transcripts %>% 
+  quanteda::tokens(
+    remove_punct = TRUE, 
+    remove_symbols = TRUE,
+    remove_numbers = TRUE,
+    remove_url = TRUE, 
+    split_hyphens = FALSE,
+    split_tags = FALSE
+  ) %>% 
+  quanteda::tokens_remove(
+    pattern = quanteda::stopwords("en")
+  )
+```
+:::
+
+::: {.column width="50%"}
+```{r create-corpora-transcripts-2}
+# Add n_grams
+toks_transcripts_ngrams <- toks_transcripts %>% 
+  quanteda::tokens_ngrams(n = 1:3)
+
+# Convert to DFM
+dfm_transcripts <- toks_transcripts_ngrams %>% 
+  quanteda::dfm()
+```
+:::
+:::::
+
+## Und für die Chats
+
+#### Datengrundlage für die heutige Sitzung
+
+```{r create-corpora-chats}
+# Create corpus
+corp_chats <- chats %>% 
+  quanteda::corpus(docid_field = "message_id", text_field = "message_content")
+
+# Tokenize corpus
+toks_chats <- corp_chats %>% quanteda::tokens()
+
+# Convert to DFM
+dfm_chats <- toks_chats %>% quanteda::dfm()
+```
+
+## Better bag-of-words
+
+#### Co-Occurence Verfahren und Ihre Einsatzgebiet
+
+**Annahme** von **bag-of-words Modellen** (*Inhalte eines Text lassen sich vollständig durch die Häufigkeit der in ihm vorkommenden Wörter beschreiben*) **problematisch**
+
+-   **Verbessung** durch **komplexere Verfahren bzw. Repräsentationen**, wie z.B. ***Ngrams, Keywords-in-Context, Collocations, Semantische Netzwerke*** etc.
+-   Potentielle **Anwendungsfälle**:
+    -   Textbereinigung, z.B. Entfernung von Duplikaten via ngram-shingling [@nicholls2019]
+    -   Textanalyse, z.B. Stereotypen [@arendt2017], Labeling, Frames [@ruigrok2007]
+
+## Häufige Wortkombinationen
+
+#### Ngrams: Sequenzen von N aufeinanderfolgenden Token
+
+```{r table-transcripts-ngrams-frequencies}
+toks_transcripts %>% 
+  quanteda::tokens_ngrams(n = 2) %>% 
+  quanteda::dfm() %>%  
+  quanteda.textstats::textstat_frequency() %>% 
+  head(25) 
+```
+
+## Statistisch häufige Wortkombinationen
+
+#### Kollokationen: Identifikation von bedeutungsvollen Wortkombinationen
+
+```{r table-transcripts-collocations}
+toks_transcripts %>% 
+  quanteda.textstats::textstat_collocations(
+    size = 2, 
+    min_count = 5
+  ) %>% 
+  head(25)
+```
+
+::: notes
+Es wird die Häufigkeit von Wortkombinationen analysiert und mit erwarteten Häufigkeiten verglichen, um besonders signifikante Kollokationen zu identifizieren.
+:::
+
+## Spezifische Token plus Kontext
+
+#### Keywords-in-Context (KWIC): Unmittelbarer Wortkontext ohne statistische Gewichtung
+
+```{r table-transcripts-kwic-simple}
+toks_transcripts %>% 
+  kwic("know", window = 3) %>% 
+head(10)
+```
+
+## Schlüsselphrase plus Kontext
+
+#### Einsatz von Keywords-in-Context (KWIC) zur Qualitätskontrolle
+
+```{r table-transcripts-kwic-complex}
+#| output-location: column 
+
+toks_transcripts %>% 
+  kwic(
+    phrase("know know"),
+    window = 3) %>%
+  tibble() %>% 
+  select(-pattern) %>% 
+  slice(35:45) %>% 
+  gt() %>% 
+  gtExtras::gt_theme_538() %>% 
+  gt::tab_options(
+        table.width = gt::pct(100), 
+        table.font.size = "10px"
+    )
+```
+
+## Ngrams als Features definieren
+
+#### Steigerung der Datenqualität durch Berücksichtigung von Ngrams-Features
+
+```{r table-transcripts-ngrams-features}
+# Definition von Features
+custom_ngrams <- c("donald trump", "joe biden", "kamala harris")
+
+# Anwendung auf DFM
+dfm_with_custom_ngrams <- toks_transcripts %>% 
+  tokens_compound(pattern = phrase(custom_ngrams)) %>% 
+  dfm() %>% 
+  dfm_trim(min_docfreq = 0.005, max_docfreq = 0.99, docfreq_type = "prop") 
+
+# Überprüfung
+dfm_with_custom_ngrams %>% 
+  convert(to = "data.frame") %>% 
+  select(doc_id, starts_with("donald")) %>% 
+  head()
+```
+
+## Häufige zusammen verwendete Emotes
+
+#### Semantische Netzwerke: Visualisierung von Tokenbeziehungen
+
+```{r figure-chats-semantic-network}
+#| output-location: column
+
+# Lookup emotes in DFM of chats
+dfm_emotes <- dfm_chats %>% 
+  quanteda::dfm_lookup(
+    dictionary = dict_chat_emotes)
+
+# Output frequency of emojis
+top50_emotes <- dfm_emotes %>% 
+  topfeatures(50) %>% 
+  names()
+
+# Visualize
+dfm_emotes  %>% 
+  fcm() %>% 
+  fcm_select(pattern = top50_emotes) %>% 
+  textplot_network()
+```
+
+## Berücksichtigung der Syntax
+
+#### Part-of-Speech Tagging: Hintergrund & Anwendungsbeispiele
+
+![[@jurafsky2024, S.366]](img/session-08/graphics-pos-tagging.png){fig-align="center"}
+
+> "process of assigning a part-of-speech to each word in a text" [@jurafsky2024, S.365]
+
+-   Beispiele für Anwendungsfälle:
+    -   analysieren, ob es sich bei einem Feature um ein Adjektiv handelt, das sich auf ein bestimmtes Substantiv bezieht
+    -   zwischen gleichen Features mit unterschiedlichen Bedeutungen unterscheiden („Sound solution“ vs. „What is that sound“?)
+
+## Dependency Parsing
+
+#### Hintegrund und Anwendungsfälle
+
+```{r}
+#| echo: false
+#| eval: false
+
+# Beispielsatz in udpipe
+udpipe("My only goal in life is to understand dependency parsing", udmodel_english) %>%
+  
+  # Umwandlung in Format für rsyntax-Paket
+  rsyntax::as_tokenindex() %>%
+  
+  # Visualisierung
+  rsyntax::plot_tree(., token, lemma, upos)
+```
+
+![](img/session-08/graphics-dependency_parsing.png){fig-align="center"}
+
+> "the syntactic structure of a sentence \[…\] in terms of directed binary grammatical relations between the words” [@jurafsky2024, S.411]
+
+-   Beispiele für Anwendungsfälle:
+    -   analysieren, ob es sich bei einem Feature um ein Adjektiv handelt, das sich auf ein bestimmtes Substantiv bezieht
+    -   zwischen gleichen Features mit unterschiedlichen Bedeutungen unterscheiden („Sound solution“ vs. „What is that sound“?)
+
+## Praktische Umsetzung mit `udpipe` in R
+
+#### Beispiele für POS-Tagging & Dependency Parsing
+
+```{r create-pos-tagging-udpipe}
+#| eval: false
+
+udmodel <- udpipe::udpipe_download_model(language = "english")
+
+transcripts_pos <- transcripts %>%
+  rename(doc_id = id_sequence, text = dialogue) %>% 
+  udpipe::udpipe(udmodel)
+```
+
+```{r table-transcripts-pos}
+transcripts_pos %>% 
+  select(doc_id, sentence_id, token_id, token, head_token_id, lemma, upos, xpos) %>% 
+  head(n = 7) %>% 
+  gt() %>% gtExtras::gt_theme_538() %>% 
+  gt::tab_options(table.width = gt::pct(100), table.font.size = "12px")
+```
+
+## Mit welchen Wörtern wird Trump beschrieben?
+
+#### Anwendung & Probleme von POS-Tagging
+
+```{r table-transcripts-pos-trump}
+#| output-location: column
+
+transcripts_pos %>% 
+    filter(
+      upos == "NOUN" &
+      lemma == "trump") %>%
+    inner_join(
+      transcripts_pos,
+      by = c(
+        "doc_id",
+        "sentence_id"),
+      relationship = 
+        "many-to-many") %>%
+    filter(
+      upos.y == "ADJ" &
+      head_token_id.y == token_id.x) %>% 
+    rename(
+      token_id = token_id.y,
+      token = token.y) %>% 
+    select(
+      doc_id, sentence_id,
+      token_id, token) %>%
+    sjmisc::frq(token, sort.frq = "desc") 
+```
+
+## Besser mit `spacyr`, aber noch nicht gut
+
+#### Anwendung & Auswertung von POS-Tagging
+
+```{r table-transcripts-spacyr-trump}
+#| output-location: column
+
+transcripts_spacyr %>%  
+    filter(
+      pos == "NOUN" &
+      lemma == "trump") %>%
+    inner_join(
+      transcripts_spacyr,
+      by = c(
+        "doc_id",
+        "sentence_id"),
+      relationship = 
+        "many-to-many") %>%
+    filter(
+      pos.y == "ADJ" &
+      head_token_id.y == token_id.x) %>% 
+    rename(
+      token_id = token_id.y,
+      token = token.y) %>% 
+    select(
+      doc_id, sentence_id,
+      token_id, token) %>%
+    sjmisc::frq(token, sort.frq = "desc") 
+```
+
+# Update der Datengrundlage {#data background-image="img/slide_bg-orga.png"}
+
+Corpora mit Lemmatisierung, POS-Tagging und Named Entities
+
+## Welche *neue* Daten stehen zur Verfügung?
+
+#### Überblick über die neuen Datensätze
+
+Sowohl für die **Chats** & **Transkripte** werden mehrere Korpora hinzugefügt
+
+-   Datensatz `...-corpus_udpipe.qs` enthält einen mit dem Paket `udpipe` [`r glue::glue("v{packageVersion('udpipe')}")`, @wijffels2023] verarbeiteten Datensatz
+-   Datensatz `...-corpus_spacy.qs`enthält einen mit dem Paket `spacyr` [`r glue::glue("v{packageVersion('spacyr')}")`, @benoit2023] verarbeiteten Datensatz
+
+Code für die Erstellung der Datensätze in der Sektion "Data colletion" auf der Homepage
+
+## Quick overview
+
+#### `udpipe`-Korpus
+
+```{r overview-corpus-udpipe}
+# Corpus processed with udpipe
+transcripts_udpipe %>% glimpse
+
+```
+
+## Quick overview
+
+#### `spacyr`-Korpus
+
+```{r overview-corpus-spacyr}
+# Corpus processed with spacyr
+transcripts_spacyr %>% glimpse
+```
+
+# 📋 Hands on working with R {#group-activity background-image="img/slide_bg-group_activity.png"}
+
+Various exercises on the content of today’s session
+
+## 🧪 And now … you!
+
+#### Next steps
+
+-   Laden das .zip-Archiv zur Sitzung von StudOn herunter und **entpacke** die Dateien an einen Ort deiner Wahl.
+-   Doppelklicke auf die Datei `dbd_exercise.Rproj`, um das RStudio-Projekt zu öffnen. Dies stellt sicher, dass alle Abhängigkeiten korrekt funktionieren.
+-   Öffnen die Datei exercise_08.qmd und folge den Anweisungen.
+-   Tipp: Alle im Vortrag verwendeten Code-Schnipsel findest du im der Tutorial-Datei zur Sitzung.
+
+# Time for questions {background-image="img/slide_bg-question.png"}
+
+# Bis zur nächsten Sitzung! {background-image="img/slide_bg-end_session.png"}
+
+## References
+
+::: {#refs}
+:::
