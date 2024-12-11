@@ -42,12 +42,6 @@ The `pacman::p_load()` function from the `pacman` package is used to load the pa
 - Loading multiple packages at once
 - Automatic search for dependencies
 
-For example, to load the `dplyr` and `ggplot2` packages, you can use:
-
--   Concise syntax
--   Automatic installation (if the package is not already installed)
--   Loading multiple packages at once
--   Automatic search for dependencies
 
 ```{r load-packages}
 pacman::p_load(
@@ -78,14 +72,7 @@ transcripts <- qs::qread(here("local_data/transcripts-debates_full.qs"))$correct
 -   Bei Fragen zum Code lohnt sich ein Blick in das **Tutorial** (.qmd oder .html). Beim Tutorial handelt es sich um eine kompakte Darstellung des in der Präsentation verwenden R-Codes. Sie können das Tutorial also nutzen, um sich die Code-Bausteine anzusehen, die für die R-Outputs auf den Slides benutzt wurden.
 :::
 
-### 🔎 Kennenlernen des Chat-Datensatzes
-
-::: callout-note
-#### Spielt das Geschlecht eine Rolle?
-
--   Der folgende Abschitt befasst sich nun ergänzend mit der Frage, welche Rolle das Geschlecht mit Blick auf die "Gültigkeit" der vorherigen Ergebnisse spielt
--   Dazu sind jedoch weitere Explorations- und Überarbeitungsschritte notwendig
-:::
+## 🔎 Kennenlernen des Chat-Datensatzes
 
 ### 📋 Exercise 1: Create corpus
 

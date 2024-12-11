@@ -3,6 +3,8 @@ title: "Advanced Twitch Chat Analysis"
 subtitle: "Session 08 - 🔨 Advanced Methods in R"
 date: last-modified
 date-format: "DD.MM.YYYY"
+execute: 
+  eval: false
 ---
 
 ::: {.callout-tip icon="false"}
