@@ -154,7 +154,7 @@ Each words is drawn from one of those topics
 ::: {.column width="50%"}
 <br>
 
--   Bedingte Wahrscheinlichkeit (**beta**), mit der **Themen in Dokumenten prävalent** sind
+-   Bedingte Wahrscheinlichkeit (**gamma**), mit der **Themen in Dokumenten prävalent** sind
 
 -   Dokumentenlisten, die Themen beschreiben ("*Top Documents*")
 :::
@@ -185,7 +185,7 @@ Proababilistisches Modell: - Features haben eine Wahrscheinlichkeit von größer
 #### Verschiedene Ansätze der Themenmodellierung
 
 ::: {style="font-size: smaller"}
--   *Latent Dirichlet Allocation \[`LDA`\]* [@blei2003] ist ein probabilistisches generatives Modell, das davon ausgeht, dass *jedes Dokument*in einem Korpuseine*Mischung von Themen ist* und *jedes Wort im Dokument einem der Themen des Dokuments zuzuordnen*ist.
+-   *Latent Dirichlet Allocation \[`LDA`\]* [@blei2003] ist ein probabilistisches generatives Modell, das davon ausgeht, dass *jedes Dokument*in einem Korpus eine *Mischung von Themen ist* und *jedes Wort im Dokument einem der Themen des Dokuments zuzuordnen* ist.
 -   **Structural Topic Modeling \[`STM`\]** [@roberts2016; @roberts2019] erweitert LDA durch die Einbeziehung von Kovariaten auf Dokumentenebene und ermöglicht die Modellierung des Einflusses externer Faktoren auf die Themenprävalenz.
 -   *Word embeddings* (`Word2Vec` [@mikolov2013] , `Glove` [@pennington2014]) stellen Wörter als kontinuierliche Vektoren in einem hochdimensionalen Raum dar und erfassen semantische Beziehungen zwischen Wörtern basierend auf ihrem Kontext in den Daten.
 -   *Topic Modeling* mit *Neural Networks* (`BERTopic`[@devlin2019], `Doc2Vec`[@le2014]) nutzt Deep Learning-Architekturen, um automatisch latente Themen aus Textdaten zu lernen
@@ -206,8 +206,6 @@ Proababilistisches Modell: - Features haben eine Wahrscheinlichkeit von größer
 
 #### Verschiedene Methode der Sentimentanalyse
 
-Verschiedene Methoden:
-
 -   **Regelbasierte Ansätze**: Verwenden von definierten Regeln und Wörterbüchern.
 -   **Maschinelles Lernen**: Verwendung von Klassifikatoren wie Naive Bayes, SVM.
 -   **Deep Learning**: Einsatz von neuronalen Netzen wie RNNs oder Transformers.
@@ -222,9 +220,9 @@ Welche Aspekte werden untersucht?
 
 #### Werkzeuge und Tools für Sentimentanalyse
 
--   **LWIC**: Python-Bibliothek für Sentimentanalyse, die auf Machine Learning basiert.
--   **VADER**: Regelbasierte Sentimentanalyse, die speziell für Social Media Texte entwickelt wurde.
--   **TextBlob**: Python-Bibliothek für Textverarbeitung, die auch Sentimentanalyse unterstützt.
+-   **Linguistic Inquiry and Word Count \[LIWC\]** [@tausczik2009]: Textanalysesoftware-Tool & Off-the-shelf-Dictionary.
+-   **Valence Aware Dictionary and sEntiment Reasoner** **\[VADER\]** [@hutto2014]: Regelbasierte Sentimentanalyse-Tool, das speziell für Social Media Texte entwickelt wurde
+-   [**TextBlob**](https://textblob.readthedocs.io/en/dev/): Python-Bibliothek für Textverarbeitung, die auch Sentimentanalyse unterstützt.
 -   **Commercial Tools**: IBM Watson, Google Cloud Natural Language API, Microsoft Text Analytics.
 
 ##### ABER: Zunehmender Einsatz von Transformer-Modellen wie BERT [@devlin2019] und GPT für genauere Analysen.
