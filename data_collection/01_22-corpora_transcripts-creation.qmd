@@ -85,16 +85,22 @@ transcripts_corpora$udpipe <- transcripts$correct %>%
 reticulate::use_virtualenv("r-spacyr")
 
 # Initialize
-spacyr::spacy_download_langmodel("en_core_web_sm")
+# spacyr::spacy_download_langmodel("en_core_web_sm", force = TRUE)
 spacyr::spacy_initialize("en_core_web_sm")
 
+# Parse text
 transcripts_corpora$spacyr <- transcripts_corpora$corp %>% 
     spacyr::spacy_parse(.,
         tag = TRUE,
         pos = TRUE,
         lemma = TRUE,
+        entity = TRUE,
         dependency = TRUE,
-        multithread = TRUE
+        nounphrase = TRUE,
+        multithread = TRUE,
+        additional_attributes = c(
+          "is_punct"
+        )
     )
 ```
 
