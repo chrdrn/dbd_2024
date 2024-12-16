@@ -1,0 +1,89 @@
+---
+title: "🔨 Topic Modeling in R"
+subtitle: "Tutorial - Session 09"
+date: last-modified
+date-format: "DD.MM.YYYY"
+---
+
+::: {.callout-tip icon="false"}
+[![Quarto Slides](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto-slide.svg) Link to slides](../slides/slides-09.html)
+
+[![](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto_document.svg) Download source file](https://github.com/chrdrn/dbd_2024/blob/main/tutorials/tutorial-09.qmd)
+
+[![](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-binder_rstudio.svg) Open interactive and executable RStudio environment](https://mybinder.org/v2/gh/faucommsci/dbd_binder/HEAD?urlpath=rstudio)
+:::
+
+## Background
+
+## Preparation
+
+```{r load-packages}
+
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(
+    here, 
+    magrittr, janitor,
+    ggpubr, 
+    gt, gtExtras,
+    countdown, 
+    quanteda, # quanteda text processing
+    quanteda.textplots, quanteda.textstats, quanteda.textmodels,
+    udpipe, spacyr, # POS tagging
+    stm, stminsights,
+    easystats, tidyverse
+)
+```
+
+```{r import-data}
+
+# Import base data
+chats <- qs::qread(here("local_data/chat-debates_full.qs"))$correct
+transcripts <- qs::qread(here("local_data/transcripts-debates_full.qs"))$correct
+dict_chat_emotes <- readRDS(here("local_data/dictionary_chat_emotes.RDS"))
+
+# Import corpora
+chats_spacyr <- qs::qread(here("local_data/chat-corpus_spacyr.qs"))
+```
+
+## Codechunks aus der Sitzung
+### Vorverarbeitung des Korpus
+
+```{r create-corpora-chat}
+# spacyr-Korpus zu Tokens
+chat_spacyr_toks <- chats_spacyr %>% 
+  as.tokens(
+    remove_punct = TRUE, 
+    remove_symbols = TRUE,
+    remove_numbers = FALSE,
+    remove_url = FALSE, 
+    split_hyphens = FALSE,
+    split_tags = FALSE,
+    use_lemma = TRUE
+  ) %>% 
+  tokens_ngrams(n = 1:3)
+
+# Convert to DFM
+chat_spacyr_dfm <- chat_spacyr_toks %>% 
+  dfm()
+
+# Pruning
+chat_spacyr_trim <- chat_spacyr_dfm %>% 
+    dfm_trim(
+        min_docfreq = 50/nrow(chats),
+        max_docfreq = 0.99, 
+        docfreq_type = "prop"
+   )
+
+# Convert for stm topic modeling
+chat_spacyr_stm <- chat_spacyr_trim %>% 
+   convert(to = "stm")
+```
+
+
+```{r}
+test <- searchK(
+  chat_spacyr_stm$documents,
+  chat_spacyr_stm$vocab,
+  K = c(5,10,15,20,25), 
+  verbose = TRUE)
+```
