@@ -1,0 +1,279 @@
+---
+title: "🔨 Topic Modeling"
+subtitle: "Session 08"
+date: 18 12 2024
+date-format: "DD.MM.YYYY"
+bibliography: references_slides.bib
+---
+
+## Seminarplan
+
+```{r setup-slide-session}
+#| echo: false
+#| message: false
+
+# Load packages
+# Load schedule
+source(here::here("slides/schedule.R"))
+
+if (!requireNamespace("pacman", quietly = TRUE)) install.packages("pacman")
+pacman::p_load(
+    here, taylor,
+    magrittr, janitor,
+    ggpubr, 
+    gt, gtExtras,
+    countdown, 
+    # quanteda text processing
+    quanteda, quanteda.textplots, quanteda.textstats,
+    # POS tagging
+    udpipe, spacyr,
+    udpipe, spacyr, # POS tagging
+    easystats, tidyverse
+)
+```
+
+```{r table-schedule}
+#| echo: false 
+
+schedule %>%
+    gt::gt() %>%
+    gt::fmt_markdown(columns = c(Datum, Topic)) %>% 
+    gtExtras::gt_theme_538() %>% 
+    gt::tab_options(
+        table.width = gt::pct(75), 
+        table.font.size = "12px"
+    ) %>%
+    # mark current session
+    gtExtras::gt_highlight_rows(
+        rows = 12,
+        fill = "#C50F3C", 
+        alpha = 0.2,
+        bold_target_only = TRUE,
+        target_col = Topic       
+    ) %>% 
+    # fade out past sessions
+    gt::tab_style(
+        style = cell_text(
+            style = "italic", 
+            color = "grey"),
+        location = cells_body(
+            columns = everything(), 
+            rows = c(2:8, 10:11))
+    )
+```
+
+```{r import-data-silent}
+#| echo: false
+
+# Import base data
+chats <- qs::qread(here("local_data/chat-debates_full.qs"))$correct
+transcripts <- qs::qread(here("local_data/transcripts-debates_full.qs"))$correct
+dict_chat_emotes <- readRDS(here("local_data/dictionary_chat_emotes.RDS"))
+
+# Import corpora
+chats_spacyr <- qs::qread(here("local_data/chat-corpus_spacyr.qs"))
+```
+
+# Agenda {background-image="img/slide_bg-agenda.png"}
+
+<!-- TODO add chunks descriptions -->
+
+1.  [Theoretische Grundalge: Topic Modeling Einstellungen](#theory)
+2.  [Text as data in R: Topic Modeling](#topic-modeling)
+3.  [📋 Hands on working with R](#exercise)
+
+# Topic Modeling {#co-occurence background-image="img/slide_bg-example.png"}
+
+Praktische Umsetzung in R
+
+## In a nutshell
+
+#### Rekapitulation der letzten Sitzung
+
+-   **Topic Modeling** ist ein Verfahren des unüberwachten maschinellen Lernens, das sich zur Exploration und Deskription großer Textmengen eignet um
+-   unbekannte, **latente Themen** auf Basis von häufig gemeinsam auftretenden (Clustern an) Wörtern in Dokumenten zu identifizieren
+
+#### Heutiger Fokus: Umsetzung zetnraler Schritte
+
+-   Preprocessing
+-   Modell-Einstellung
+-   Analyse & Interpretation
+-   Valdierung
+
+## Welche Preprocessing-Schritte sind notwendig?
+
+#### Umsetzung zentraler Schritte: *Preprocessing*
+
+-   Verschiedene Verfahren möglich [z.B. @denny2018; @maier2020]
+-   Verwendung der **empfohlenen Schritte** nach @maier2018:
+    1.  ✅ Deduplication;
+    2.  ✅ Tokenization;
+    3.  ✅ Transform all characters to lowercase;
+    4.  🏗️ Remove punctuation & special characters;
+    5.  ⚠️ Create/remove custom Ngrams/stopwords;
+    6.  ✅ Term unification (lemmatization)
+    7.  🏗️ Relative Pruning
+
+## Welche Preprocessing-Schritte sind notwendig?
+
+#### Umsetzung zentraler Schritte: *Preprocessing*
+
+::::: columns
+::: {.column width="50%"}
+```{r}
+# spacyr-Korpus zu Tokens
+chat_spacyr_toks <- chats_spacyr %>% 
+  as.tokens(
+    remove_punct = TRUE, 
+    remove_symbols = TRUE,
+    remove_numbers = FALSE,
+    remove_url = FALSE, 
+    split_hyphens = FALSE,
+    split_tags = FALSE,
+    use_lemma = TRUE
+  ) %>% 
+  tokens_ngrams(n = 1:3)
+
+# Convert to DFM
+chat_spacyr_dfm <- chat_spacyr_toks %>% 
+  dfm()
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+# Pruning
+chat_spacyr_trim <- chat_spacyr_dfm %>% 
+    dfm_trim(
+        min_termfreq = 10, 
+        termfreq_type = "count",
+        max_docfreq = 0.99, 
+        docfreq_type = "prop"
+   )
+
+# Convert for stm topic modeling
+chat_spacyr_stm <- chat_spacyr_trim %>% 
+   convert(to = "stm")
+```
+:::
+:::::
+
+## Entscheidungen über Entscheidungen
+
+#### Umsetzung zentraler Schritte: *Modell-Einstellung*
+
+-   Welches Verfahren bzw. welchen Algorithmus wählen?
+    -   Matrixfactorisierung (LSA, NMF)
+    -   Probabilistische Modelle (LDA, CTM, STM)
+    -   Deep Learning (BERT, GPT-2)
+-   Welche Parameter bzw. Hyperparameter sind wie zu berücksichtigen?
+    -   Anzahl der Iterationen
+    -   Seed für Reproduzierbarkeit
+    -   Initialisierungsmethode
+-   Wie viele Themen (k) sollen identifiziert werden?
+
+## Die Suche nach der optimalen Anzahl von Themen
+
+#### Umsetzung zentraler Schritte: *Modell-Einstellung*
+
+-   Die Wahl von K (ob das Modell angewiesen wird, 5, 15 oder 100 Themen zu identifizieren), hat einen erheblichen Einfluss auf die Ergebnisse:
+    -   Je kleiner K, desto feiner und in der Regel exklusiver sind die Themen;
+    -   je größer K, desto klarer identifizieren die Themen einzelne Ereignisse oder Probleme.
+-   Es gibt keine allgemeingültie Lösung, diese ist abhängig von vielen Faktoren, z.B.
+    -   als was Themen im Kontext der Analyse theoretisch definiert sind
+
+    -   die Beschaffenheit des Korpus
+
+## How to find K
+
+#### Die Suche nach der optimalen Anzahl von Themen mit `stm`
+
+-   Das stm-Paket (Roberts et al., 2019) bietet zwei eingebaute Lösungen, um das optimale K zu finden:
+    -   `searchK()` Funktion
+    -   Verwendung des Argumentes `k = 0` bei der Schätzung des Modells
+    -   Aber: Empfehlung für stm -\> (Manuelles) Training und Bewertung!
+-   Entscheidung basiert u.a. auf:
+    -   Stastischem Fit (z.B. Coherence, Perplexity)
+    -   Interpretierbarkei (z.B. Top Features, Top Documents)
+    -   Rand-1-Metrik (z.B. Häufigkeit bestimmter Themen)
+
+## Statistischer Fit
+
+#### Die Suche nach der optimalen Anzahl von Themen
+
+<!-- TODO Add stm(k = 0) -->
+
+<!-- TODO Add searchK() -->
+
+<!-- TODO Add manual eval -->
+
+## Interpretierbarkeit
+
+#### Die Suche nach der optimalen Anzahl von Themen
+
+Bei Lösungen mit unterschiedlichem K: - Top Features: Ergeben Features, die ein Thema beschreiben, eine sinnvolle Interpretation des Themas? - Top Documents: Passen Dokumente, die ein Thema beschreiben, zum Thema?
+
+## Rank-1 Metrik
+
+#### Die Suche nach der optimalen Anzahl von Themen
+
+Zeigt an, wie häufig jedes Thema das Hauptthema (d.h. prävalenteste Thema) über alle Dokumente hin weg ist - Kleine Themen = ggf. irrelevante Themen? - Wichtig: Eindeutige Zuordnung widerspricht eigentlich dem probabilistischen Ansatz von Topic Modeling -\> können nicht auch mehrere Themen vorkommen?
+
+## TODO Add title
+
+#### Umsetzung zentraler Schritte: *Analyse & Interpretation*
+
+Structual Topic Modeling (eine Variante von Topic Modeling, beliebt in R!) ermöglicht es, den Einfluss unabhängiger Variablen zu modellieren, genauer auf:
+
+-   die Prävalenz von Themen (prevalence-Argument)
+-   den Inhalt von Themen (content-Argument)
+
+Interpreation:
+
+-   Identifikation & Ausschluss von „Background“-Topics
+-   Identifikation & Labelling von relevanten Topics
+-   Ggf. Gruppierung in übergreifende Kontexte (z.B. „politische Themen“)
+-    Nutzung für deskriptive oder inferenzstatistische Verfahren
+
+## Exkurs: stminsights
+
+#### Visualisierung von Themenmodellen mit R-Paket
+
+<!-- TODO Add screenshot here -->
+
+## Die 4 Rs
+
+#### Umsetzung zentraler Schritte: *Validierung*
+
+- Reliabilität/Robustheit: Kommen wir mit anderen Instrumenten zu ähnlichen Ergebnissen? (Roberts et al., 2016; Wilkerson & Casas, 2017)
+- Reproduzierbarkeit: Können wir mit den gleichen Daten & Instrumenten die Ergebnisse reproduzieren?
+- Replizierbarkeit: Lassen sich unsere Ergebnisse für andere Daten reproduzieren?
+
+::: notes
+Reliabilität/Robustheit: Add Graphik aus Hase
+Reproduzierbarkeit: Open Source Software nutzen, mit z.B. „Quarto“ arbeiten (sequenzielle Reihenfolge der Codeausführung garantieren!), Kompendium (Code & Daten in einheitlicher Struktur; Docker), Abhängigkeiten, z.B. von Paket-Versionen, reduzieren
+Replizierbarkeit: Präregistrierung, auf statistische Power achten (Poweranalyse, z. B. mit Simulationen?), selbst exakte/konzeptuelle Replikationen durchführen
+:::
+
+
+# Hands on working with R {#group-activity background-image="img/slide_bg-group_activity.png"}
+
+Various exercises on the content of today’s session
+
+## 🧪 And now … you!
+
+#### Next steps
+
+-   Laden das .zip-Archiv zur Sitzung von StudOn herunter und **entpacke** die Dateien an einen Ort deiner Wahl.
+-   Doppelklicke auf die Datei `dbd_exercise.Rproj`, um das RStudio-Projekt zu öffnen. Dies stellt sicher, dass alle Abhängigkeiten korrekt funktionieren.
+-   Öffnen die Datei exercise_08.qmd und folge den Anweisungen.
+-   Tipp: Alle im Vortrag verwendeten Code-Schnipsel findest du im der Tutorial-Datei zur Sitzung.
+
+# Time for questions {background-image="img/slide_bg-question.png"}
+
+# Bis zur nächsten Sitzung! {background-image="img/slide_bg-end_session.png"}
+
+## References
+
+::: {#refs}
+:::
