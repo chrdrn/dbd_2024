@@ -18,7 +18,6 @@ date-format: "DD.MM.YYYY"
 ## Preparation
 
 ```{r load-packages}
-
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(
     here, 
@@ -28,6 +27,7 @@ pacman::p_load(
     countdown, 
     quanteda, # quanteda text processing
     quanteda.textplots, quanteda.textstats, quanteda.textmodels,
+    tidytext, 
     udpipe, spacyr, # POS tagging
     stm, stminsights,
     easystats, tidyverse
@@ -35,39 +35,80 @@ pacman::p_load(
 ```
 
 ```{r import-data}
-
 # Import base data
 chats <- qs::qread(here("local_data/chat-debates_full.qs"))$correct
-transcripts <- qs::qread(here("local_data/transcripts-debates_full.qs"))$correct
-dict_chat_emotes <- readRDS(here("local_data/dictionary_chat_emotes.RDS"))
 
 # Import corpora
 chats_spacyr <- qs::qread(here("local_data/chat-corpus_spacyr.qs"))
+stm_search <- qs::qread(here("local_data/stm-majority_report-search.qs"))
+stm_results <- qs::qread(here("local_data/stm-majority_report-results.qs"))
 ```
 
 ## Codechunks aus der Sitzung
+### Vorverarbeitung der Daten
+```{r}
+chats_valid <- chats %>% 
+  mutate(
+    across(c(debate, platform), ~as.factor(.x))
+  ) 
+```
+
 ### Vorverarbeitung des Korpus
 
-```{r create-corpora-chat}
+```{r}
 # spacyr-Korpus zu Tokens
 chat_spacyr_toks <- chats_spacyr %>% 
   as.tokens(
+    use_lemma = TRUE
+  ) %>% 
+  tokens(
     remove_punct = TRUE, 
     remove_symbols = TRUE,
     remove_numbers = FALSE,
     remove_url = FALSE, 
     split_hyphens = FALSE,
     split_tags = FALSE,
-    use_lemma = TRUE
   ) %>% 
-  tokens_ngrams(n = 1:3)
+  tokens_remove(
+    pattern = stopwords("en")
+  ) %>% 
+  tokens_ngrams(n = 1:3) 
+```
 
+### Add docvars
+```{r}
+# Get document names from the original data
+original_docnames <- chats$message_id
+
+# Get document names from the tokens object
+token_docnames <- docnames(chat_spacyr_toks)
+
+# Identify missing documents
+missing_docs <- setdiff(original_docnames, token_docnames)
+
+# Exclude "empty" messages
+chats_filtered <- chats_valid %>% 
+  filter(!message_id %in% missing_docs)
+
+# Add docvars
+docvars(chat_spacyr_toks) <- chats_filtered
+```
+
+### Fokus on The Majority Report
+
+```{r}
+# Subset tokens based on docvars
+majority_report_chat_toks <- tokens_subset(
+  chat_spacyr_toks, streamer == "the_majority_report")
+```
+
+```{r create-corpora-chat}
 # Convert to DFM
-chat_spacyr_dfm <- chat_spacyr_toks %>% 
+majority_report_chat_dfm <- majority_report_chat_toks %>% 
   dfm()
 
 # Pruning
-chat_spacyr_trim <- chat_spacyr_dfm %>% 
+majority_report_chat_trim <- majority_report_chat_dfm %>% 
     dfm_trim(
         min_docfreq = 50/nrow(chats),
         max_docfreq = 0.99, 
@@ -75,15 +116,338 @@ chat_spacyr_trim <- chat_spacyr_dfm %>%
    )
 
 # Convert for stm topic modeling
-chat_spacyr_stm <- chat_spacyr_trim %>% 
+majority_report_chat_stm <- majority_report_chat_trim %>% 
    convert(to = "stm")
 ```
 
+### Estimate models
 
 ```{r}
-test <- searchK(
-  chat_spacyr_stm$documents,
-  chat_spacyr_stm$vocab,
-  K = c(5,10,15,20,25), 
-  verbose = TRUE)
+#| eval: false
+
+# Define parameters
+future::plan(future::multisession()) # use multiple sessions
+topic_range <- seq(from = 4, to = 20, by = 2) 
+
+# Initiate notifications & time tracking
+tictoc::tic("STM chats - Majority Report")
+
+# Estimate models
+stm_search  <- tibble(k = topic_range) %>%
+    mutate(
+        mdl = furrr::future_map(
+            k, 
+            ~stm::stm(
+                documents = majority_report_chat_stm$documents,
+                vocab = majority_report_chat_stm$vocab, 
+                prevalence =~ platform + debate + message_during_debate, 
+                K = ., 
+                seed = 42,
+                max.em.its = 1000,
+                data = majority_report_chat_stm$meta,
+                init.type = "Spectral",
+                verbose = TRUE),
+            .options = furrr::furrr_options(seed = 42)
+            )
+    )
+
+# Sent status update and finish time tracking
+tictoc::toc(log = TRUE)
+```
+
+```{r}
+#| eval: false
+#| echo: false
+
+qs::qsave(
+  stm_search,
+  file = here("local_data/stm-majority_report-search.qs")
+)
+```
+
+```{r}
+#| eval: false
+
+# Create heldout
+heldout <- make.heldout(
+  majority_report_chat_stm$documents,
+  majority_report_chat_stm$vocab,
+  seed = 42)
+
+# Create model diagnostics
+stm_results <- stm_search %>%
+  mutate(
+    exclusivity = map(mdl, exclusivity),
+    semantic_coherence = map(mdl, semanticCoherence, majority_report_chat_stm$documents),
+    eval_heldout = map(mdl, eval.heldout, heldout$missing),
+    residual = map(mdl, checkResiduals, majority_report_chat_stm$documents),
+    bound =  map_dbl(mdl, function(x) max(x$convergence$bound)),
+    lfact = map_dbl(mdl, function(x) lfactorial(x$settings$dim$K)),
+    lbound = bound + lfact,
+    iterations = map_dbl(mdl, function(x) length(x$convergence$bound))
+    )
+```
+
+```{r}
+#| eval: false
+#| echo: false
+
+qs::qsave(
+  stm_results,
+  file = here("local_data/stm-majority_report-results.qs")
+)
+```
+
+## Vergleich des statistischen Fits
+```{r stm-results-diagnostics-overview}
+stm_results %>%
+  transmute(
+    k,
+    `Lower bound` = lbound,
+    Residuals = map_dbl(residual, "dispersion"),
+    `Semantic coherence` = map_dbl(semantic_coherence, mean),
+    `Held-out likelihood` = map_dbl(eval_heldout, "expected.heldout")) %>%
+  gather(Metric, Value, -k) %>%
+  ggplot(aes(k, Value, color = Metric)) +
+    geom_line(size = 1.5, alpha = 0.7, show.legend = FALSE) +
+    geom_point(size = 3) +
+    scale_x_continuous(breaks = seq(from = 4, to = 20, by = 2)) +
+    facet_wrap(~Metric, scales = "free_y") +
+    labs(x = "K (Anzahl der Themen)",
+         y = NULL,
+         title = "Statistischer Fit der STM-Modelle",
+         subtitle = "Kohärenz sollte hoch, Residuen niedrig sein"
+    ) +
+    theme_pubr()
+```
+
+## Hohe Kohärenz bei hoher Exklusivität
+
+```{r stm-results-diagnostics-close}
+# Models for comparison
+models_for_comparison = c(12, 14, 18)
+
+# Create figures
+fig_excl <- stm_results %>% 
+  # Edit data
+  select(k, exclusivity, semantic_coherence) %>%
+  filter(k %in% models_for_comparison) %>%
+  unnest(cols = c(exclusivity, semantic_coherence))  %>%
+  mutate(k = as.factor(k)) %>%
+  # Build graph
+  ggplot(aes(semantic_coherence, exclusivity, color = k)) +
+    geom_point(size = 2, alpha = 0.7) +
+    labs(
+      x = "Semantic coherence",
+      y = "Exclusivity"
+      # title = "Comparing exclusivity and semantic coherence",
+      # subtitle = "Models with fewer topics have higher semantic coherence for more topics, but lower exclusivity"
+      ) +
+      theme_pubr()  
+
+# Create plotly
+fig_excl %>% plotly::ggplotly()
+```
+
+## Extraktion der Beta- & Gamma-Matrix
+```{r stm-results-matrices}
+# Define model
+tpm_k14 <- stm_results %>% 
+   filter(k == 14) |> 
+   pull(mdl) %>% .[[1]]
+
+# Beta matrix
+tpm_k14 %>% 
+  tidy(., matrix = "frex") 
+
+# Gamma matrix
+tpm_k14 %>% 
+  tidy(.,matrix = "gamma", 
+    document_names = names(majority_report_chat_stm$documents)
+    ) 
+```
+
+## Extraktion der Top Features nach Thema
+
+```{r stm-results-top-topic-terms}
+# Create gamma data
+top_gamma_k14 <- tpm_k14 %>%
+  tidy(matrix = "gamma") %>% 
+  dplyr::group_by(topic) %>%
+  dplyr::summarise(
+    gamma = mean(gamma),
+    .groups = "drop") %>%
+  dplyr::arrange(desc(gamma))
+
+# Create beta data
+top_beta_k14 <- tpm_k14 %>%
+  tidytext::tidy(.) %>% 
+  dplyr::group_by(topic) %>%
+  dplyr::arrange(-beta) %>%
+  dplyr::top_n(7, wt = beta) %>% 
+  dplyr::select(topic, term) %>%
+  dplyr::summarise(
+    terms_beta = toString(term),
+    .groups = "drop")
+
+# Merge gamma & beta data
+top_topics_terms_k14 <- top_beta_k14 %>% 
+  dplyr::left_join(
+    top_gamma_k14, 
+    by = "topic") %>%
+  dplyr::mutate(
+          topic = paste0("Topic ", topic),
+          topic = reorder(topic, gamma)
+      )
+
+# Create output
+top_topics_terms_k14 %>%
+  mutate(across(gamma, ~round(.,3))) %>% 
+  dplyr::arrange(-gamma) %>% 
+  gt() %>% 
+  gtExtras::gt_theme_538() %>% 
+  gt::tab_options(
+    table.width = gt::pct(100), 
+    table.font.size = "12px"
+    )
+```
+
+## Extraktion & Zusammenführung der Daten
+```{r stm-results-top-documents}
+# Prepare for merging
+topic_gammas_k14 <- tpm_k14 %>%
+  tidy(matrix = "gamma") %>% 
+  dplyr::group_by(document) %>% 
+  tidyr::pivot_wider(
+    id_cols = document, 
+    names_from = "topic", 
+    names_prefix = "gamma_topic_",
+    values_from = "gamma")
+      
+gammas_k14 <- tpm_k14 %>%
+  tidytext::tidy(matrix = "gamma") %>% 
+  dplyr::group_by(document) %>% 
+  dplyr::slice_max(gamma) %>% 
+  dplyr::mutate(
+    main_topic = ifelse(
+      gamma > 0.5, topic, NA)) %>% 
+  rename(
+    top_topic = topic,
+    top_gamma = gamma) %>% 
+  ungroup() %>% 
+  left_join(.,
+    topic_gammas_k14,
+    by = join_by(document))
+
+# Identify empty documents
+empty_docs <- Matrix::rowSums(
+  as(majority_report_chat_trim, "Matrix")) == 0 
+empty_docs_ids <- majority_report_chat_trim@docvars$docname[empty_docs]
+
+# Merge with original data
+chats_topics <- chats_filtered %>%
+  filter(!(message_id %in% empty_docs_ids)) %>% 
+  filter(streamer == "the_majority_report") %>%   
+  bind_cols(gammas_k14) %>% 
+  select(-document)   
+
+# Preview
+chats_topics %>% glimpse
+
+```
+
+## Themen im Fokus
+### Top Topic
+```{r tab-stm-top-documents-k8}
+chats_topics %>% 
+  filter(top_topic == 8) %>% 
+  arrange(-top_gamma) %>% 
+  slice_head(n = 10) %>% 
+  select(message_id, user_name, message_time, message_content, top_gamma, top_topic) %>% 
+  gt() %>% 
+  gtExtras::gt_theme_538() %>% 
+  gt::tab_options(table.font.size = "10px")
+```
+
+### Thema 12
+```{r tab-stm-top-documents-k12}
+chats_topics %>% 
+  filter(top_topic == 12) %>% 
+  arrange(-top_gamma) %>% 
+  slice_head(n = 10) %>% 
+  select(message_id, user_name, message_time, message_content, top_gamma, top_topic) %>% 
+  gt() %>% 
+  gtExtras::gt_theme_538() %>% 
+  gt::tab_options(table.font.size = "10px")
+```
+
+### Thema 4
+```{r tab-stm-top-documents-k4}
+chats_topics %>% 
+  filter(top_topic == 4) %>% 
+  arrange(-top_gamma) %>% 
+  slice_head(n = 10) %>% 
+  select(message_id, user_name, message_time, message_content, top_gamma, top_topic) %>% 
+  gt() %>% 
+  gtExtras::gt_theme_538() %>% 
+  gt::tab_options(table.font.size = "10px")
+```
+
+## User mit den meisten Beiträgen zu Thema 4
+```{r chats-topics-top-users}
+#| output-location: column
+
+chats_topics %>% 
+  filter(top_topic == 8) %>% 
+  count(user_name, sort = TRUE) %>% 
+  mutate(
+    prop = round(n/sum(n)*100, 2)) %>% 
+  slice_head(n = 10) %>% 
+  gt() %>% 
+  gtExtras::gt_theme_538() 
+```
+
+## Prävalenz vs. Häufigkeit
+```{r stm-results-top-prevalence}
+top_gamma_k14 %>% 
+  ggplot(aes(as.factor(topic), gamma)) +
+  geom_col(fill = "#F57350") +
+  labs(
+    x = "Topic",
+    y = "Mean gamma"
+  ) +
+  coord_flip() +
+  scale_y_reverse() +
+  scale_x_discrete(position = "top") +
+  theme_pubr()
+```
+
+```{r chat-topics-topics-frequency}
+chats_topics %>% 
+  mutate(across(top_topic, as.factor)) %>% 
+  ggplot(aes(top_topic, y = after_stat(prop), group = 1)) +
+  geom_bar(fill = "#1DA1F2") +
+  scale_y_continuous(labels = scales::percent) +
+  labs(
+    x = "", 
+    y = "Relative frequency"
+  ) +
+  coord_flip() +
+  theme_pubr()
+```
+
+## Einfluss von Meta-Variablen
+```{r}
+effects <- estimateEffect(
+  formula =~ platform + debate + message_during_debate,
+  stmobj = tpm_k14, 
+  metadata = chats_topics)
+```
+
+```{r}
+summary(effects, topics = 12)
+```
+
+```{r}
+summary(effects, topics = 8)
 ```
