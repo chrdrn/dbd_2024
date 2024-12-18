@@ -30,7 +30,7 @@ This page provides an outline of the topics, contents, and assignments for the s
 |  | 📂 **Block 3** | **Method: Natural language processing** |  |
 | 7 | 04.12.2024 | 🔨 Text as data I: Introduction | [{{< bi book >}}](/sessions/session-07.html "Session 07"){aria-label="Session 07"} \| [{{< bi file-earmark-slides >}}](/slides/slides-07.html "Slides: Session 07"){aria-label="Slides Session 07"} \| [{{< bi file-earmark-code >}}](/tutorials/tutorial-07.html "Tutorial: Session 07"){aria-label="Tutorial Session 07"} \| [{{< bi pencil-square >}}](/exercises/exercise-07.html "Exercise: Session 07"){aria-label="Exercise Session 07"} |
 | 8 | 11.12.2024 | 🔨 Text as data II: Advanced Methods | [{{< bi book >}}](/sessions/session-08.html "Session 08"){aria-label="Session 08"} \| [{{< bi file-earmark-slides >}}](/slides/slides-08.html "Slides: Session 08"){aria-label="Slides Session 08"} \| [{{< bi file-earmark-code >}}](/tutorials/tutorial-08.html "Tutorial: Session 08"){aria-label="Tutorial Session 08"} \| [{{< bi pencil-square >}}](/exercises/exercise-08.html "Exercise: Session 08"){aria-label="Exercise Session 08"} | |
-| 9 | 18.12.2024 | 🔨 Advanced Method I: Topic Modeling |  |
+| 9 | 18.12.2024 | 🔨 Advanced Method I: Topic Modeling |  [{{< bi book >}}](/sessions/session-09.html "Session 09"){aria-label="Session 09"} \| [{{< bi file-earmark-slides >}}](/slides/slides-09.html "Slides: Session 08"){aria-label="Slides Session 09"} \| [{{< bi file-earmark-code >}}](/tutorials/tutorial-09.html "Tutorial: Session 09"){aria-label="Tutorial Session 08"} \|  |
 | \- | \- | 🎄*Christmas Break (No Lecture)* |  |
 | 10 | 08.01.2025 | 🔨 Advanced Method II: Machine Learning |  |
 |  | 📂 **Block 5** | **Project Work** |  |
