@@ -23,11 +23,11 @@ pacman::p_load(
     ggpubr, 
     gt, gtExtras,
     countdown, 
-    # quanteda text processing
+    # text processing
     quanteda, quanteda.textplots, quanteda.textstats,
-    # POS tagging
-    udpipe, spacyr,
+    tidytext,
     udpipe, spacyr, # POS tagging
+    stm, stminsights,
     easystats, tidyverse
 )
 ```
@@ -67,44 +67,43 @@ schedule %>%
 
 # Import base data
 chats <- qs::qread(here("local_data/chat-debates_full.qs"))$correct
-transcripts <- qs::qread(here("local_data/transcripts-debates_full.qs"))$correct
-dict_chat_emotes <- readRDS(here("local_data/dictionary_chat_emotes.RDS"))
 
 # Import corpora
 chats_spacyr <- qs::qread(here("local_data/chat-corpus_spacyr.qs"))
+stm_search <- qs::qread(here("local_data/stm-majority_report-search.qs"))
+stm_results <- qs::qread(here("local_data/stm-majority_report-results.qs"))
 ```
 
 # Agenda {background-image="img/slide_bg-agenda.png"}
 
 <!-- TODO add chunks descriptions -->
 
-1.  [Theoretische Grundalge: Topic Modeling Einstellungen](#theory)
-2.  [Text as data in R: Topic Modeling](#topic-modeling)
-3.  [📋 Hands on working with R](#exercise)
+1.  [Text as data in R: Topic Modeling](#topic-modeling)
+2.  [📋 Hands on working with R](#exercise)
 
-# Topic Modeling {#co-occurence background-image="img/slide_bg-example.png"}
+# Topic Modeling mit `stm` {#topic-modeling background-image="img/slide_bg-example.png"}
 
-Praktische Umsetzung in R
+Eine kurze, möglichst umfangreiche, aber unvollständige Einführung
 
-## In a nutshell
+## Quick reminder & preview
 
 #### Rekapitulation der letzten Sitzung
 
 -   **Topic Modeling** ist ein Verfahren des unüberwachten maschinellen Lernens, das sich zur Exploration und Deskription großer Textmengen eignet um
 -   unbekannte, **latente Themen** auf Basis von häufig gemeinsam auftretenden (Clustern an) Wörtern in Dokumenten zu identifizieren
 
-#### Heutiger Fokus: Umsetzung zetnraler Schritte
+#### Heutiger Fokus: Umsetzung zentraler Schritte
 
--   Preprocessing
--   Modell-Einstellung
--   Analyse & Interpretation
--   Valdierung
+1.  Preprocessing
+2.  Modell-Einstellung
+3.  Analyse & Interpretation
+4.  Valdierung
 
 ## Welche Preprocessing-Schritte sind notwendig?
 
-#### Umsetzung zentraler Schritte: *Preprocessing*
+#### Umsetzung zentraler Schritte: *`1.Preprocessing`*
 
--   Verschiedene Verfahren möglich [z.B. @denny2018; @maier2020]
+-   Verschiedene Verfahren möglich bzw. empfohlen [z.B. @denny2018; @maier2020]
 -   Verwendung der **empfohlenen Schritte** nach @maier2018:
     1.  ✅ Deduplication;
     2.  ✅ Tokenization;
@@ -114,147 +113,668 @@ Praktische Umsetzung in R
     6.  ✅ Term unification (lemmatization)
     7.  🏗️ Relative Pruning
 
-## Welche Preprocessing-Schritte sind notwendig?
+## Von spacyr zu Tokens
 
-#### Umsetzung zentraler Schritte: *Preprocessing*
+#### Umsetzung zentraler Schritte: *`1.Preprocessing`*
 
-::::: columns
-::: {.column width="50%"}
-```{r}
+```{r chat-spacyr-tokenization}
+#| output-location: column
+
 # spacyr-Korpus zu Tokens
 chat_spacyr_toks <- chats_spacyr %>% 
   as.tokens(
+    use_lemma = TRUE
+  ) %>% 
+  tokens(
     remove_punct = TRUE, 
     remove_symbols = TRUE,
     remove_numbers = FALSE,
     remove_url = FALSE, 
     split_hyphens = FALSE,
     split_tags = FALSE,
-    use_lemma = TRUE
   ) %>% 
-  tokens_ngrams(n = 1:3)
+  tokens_remove(
+    pattern = stopwords("en")
+  ) %>% 
+  tokens_ngrams(n = 1:3) 
 
+# Output
+chat_spacyr_toks
+```
+
+## Wenn die Bereinigung zu gut funktioniert ...
+
+#### *`1.Preprocessing`*: Herausforderungen durch leere Nachrichten
+
+-   Analysen des `stm` Topic Models nutzen Bezüge auf die Stammdaten ➜ **Fälle von Modell und Stammdaten müssen übereinstimmen**
+-   Probleme:
+    -   Durch **Tokenisierung & Pruning** können **"leere" Chatnachrichten** entstehen
+    -   Diese leeren Nachrichten werden bei Schätzung **nicht berücksichtigt**
+-   Lösung:
+    -   (Mehrfache) **Identifikation & Ausschluss** von leeren Nachrichten
+
+## Prüfen ➜ Erweitern ➜ Filtern
+
+#### *`1.Preprocessing`*: Herausforderungen bei der Tokenisierung
+
+```{r chat-spacyr-docvars}
+#| output-location: column
+
+# Get document names
+original_docnames <- chats$message_id
+token_docnames <- docnames(chat_spacyr_toks)
+
+# Identify & exclude missing documents
+missing_docs <- setdiff(
+    original_docnames,
+    token_docnames)
+chats_filtered <- chats %>% 
+  filter(!message_id %in% missing_docs)
+
+# Add docvars
+docvars(chat_spacyr_toks) <- chats_filtered
+
+# Subset tokens based on docvars
+majority_report_chat_toks <- tokens_subset(
+  chat_spacyr_toks,
+  streamer == "the_majority_report")
+
+# Output
+majority_report_chat_toks
+```
+
+## Transformation in eine DFM
+
+#### Umsetzung zentraler Schritte: *`1.Preprocessing`*
+
+```{r chat-majority-report-dfm}
 # Convert to DFM
-chat_spacyr_dfm <- chat_spacyr_toks %>% 
+majority_report_chat_dfm <- majority_report_chat_toks %>% 
   dfm()
+
+# Output
+majority_report_chat_dfm %>%
+    print(max_nfeat = 4)
+```
+
+## Pruning der DFM
+
+#### Umsetzung zentraler Schritte: *`1.Preprocessing`*
+
+```{r chat-majority-report-trim}
+# Pruning
+majority_report_chat_trim <- majority_report_chat_dfm %>% 
+    dfm_trim(
+        min_docfreq = 50/nrow(chats),
+        max_docfreq = 0.99, 
+        docfreq_type = "prop"
+   )
+
+# Output
+majority_report_chat_trim %>% 
+    print(max_nfeat = 4)
+```
+
+## Konvertierung für `stm` Topic Modeling
+
+#### Umsetzung zentraler Schritte: *`1.Preprocessing`*
+
+```{r chat-majority-report-stm}
+# Convert for stm topic modeling
+majority_report_chat_stm <- majority_report_chat_trim %>% 
+   convert(to = "stm")
+
+# Output
+majority_report_chat_stm %>% summary()
+```
+
+## Entscheidungen über Entscheidungen
+
+#### Umsetzung zentraler Schritte: *`2.Modell-Einstellung`*
+
+-   *Welches Verfahren bzw. welchen Algorithmus wählen?*
+    -   Matrixfactorisierung (LSA, NMF)
+    -   **Probabilistische Modelle** (LDA, CTM, **STM**)
+    -   Deep Learning (BERT, GPT-2)
+-   *Welche Parameter bzw. Hyperparameter sind wie zu berücksichtigen?*
+    -   Anzahl der **Iterationen**
+    -   **Seed** für Reproduzierbarkeit
+    -   **Initialisierungsmethode**
+-   **Wie viele Themen (`K`) sollen identifiziert werden?**
+
+## Die Suche nach der optimalen Anzahl von Themen
+
+#### Umsetzung zentraler Schritte: *`2.Modell-Einstellung`*
+
+-   Wahl von `K` (ob das Modell angewiesen wird, 5, 15 oder 100 Themen zu identifizieren) hat **erheblichen Einfluss auf die Ergebnisse**:
+    -   je **kleiner `K`**, desto **breiter und allgemeiner** sind die Themen
+    -   je **größer `K`**, desto **feinkörniger und spezifischer**, aber auch **überlappender und weniger exklusiv** sind
+-   **keine allgemeingültige Lösung** für die Bestimmung, da **abhängig von vielen Faktoren**, z.B.
+    -   als was Themen im Kontext der Analyse theoretisch definiert sind
+    -   die Beschaffenheit des Korpus
+
+## How to find `K`
+
+#### *`2.Modell-Einstellung`*: Suche nach dem Modell mit dem optimalen `K`
+
+-   Das `stm`-Paket [`r glue::glue("v{packageVersion('quanteda')}")`, @roberts2019] bietet zwei integrierte Lösungen, um das optimale **`K`** zu finden:
+    -   `searchK()` Funktion
+    -   Verwendung des Argumentes `K = 0` bei der Schätzung des Modells
+    -   ***Empfehlung: (Manuelles) Training und Bewertung!***
+-   Entscheidung basiert u.a. auf:
+    -   **Stastischem Fit** (z.B. Coherence, Perplexity)
+    -   **Interpretierbarkeit** (z.B. Top Features, Top Documents)
+    -   *Rank-1-Metrik* (z.B. Häufigkeit bestimmter Themen)
+
+## Manuell trainiert & exploriert
+
+#### Umsetzung zentraler Schritte: *`2.Modell-Einstellung`*
+
+::::: columns
+::: {.column width="50%"}
+<!-- TODO Update nach Intergration von Meta-Variablen -->
+
+```{r estimate-stm-search}
+#| eval: false
+
+# Set up parallel processing using furrr
+future::plan(future::multisession()) 
+
+# Estimate models
+stm_search  <- tibble(
+    k = seq(from = 4, to = 20, by = 2)
+    ) %>%
+    mutate(
+        mdl = furrr::future_map(
+            k, 
+            ~stm::stm(
+                documents = majority_report_chat_stm$documents,
+                vocab = majority_report_chat_stm$vocab, 
+                prevalence =~ platform + debate + message_during_debate, 
+                K = ., 
+                seed = 42,
+                max.em.its = 1000,
+                data = majority_report_chat_stm$meta,
+                init.type = "Spectral",
+                verbose = TRUE),
+            .options = furrr::furrr_options(seed = 42)
+            )
+    )
+```
+:::
+
+::: {.column width="50%"}
+```{r stm-search-summary}
+stm_search$mdl
+```
+:::
+:::::
+
+## Berechnung der Modell-Diagnostik
+
+#### *`2.Modell-Einstellung`*: Suche nach dem Modell mit dem optimalen `K`
+
+```{r estimate-stm-results}
+#| eval: false
+
+# Create heldout
+heldout <- make.heldout(
+  majority_report_chat_stm$documents,
+  majority_report_chat_stm$vocab,
+  seed = 42)
+
+# Create model diagnostics
+stm_results <- stm_search %>%
+  mutate(
+    exclusivity = map(mdl, exclusivity),
+    semantic_coherence = map(mdl, semanticCoherence, majority_report_chat_stm$documents),
+    eval_heldout = map(mdl, eval.heldout, heldout$missing),
+    residual = map(mdl, checkResiduals, majority_report_chat_stm$documents),
+    bound =  map_dbl(mdl, function(x) max(x$convergence$bound)),
+    lfact = map_dbl(mdl, function(x) lfactorial(x$settings$dim$K)),
+    lbound = bound + lfact,
+    iterations = map_dbl(mdl, function(x) length(x$convergence$bound))
+    )
+```
+
+## Überblick über Modell-Diagnostik
+
+#### *`2.Modell-Einstellung`*: Suche nach dem Modell mit dem optimalen `K`
+
+```{r stm-results-overview}
+stm_results
+```
+
+## Kurzer Crashkurs
+
+#### Überblick über die verschiedenen Evaluationskritierien
+
+1.  `Held-Out Likelihood` misst, wie gut ein Modell ungesehene Daten vorhersagt (ABER: kein allgemeingültiger Schwellenwert, nur Vergleich identischer Daten). **Höhere Werte** weisen auf eine **bessere Vorhersageleistung** hin.
+
+2.  `Lower bound` ist eine Annäherung an die Log-Likelihood des Modells. Ein **höherer Wert** deutet auf eine **bessere Anpassung** an die Daten hin.
+
+3.  `Residuen` geben die Differenz zwischen den beobachteten und den vorhergesagten Werten an. **Kleinere Residuen** deuten auf eine **bessere Modellanpassung** hin. Im Idealfall sollten die Residuen so klein wie möglich sein.
+
+4.  `Semantische Kohärenz` misst, wie semantisch verwandt die wichtigsten Wörter eines Themas sind, wobei **höhere Werte auf kohärentere Themen** hinweisen.
+
+## Vergleich des statistischen Fits
+
+#### *`2.Modell-Einstellung`*: Suche nach dem Modell mit dem optimalen `K`
+
+```{r stm-results-diagnostics-overview}
+#| code-fold: true
+#| code-summary: "Expand for full code"
+#| fig-height: 6
+#| fig-width: 11
+#| fig-align: center
+
+# Visualize
+stm_results %>%
+  transmute(
+    k,
+    `Lower bound` = lbound,
+    Residuals = map_dbl(residual, "dispersion"),
+    `Semantic coherence` = map_dbl(semantic_coherence, mean),
+    `Held-out likelihood` = map_dbl(eval_heldout, "expected.heldout")) %>%
+  gather(Metric, Value, -k) %>%
+  ggplot(aes(k, Value, color = Metric)) +
+    geom_line(size = 1.5, alpha = 0.7, show.legend = FALSE) +
+    geom_point(size = 3) +
+    scale_x_continuous(breaks = seq(from = 4, to = 20, by = 2)) +
+    facet_wrap(~Metric, scales = "free_y") +
+    labs(x = "K (Anzahl der Themen)",
+         y = NULL,
+         title = "Statistischer Fit der STM-Modelle",
+         subtitle = "Kohärenz sollte hoch, Residuen niedrig sein"
+    ) +
+    theme_pubr()
+```
+
+## Hohe Kohärenz bei hoher Exklusivität
+
+#### *`2.Modell-Einstellung`*: Suche nach dem Modell mit dem optimalen `K`
+
+```{r stm-results-diagnostics-close}
+#| code-fold: true
+#| code-summary: "Expand for full code"
+#| fig-align: center
+
+# Models for comparison
+models_for_comparison = c(12, 14, 18)
+
+# Create figures
+fig_excl <- stm_results %>% 
+  # Edit data
+  select(k, exclusivity, semantic_coherence) %>%
+  filter(k %in% models_for_comparison) %>%
+  unnest(cols = c(exclusivity, semantic_coherence))  %>%
+  mutate(k = as.factor(k)) %>%
+  # Build graph
+  ggplot(aes(semantic_coherence, exclusivity, color = k)) +
+    geom_point(size = 2, alpha = 0.7) +
+    labs(
+      x = "Semantic coherence",
+      y = "Exclusivity"
+      # title = "Comparing exclusivity and semantic coherence",
+      # subtitle = "Models with fewer topics have higher semantic coherence for more topics, but lower exclusivity"
+      ) +
+      theme_pubr()  
+
+# Create plotly
+fig_excl %>% plotly::ggplotly()
+```
+
+## Extraktion der Beta- & Gamma-Matrix
+
+#### *`2.Modell-Einstellung`*: Interpretierbarkeit der Top Features
+
+```{r stm-results-pull-model}
+# Define model
+tpm_k14 <- stm_results %>% 
+   filter(k == 14) |> 
+   pull(mdl) %>% .[[1]]
+```
+
+:::::: {style="font-size: smaller;"}
+::::: columns
+::: {.column width="50%"}
+```{r stm-results-tidy-beta}
+tpm_k14 %>% 
+  tidy(., matrix = "frex") 
+```
+:::
+
+::: {.column width="50%"}
+```{r stm-results-tidy-gamma}
+tpm_k14 %>% 
+  tidy(.,matrix = "gamma", 
+    document_names = names(majority_report_chat_stm$documents)
+    ) 
+```
+:::
+:::::
+::::::
+
+## Extraktion der Top Features nach Thema
+
+#### *`2.Modell-Einstellung`*: Interpretierbarkeit der Top Features
+
+::::: columns
+::: {.column width="50%"}
+```{r stm-results-top-topic-terms-1}
+# Create gamma data
+top_gamma_k14 <- tpm_k14 %>%
+  tidy(matrix = "gamma") %>% 
+  dplyr::group_by(topic) %>%
+  dplyr::summarise(
+    gamma = mean(gamma),
+    .groups = "drop") %>%
+  dplyr::arrange(desc(gamma))
+
+# Create beta data
+top_beta_k14 <- tpm_k14 %>%
+  tidytext::tidy(.) %>% 
+  dplyr::group_by(topic) %>%
+  dplyr::arrange(-beta) %>%
+  dplyr::top_n(7, wt = beta) %>% 
+  dplyr::select(topic, term) %>%
+  dplyr::summarise(
+    terms_beta = toString(term),
+    .groups = "drop")
+```
+:::
+
+::: {.column width="50%"}
+```{r stm-results-top-topic-terms-2}
+# Merge gamma & beta data
+top_topics_terms_k14 <- top_beta_k14 %>% 
+  dplyr::left_join(
+    top_gamma_k14, 
+    by = "topic") %>%
+  dplyr::mutate(
+          topic = paste0("Topic ", topic),
+          topic = reorder(topic, gamma)
+      )
+```
+:::
+:::::
+
+## Beschreiben Top Features ein Topic sinnvoll?
+
+#### *`2.Modell-Einstellung`*: Interpretierbarkeit der Top Features
+
+```{r tab-stm-top-topic-terms}
+#| output-location: column
+
+top_topics_terms_k14 %>%
+  mutate(across(gamma, ~round(.,3))) %>% 
+  dplyr::arrange(-gamma) %>% 
+  gt() %>% 
+  gtExtras::gt_theme_538() %>% 
+  gt::tab_options(
+    table.width = gt::pct(90), 
+    table.font.size = "12px"
+    )
+```
+
+## Extraktion & Zusammenführung der Daten
+
+#### *`2.Modell-Einstellung`*: Interpretierbarkeit der Top Documents
+
+::::: columns
+::: {.column width="50%"}
+```{r stm-results-top-documents-1}
+# Prepare for merging
+topic_gammas_k14 <- tpm_k14 %>%
+  tidy(matrix = "gamma") %>% 
+  dplyr::group_by(document) %>% 
+  tidyr::pivot_wider(
+    id_cols = document, 
+    names_from = "topic", 
+    names_prefix = "gamma_topic_",
+    values_from = "gamma")
+      
+gammas_k14 <- tpm_k14 %>%
+  tidytext::tidy(matrix = "gamma") %>% 
+  dplyr::group_by(document) %>% 
+  dplyr::slice_max(gamma) %>% 
+  dplyr::mutate(
+    main_topic = ifelse(
+      gamma > 0.5, topic, NA)) %>% 
+  rename(
+    top_topic = topic,
+    top_gamma = gamma) %>% 
+  ungroup() %>% 
+  left_join(.,
+    topic_gammas_k14,
+    by = join_by(document))
+```
+:::
+
+::: {.column width="50%"}
+```{r stm-results-top-documents-2}
+# Identify empty documents
+empty_docs <- Matrix::rowSums(
+  as(majority_report_chat_trim, "Matrix")) == 0 
+empty_docs_ids <- majority_report_chat_trim@docvars$docname[empty_docs]
+
+# Merge with original data
+chats_topics <- chats_filtered %>%
+  filter(!(message_id %in% empty_docs_ids)) %>% 
+  filter(streamer == "the_majority_report") %>%   
+  bind_cols(gammas_k14) %>% 
+  select(-document)
+```
+:::
+:::::
+
+## Angereicherter Datensatz
+
+#### *`2.Modell-Einstellung`*: Interpretierbarkeit der Top Documents
+
+```{r}
+chats_topics %>% glimpse
+```
+
+## Top Topic im Fokus
+
+#### *`2.Modell-Einstellung`*: Passen Top Document zum Thema?
+
+```{r tab-stm-top-documents-k8}
+#| code-fold: true
+#| code-summary: "Expand for full code"
+
+chats_topics %>% 
+  filter(top_topic == 8) %>% 
+  arrange(-top_gamma) %>% 
+  slice_head(n = 10) %>% 
+  select(message_id, user_name, message_time, message_content, top_gamma, top_topic) %>% 
+  gt() %>% 
+  gtExtras::gt_theme_538() %>% 
+  gt::tab_options(table.font.size = "10px")
+```
+
+## Thema 12 im Fokus
+
+#### *`2.Modell-Einstellung`*: Passen Top Document zum Thema?
+
+```{r tab-stm-top-documents-k12}
+#| code-fold: true
+#| code-summary: "Expand for full code"
+
+chats_topics %>% 
+  filter(top_topic == 12) %>% 
+  arrange(-top_gamma) %>% 
+  slice_head(n = 10) %>% 
+  select(message_id, user_name, message_time, message_content, top_gamma, top_topic) %>% 
+  gt() %>% 
+  gtExtras::gt_theme_538() %>% 
+  gt::tab_options(table.font.size = "10px")
+```
+
+## Thema 4 im Fokus
+
+#### *`2.Modell-Einstellung`*: Passen Top Document zum Thema?
+
+```{r tab-stm-top-documents-k4}
+#| code-fold: true
+#| code-summary: "Expand for full code"
+
+chats_topics %>% 
+  filter(top_topic == 4) %>% 
+  arrange(-top_gamma) %>% 
+  slice_head(n = 10) %>% 
+  select(message_id, user_name, message_time, message_content, top_gamma, top_topic) %>% 
+  gt() %>% 
+  gtExtras::gt_theme_538() %>% 
+  gt::tab_options(table.font.size = "10px")
+```
+
+## Fließender Übergang in die Analyse
+
+#### Umsetzung zentraler Schritte: *`3.Analyse & Interpretation`*
+
+`stm` ermöglicht den Einfluss unabhängiger Variablen zu modellieren, genauer auf:
+
+-   die **Prävalenz von Themen** (prevalence-Argument)
+-   den Inhalt von Themen (content-Argument)
+
+**Interpreation:**
+
+-   Identifikation & Ausschluss von **„Background“-Topics**
+-   Identifikation & Labelling von **relevanten Topics**
+-   Ggf. Gruppierung in übergreifende Kontexte (z.B. „politische Themen“)
+-   Nutzung für **deskriptive oder inferenzstatistische Verfahren**
+
+## User mit den meisten Beiträgen zu Thema 4
+
+#### *`3.Analyse & Interpretation`* - Beispiel für deskriptive Verfahren
+
+```{r chats-topics-top-users}
+#| output-location: column
+
+chats_topics %>% 
+  filter(top_topic == 8) %>% 
+  count(user_name, sort = TRUE) %>% 
+  mutate(
+    prop = round(n/sum(n)*100, 2)) %>% 
+  slice_head(n = 10) %>% 
+  gt() %>% 
+  gtExtras::gt_theme_538() 
+```
+
+## Prävalenz vs. Häufigkeit
+
+#### *`3.Analyse & Interpretation`* - Beispiel für deskriptive Verfahren
+
+::::: columns
+::: {.column width="50%"}
+```{r stm-results-top-prevalence}
+#| code-fold: true
+#| code-summary: "Expand for full code"
+
+top_gamma_k14 %>% 
+  ggplot(aes(as.factor(topic), gamma)) +
+  geom_col(fill = "#F57350") +
+  labs(
+    x = "Topic",
+    y = "Mean gamma"
+  ) +
+  coord_flip() +
+  scale_y_reverse() +
+  scale_x_discrete(position = "top") +
+  theme_pubr()
+```
+:::
+
+::: {.column width="50%"}
+```{r chat-topics-topics-frequency}
+#| code-fold: true
+#| code-summary: "Expand for full code"
+
+chats_topics %>% 
+  mutate(across(top_topic, as.factor)) %>% 
+  ggplot(aes(top_topic, y = after_stat(prop), group = 1)) +
+  geom_bar(fill = "#1DA1F2") +
+  scale_y_continuous(labels = scales::percent) +
+  labs(
+    x = "", 
+    y = "Relative frequency"
+  ) +
+  coord_flip() +
+  theme_pubr()
+```
+:::
+:::::
+
+## Einfluss von Meta-Variablen
+
+#### *`3.Analyse & Interpretation`* - Beispiel für inferenzstatistische Verfahren
+
+```{r}
+effects <- estimateEffect(
+  formula =~ platform + debate + message_during_debate,
+  stmobj = tpm_k14, 
+  metadata = chats_topics)
+```
+
+:::::: {style="font-size: smaller;"}
+::::: columns
+::: {.column width="50%"}
+```{r}
+summary(effects, topics = 12)
 ```
 :::
 
 ::: {.column width="50%"}
 ```{r}
-# Pruning
-chat_spacyr_trim <- chat_spacyr_dfm %>% 
-    dfm_trim(
-        min_termfreq = 10, 
-        termfreq_type = "count",
-        max_docfreq = 0.99, 
-        docfreq_type = "prop"
-   )
-
-# Convert for stm topic modeling
-chat_spacyr_stm <- chat_spacyr_trim %>% 
-   convert(to = "stm")
+summary(effects, topics = 8)
 ```
 :::
 :::::
+::::::
 
-## Entscheidungen über Entscheidungen
+## Shiny-App als Hilfe für die Analyse
 
-#### Umsetzung zentraler Schritte: *Modell-Einstellung*
+#### Visualisierung mit `stminsights` [`r glue::glue("v{packageVersion('quanteda')}")`, @schwemmer2021]
 
--   Welches Verfahren bzw. welchen Algorithmus wählen?
-    -   Matrixfactorisierung (LSA, NMF)
-    -   Probabilistische Modelle (LDA, CTM, STM)
-    -   Deep Learning (BERT, GPT-2)
--   Welche Parameter bzw. Hyperparameter sind wie zu berücksichtigen?
-    -   Anzahl der Iterationen
-    -   Seed für Reproduzierbarkeit
-    -   Initialisierungsmethode
--   Wie viele Themen (k) sollen identifiziert werden?
+![](https://github.com/cran/stminsights/raw/master/man/figures/logo.png){fig-align="center"}
 
-## Die Suche nach der optimalen Anzahl von Themen
+## Die 4 R\`s
 
-#### Umsetzung zentraler Schritte: *Modell-Einstellung*
+#### Umsetzung zentraler Schritte: *`4.Validierung`*
 
--   Die Wahl von K (ob das Modell angewiesen wird, 5, 15 oder 100 Themen zu identifizieren), hat einen erheblichen Einfluss auf die Ergebnisse:
-    -   Je kleiner K, desto feiner und in der Regel exklusiver sind die Themen;
-    -   je größer K, desto klarer identifizieren die Themen einzelne Ereignisse oder Probleme.
--   Es gibt keine allgemeingültie Lösung, diese ist abhängig von vielen Faktoren, z.B.
-    -   als was Themen im Kontext der Analyse theoretisch definiert sind
-
-    -   die Beschaffenheit des Korpus
-
-## How to find K
-
-#### Die Suche nach der optimalen Anzahl von Themen mit `stm`
-
--   Das stm-Paket (Roberts et al., 2019) bietet zwei eingebaute Lösungen, um das optimale K zu finden:
-    -   `searchK()` Funktion
-    -   Verwendung des Argumentes `k = 0` bei der Schätzung des Modells
-    -   Aber: Empfehlung für stm -\> (Manuelles) Training und Bewertung!
--   Entscheidung basiert u.a. auf:
-    -   Stastischem Fit (z.B. Coherence, Perplexity)
-    -   Interpretierbarkei (z.B. Top Features, Top Documents)
-    -   Rand-1-Metrik (z.B. Häufigkeit bestimmter Themen)
-
-## Statistischer Fit
-
-#### Die Suche nach der optimalen Anzahl von Themen
-
-<!-- TODO Add stm(k = 0) -->
-
-<!-- TODO Add searchK() -->
-
-<!-- TODO Add manual eval -->
-
-## Interpretierbarkeit
-
-#### Die Suche nach der optimalen Anzahl von Themen
-
-Bei Lösungen mit unterschiedlichem K: - Top Features: Ergeben Features, die ein Thema beschreiben, eine sinnvolle Interpretation des Themas? - Top Documents: Passen Dokumente, die ein Thema beschreiben, zum Thema?
-
-## Rank-1 Metrik
-
-#### Die Suche nach der optimalen Anzahl von Themen
-
-Zeigt an, wie häufig jedes Thema das Hauptthema (d.h. prävalenteste Thema) über alle Dokumente hin weg ist - Kleine Themen = ggf. irrelevante Themen? - Wichtig: Eindeutige Zuordnung widerspricht eigentlich dem probabilistischen Ansatz von Topic Modeling -\> können nicht auch mehrere Themen vorkommen?
-
-## TODO Add title
-
-#### Umsetzung zentraler Schritte: *Analyse & Interpretation*
-
-Structual Topic Modeling (eine Variante von Topic Modeling, beliebt in R!) ermöglicht es, den Einfluss unabhängiger Variablen zu modellieren, genauer auf:
-
--   die Prävalenz von Themen (prevalence-Argument)
--   den Inhalt von Themen (content-Argument)
-
-Interpreation:
-
--   Identifikation & Ausschluss von „Background“-Topics
--   Identifikation & Labelling von relevanten Topics
--   Ggf. Gruppierung in übergreifende Kontexte (z.B. „politische Themen“)
--    Nutzung für deskriptive oder inferenzstatistische Verfahren
-
-## Exkurs: stminsights
-
-#### Visualisierung von Themenmodellen mit R-Paket
-
-<!-- TODO Add screenshot here -->
-
-## Die 4 Rs
-
-#### Umsetzung zentraler Schritte: *Validierung*
-
-- Reliabilität/Robustheit: Kommen wir mit anderen Instrumenten zu ähnlichen Ergebnissen? (Roberts et al., 2016; Wilkerson & Casas, 2017)
-- Reproduzierbarkeit: Können wir mit den gleichen Daten & Instrumenten die Ergebnisse reproduzieren?
-- Replizierbarkeit: Lassen sich unsere Ergebnisse für andere Daten reproduzieren?
+-   **Reliabilität**/**Robustheit**: Kommen wir mit anderen Instrumenten zu ähnlichen Ergebnissen? [@roberts2016a; @wilkerson2017]
+-   **Reproduzierbarkeit**: Können wir mit den gleichen Daten & Instrumenten die Ergebnisse reproduzieren? [@chung-hongchan2024]
+-   **Replizierbarkeit**: Lassen sich unsere Ergebnisse für andere Daten reproduzieren? [@breuer2024; @long2021]
 
 ::: notes
-Reliabilität/Robustheit: Add Graphik aus Hase
-Reproduzierbarkeit: Open Source Software nutzen, mit z.B. „Quarto“ arbeiten (sequenzielle Reihenfolge der Codeausführung garantieren!), Kompendium (Code & Daten in einheitlicher Struktur; Docker), Abhängigkeiten, z.B. von Paket-Versionen, reduzieren
-Replizierbarkeit: Präregistrierung, auf statistische Power achten (Poweranalyse, z. B. mit Simulationen?), selbst exakte/konzeptuelle Replikationen durchführen
+Reliabilität/Robustheit: Add Graphik aus Hase Reproduzierbarkeit: Open Source Software nutzen, mit z.B. „Quarto“ arbeiten (sequenzielle Reihenfolge der Codeausführung garantieren!), Kompendium (Code & Daten in einheitlicher Struktur; Docker), Abhängigkeiten, z.B. von Paket-Versionen, reduzieren Replizierbarkeit: Präregistrierung, auf statistische Power achten (Poweranalyse, z. B. mit Simulationen?), selbst exakte/konzeptuelle Replikationen durchführen
 :::
 
+## Messen wir, was wir messen wollen
+
+#### Verschiedenen Möglichkeit der Qualitätssicherung
+
+-   Validierung hilft zu verstehen, **wo** wir falsch liegen und **wie** **falsch** wir liegen.
+-   Qualitätssicherung z.B. via [@janabernhard2023; @quinn2009] ...
+    -   Theoretischer (!) Ableitung von Messungen [@chen2023]
+
+    -   Vergleich mit manueller Codierung [z.B. @chan2020]
+
+    -   Vergleich mit externen Ereignissen
+
+## Validieren, Validieren, Validieren
+
+#### Kritisiche Anmerkungen zum Topic Modeling
+
+> *Automated text analysis methods can substantially reduce the costs and time of analyzing massive collections of political texts. When applied to any one problem, however, the output of the models may be misleading or simply wrong. \[…\] What should be avoided, then, is the blind use of any method without a validation step.* [@grimmer2013a, S.5]
+
+-   **Klassifikationsmodell klassifiziert alle Dokumente**, ein Diktionär spuckt für jedes Dokument ein Ergebnis aus, ein Topic Model findet immer die vorgegebene Anzahl an Themen.
+
+-   Ob es sich dabei auch um inhaltlich sinnvolle Ergebnisse handelt, **kann und muss durch manuelle Validierungen festgestellt werden.**
+
+-   **Moderne Verfahren (z.B. BERT)** potentiell besser geeignet für bestimmte Texte.
 
 # Hands on working with R {#group-activity background-image="img/slide_bg-group_activity.png"}
 
@@ -264,10 +784,19 @@ Various exercises on the content of today’s session
 
 #### Next steps
 
--   Laden das .zip-Archiv zur Sitzung von StudOn herunter und **entpacke** die Dateien an einen Ort deiner Wahl.
--   Doppelklicke auf die Datei `dbd_exercise.Rproj`, um das RStudio-Projekt zu öffnen. Dies stellt sicher, dass alle Abhängigkeiten korrekt funktionieren.
--   Öffnen die Datei exercise_08.qmd und folge den Anweisungen.
--   Tipp: Alle im Vortrag verwendeten Code-Schnipsel findest du im der Tutorial-Datei zur Sitzung.
+-   Laden das .zip-Archiv `stm_session_09.RData.zip` von StudOn herunter und entpacke die Dateien an einen Ort deiner Wahl. 
+-   Öffnet RStudio. 
+-   Führt folgenden Code-Chunk aus:
+
+```{r}
+#| eval: false
+install.packages("stminsights")
+library(stminsights)
+run_stminsights()
+```
+
+-  Ladet den Datensatz in die App.
+-  Macht euch mit den verschiedenen Funtionen der App vertraut und versucht, die Ergebnisse aus der Sitzung zu reproduzieren.
 
 # Time for questions {background-image="img/slide_bg-question.png"}
 
