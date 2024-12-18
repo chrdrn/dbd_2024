@@ -297,17 +297,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
   <li><a href="#import-und-vorverarbeitung-der-daten" id="toc-import-und-vorverarbeitung-der-daten" class="nav-link" data-scroll-target="#import-und-vorverarbeitung-der-daten">Import und Vorverarbeitung der Daten</a></li>
+  <li><a href="#vorverarbeitung-der-daten" id="toc-vorverarbeitung-der-daten" class="nav-link" data-scroll-target="#vorverarbeitung-der-daten">Vorverarbeitung der Daten</a></li>
+  <li><a href="#vorverarbeitung-des-korpus" id="toc-vorverarbeitung-des-korpus" class="nav-link" data-scroll-target="#vorverarbeitung-des-korpus">Vorverarbeitung des Korpus</a></li>
+  <li><a href="#add-docvars" id="toc-add-docvars" class="nav-link" data-scroll-target="#add-docvars">Add docvars</a></li>
+  <li><a href="#fokus-on-the-majority-report" id="toc-fokus-on-the-majority-report" class="nav-link" data-scroll-target="#fokus-on-the-majority-report">Fokus on The Majority Report</a></li>
+  <li><a href="#topic-models" id="toc-topic-models" class="nav-link" data-scroll-target="#topic-models">Topic Models</a>
+  <ul class="collapse">
+  <li><a href="#k-12" id="toc-k-12" class="nav-link" data-scroll-target="#k-12">K = 12</a></li>
+  <li><a href="#k-14" id="toc-k-14" class="nav-link" data-scroll-target="#k-14">K = 14</a></li>
+  <li><a href="#k-18" id="toc-k-18" class="nav-link" data-scroll-target="#k-18">K = 18</a></li>
+  </ul></li>
+  <li><a href="#save-images" id="toc-save-images" class="nav-link" data-scroll-target="#save-images">Save images</a></li>
   </ul></li>
   <li><a href="#praktische-übung" id="toc-praktische-übung" class="nav-link" data-scroll-target="#praktische-übung">🛠️ Praktische Übung</a></li>
-  <li><a href="#kennenlernen-des-chat-datensatzes" id="toc-kennenlernen-des-chat-datensatzes" class="nav-link" data-scroll-target="#kennenlernen-des-chat-datensatzes">🔎 Kennenlernen des Chat-Datensatzes</a>
-  <ul>
-  <li><a href="#exercise-1-create-corpus-token-dfm" id="toc-exercise-1-create-corpus-token-dfm" class="nav-link" data-scroll-target="#exercise-1-create-corpus-token-dfm">📋 Exercise 1: Create corpus, token &amp; DFM</a></li>
-  <li><a href="#exercise-2-semantisches-netzwerk" id="toc-exercise-2-semantisches-netzwerk" class="nav-link" data-scroll-target="#exercise-2-semantisches-netzwerk">📋 Exercise 2: Semantisches Netzwerk</a></li>
-  <li><a href="#exercise-3-analyse-auf-basis-von-pos-tagging" id="toc-exercise-3-analyse-auf-basis-von-pos-tagging" class="nav-link" data-scroll-target="#exercise-3-analyse-auf-basis-von-pos-tagging">📋 Exercise 3: Analyse auf Basis von POS-Tagging</a></li>
-  <li><a href="#exercise-6-named-entity-recognition-ner" id="toc-exercise-6-named-entity-recognition-ner" class="nav-link" data-scroll-target="#exercise-6-named-entity-recognition-ner">📋 Exercise 6: Named Entity Recognition (NER)</a></li>
-  </ul></li>
+  <li><a href="#start-stminsights" id="toc-start-stminsights" class="nav-link" data-scroll-target="#start-stminsights">Start <code>stminsights</code></a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/chrdrn/dbd_2024/edit/main/exercises/exercise-08.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/chrdrn/dbd_2024/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/chrdrn/dbd_2024/edit/main/exercises/exercise-09.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/chrdrn/dbd_2024/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -389,24 +394,174 @@ Ziel der Anwendung: Fortgeschrittene Korpusanalyse in R
 <li>Automatic search for dependencies</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    here, taylor,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    magrittr, janitor,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    ggpubr, </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    gt, gtExtras,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    countdown, </span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    quanteda, <span class="co"># quanteda text processing</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    quanteda.textplots, </span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    easystats, tidyverse</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"pacman"</span>)) <span class="fu">install.packages</span>(<span class="st">"pacman"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    here, </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    magrittr, janitor,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    ggpubr, </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    gt, gtExtras,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    countdown, </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    quanteda, <span class="co"># quanteda text processing</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    quanteda.textplots, quanteda.textstats, quanteda.textmodels,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    tidytext, </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    udpipe, spacyr, <span class="co"># POS tagging</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    stm, stminsights,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    easystats, tidyverse</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="import-und-vorverarbeitung-der-daten" class="level3">
 <h3 class="anchored" data-anchor-id="import-und-vorverarbeitung-der-daten">Import und Vorverarbeitung der Daten</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>chats <span class="ot">&lt;-</span> qs<span class="sc">::</span><span class="fu">qread</span>(<span class="fu">here</span>(<span class="st">"local_data/chats.qs"</span>))</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>transcripts <span class="ot">&lt;-</span> qs<span class="sc">::</span><span class="fu">qread</span>(<span class="fu">here</span>(<span class="st">"local_data/transcripts.qs"</span>))</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>chats_spacyr <span class="ot">&lt;-</span> qs<span class="sc">::</span><span class="fu">qread</span>(<span class="fu">here</span>(<span class="st">"local_data/chat-corpus_spacyr.qs"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import base data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>chats <span class="ot">&lt;-</span> qs<span class="sc">::</span><span class="fu">qread</span>(<span class="fu">here</span>(<span class="st">"local_data/chat-debates_full.qs"</span>))<span class="sc">$</span>correct</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Import corpora</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>chats_spacyr <span class="ot">&lt;-</span> qs<span class="sc">::</span><span class="fu">qread</span>(<span class="fu">here</span>(<span class="st">"local_data/chat-corpus_spacyr.qs"</span>))</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>stm_search <span class="ot">&lt;-</span> qs<span class="sc">::</span><span class="fu">qread</span>(<span class="fu">here</span>(<span class="st">"local_data/stm-majority_report-search.qs"</span>))</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>stm_results <span class="ot">&lt;-</span> qs<span class="sc">::</span><span class="fu">qread</span>(<span class="fu">here</span>(<span class="st">"local_data/stm-majority_report-results.qs"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="vorverarbeitung-der-daten" class="level3">
+<h3 class="anchored" data-anchor-id="vorverarbeitung-der-daten">Vorverarbeitung der Daten</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>chats_valid <span class="ot">&lt;-</span> chats <span class="sc">%&gt;%</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">c</span>(debate, platform), <span class="sc">~</span><span class="fu">as.factor</span>(.x))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="vorverarbeitung-des-korpus" class="level3">
+<h3 class="anchored" data-anchor-id="vorverarbeitung-des-korpus">Vorverarbeitung des Korpus</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># spacyr-Korpus zu Tokens</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>chat_spacyr_toks <span class="ot">&lt;-</span> chats_spacyr <span class="sc">%&gt;%</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.tokens</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">use_lemma =</span> <span class="cn">TRUE</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tokens</span>(</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">remove_punct =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">remove_symbols =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">remove_numbers =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">remove_url =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">split_hyphens =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">split_tags =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tokens_remove</span>(</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">pattern =</span> <span class="fu">stopwords</span>(<span class="st">"en"</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tokens_ngrams</span>(<span class="at">n =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="add-docvars" class="level3">
+<h3 class="anchored" data-anchor-id="add-docvars">Add docvars</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get document names from the original data</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>original_docnames <span class="ot">&lt;-</span> chats<span class="sc">$</span>message_id</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Get document names from the tokens object</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>token_docnames <span class="ot">&lt;-</span> <span class="fu">docnames</span>(chat_spacyr_toks)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify missing documents</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>missing_docs <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(original_docnames, token_docnames)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Exclude "empty" messages</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>chats_filtered <span class="ot">&lt;-</span> chats_valid <span class="sc">%&gt;%</span> </span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>message_id <span class="sc">%in%</span> missing_docs)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Add docvars</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">docvars</span>(chat_spacyr_toks) <span class="ot">&lt;-</span> chats_filtered</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="fokus-on-the-majority-report" class="level3">
+<h3 class="anchored" data-anchor-id="fokus-on-the-majority-report">Fokus on The Majority Report</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset tokens based on docvars</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>majority_report_chat_toks <span class="ot">&lt;-</span> <span class="fu">tokens_subset</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  chat_spacyr_toks, streamer <span class="sc">==</span> <span class="st">"the_majority_report"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to DFM</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>majority_report_chat_dfm <span class="ot">&lt;-</span> majority_report_chat_toks <span class="sc">%&gt;%</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm</span>()</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Pruning</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>majority_report_chat_trim <span class="ot">&lt;-</span> majority_report_chat_dfm <span class="sc">%&gt;%</span> </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dfm_trim</span>(</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">min_docfreq =</span> <span class="dv">50</span><span class="sc">/</span><span class="fu">nrow</span>(chats),</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">max_docfreq =</span> <span class="fl">0.99</span>, </span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">docfreq_type =</span> <span class="st">"prop"</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>   )</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert for stm topic modeling</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>majority_report_chat_stm <span class="ot">&lt;-</span> majority_report_chat_trim <span class="sc">%&gt;%</span> </span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>   <span class="fu">convert</span>(<span class="at">to =</span> <span class="st">"stm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>empty_docs <span class="ot">&lt;-</span> Matrix<span class="sc">::</span><span class="fu">rowSums</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as</span>(majority_report_chat_trim, <span class="st">"Matrix"</span>)) <span class="sc">==</span> <span class="dv">0</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>empty_docs_ids <span class="ot">&lt;-</span> majority_report_chat_trim<span class="sc">@</span>docvars<span class="sc">$</span>docname[empty_docs]</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>chats_model <span class="ot">&lt;-</span> chats_filtered <span class="sc">%&gt;%</span> </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(message_id <span class="sc">%in%</span> empty_docs_ids)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(streamer <span class="sc">==</span> <span class="st">"the_majority_report"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="topic-models" class="level3">
+<h3 class="anchored" data-anchor-id="topic-models">Topic Models</h3>
+<section id="k-12" class="level4">
+<h4 class="anchored" data-anchor-id="k-12">K = 12</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get model</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>tpm_k12 <span class="ot">&lt;-</span> stm_results <span class="sc">%&gt;%</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">filter</span>(k <span class="sc">==</span> <span class="dv">12</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">pull</span>(mdl) <span class="sc">%&gt;%</span> .[[<span class="dv">1</span>]]</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate effects</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>effects_k12 <span class="ot">&lt;-</span> <span class="fu">estimateEffect</span>(</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span><span class="sc">~</span> platform <span class="sc">+</span> debate <span class="sc">+</span> message_during_debate,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">stmobj =</span> tpm_k12, </span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">metadata =</span> chats_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="k-14" class="level4">
+<h4 class="anchored" data-anchor-id="k-14">K = 14</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get model</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>tpm_k14 <span class="ot">&lt;-</span> stm_results <span class="sc">%&gt;%</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">filter</span>(k <span class="sc">==</span> <span class="dv">14</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">pull</span>(mdl) <span class="sc">%&gt;%</span> .[[<span class="dv">1</span>]]</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate effects</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>effects_k14 <span class="ot">&lt;-</span> <span class="fu">estimateEffect</span>(</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span><span class="sc">~</span> platform <span class="sc">+</span> debate <span class="sc">+</span> message_during_debate,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">stmobj =</span> tpm_k14, </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">metadata =</span> chats_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="k-18" class="level4">
+<h4 class="anchored" data-anchor-id="k-18">K = 18</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get model</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>tpm_k18 <span class="ot">&lt;-</span> stm_results <span class="sc">%&gt;%</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">filter</span>(k <span class="sc">==</span> <span class="dv">18</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">pull</span>(mdl) <span class="sc">%&gt;%</span> .[[<span class="dv">1</span>]]</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate effects</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>effects_k18 <span class="ot">&lt;-</span> <span class="fu">estimateEffect</span>(</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span><span class="sc">~</span> platform <span class="sc">+</span> debate <span class="sc">+</span> message_during_debate,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">stmobj =</span> tpm_k18, </span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">metadata =</span> chats_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="save-images" class="level3">
+<h3 class="anchored" data-anchor-id="save-images">Save images</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> majority_report_chat_trim</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> majority_report_chat_stm</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">save.image</span>(<span class="fu">here</span>(<span class="st">"local_data/stm_session_09.RData"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -429,77 +584,14 @@ Achtung, bitte lesen!
 </div>
 </div>
 </section>
-<section id="kennenlernen-des-chat-datensatzes" class="level2">
-<h2 class="anchored" data-anchor-id="kennenlernen-des-chat-datensatzes">🔎 Kennenlernen des Chat-Datensatzes</h2>
-<section id="exercise-1-create-corpus-token-dfm" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-1-create-corpus-token-dfm">📋 Exercise 1: Create corpus, token &amp; DFM</h3>
-<ul>
-<li>Create new dataset <code>corp_chats</code>
-<ol type="1">
-<li>Based on the dataset <code>chats</code>, create a corpus object with the <code>quanteda</code> package.</li>
-<li>Use the <code>corpus()</code> function with the <code>docid_field</code> argument set to “message_id” and the <code>text_field</code> argument set to “message_content”.</li>
-</ol></li>
-<li>Create new dataset <code>toks_chats</code>
-<ol type="1">
-<li>Based on the dataset <code>corp_chats</code>, create tokens using the <code>tokens()</code> function from the <code>quanteda</code> package, including the removal of punctuation, symbols, numbers, URLs, and stopwords.</li>
-<li>Use the <code>tokens_remove()</code> function to remove stopwords (<code>en</code>).</li>
-</ol></li>
-<li>Create new dataset <code>dfm_chats</code>
-<ol type="1">
-<li>Convert the tokens to a document-feature matrix (DFM) using the <code>dfm()</code> function from the <code>quanteda</code> package.</li>
-</ol></li>
-</ul>
+<section id="start-stminsights" class="level2">
+<h2 class="anchored" data-anchor-id="start-stminsights">Start <code>stminsights</code></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># INSERT CODE HERE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="exercise-2-semantisches-netzwerk" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-2-semantisches-netzwerk">📋 Exercise 2: Semantisches Netzwerk</h3>
-<ul>
-<li>Create a semantic network based on the top 50 tokens from <code>dfm_chats</code>.
-<ol type="1">
-<li>Based on <code>dfm_chats</code>, create an object called <code>top_50_tokens</code> by using the <code>topfeatures()</code> &amp; <code>names()</code> function from the <code>quanteda</code> package to get the top 50 tokens.</li>
-<li>Based on <code>dfm_chats</code>, create a feature co-occurrence matrix (FCM) using the <code>fcm()</code> function from the <code>quanteda</code> package.</li>
-<li>Select the top 50 tokens from the FCM using the <code>fcm_select()</code> function.</li>
-<li>Create a network plot using the <code>textplot_network()</code> function from the <code>quanteda</code> package.</li>
-</ol></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># INSERT CODE HERE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="exercise-3-analyse-auf-basis-von-pos-tagging" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-3-analyse-auf-basis-von-pos-tagging">📋 Exercise 3: Analyse auf Basis von POS-Tagging</h3>
-<ul>
-<li>Based on <code>chats_spacyr</code>, analyse the adjectives associated with Trump.
-<ol type="1">
-<li>Filter the dataset by using <code>filter()</code> and the arguments <code>pos == "NOUN"</code> and <code>lemma == "trump"</code>.</li>
-<li>Join the dataset with itself by using inner_join() and the arguments <code>doc_id</code>, <code>sentence_id</code>, and <code>relationship = "many-to-many"</code>.</li>
-<li>Filter the dataset again for adjectives with the head token id equal to the token id of the noun. To do that, use <code>filter()</code> and the arguments <code>pos.y == "ADJ"</code> and <code>head_token_id.y == token_id.x</code>.</li>
-<li>Rename the columns and select the relevant columns.</li>
-<li>Display the results using the <code>sjmisc::frq()</code> function.</li>
-</ol></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># INSERT CODE HERE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="exercise-6-named-entity-recognition-ner" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-6-named-entity-recognition-ner">📋 Exercise 6: Named Entity Recognition (NER)</h3>
-<ul>
-<li>Analyse the named entities in the chat data.
-<ol type="1">
-<li>Based on <code>chats_spacyr</code>, use the <code>frq()</code> function from the <code>sjmisc</code> package to get the frequency of named entities.</li>
-<li>Again based on <code>chats_spacyr</code>, filter the dataset for named entities of that indicate a person is mentioned (by using <code>filter</code> and the varialbe <code>entity</code>). Use the output of the previous step to identify the correct entity. Additionally, base all further analysis only on nouns, by using <code>filter</code> and the variable <code>pos== "NOUN</code>.</li>
-<li>Use the <code>frq()</code> function from the <code>sjmisc</code> package to get the frequency. To avoid display errors, use the <code>min.frq = 10</code> argument to only display tokens with a frequency of at least 10.</li>
-</ol></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># INSERT CODE HERE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stminsights)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">run_stminsights</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1072,7 +1164,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/chrdrn/dbd_2024/edit/main/exercises/exercise-08.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/chrdrn/dbd_2024/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/chrdrn/dbd_2024/edit/main/exercises/exercise-09.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/chrdrn/dbd_2024/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This page is built with ☕ &amp; <a href="https://quarto.org/">Quarto</a>.</p>
 </div>
