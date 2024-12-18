@@ -77,9 +77,46 @@ stm_results <- qs::qread(here("local_data/stm-majority_report-results.qs"))
 # Agenda {background-image="img/slide_bg-agenda.png"}
 
 <!-- TODO add chunks descriptions -->
+1.  [Evaluation](#eval)
+2.  [Text as data in R: Topic Modeling](#topic-modeling)
+3.  [📋 Hands on working with R](#exercise)
 
-1.  [Text as data in R: Topic Modeling](#topic-modeling)
-2.  [📋 Hands on working with R](#exercise)
+
+## Eure Meinung ist gefragt!
+
+#### Bitte nehmt an der kurzen Evaluation teil
+
+<!-- FIXME qr-code position -->
+
+::::: columns
+::: {.column width="50%"}
+<br>
+
+Bitte nehmen Sie über den QR Code oder folgenden Link an der Evaluation teil:
+
+-   <https://eva.fau.de/>
+-   Losung: QNALW
+  
+:::
+
+::: {.column width="10%"}
+:::
+
+::: {.column width="40%"}
+<br>
+
+{{< qrcode https://eva.fau.de/evasys/online.php?p=QNALW width=300 height=300 colorDark='#C50F3C' >}}
+
+```{r countdown-vote}
+#| echo: false
+
+countdown(
+    minutes = 5,
+    warn_when = 30)
+```
+
+:::
+:::::
 
 # Topic Modeling mit `stm` {#topic-modeling background-image="img/slide_bg-example.png"}
 
