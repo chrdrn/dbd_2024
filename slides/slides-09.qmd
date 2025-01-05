@@ -1,6 +1,6 @@
 ---
 title: "🔨 Topic Modeling"
-subtitle: "Session 08"
+subtitle: "Session 09"
 date: 18 12 2024
 date-format: "DD.MM.YYYY"
 bibliography: references_slides.bib
@@ -294,7 +294,7 @@ majority_report_chat_stm %>% summary()
 
 #### *`2.Modell-Einstellung`*: Suche nach dem Modell mit dem optimalen `K`
 
--   Das `stm`-Paket [`r glue::glue("v{packageVersion('quanteda')}")`, @roberts2019] bietet zwei integrierte Lösungen, um das optimale **`K`** zu finden:
+-   Das `stm`-Paket [`r glue::glue("v{packageVersion('stm')}")`, @roberts2019] bietet zwei integrierte Lösungen, um das optimale **`K`** zu finden:
     -   `searchK()` Funktion
     -   Verwendung des Argumentes `K = 0` bei der Schätzung des Modells
     -   ***Empfehlung: (Manuelles) Training und Bewertung!***
