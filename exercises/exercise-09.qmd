@@ -1,0 +1,247 @@
+---
+title: "Topic Modeling with `stminsights`"
+subtitle: "Session 09 - 🔨 Advanced Methods in R"
+date: last-modified
+date-format: "DD.MM.YYYY"
+execute: 
+  eval: false
+---
+
+::: {.callout-tip icon="false"}
+[![Quarto Slides](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto-slide.svg) Link to slides](../slides/slides-08.html)
+
+[![](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto_document.svg) Download source file](https://github.com/chrdrn/dbd_2024/blob/main/exercises/exercise-08.qmd)
+
+[![](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-binder_rstudio.svg) Open interactive and executable RStudio environment](https://mybinder.org/v2/gh/faucommsci/dbd_binder/HEAD?urlpath=rstudio)
+:::
+
+::: callout-note
+## Ziel der Anwendung: Anwendung von `stminsights`
+
+-   Auf- bzw. Vorbereitung der Daten zur Anwendung mit `stminsights` [`r glue::glue("v{packageVersion('stminsights')}")`, @schwemmer2021]
+:::
+
+## Background
+
+::: callout-tip
+### Todays's data basis: Topic Modeling
+
+**Transcripts & Chats of the Live-Streams** from [{{< bi twitch >}} hasanabi](https://www.twitch.tv/hasanabi) and [{{< bi twitch >}} zackrawrr](https://www.twitch.tv/zackrawrr) and [{{< bi youtube >}}](https://www.youtube.com/majorityreportlive)\|[{{< bi twitch >}} TheMajorityReport](https://www.twitch.tv/themajorityreport) for the **Presidential** (Harris vs. Trump) and **Vice-Presidential** (Vance vs. Walz) **Debates** 2024
+:::
+
+-   The best way to learn R is by trying. This document tries to display a version of the "normal" data processing procedure.
+-   Use `tidytuesday` data as an example to showcase the potential
+
+## Preparation
+
+### Packages
+
+The `pacman::p_load()` function from the `pacman` package is used to load the packages, which has several advantages over the conventional method with `library()`:
+
+-   Concise syntax
+-   Automatic installation (if the package is not already installed)
+-   Loading multiple packages at once
+-   Automatic search for dependencies
+
+```{r load-packages}
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(
+    here, 
+    magrittr, janitor,
+    ggpubr, 
+    gt, gtExtras,
+    countdown, 
+    quanteda, # quanteda text processing
+    quanteda.textplots, quanteda.textstats, quanteda.textmodels,
+    tidytext, 
+    udpipe, spacyr, # POS tagging
+    stm, stminsights,
+    easystats, tidyverse
+)
+```
+
+### Import und Vorverarbeitung der Daten
+
+::: callout-note
+## Information
+
+For information about how the data, especially the topic modeling results, were prepared, processed and estimated, please see the [tutorial](../tutorials/tutorial-09.html).
+:::
+
+```{r import-data-raw}
+# Import base data
+chats <- qs::qread(here("local_data/chat-debates_full.qs"))$correct
+
+# Import corpora
+chats_spacyr <- qs::qread(here("local_data/chat-corpus_spacyr.qs"))
+stm_search <- qs::qread(here("local_data/stm-majority_report-search.qs"))
+stm_results <- qs::qread(here("local_data/stm-majority_report-results.qs"))
+```
+
+#### Vorverarbeitung der Daten
+
+```{r}
+chats_valid <- chats %>% 
+  mutate(
+    across(c(debate, platform), ~as.factor(.x))
+  ) 
+```
+
+#### Vorverarbeitung des Korpus
+
+```{r}
+# spacyr-Korpus zu Tokens
+chat_spacyr_toks <- chats_spacyr %>% 
+  as.tokens(
+    use_lemma = TRUE
+  ) %>% 
+  tokens(
+    remove_punct = TRUE, 
+    remove_symbols = TRUE,
+    remove_numbers = FALSE,
+    remove_url = FALSE, 
+    split_hyphens = FALSE,
+    split_tags = FALSE,
+  ) %>% 
+  tokens_remove(
+    pattern = stopwords("en")
+  ) %>% 
+  tokens_ngrams(n = 1:3) 
+```
+
+#### Add docvars
+
+```{r}
+# Get document names from the original data
+original_docnames <- chats$message_id
+
+# Get document names from the tokens object
+token_docnames <- docnames(chat_spacyr_toks)
+
+# Identify missing documents
+missing_docs <- setdiff(original_docnames, token_docnames)
+
+# Exclude "empty" messages
+chats_filtered <- chats_valid %>% 
+  filter(!message_id %in% missing_docs)
+
+# Add docvars
+docvars(chat_spacyr_toks) <- chats_filtered
+```
+
+#### Fokus on The Majority Report
+
+```{r}
+# Subset tokens based on docvars
+majority_report_chat_toks <- tokens_subset(
+  chat_spacyr_toks, streamer == "the_majority_report")
+```
+
+```{r create-corpora-chat}
+# Convert to DFM
+majority_report_chat_dfm <- majority_report_chat_toks %>% 
+  dfm()
+
+# Pruning
+majority_report_chat_trim <- majority_report_chat_dfm %>% 
+    dfm_trim(
+        min_docfreq = 50/nrow(chats),
+        max_docfreq = 0.99, 
+        docfreq_type = "prop"
+   )
+
+# Convert for stm topic modeling
+majority_report_chat_stm <- majority_report_chat_trim %>% 
+   convert(to = "stm")
+```
+
+```{r}
+empty_docs <- Matrix::rowSums(
+  as(majority_report_chat_trim, "Matrix")) == 0 
+empty_docs_ids <- majority_report_chat_trim@docvars$docname[empty_docs]
+
+chats_model <- chats_filtered %>% 
+  filter(!(message_id %in% empty_docs_ids)) %>% 
+  filter(streamer == "the_majority_report")
+```
+
+#### Export topic models
+
+##### K = 12
+
+```{r}
+# Get model
+tpm_k12 <- stm_results %>% 
+   filter(k == 12) |> 
+   pull(mdl) %>% .[[1]]
+
+# Estimate effects
+effects_k12 <- estimateEffect(
+  formula =~ platform + debate + message_during_debate,
+  stmobj = tpm_k12, 
+  metadata = chats_model)
+```
+
+##### K = 14
+
+```{r}
+# Get model
+tpm_k14 <- stm_results %>% 
+   filter(k == 14) |> 
+   pull(mdl) %>% .[[1]]
+
+# Estimate effects
+effects_k14 <- estimateEffect(
+  formula =~ platform + debate + message_during_debate,
+  stmobj = tpm_k14, 
+  metadata = chats_model)
+```
+
+##### K = 18
+
+```{r}
+# Get model
+tpm_k18 <- stm_results %>% 
+   filter(k == 18) |> 
+   pull(mdl) %>% .[[1]]
+
+# Estimate effects
+effects_k18 <- estimateEffect(
+  formula =~ platform + debate + message_during_debate,
+  stmobj = tpm_k18, 
+  metadata = chats_model)
+```
+
+## 🛠️ Praktische Übung
+
+::: callout-important
+## Achtung, bitte lesen!
+
+-   Bevor Sie mit der Arbeit an den folgenden 📋 **Exercises** beginnen, stellen Sie bitte sicher, dass Sie alle Chunks des Abschnitts [Preparation] ausgeführt haben. Das können Sie tun, indem Sie den "*Run all chunks above*"-Knopf ![](https://raw.githubusercontent.com/faucommsci/teaching_materials/main/images/buttons/rstudio-button-render_all_chunks_above.png) des nächsten Chunks benutzen.
+-   Bei Fragen zum Code lohnt sich ein Blick in das **Tutorial** (.qmd oder .html). Beim Tutorial handelt es sich um eine kompakte Darstellung des in der Präsentation verwenden R-Codes. Sie können das Tutorial also nutzen, um sich die Code-Bausteine anzusehen, die für die R-Outputs auf den Slides benutzt wurden.
+:::
+
+### Prepare and save workspace
+
+```{r}
+# Set names required by stminsights
+data <- majority_report_chat_trim
+out <- majority_report_chat_stm
+
+# Clean workspace
+rm(list = setdiff(
+  ls(),
+  c("data", "out",
+    "tpm_k12", "tpm_k14", "tpm_k18", 
+    "effects_k12", "effects_k14", "effects_k18")))
+
+# Save workspace
+save.image(here("stm_session_09.RData"))
+```
+
+### Start `stminsights`
+
+```{r}
+library(stminsights)
+run_stminsights()
+```
