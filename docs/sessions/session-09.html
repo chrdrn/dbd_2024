@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Twitch Chat Analysis – Digital behavioral data</title>
+<title>Session 9 – Digital behavioral data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -70,12 +36,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-57476271c5f0467c372e20ff5d25630e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-391c4f7f0df7475a7487d1067a5e1fc7.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-2bb03e02df4adaeba556f08ab559a131.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-5f5cb4bbd510998cb149aa2ff71fbc7b.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-a8319c1cf6773f4a5c9a0b7b7e89f344.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0aec2d94dbdb5e6d406284aae2ad85c6.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../site_libs/quarto-contrib/bootstrap-icons-1.11.1/all.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
@@ -107,8 +73,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="../styles.css">
-<meta property="og:title" content="Twitch Chat Analysis – Digital behavioral data">
-<meta property="og:description" content="Session 07 - 🔨 Text as data in R">
+<meta property="og:title" content="Session 9 – Digital behavioral data">
+<meta property="og:description" content="🔨 Advanced Methods: Topic Modeling">
 <meta property="og:site_name" content="Digital behavioral data">
 </head>
 
@@ -121,7 +87,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Twitch Chat Analysis</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Session 9</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -291,30 +257,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a></li>
-  <li><a href="#preparation" id="toc-preparation" class="nav-link" data-scroll-target="#preparation">Preparation</a>
-  <ul>
-  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
-  <li><a href="#import-und-vorverarbeitung-der-daten" id="toc-import-und-vorverarbeitung-der-daten" class="nav-link" data-scroll-target="#import-und-vorverarbeitung-der-daten">Import und Vorverarbeitung der Daten</a></li>
-  </ul></li>
-  <li><a href="#praktische-übung" id="toc-praktische-übung" class="nav-link" data-scroll-target="#praktische-übung">🛠️ Praktische Übung</a></li>
-  <li><a href="#kennenlernen-des-chat-datensatzes" id="toc-kennenlernen-des-chat-datensatzes" class="nav-link" data-scroll-target="#kennenlernen-des-chat-datensatzes">🔎 Kennenlernen des Chat-Datensatzes</a>
-  <ul>
-  <li><a href="#exercise-1-create-corpus" id="toc-exercise-1-create-corpus" class="nav-link" data-scroll-target="#exercise-1-create-corpus">📋 Exercise 1: Create corpus</a></li>
-  <li><a href="#exercise-2-tokenization-dfm-conversion" id="toc-exercise-2-tokenization-dfm-conversion" class="nav-link" data-scroll-target="#exercise-2-tokenization-dfm-conversion">📋 Exercise 2: Tokenization &amp; DFM conversion</a></li>
-  <li><a href="#exercise-3-analyse-dfm" id="toc-exercise-3-analyse-dfm" class="nav-link" data-scroll-target="#exercise-3-analyse-dfm">📋 Exercise 3: Analyse DFM</a></li>
-  <li><a href="#exercise-4-preprocessing" id="toc-exercise-4-preprocessing" class="nav-link" data-scroll-target="#exercise-4-preprocessing">📋 Exercise 4: Preprocessing</a></li>
-  </ul></li>
+  <li><a href="#participate" id="toc-participate" class="nav-link active" data-scroll-target="#participate">Participate</a></li>
+  <li><a href="#suggested-readings" id="toc-suggested-readings" class="nav-link" data-scroll-target="#suggested-readings">Suggested readings</a></li>
+  <li><a href="#additional-readings" id="toc-additional-readings" class="nav-link" data-scroll-target="#additional-readings">Additional readings</a></li>
+  <li><a href="#useful-packages" id="toc-useful-packages" class="nav-link" data-scroll-target="#useful-packages">Useful packages</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/chrdrn/dbd_2024/edit/main/exercises/exercise-07.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/chrdrn/dbd_2024/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/chrdrn/dbd_2024/edit/main/sessions/session-09.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/chrdrn/dbd_2024/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Twitch Chat Analysis</h1>
-<p class="subtitle lead">Session 07 - 🔨 Text as data in R</p>
+<h1 class="title">Session 9</h1>
+<p class="subtitle lead">🔨 Advanced Methods: Topic Modeling</p>
 </div>
 
 
@@ -322,12 +278,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">11.12.2024</p>
-    </div>
-  </div>
   
     
   </div>
@@ -337,166 +287,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="callout callout-style-simple callout-tip no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><a href="../slides/slides-07.html"><img src="https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto-slide.svg" class="img-fluid" alt="Quarto Slides"> Link to slides</a></p>
-<p><a href="https://github.com/chrdrn/dbd_2024/blob/main/exercises/exercise-07.qmd"><img src="https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto_document.svg" class="img-fluid"> Download source file</a></p>
-<p><a href="https://mybinder.org/v2/gh/faucommsci/dbd_binder/HEAD?urlpath=rstudio"><img src="https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-binder_rstudio.svg" class="img-fluid"> Open interactive and executable RStudio environment</a></p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Ziel der Anwendung: Grundlagen der Korpusexploration in R
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<section id="participate" class="level2">
+<h2 class="anchored" data-anchor-id="participate">Participate</h2>
+<p>🖥️ <a href="../slides/slides-09.html">Session 09</a></p>
+</section>
+<section id="suggested-readings" class="level2">
+<h2 class="anchored" data-anchor-id="suggested-readings">Suggested readings</h2>
 <ul>
-<li>Review basic knowledge of working with R, tidyverse, and ggplot2</li>
-<li>Get to know the typical steps of tidy text analysis with <code>quanteda</code>, from tokenisation and summarisation to visualisation.</li>
-</ul>
-</div>
-</div>
-<section id="background" class="level2">
-<h2 class="anchored" data-anchor-id="background">Background</h2>
-<div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Todays’s data basis: Twitch Chat &amp; Transcripts
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Transcripts &amp; Chats of the Live-Streams</strong> from <a href="https://www.twitch.tv/hasanabi"><i class="bi-twitch " style="" role="img" aria-hidden="true"></i> hasanabi</a> and <a href="https://www.twitch.tv/zackrawrr"><i class="bi-twitch " style="" role="img" aria-hidden="true"></i> zackrawrr</a> and <a href="https://www.youtube.com/majorityreportlive"><i class="bi-youtube " style="" role="img" aria-hidden="true"></i></a>|<a href="https://www.twitch.tv/themajorityreport"><i class="bi-twitch " style="" role="img" aria-hidden="true"></i> TheMajorityReport</a> for the <strong>Presidential</strong> (Harris vs.&nbsp;Trump) and <strong>Vice-Presidential</strong> (Vance vs.&nbsp;Walz) <strong>Debates</strong> 2024</p>
-</div>
-</div>
-<ul>
-<li>The best way to learn R is by trying. This document tries to display a version of the “normal” data processing procedure.</li>
-<li>Use <code>tidytuesday</code> data as an example to showcase the potential</li>
+<li><p><span class="citation" data-cites="chen2023">Chen, Y., Peng, Z., Kim, S.-H., &amp; Choi, C. W. (2023). What We Can Do and Cannot Do with Topic Modeling: A Systematic Review. <em>Communication Methods and Measures</em>, <em>17</em>(2), 111–130. <a href="https://doi.org/10.1080/19312458.2023.2167965">https://doi.org/10.1080/19312458.2023.2167965</a></span></p></li>
+<li><p><span class="citation" data-cites="hase2023">Hase, V. (2023). <em>Automated Content Analysis</em> (F. Oehmer-Pedrazzi, S. H. Kessler, E. Humprecht, K. Sommer, &amp; L. Castro, Eds.; pp. 23–36). Springer Fachmedien Wiesbaden. <a href="https://link.springer.com/10.1007/978-3-658-36179-2_3">https://link.springer.com/10.1007/978-3-658-36179-2_3</a></span></p></li>
+<li><p><span class="citation" data-cites="maier2018">Maier, D., Waldherr, A., Miltner, P., Wiedemann, G., Niekler, A., Keinert, A., Pfetsch, B., Heyer, G., Reber, U., Häussler, T., Schmid-Petri, H., &amp; Adam, S. (2018). Applying LDA Topic Modeling in Communication Research: Toward a Valid and Reliable Methodology. <em>Communication Methods and Measures</em>, <em>12</em>(2-3), 93–118. <a href="https://doi.org/10.1080/19312458.2018.1430754">https://doi.org/10.1080/19312458.2018.1430754</a></span></p></li>
 </ul>
 </section>
-<section id="preparation" class="level2">
-<h2 class="anchored" data-anchor-id="preparation">Preparation</h2>
-<section id="packages" class="level3">
-<h3 class="anchored" data-anchor-id="packages">Packages</h3>
-<p>The <code>pacman::p_load()</code> function from the <code>pacman</code> package is used to load the packages, which has several advantages over the conventional method with <code>library()</code>:</p>
+<section id="additional-readings" class="level2">
+<h2 class="anchored" data-anchor-id="additional-readings">Additional readings</h2>
 <ul>
-<li>Concise syntax</li>
-<li>Automatic installation (if the package is not already installed)</li>
-<li>Loading multiple packages at once</li>
-<li>Automatic search for dependencies</li>
+<li><p><span class="citation" data-cites="bernhard2023">Bernhard, J., Teuffenbach, M., &amp; Boomgaarden, H. G. (2023). Topic Model Validation Methods and their Impact on Model Selection and Evaluation. <em>Computational Communication Research</em>, <em>5</em>(1), 1. <a href="https://doi.org/10.5117/CCR2023.1.13.BERN">https://doi.org/10.5117/CCR2023.1.13.BERN</a></span></p></li>
+<li><p><span class="citation" data-cites="churchill2022">Churchill, R., &amp; Singh, L. (2022). The Evolution of Topic Modeling. <em>ACM Computing Surveys</em>, <em>54</em>(10s), 1–35. <a href="https://doi.org/10.1145/3507900">https://doi.org/10.1145/3507900</a></span></p></li>
+<li><p><span class="citation" data-cites="denny2018">Denny, M. J., &amp; Spirling, A. (2018). Text Preprocessing For Unsupervised Learning: Why It Matters, When It Misleads, And What To Do About It. <em>Political Analysis</em>, <em>26</em>(2), 168–189. <a href="https://doi.org/10/gdjsqk">https://doi.org/10/gdjsqk</a></span></p></li>
+<li><p><span class="citation" data-cites="maier2020">Maier, D., Niekler, A., Wiedemann, G., &amp; Stoltenberg, D. (2020). How Document Sampling and Vocabulary Pruning Affect the Results of Topic Models. <em>Computational Communication Research</em>, <em>2</em>(2), 139–152. <a href="https://doi.org/10.5117/CCR2020.2.001.MAIE">https://doi.org/10.5117/CCR2020.2.001.MAIE</a></span></p></li>
+<li><p><span class="citation" data-cites="quinn2010">Quinn, K. M., Monroe, B. L., Colaresi, M., Crespin, M. H., &amp; Radev, D. R. (2010). How to Analyze Political Attention with Minimal Assumptions and Costs. <em>American Journal of Political Science</em>, <em>54</em>(1), 209–228. <a href="https://doi.org/10.1111/j.1540-5907.2009.00427.x">https://doi.org/10.1111/j.1540-5907.2009.00427.x</a></span></p></li>
+<li><p><span class="citation" data-cites="roberts2014">Roberts, M. E., Stewart, B. M., Tingley, D., Lucas, C., Leder-Luis, J., Gadarian, S. K., Albertson, B., &amp; Rand, D. G. (2014). Structural Topic Models for Open<span>-</span>Ended Survey Responses. <em>American Journal of Political Science</em>, <em>58</em>(4), 1064–1082. <a href="https://doi.org/10.1111/ajps.12103">https://doi.org/10.1111/ajps.12103</a></span></p></li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    here, taylor,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    magrittr, janitor,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    ggpubr, </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    gt, gtExtras,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    countdown, </span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    quanteda, <span class="co"># quanteda text processing</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    quanteda.textplots, </span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    easystats, tidyverse</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
-<section id="import-und-vorverarbeitung-der-daten" class="level3">
-<h3 class="anchored" data-anchor-id="import-und-vorverarbeitung-der-daten">Import und Vorverarbeitung der Daten</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>chats <span class="ot">&lt;-</span> qs<span class="sc">::</span><span class="fu">qread</span>(<span class="fu">here</span>(<span class="st">"local_data/chat-debates_full.qs"</span>))<span class="sc">$</span>correct</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>transcripts <span class="ot">&lt;-</span> qs<span class="sc">::</span><span class="fu">qread</span>(<span class="fu">here</span>(<span class="st">"local_data/transcripts-debates_full.qs"</span>))<span class="sc">$</span>correct</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-</section>
-<section id="praktische-übung" class="level2">
-<h2 class="anchored" data-anchor-id="praktische-übung">🛠️ Praktische Übung</h2>
-<div class="callout callout-style-simple callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Achtung, bitte lesen!
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<section id="useful-packages" class="level2">
+<h2 class="anchored" data-anchor-id="useful-packages">Useful packages</h2>
 <ul>
-<li>Bevor Sie mit der Arbeit an den folgenden 📋 <strong>Exercises</strong> beginnen, stellen Sie bitte sicher, dass Sie alle Chunks des Abschnitts <a href="#preparation">Preparation</a> ausgeführt haben. Das können Sie tun, indem Sie den “<em>Run all chunks above</em>”-Knopf <img src="https://raw.githubusercontent.com/faucommsci/teaching_materials/main/images/buttons/rstudio-button-render_all_chunks_above.png" class="img-fluid"> des nächsten Chunks benutzen.</li>
-<li>Bei Fragen zum Code lohnt sich ein Blick in das <strong>Tutorial</strong> (.qmd oder .html). Beim Tutorial handelt es sich um eine kompakte Darstellung des in der Präsentation verwenden R-Codes. Sie können das Tutorial also nutzen, um sich die Code-Bausteine anzusehen, die für die R-Outputs auf den Slides benutzt wurden.</li>
+<li><p><code>quanteda</code> <a href="https://quanteda.io/index.html">🌐</a> | <a href="https://github.com/quanteda/quanteda"><i class="bi-github " style="" role="img" aria-hidden="true"></i></a><br>
+<span class="citation" data-cites="benoit2018">Benoit, K., Watanabe, K., Wang, H., Nulty, P., Obeng, A., Müller, S., &amp; Matsuo, A. (2018). Quanteda: An r package for the quantitative analysis of textual data. <em>Journal of Open Source Software</em>, <em>3</em>(30), 774. <a href="https://doi.org/10.21105/joss.00774">https://doi.org/10.21105/joss.00774</a></span></p></li>
+<li><p><code>stm</code> <a href="https://www.structuraltopicmodel.com/">🌐</a> | <a href="https://github.com/bstewart/stm"><i class="bi-github " style="" role="img" aria-hidden="true"></i></a> für Structural Topic Modeling<br>
+<span class="citation" data-cites="roberts2019">Roberts, M. E., Stewart, B. M., &amp; Tingley, D. (2019). stm: An R Package for Structural Topic Models. <em>Journal of Statistical Software</em>, <em>91</em>(1), 1–40. <a href="https://doi.org/10.18637/jss.v091.i02">https://doi.org/10.18637/jss.v091.i02</a></span></p></li>
+<li><p><code>keyATM</code> <a href="https://keyatm.github.io/keyATM/">🌐</a> | <a href="https://github.com/keyATM/keyATM"><i class="bi-github " style="" role="img" aria-hidden="true"></i></a> für Keyword Assisted Topic Modeling<br>
+<span class="citation" data-cites="esser2019">Esser, F. (2019). Comparative international studies of election campaign communication: What should happen next? <em>Journalism</em>, <em>20</em>(8), 1124–1138. <a href="https://doi.org/10.1177/1464884919845450">https://doi.org/10.1177/1464884919845450</a></span></p></li>
+<li><p><code>topicmodels</code> <a href="https://cran.r-project.org/web/packages/topicmodels/index.html">🌐</a> für LDA basiertes Verfahren<br>
+<span class="citation" data-cites="grün">Grün, B., &amp; Hornik, K. (n.d.). <em>topicmodels: Topic Models</em>. <a href="https://doi.org/10.32614/CRAN.package.topicmodels">https://doi.org/10.32614/CRAN.package.topicmodels</a></span></p></li>
+<li><p><code>tidytext</code> <a href="https://juliasilge.github.io/tidytext/">🌐</a> | <a href="https://github.com/juliasilge/tidytext"><i class="bi-github " style="" role="img" aria-hidden="true"></i></a> für Extraktion z.B. der Theta- oder Phi-Matrix<br>
+<span class="citation" data-cites="silge2016">Silge, J., &amp; Robinson, D. (2016). Tidytext: Text mining and analysis using tidy data principles in r. <em>The Journal of Open Source Software</em>, <em>1</em>(3), 37. <a href="https://doi.org/10.21105/joss.00037">https://doi.org/10.21105/joss.00037</a></span></p></li>
+<li><p><code>LDAvis</code><a href="https://github.com/cpsievert/LDAvis"><i class="bi-github " style="" role="img" aria-hidden="true"></i></a> zur Visualisierung<br>
+<span class="citation" data-cites="sievert">Sievert, C., &amp; Shirley, K. (n.d.). <em>LDAvis: Interactive Visualization of Topic Models</em>. <a href="https://doi.org/10.32614/CRAN.package.LDAvis">https://doi.org/10.32614/CRAN.package.LDAvis</a></span></p></li>
+<li><p><code>stminsights</code> <a href="https://cschwem2er.github.io/stminsights/">🌐</a> | <a href="https://github.com/cschwem2er/stminsights"><i class="bi-github " style="" role="img" aria-hidden="true"></i></a> zur Visualisierung<br>
+<span class="citation" data-cites="schwemmer2021">Schwemmer, C. (2021). <em>Stminsights: A shiny application for inspecting structural topic models</em>. <a href="https://github.com/cschwem2er/stminsights">https://github.com/cschwem2er/stminsights</a></span></p></li>
+<li><p><code>oolong</code> <a href="https://gesistsa.github.io/oolong/">🌐</a> | <a href="https://github.com/gesistsa/oolong/"><i class="bi-github " style="" role="img" aria-hidden="true"></i></a> für Validierungen<br>
+<span class="citation" data-cites="chan2020">Chan, C., &amp; Sältzer, M. (2020). Oolong: An r package for validating automated content analysis tools. <em>Journal of Open Source Software</em>, <em>5</em>(55), 2461. <a href="https://doi.org/10.21105/joss.02461">https://doi.org/10.21105/joss.02461</a></span></p></li>
 </ul>
-</div>
-</div>
-</section>
-<section id="kennenlernen-des-chat-datensatzes" class="level2">
-<h2 class="anchored" data-anchor-id="kennenlernen-des-chat-datensatzes">🔎 Kennenlernen des Chat-Datensatzes</h2>
-<section id="exercise-1-create-corpus" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-1-create-corpus">📋 Exercise 1: Create corpus</h3>
-<ul>
-<li>Create new dataset <code>corp_chats</code>
-<ol type="1">
-<li>Based on the dataset <code>chats</code>, create a corpus object with the <code>quanteda</code> package.</li>
-<li>Use the <code>corpus()</code> function with the <code>docid_field</code> argument set to “message_id” and the <code>text_field</code> argument set to “message_content”.</li>
-<li>Check if the transformation was successful by using the <code>summary()</code> function.</li>
-</ol></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># INSERT CODE HERE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="exercise-2-tokenization-dfm-conversion" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-2-tokenization-dfm-conversion">📋 Exercise 2: Tokenization &amp; DFM conversion</h3>
-<ul>
-<li>Create new datasets <code>toks_chats</code> &amp; <code>dfm_chats</code></li>
-</ul>
-<ol type="1">
-<li>Based on the dataset <code>corp_chats</code>, create tokens using the <code>tokens()</code> function from the <code>quanteda</code> package.</li>
-<li>Convert the tokens to a document-feature matrix (DFM) using the <code>dfm()</code> function from the <code>quanteda</code> package.</li>
-<li>Check if the transformations were successful (e.g.&nbsp;by using the <code>print()</code> function).</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># INSERT CODE HERE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="exercise-3-analyse-dfm" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-3-analyse-dfm">📋 Exercise 3: Analyse DFM</h3>
-<ul>
-<li>Based on <code>dfm_chats</code>
-<ol type="1">
-<li>Use the <code>textstat_frequency()</code> function from the <code>quanteda</code> package to get the top 50 tokens.</li>
-<li>Display the results.</li>
-</ol></li>
-<li>Based on the results, what preprocessing steps could be useful?</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># INSERT CODE HERE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="exercise-4-preprocessing" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-4-preprocessing">📋 Exercise 4: Preprocessing</h3>
-<ul>
-<li>Create a new dataset <code>dfm_chats_preprocessed</code>
-<ol type="1">
-<li>Based on <code>corp_chats</code>, preprocess the data according to the steps you think are necessary (e.g.&nbsp;removing punctuation, symbols, numbers, URLs, and stopwords).</li>
-<li>Depending on the steps you choose, you might need to use the <code>tokens_remove()</code> function from the <code>quanteda</code> package.</li>
-<li>Create a new DFM object <code>dfm_chats_preprocessed</code>.</li>
-<li>Use the <code>textstat_frequency()</code> function from the <code>quanteda</code> package on the newly created dataset to get the top 50 tokens and compare the result with the results of Exercise 3.</li>
-</ol></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># INSERT CODE HERE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<div style="font-size: 0.875em;">
+<p>Back to <a href="../index.html" title="Course schedule">course schedule</a> ⏎</p>
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1022,43 +861,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
           }
         });
       }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
-      });
-    }
-  }
 });
 </script>
 </div> <!-- /content -->
@@ -1069,7 +871,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/chrdrn/dbd_2024/edit/main/exercises/exercise-07.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/chrdrn/dbd_2024/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/chrdrn/dbd_2024/edit/main/sessions/session-09.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/chrdrn/dbd_2024/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This page is built with ☕ &amp; <a href="https://quarto.org/">Quarto</a>.</p>
 </div>

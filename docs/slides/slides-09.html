@@ -7,9 +7,9 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e8fb9d25728d58bfeac61b497e4a6629.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-57476271c5f0467c372e20ff5d25630e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/quarto-contrib/qrcodejs-v1.0.0/qrcode.js"></script><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.39">
+  <meta name="generator" content="quarto-1.6.40">
 
   <meta name="author" content="Christoph Adrian">
   <title>Digital behavioral data – 🔨 Topic Modeling</title>
@@ -222,7 +222,7 @@
   <link href="../site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
   <script src="../site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
 <meta property="og:title" content="🔨 Topic Modeling – Digital behavioral data">
-<meta property="og:description" content="Session 08">
+<meta property="og:description" content="Session 09">
 <meta property="og:site_name" content="Digital behavioral data">
 </head>
 <body class="quarto-light">
@@ -231,7 +231,7 @@
 
 <section id="title-slide" data-background-color="#04316a" data-background-image="img/slide_bg-title.png" slide-logo="false" class="quarto-title-block center">
   <h1 class="title">🔨 Topic Modeling</h1>
-  <p class="subtitle">Session 08</p>
+  <p class="subtitle">Session 09</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -252,27 +252,27 @@
 <h2>Seminarplan</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div id="zlscjiibqj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="rvzteuczxv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Cairo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#zlscjiibqj table {
+#rvzteuczxv table {
   font-family: Cairo, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#zlscjiibqj thead, #zlscjiibqj tbody, #zlscjiibqj tfoot, #zlscjiibqj tr, #zlscjiibqj td, #zlscjiibqj th {
+#rvzteuczxv thead, #rvzteuczxv tbody, #rvzteuczxv tfoot, #rvzteuczxv tr, #rvzteuczxv td, #rvzteuczxv th {
   border-style: none;
 }
 
-#zlscjiibqj p {
+#rvzteuczxv p {
   margin: 0;
   padding: 0;
 }
 
-#zlscjiibqj .gt_table {
+#rvzteuczxv .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -298,12 +298,12 @@
   border-left-color: #D3D3D3;
 }
 
-#zlscjiibqj .gt_caption {
+#rvzteuczxv .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#zlscjiibqj .gt_title {
+#rvzteuczxv .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -315,7 +315,7 @@
   border-bottom-width: 0;
 }
 
-#zlscjiibqj .gt_subtitle {
+#rvzteuczxv .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -327,7 +327,7 @@
   border-top-width: 0;
 }
 
-#zlscjiibqj .gt_heading {
+#rvzteuczxv .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -339,13 +339,13 @@
   border-right-color: #D3D3D3;
 }
 
-#zlscjiibqj .gt_bottom_border {
+#rvzteuczxv .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#zlscjiibqj .gt_col_headings {
+#rvzteuczxv .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -360,7 +360,7 @@
   border-right-color: #D3D3D3;
 }
 
-#zlscjiibqj .gt_col_heading {
+#rvzteuczxv .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -380,7 +380,7 @@
   overflow-x: hidden;
 }
 
-#zlscjiibqj .gt_column_spanner_outer {
+#rvzteuczxv .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -392,15 +392,15 @@
   padding-right: 4px;
 }
 
-#zlscjiibqj .gt_column_spanner_outer:first-child {
+#rvzteuczxv .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#zlscjiibqj .gt_column_spanner_outer:last-child {
+#rvzteuczxv .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#zlscjiibqj .gt_column_spanner {
+#rvzteuczxv .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #000000;
@@ -412,11 +412,11 @@
   width: 100%;
 }
 
-#zlscjiibqj .gt_spanner_row {
+#rvzteuczxv .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#zlscjiibqj .gt_group_heading {
+#rvzteuczxv .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -442,7 +442,7 @@
   text-align: left;
 }
 
-#zlscjiibqj .gt_empty_group_heading {
+#rvzteuczxv .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -457,15 +457,15 @@
   vertical-align: middle;
 }
 
-#zlscjiibqj .gt_from_md > :first-child {
+#rvzteuczxv .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#zlscjiibqj .gt_from_md > :last-child {
+#rvzteuczxv .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#zlscjiibqj .gt_row {
+#rvzteuczxv .gt_row {
   padding-top: 3px;
   padding-bottom: 3px;
   padding-left: 5px;
@@ -484,7 +484,7 @@
   overflow-x: hidden;
 }
 
-#zlscjiibqj .gt_stub {
+#rvzteuczxv .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -497,7 +497,7 @@
   padding-right: 5px;
 }
 
-#zlscjiibqj .gt_stub_row_group {
+#rvzteuczxv .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -511,15 +511,15 @@
   vertical-align: top;
 }
 
-#zlscjiibqj .gt_row_group_first td {
+#rvzteuczxv .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#zlscjiibqj .gt_row_group_first th {
+#rvzteuczxv .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#zlscjiibqj .gt_summary_row {
+#rvzteuczxv .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -529,16 +529,16 @@
   padding-right: 5px;
 }
 
-#zlscjiibqj .gt_first_summary_row {
+#rvzteuczxv .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#zlscjiibqj .gt_first_summary_row.thick {
+#rvzteuczxv .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#zlscjiibqj .gt_last_summary_row {
+#rvzteuczxv .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -548,7 +548,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#zlscjiibqj .gt_grand_summary_row {
+#rvzteuczxv .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -558,7 +558,7 @@
   padding-right: 5px;
 }
 
-#zlscjiibqj .gt_first_grand_summary_row {
+#rvzteuczxv .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -568,7 +568,7 @@
   border-top-color: #D3D3D3;
 }
 
-#zlscjiibqj .gt_last_grand_summary_row_top {
+#rvzteuczxv .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -578,11 +578,11 @@
   border-bottom-color: #D3D3D3;
 }
 
-#zlscjiibqj .gt_striped {
+#rvzteuczxv .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#zlscjiibqj .gt_table_body {
+#rvzteuczxv .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -591,7 +591,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#zlscjiibqj .gt_footnotes {
+#rvzteuczxv .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -605,7 +605,7 @@
   border-right-color: #D3D3D3;
 }
 
-#zlscjiibqj .gt_footnote {
+#rvzteuczxv .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -614,7 +614,7 @@
   padding-right: 5px;
 }
 
-#zlscjiibqj .gt_sourcenotes {
+#rvzteuczxv .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -628,7 +628,7 @@
   border-right-color: #D3D3D3;
 }
 
-#zlscjiibqj .gt_sourcenote {
+#rvzteuczxv .gt_sourcenote {
   font-size: 12px;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -636,72 +636,72 @@
   padding-right: 5px;
 }
 
-#zlscjiibqj .gt_left {
+#rvzteuczxv .gt_left {
   text-align: left;
 }
 
-#zlscjiibqj .gt_center {
+#rvzteuczxv .gt_center {
   text-align: center;
 }
 
-#zlscjiibqj .gt_right {
+#rvzteuczxv .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#zlscjiibqj .gt_font_normal {
+#rvzteuczxv .gt_font_normal {
   font-weight: normal;
 }
 
-#zlscjiibqj .gt_font_bold {
+#rvzteuczxv .gt_font_bold {
   font-weight: bold;
 }
 
-#zlscjiibqj .gt_font_italic {
+#rvzteuczxv .gt_font_italic {
   font-style: italic;
 }
 
-#zlscjiibqj .gt_super {
+#rvzteuczxv .gt_super {
   font-size: 65%;
 }
 
-#zlscjiibqj .gt_footnote_marks {
+#rvzteuczxv .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#zlscjiibqj .gt_asterisk {
+#rvzteuczxv .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#zlscjiibqj .gt_indent_1 {
+#rvzteuczxv .gt_indent_1 {
   text-indent: 5px;
 }
 
-#zlscjiibqj .gt_indent_2 {
+#rvzteuczxv .gt_indent_2 {
   text-indent: 10px;
 }
 
-#zlscjiibqj .gt_indent_3 {
+#rvzteuczxv .gt_indent_3 {
   text-indent: 15px;
 }
 
-#zlscjiibqj .gt_indent_4 {
+#rvzteuczxv .gt_indent_4 {
   text-indent: 20px;
 }
 
-#zlscjiibqj .gt_indent_5 {
+#rvzteuczxv .gt_indent_5 {
   text-indent: 25px;
 }
 
-#zlscjiibqj .katex-display {
+#rvzteuczxv .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#zlscjiibqj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#rvzteuczxv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 
@@ -879,7 +879,7 @@ tbody tr:last-child {
     
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_0f7081bb" data-warn-when="30" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_ba46dfee" data-warn-when="30" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1122,10 +1122,13 @@ docs                                       donnie say sperm wait
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="co"># Convert for stm topic modeling</span></span>
 <span id="cb9-2"><a></a>majority_report_chat_stm <span class="ot">&lt;-</span> majority_report_chat_trim <span class="sc">%&gt;%</span> </span>
-<span id="cb9-3"><a></a>   <span class="fu">convert</span>(<span class="at">to =</span> <span class="st">"stm"</span>)</span>
-<span id="cb9-4"><a></a></span>
-<span id="cb9-5"><a></a><span class="co"># Output</span></span>
-<span id="cb9-6"><a></a>majority_report_chat_stm <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-3"><a></a>   <span class="fu">convert</span>(<span class="at">to =</span> <span class="st">"stm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in dfm2stm(x, docvars, omit_empty = TRUE): Dropped 24,708 empty
+document(s)</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="co"># Output</span></span>
+<span id="cb11-2"><a></a>majority_report_chat_stm <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          Length Class      Mode     
 documents 23060  -none-     list     
@@ -1173,7 +1176,7 @@ meta         33  data.frame list     </code></pre>
 <h2>How to find <code>K</code></h2>
 <h4 id="modell-einstellung-suche-nach-dem-modell-mit-dem-optimalen-k"><em><code>2.Modell-Einstellung</code></em>: Suche nach dem Modell mit dem optimalen <code>K</code></h4>
 <ul>
-<li>Das <code>stm</code>-Paket <span class="citation" data-cites="roberts2019">(v4.1.0, <a href="#/references" role="doc-biblioref" onclick="">Roberts et al., 2019</a>)</span> bietet zwei integrierte Lösungen, um das optimale <strong><code>K</code></strong> zu finden:
+<li>Das <code>stm</code>-Paket <span class="citation" data-cites="roberts2019">(v1.3.7, <a href="#/references" role="doc-biblioref" onclick="">Roberts et al., 2019</a>)</span> bietet zwei integrierte Lösungen, um das optimale <strong><code>K</code></strong> zu finden:
 <ul>
 <li><code>searchK()</code> Funktion</li>
 <li>Verwendung des Argumentes <code>K = 0</code> bei der Schätzung des Modells</li>
@@ -1194,33 +1197,33 @@ meta         33  data.frame list     </code></pre>
 <div class="column" style="width:50%;">
 <!-- TODO Update nach Intergration von Meta-Variablen -->
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="co"># Set up parallel processing using furrr</span></span>
-<span id="cb11-2"><a></a>future<span class="sc">::</span><span class="fu">plan</span>(future<span class="sc">::</span><span class="fu">multisession</span>()) </span>
-<span id="cb11-3"><a></a></span>
-<span id="cb11-4"><a></a><span class="co"># Estimate models</span></span>
-<span id="cb11-5"><a></a>stm_search  <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb11-6"><a></a>    <span class="at">k =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">4</span>, <span class="at">to =</span> <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">2</span>)</span>
-<span id="cb11-7"><a></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb11-8"><a></a>    <span class="fu">mutate</span>(</span>
-<span id="cb11-9"><a></a>        <span class="at">mdl =</span> furrr<span class="sc">::</span><span class="fu">future_map</span>(</span>
-<span id="cb11-10"><a></a>            k, </span>
-<span id="cb11-11"><a></a>            <span class="sc">~</span>stm<span class="sc">::</span><span class="fu">stm</span>(</span>
-<span id="cb11-12"><a></a>                <span class="at">documents =</span> majority_report_chat_stm<span class="sc">$</span>documents,</span>
-<span id="cb11-13"><a></a>                <span class="at">vocab =</span> majority_report_chat_stm<span class="sc">$</span>vocab, </span>
-<span id="cb11-14"><a></a>                <span class="at">prevalence =</span><span class="sc">~</span> platform <span class="sc">+</span> debate <span class="sc">+</span> message_during_debate, </span>
-<span id="cb11-15"><a></a>                <span class="at">K =</span> ., </span>
-<span id="cb11-16"><a></a>                <span class="at">seed =</span> <span class="dv">42</span>,</span>
-<span id="cb11-17"><a></a>                <span class="at">max.em.its =</span> <span class="dv">1000</span>,</span>
-<span id="cb11-18"><a></a>                <span class="at">data =</span> majority_report_chat_stm<span class="sc">$</span>meta,</span>
-<span id="cb11-19"><a></a>                <span class="at">init.type =</span> <span class="st">"Spectral"</span>,</span>
-<span id="cb11-20"><a></a>                <span class="at">verbose =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb11-21"><a></a>            <span class="at">.options =</span> furrr<span class="sc">::</span><span class="fu">furrr_options</span>(<span class="at">seed =</span> <span class="dv">42</span>)</span>
-<span id="cb11-22"><a></a>            )</span>
-<span id="cb11-23"><a></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="co"># Set up parallel processing using furrr</span></span>
+<span id="cb13-2"><a></a>future<span class="sc">::</span><span class="fu">plan</span>(future<span class="sc">::</span><span class="fu">multisession</span>()) </span>
+<span id="cb13-3"><a></a></span>
+<span id="cb13-4"><a></a><span class="co"># Estimate models</span></span>
+<span id="cb13-5"><a></a>stm_search  <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb13-6"><a></a>    <span class="at">k =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">4</span>, <span class="at">to =</span> <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">2</span>)</span>
+<span id="cb13-7"><a></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb13-8"><a></a>    <span class="fu">mutate</span>(</span>
+<span id="cb13-9"><a></a>        <span class="at">mdl =</span> furrr<span class="sc">::</span><span class="fu">future_map</span>(</span>
+<span id="cb13-10"><a></a>            k, </span>
+<span id="cb13-11"><a></a>            <span class="sc">~</span>stm<span class="sc">::</span><span class="fu">stm</span>(</span>
+<span id="cb13-12"><a></a>                <span class="at">documents =</span> majority_report_chat_stm<span class="sc">$</span>documents,</span>
+<span id="cb13-13"><a></a>                <span class="at">vocab =</span> majority_report_chat_stm<span class="sc">$</span>vocab, </span>
+<span id="cb13-14"><a></a>                <span class="at">prevalence =</span><span class="sc">~</span> platform <span class="sc">+</span> debate <span class="sc">+</span> message_during_debate, </span>
+<span id="cb13-15"><a></a>                <span class="at">K =</span> ., </span>
+<span id="cb13-16"><a></a>                <span class="at">seed =</span> <span class="dv">42</span>,</span>
+<span id="cb13-17"><a></a>                <span class="at">max.em.its =</span> <span class="dv">1000</span>,</span>
+<span id="cb13-18"><a></a>                <span class="at">data =</span> majority_report_chat_stm<span class="sc">$</span>meta,</span>
+<span id="cb13-19"><a></a>                <span class="at">init.type =</span> <span class="st">"Spectral"</span>,</span>
+<span id="cb13-20"><a></a>                <span class="at">verbose =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb13-21"><a></a>            <span class="at">.options =</span> furrr<span class="sc">::</span><span class="fu">furrr_options</span>(<span class="at">seed =</span> <span class="dv">42</span>)</span>
+<span id="cb13-22"><a></a>            )</span>
+<span id="cb13-23"><a></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>stm_search<span class="sc">$</span>mdl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>stm_search<span class="sc">$</span>mdl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
 A topic model with 4 topics, 23060 documents and a 11035 word dictionary.
@@ -1256,31 +1259,31 @@ A topic model with 20 topics, 23060 documents and a 11035 word dictionary.</code
 <h2>Berechnung der Modell-Diagnostik</h2>
 <h4 id="modell-einstellung-suche-nach-dem-modell-mit-dem-optimalen-k-1"><em><code>2.Modell-Einstellung</code></em>: Suche nach dem Modell mit dem optimalen <code>K</code></h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="co"># Create heldout</span></span>
-<span id="cb14-2"><a></a>heldout <span class="ot">&lt;-</span> <span class="fu">make.heldout</span>(</span>
-<span id="cb14-3"><a></a>  majority_report_chat_stm<span class="sc">$</span>documents,</span>
-<span id="cb14-4"><a></a>  majority_report_chat_stm<span class="sc">$</span>vocab,</span>
-<span id="cb14-5"><a></a>  <span class="at">seed =</span> <span class="dv">42</span>)</span>
-<span id="cb14-6"><a></a></span>
-<span id="cb14-7"><a></a><span class="co"># Create model diagnostics</span></span>
-<span id="cb14-8"><a></a>stm_results <span class="ot">&lt;-</span> stm_search <span class="sc">%&gt;%</span></span>
-<span id="cb14-9"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb14-10"><a></a>    <span class="at">exclusivity =</span> <span class="fu">map</span>(mdl, exclusivity),</span>
-<span id="cb14-11"><a></a>    <span class="at">semantic_coherence =</span> <span class="fu">map</span>(mdl, semanticCoherence, majority_report_chat_stm<span class="sc">$</span>documents),</span>
-<span id="cb14-12"><a></a>    <span class="at">eval_heldout =</span> <span class="fu">map</span>(mdl, eval.heldout, heldout<span class="sc">$</span>missing),</span>
-<span id="cb14-13"><a></a>    <span class="at">residual =</span> <span class="fu">map</span>(mdl, checkResiduals, majority_report_chat_stm<span class="sc">$</span>documents),</span>
-<span id="cb14-14"><a></a>    <span class="at">bound =</span>  <span class="fu">map_dbl</span>(mdl, <span class="cf">function</span>(x) <span class="fu">max</span>(x<span class="sc">$</span>convergence<span class="sc">$</span>bound)),</span>
-<span id="cb14-15"><a></a>    <span class="at">lfact =</span> <span class="fu">map_dbl</span>(mdl, <span class="cf">function</span>(x) <span class="fu">lfactorial</span>(x<span class="sc">$</span>settings<span class="sc">$</span>dim<span class="sc">$</span>K)),</span>
-<span id="cb14-16"><a></a>    <span class="at">lbound =</span> bound <span class="sc">+</span> lfact,</span>
-<span id="cb14-17"><a></a>    <span class="at">iterations =</span> <span class="fu">map_dbl</span>(mdl, <span class="cf">function</span>(x) <span class="fu">length</span>(x<span class="sc">$</span>convergence<span class="sc">$</span>bound))</span>
-<span id="cb14-18"><a></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="co"># Create heldout</span></span>
+<span id="cb16-2"><a></a>heldout <span class="ot">&lt;-</span> <span class="fu">make.heldout</span>(</span>
+<span id="cb16-3"><a></a>  majority_report_chat_stm<span class="sc">$</span>documents,</span>
+<span id="cb16-4"><a></a>  majority_report_chat_stm<span class="sc">$</span>vocab,</span>
+<span id="cb16-5"><a></a>  <span class="at">seed =</span> <span class="dv">42</span>)</span>
+<span id="cb16-6"><a></a></span>
+<span id="cb16-7"><a></a><span class="co"># Create model diagnostics</span></span>
+<span id="cb16-8"><a></a>stm_results <span class="ot">&lt;-</span> stm_search <span class="sc">%&gt;%</span></span>
+<span id="cb16-9"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb16-10"><a></a>    <span class="at">exclusivity =</span> <span class="fu">map</span>(mdl, exclusivity),</span>
+<span id="cb16-11"><a></a>    <span class="at">semantic_coherence =</span> <span class="fu">map</span>(mdl, semanticCoherence, majority_report_chat_stm<span class="sc">$</span>documents),</span>
+<span id="cb16-12"><a></a>    <span class="at">eval_heldout =</span> <span class="fu">map</span>(mdl, eval.heldout, heldout<span class="sc">$</span>missing),</span>
+<span id="cb16-13"><a></a>    <span class="at">residual =</span> <span class="fu">map</span>(mdl, checkResiduals, majority_report_chat_stm<span class="sc">$</span>documents),</span>
+<span id="cb16-14"><a></a>    <span class="at">bound =</span>  <span class="fu">map_dbl</span>(mdl, <span class="cf">function</span>(x) <span class="fu">max</span>(x<span class="sc">$</span>convergence<span class="sc">$</span>bound)),</span>
+<span id="cb16-15"><a></a>    <span class="at">lfact =</span> <span class="fu">map_dbl</span>(mdl, <span class="cf">function</span>(x) <span class="fu">lfactorial</span>(x<span class="sc">$</span>settings<span class="sc">$</span>dim<span class="sc">$</span>K)),</span>
+<span id="cb16-16"><a></a>    <span class="at">lbound =</span> bound <span class="sc">+</span> lfact,</span>
+<span id="cb16-17"><a></a>    <span class="at">iterations =</span> <span class="fu">map_dbl</span>(mdl, <span class="cf">function</span>(x) <span class="fu">length</span>(x<span class="sc">$</span>convergence<span class="sc">$</span>bound))</span>
+<span id="cb16-18"><a></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="überblick-über-modell-diagnostik" class="slide level2">
 <h2>Überblick über Modell-Diagnostik</h2>
 <h4 id="modell-einstellung-suche-nach-dem-modell-mit-dem-optimalen-k-2"><em><code>2.Modell-Einstellung</code></em>: Suche nach dem Modell mit dem optimalen <code>K</code></h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>stm_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>stm_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 9 × 10
       k mdl    exclusivity semantic_coherence eval_heldout residual        bound
@@ -1314,63 +1317,67 @@ A topic model with 20 topics, 23060 documents and a 11035 word dictionary.</code
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Expand for full code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="co"># Visualize</span></span>
-<span id="cb17-2"><a></a>stm_results <span class="sc">%&gt;%</span></span>
-<span id="cb17-3"><a></a>  <span class="fu">transmute</span>(</span>
-<span id="cb17-4"><a></a>    k,</span>
-<span id="cb17-5"><a></a>    <span class="st">`</span><span class="at">Lower bound</span><span class="st">`</span> <span class="ot">=</span> lbound,</span>
-<span id="cb17-6"><a></a>    <span class="at">Residuals =</span> <span class="fu">map_dbl</span>(residual, <span class="st">"dispersion"</span>),</span>
-<span id="cb17-7"><a></a>    <span class="st">`</span><span class="at">Semantic coherence</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">map_dbl</span>(semantic_coherence, mean),</span>
-<span id="cb17-8"><a></a>    <span class="st">`</span><span class="at">Held-out likelihood</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">map_dbl</span>(eval_heldout, <span class="st">"expected.heldout"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb17-9"><a></a>  <span class="fu">gather</span>(Metric, Value, <span class="sc">-</span>k) <span class="sc">%&gt;%</span></span>
-<span id="cb17-10"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(k, Value, <span class="at">color =</span> Metric)) <span class="sc">+</span></span>
-<span id="cb17-11"><a></a>    <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb17-12"><a></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb17-13"><a></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">4</span>, <span class="at">to =</span> <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">2</span>)) <span class="sc">+</span></span>
-<span id="cb17-14"><a></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>Metric, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb17-15"><a></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"K (Anzahl der Themen)"</span>,</span>
-<span id="cb17-16"><a></a>         <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb17-17"><a></a>         <span class="at">title =</span> <span class="st">"Statistischer Fit der STM-Modelle"</span>,</span>
-<span id="cb17-18"><a></a>         <span class="at">subtitle =</span> <span class="st">"Kohärenz sollte hoch, Residuen niedrig sein"</span></span>
-<span id="cb17-19"><a></a>    ) <span class="sc">+</span></span>
-<span id="cb17-20"><a></a>    <span class="fu">theme_pubr</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="co"># Visualize</span></span>
+<span id="cb19-2"><a></a>stm_results <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a></a>  <span class="fu">transmute</span>(</span>
+<span id="cb19-4"><a></a>    k,</span>
+<span id="cb19-5"><a></a>    <span class="st">`</span><span class="at">Lower bound</span><span class="st">`</span> <span class="ot">=</span> lbound,</span>
+<span id="cb19-6"><a></a>    <span class="at">Residuals =</span> <span class="fu">map_dbl</span>(residual, <span class="st">"dispersion"</span>),</span>
+<span id="cb19-7"><a></a>    <span class="st">`</span><span class="at">Semantic coherence</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">map_dbl</span>(semantic_coherence, mean),</span>
+<span id="cb19-8"><a></a>    <span class="st">`</span><span class="at">Held-out likelihood</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">map_dbl</span>(eval_heldout, <span class="st">"expected.heldout"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb19-9"><a></a>  <span class="fu">gather</span>(Metric, Value, <span class="sc">-</span>k) <span class="sc">%&gt;%</span></span>
+<span id="cb19-10"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(k, Value, <span class="at">color =</span> Metric)) <span class="sc">+</span></span>
+<span id="cb19-11"><a></a>    <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb19-12"><a></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb19-13"><a></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">4</span>, <span class="at">to =</span> <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb19-14"><a></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>Metric, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb19-15"><a></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"K (Anzahl der Themen)"</span>,</span>
+<span id="cb19-16"><a></a>         <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb19-17"><a></a>         <span class="at">title =</span> <span class="st">"Statistischer Fit der STM-Modelle"</span>,</span>
+<span id="cb19-18"><a></a>         <span class="at">subtitle =</span> <span class="st">"Kohärenz sollte hoch, Residuen niedrig sein"</span></span>
+<span id="cb19-19"><a></a>    ) <span class="sc">+</span></span>
+<span id="cb19-20"><a></a>    <span class="fu">theme_pubr</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.</code></pre>
+</div>
 
 </div>
-<img data-src="slides-09_files/figure-revealjs/stm-results-diagnostics-overview-1.png" class="quarto-figure quarto-figure-center r-stretch" width="1056"></section>
+<img data-src="slides-09_files/figure-html/stm-results-diagnostics-overview-1.png" class="quarto-figure quarto-figure-center r-stretch" width="1056"></section>
 <section id="hohe-kohärenz-bei-hoher-exklusivität" class="slide level2">
 <h2>Hohe Kohärenz bei hoher Exklusivität</h2>
 <h4 id="modell-einstellung-suche-nach-dem-modell-mit-dem-optimalen-k-4"><em><code>2.Modell-Einstellung</code></em>: Suche nach dem Modell mit dem optimalen <code>K</code></h4>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Expand for full code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="co"># Models for comparison</span></span>
-<span id="cb18-2"><a></a>models_for_comparison <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">18</span>)</span>
-<span id="cb18-3"><a></a></span>
-<span id="cb18-4"><a></a><span class="co"># Create figures</span></span>
-<span id="cb18-5"><a></a>fig_excl <span class="ot">&lt;-</span> stm_results <span class="sc">%&gt;%</span> </span>
-<span id="cb18-6"><a></a>  <span class="co"># Edit data</span></span>
-<span id="cb18-7"><a></a>  <span class="fu">select</span>(k, exclusivity, semantic_coherence) <span class="sc">%&gt;%</span></span>
-<span id="cb18-8"><a></a>  <span class="fu">filter</span>(k <span class="sc">%in%</span> models_for_comparison) <span class="sc">%&gt;%</span></span>
-<span id="cb18-9"><a></a>  <span class="fu">unnest</span>(<span class="at">cols =</span> <span class="fu">c</span>(exclusivity, semantic_coherence))  <span class="sc">%&gt;%</span></span>
-<span id="cb18-10"><a></a>  <span class="fu">mutate</span>(<span class="at">k =</span> <span class="fu">as.factor</span>(k)) <span class="sc">%&gt;%</span></span>
-<span id="cb18-11"><a></a>  <span class="co"># Build graph</span></span>
-<span id="cb18-12"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(semantic_coherence, exclusivity, <span class="at">color =</span> k)) <span class="sc">+</span></span>
-<span id="cb18-13"><a></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb18-14"><a></a>    <span class="fu">labs</span>(</span>
-<span id="cb18-15"><a></a>      <span class="at">x =</span> <span class="st">"Semantic coherence"</span>,</span>
-<span id="cb18-16"><a></a>      <span class="at">y =</span> <span class="st">"Exclusivity"</span></span>
-<span id="cb18-17"><a></a>      <span class="co"># title = "Comparing exclusivity and semantic coherence",</span></span>
-<span id="cb18-18"><a></a>      <span class="co"># subtitle = "Models with fewer topics have higher semantic coherence for more topics, but lower exclusivity"</span></span>
-<span id="cb18-19"><a></a>      ) <span class="sc">+</span></span>
-<span id="cb18-20"><a></a>      <span class="fu">theme_pubr</span>()  </span>
-<span id="cb18-21"><a></a></span>
-<span id="cb18-22"><a></a><span class="co"># Create plotly</span></span>
-<span id="cb18-23"><a></a>fig_excl <span class="sc">%&gt;%</span> plotly<span class="sc">::</span><span class="fu">ggplotly</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="co"># Models for comparison</span></span>
+<span id="cb21-2"><a></a>models_for_comparison <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">18</span>)</span>
+<span id="cb21-3"><a></a></span>
+<span id="cb21-4"><a></a><span class="co"># Create figures</span></span>
+<span id="cb21-5"><a></a>fig_excl <span class="ot">&lt;-</span> stm_results <span class="sc">%&gt;%</span> </span>
+<span id="cb21-6"><a></a>  <span class="co"># Edit data</span></span>
+<span id="cb21-7"><a></a>  <span class="fu">select</span>(k, exclusivity, semantic_coherence) <span class="sc">%&gt;%</span></span>
+<span id="cb21-8"><a></a>  <span class="fu">filter</span>(k <span class="sc">%in%</span> models_for_comparison) <span class="sc">%&gt;%</span></span>
+<span id="cb21-9"><a></a>  <span class="fu">unnest</span>(<span class="at">cols =</span> <span class="fu">c</span>(exclusivity, semantic_coherence))  <span class="sc">%&gt;%</span></span>
+<span id="cb21-10"><a></a>  <span class="fu">mutate</span>(<span class="at">k =</span> <span class="fu">as.factor</span>(k)) <span class="sc">%&gt;%</span></span>
+<span id="cb21-11"><a></a>  <span class="co"># Build graph</span></span>
+<span id="cb21-12"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(semantic_coherence, exclusivity, <span class="at">color =</span> k)) <span class="sc">+</span></span>
+<span id="cb21-13"><a></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb21-14"><a></a>    <span class="fu">labs</span>(</span>
+<span id="cb21-15"><a></a>      <span class="at">x =</span> <span class="st">"Semantic coherence"</span>,</span>
+<span id="cb21-16"><a></a>      <span class="at">y =</span> <span class="st">"Exclusivity"</span></span>
+<span id="cb21-17"><a></a>      <span class="co"># title = "Comparing exclusivity and semantic coherence",</span></span>
+<span id="cb21-18"><a></a>      <span class="co"># subtitle = "Models with fewer topics have higher semantic coherence for more topics, but lower exclusivity"</span></span>
+<span id="cb21-19"><a></a>      ) <span class="sc">+</span></span>
+<span id="cb21-20"><a></a>      <span class="fu">theme_pubr</span>()  </span>
+<span id="cb21-21"><a></a></span>
+<span id="cb21-22"><a></a><span class="co"># Create plotly</span></span>
+<span id="cb21-23"><a></a>fig_excl <span class="sc">%&gt;%</span> plotly<span class="sc">::</span><span class="fu">ggplotly</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div class="plotly html-widget html-fill-item" id="htmlwidget-e1a78de94e7f4a18faf8" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-e1a78de94e7f4a18faf8">{"x":{"data":[{"x":[-289.71537443053683,-258.997019891695,-276.23781681638559,-389.77372183205551,-285.09814341250336,-310.947877758939,-251.71672686330569,-338.81954112155591,-278.62549779426024,-263.58364146422213,-264.06862390680158,-331.3571376165753],"y":[9.718333150881703,9.6618471804141546,9.7072088478369416,9.4970650623437987,9.5614805589192784,9.7796868122928853,9.4851264470631822,9.4036680346181765,9.7095261082034874,9.6002670503298742,9.7287074932466773,9.804716750895885],"text":["semantic_coherence: -289.7154<br />exclusivity: 9.718333<br />k: 12","semantic_coherence: -258.9970<br />exclusivity: 9.661847<br />k: 12","semantic_coherence: -276.2378<br />exclusivity: 9.707209<br />k: 12","semantic_coherence: -389.7737<br />exclusivity: 9.497065<br />k: 12","semantic_coherence: -285.0981<br />exclusivity: 9.561481<br />k: 12","semantic_coherence: -310.9479<br />exclusivity: 9.779687<br />k: 12","semantic_coherence: -251.7167<br />exclusivity: 9.485126<br />k: 12","semantic_coherence: -338.8195<br />exclusivity: 9.403668<br />k: 12","semantic_coherence: -278.6255<br />exclusivity: 9.709526<br />k: 12","semantic_coherence: -263.5836<br />exclusivity: 9.600267<br />k: 12","semantic_coherence: -264.0686<br />exclusivity: 9.728707<br />k: 12","semantic_coherence: -331.3571<br />exclusivity: 9.804717<br />k: 12"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":0.69999999999999996,"size":7.559055118110237,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"12","legendgroup":"12","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-215.7468133501313,-272.04695019025013,-265.90783547619338,-375.06686651346286,-293.66606524725137,-210.19127784281528,-263.91812278377409,-368.43963442825088,-319.99634655867965,-224.43669891535836,-238.93413176076152,-255.98831387190228,-234.46619191258321,-334.70367710969856],"y":[9.711786223430833,9.8619662262102459,9.6906826478336736,9.4348312399923486,9.6312059561848891,9.6957228936273747,9.614652655466525,9.5069471133795513,9.8277859990587864,9.752445730000268,9.6146828082312954,9.5028827079015752,9.6078587141255483,9.9664970267173398],"text":["semantic_coherence: -215.7468<br />exclusivity: 9.711786<br />k: 14","semantic_coherence: -272.0470<br />exclusivity: 9.861966<br />k: 14","semantic_coherence: -265.9078<br />exclusivity: 9.690683<br />k: 14","semantic_coherence: -375.0669<br />exclusivity: 9.434831<br />k: 14","semantic_coherence: -293.6661<br />exclusivity: 9.631206<br />k: 14","semantic_coherence: -210.1913<br />exclusivity: 9.695723<br />k: 14","semantic_coherence: -263.9181<br />exclusivity: 9.614653<br />k: 14","semantic_coherence: -368.4396<br />exclusivity: 9.506947<br />k: 14","semantic_coherence: -319.9963<br />exclusivity: 9.827786<br />k: 14","semantic_coherence: -224.4367<br />exclusivity: 9.752446<br />k: 14","semantic_coherence: -238.9341<br />exclusivity: 9.614683<br />k: 14","semantic_coherence: -255.9883<br />exclusivity: 9.502883<br />k: 14","semantic_coherence: -234.4662<br />exclusivity: 9.607859<br />k: 14","semantic_coherence: -334.7037<br />exclusivity: 9.966497<br />k: 14"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":0.69999999999999996,"size":7.559055118110237,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"14","legendgroup":"14","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-196.368346577853,-231.59762546067876,-287.95662678737705,-292.58495277135694,-308.01449117567074,-217.81027881033566,-301.7193272101868,-377.21565773414352,-355.82341870287138,-236.23304648619569,-200.75035913792112,-261.4061390817842,-323.58344852948522,-326.36776590074089,-292.37816732605017,-276.38615324390486,-330.45530221824998,-324.08206245255178],"y":[9.7017881719721775,9.8390890182369652,9.9088218657102196,9.6997095681442609,9.6799029647495267,9.7501358629349131,9.7789809912312222,9.5431590333174316,9.8230145581039885,9.8051704252727472,9.7067784125254519,9.6183227871767354,9.8777386847664879,9.8091153688425194,9.6200008230927008,9.8512900472266836,9.4232922949146598,9.986528387049983],"text":["semantic_coherence: -196.3683<br />exclusivity: 9.701788<br />k: 18","semantic_coherence: -231.5976<br />exclusivity: 9.839089<br />k: 18","semantic_coherence: -287.9566<br />exclusivity: 9.908822<br />k: 18","semantic_coherence: -292.5850<br />exclusivity: 9.699710<br />k: 18","semantic_coherence: -308.0145<br />exclusivity: 9.679903<br />k: 18","semantic_coherence: -217.8103<br />exclusivity: 9.750136<br />k: 18","semantic_coherence: -301.7193<br />exclusivity: 9.778981<br />k: 18","semantic_coherence: -377.2157<br />exclusivity: 9.543159<br />k: 18","semantic_coherence: -355.8234<br />exclusivity: 9.823015<br />k: 18","semantic_coherence: -236.2330<br />exclusivity: 9.805170<br />k: 18","semantic_coherence: -200.7504<br />exclusivity: 9.706778<br />k: 18","semantic_coherence: -261.4061<br />exclusivity: 9.618323<br />k: 18","semantic_coherence: -323.5834<br />exclusivity: 9.877739<br />k: 18","semantic_coherence: -326.3678<br />exclusivity: 9.809115<br />k: 18","semantic_coherence: -292.3782<br />exclusivity: 9.620001<br />k: 18","semantic_coherence: -276.3862<br />exclusivity: 9.851290<br />k: 18","semantic_coherence: -330.4553<br />exclusivity: 9.423292<br />k: 18","semantic_coherence: -324.0821<br />exclusivity: 9.986528<br />k: 18"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":0.69999999999999996,"size":7.559055118110237,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"18","legendgroup":"18","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":31.940224159402241,"r":7.9701120797011207,"b":51.805728518057286,"l":59.775840597758403},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402241},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-399.44399059476564,-186.69807781514288],"tickmode":"array","ticktext":["-350","-300","-250","-200"],"tickvals":[-350,-300,-250,-200],"categoryorder":"array","categoryarray":["-350","-300","-250","-200"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.9850560398505603,"tickwidth":0.72455564360919278,"showticklabels":true,"tickfont":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402241},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176002,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"Semantic coherence","font":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402241}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[9.3745250169965857,10.015671404671574],"tickmode":"array","ticktext":["9.4","9.6","9.8","10.0"],"tickvals":[9.4000000000000004,9.5999999999999996,9.8000000000000007,10],"categoryorder":"array","categoryarray":["9.4","9.6","9.8","10.0"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.9850560398505603,"tickwidth":0.72455564360919278,"showticklabels":true,"tickfont":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402241},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176002,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"x","title":{"text":"Exclusivity","font":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402241}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":2.0615604867573367,"font":{"color":"rgba(0,0,0,1)","family":"","size":12.7521793275218},"title":{"text":"k","font":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402241}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"eb535df56067":{"x":{},"y":{},"colour":{},"type":"scatter"}},"cur_data":"eb535df56067","visdat":{"eb535df56067":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-d678cd7831cf982d7b97" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-d678cd7831cf982d7b97">{"x":{"data":[{"x":[-289.71537443053683,-258.997019891695,-276.23781681638559,-389.77372183205551,-285.09814341250336,-310.947877758939,-251.71672686330569,-338.81954112155591,-278.62549779426024,-263.58364146422213,-264.06862390680158,-331.3571376165753],"y":[9.718333150881703,9.6618471804141546,9.7072088478369416,9.4970650623437987,9.5614805589192784,9.7796868122928853,9.4851264470631822,9.4036680346181765,9.7095261082034874,9.6002670503298742,9.7287074932466773,9.804716750895885],"text":["semantic_coherence: -289.7154<br />exclusivity: 9.718333<br />k: 12","semantic_coherence: -258.9970<br />exclusivity: 9.661847<br />k: 12","semantic_coherence: -276.2378<br />exclusivity: 9.707209<br />k: 12","semantic_coherence: -389.7737<br />exclusivity: 9.497065<br />k: 12","semantic_coherence: -285.0981<br />exclusivity: 9.561481<br />k: 12","semantic_coherence: -310.9479<br />exclusivity: 9.779687<br />k: 12","semantic_coherence: -251.7167<br />exclusivity: 9.485126<br />k: 12","semantic_coherence: -338.8195<br />exclusivity: 9.403668<br />k: 12","semantic_coherence: -278.6255<br />exclusivity: 9.709526<br />k: 12","semantic_coherence: -263.5836<br />exclusivity: 9.600267<br />k: 12","semantic_coherence: -264.0686<br />exclusivity: 9.728707<br />k: 12","semantic_coherence: -331.3571<br />exclusivity: 9.804717<br />k: 12"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":0.69999999999999996,"size":7.559055118110237,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"12","legendgroup":"12","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-215.7468133501313,-272.04695019025013,-265.90783547619338,-375.06686651346286,-293.66606524725137,-210.19127784281528,-263.91812278377409,-368.43963442825088,-319.99634655867965,-224.43669891535836,-238.93413176076152,-255.98831387190228,-234.46619191258321,-334.70367710969856],"y":[9.711786223430833,9.8619662262102459,9.6906826478336736,9.4348312399923486,9.6312059561848891,9.6957228936273747,9.614652655466525,9.5069471133795513,9.8277859990587864,9.752445730000268,9.6146828082312954,9.5028827079015752,9.6078587141255483,9.9664970267173398],"text":["semantic_coherence: -215.7468<br />exclusivity: 9.711786<br />k: 14","semantic_coherence: -272.0470<br />exclusivity: 9.861966<br />k: 14","semantic_coherence: -265.9078<br />exclusivity: 9.690683<br />k: 14","semantic_coherence: -375.0669<br />exclusivity: 9.434831<br />k: 14","semantic_coherence: -293.6661<br />exclusivity: 9.631206<br />k: 14","semantic_coherence: -210.1913<br />exclusivity: 9.695723<br />k: 14","semantic_coherence: -263.9181<br />exclusivity: 9.614653<br />k: 14","semantic_coherence: -368.4396<br />exclusivity: 9.506947<br />k: 14","semantic_coherence: -319.9963<br />exclusivity: 9.827786<br />k: 14","semantic_coherence: -224.4367<br />exclusivity: 9.752446<br />k: 14","semantic_coherence: -238.9341<br />exclusivity: 9.614683<br />k: 14","semantic_coherence: -255.9883<br />exclusivity: 9.502883<br />k: 14","semantic_coherence: -234.4662<br />exclusivity: 9.607859<br />k: 14","semantic_coherence: -334.7037<br />exclusivity: 9.966497<br />k: 14"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":0.69999999999999996,"size":7.559055118110237,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"14","legendgroup":"14","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-196.368346577853,-231.59762546067876,-287.95662678737705,-292.58495277135694,-308.01449117567074,-217.81027881033566,-301.7193272101868,-377.21565773414352,-355.82341870287138,-236.23304648619569,-200.75035913792112,-261.4061390817842,-323.58344852948522,-326.36776590074089,-292.37816732605017,-276.38615324390486,-330.45530221824998,-324.08206245255178],"y":[9.7017881719721775,9.8390890182369652,9.9088218657102196,9.6997095681442609,9.6799029647495267,9.7501358629349131,9.7789809912312222,9.5431590333174316,9.8230145581039885,9.8051704252727472,9.7067784125254519,9.6183227871767354,9.8777386847664879,9.8091153688425194,9.6200008230927008,9.8512900472266836,9.4232922949146598,9.986528387049983],"text":["semantic_coherence: -196.3683<br />exclusivity: 9.701788<br />k: 18","semantic_coherence: -231.5976<br />exclusivity: 9.839089<br />k: 18","semantic_coherence: -287.9566<br />exclusivity: 9.908822<br />k: 18","semantic_coherence: -292.5850<br />exclusivity: 9.699710<br />k: 18","semantic_coherence: -308.0145<br />exclusivity: 9.679903<br />k: 18","semantic_coherence: -217.8103<br />exclusivity: 9.750136<br />k: 18","semantic_coherence: -301.7193<br />exclusivity: 9.778981<br />k: 18","semantic_coherence: -377.2157<br />exclusivity: 9.543159<br />k: 18","semantic_coherence: -355.8234<br />exclusivity: 9.823015<br />k: 18","semantic_coherence: -236.2330<br />exclusivity: 9.805170<br />k: 18","semantic_coherence: -200.7504<br />exclusivity: 9.706778<br />k: 18","semantic_coherence: -261.4061<br />exclusivity: 9.618323<br />k: 18","semantic_coherence: -323.5834<br />exclusivity: 9.877739<br />k: 18","semantic_coherence: -326.3678<br />exclusivity: 9.809115<br />k: 18","semantic_coherence: -292.3782<br />exclusivity: 9.620001<br />k: 18","semantic_coherence: -276.3862<br />exclusivity: 9.851290<br />k: 18","semantic_coherence: -330.4553<br />exclusivity: 9.423292<br />k: 18","semantic_coherence: -324.0821<br />exclusivity: 9.986528<br />k: 18"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":0.69999999999999996,"size":7.559055118110237,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"18","legendgroup":"18","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":27.158156911581575,"r":7.9701120797011216,"b":47.023661270236616,"l":59.77584059775841},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402241},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-399.44399059476564,-186.69807781514288],"tickmode":"array","ticktext":["-350","-300","-250","-200"],"tickvals":[-350,-300,-250,-200],"categoryorder":"array","categoryarray":["-350","-300","-250","-200"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.9850560398505603,"tickwidth":0.72455564360919278,"showticklabels":true,"tickfont":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402241},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176002,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"Semantic coherence","font":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402241}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[9.3745250169965857,10.015671404671574],"tickmode":"array","ticktext":["9.4","9.6","9.8","10.0"],"tickvals":[9.4000000000000004,9.5999999999999996,9.8000000000000007,10],"categoryorder":"array","categoryarray":["9.4","9.6","9.8","10.0"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.9850560398505608,"tickwidth":0.72455564360919289,"showticklabels":true,"tickfont":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402243},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176002,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"x","title":{"text":"Exclusivity","font":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402241}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":2.0615604867573372,"font":{"color":"rgba(0,0,0,1)","family":"","size":12.7521793275218},"title":{"text":"k","font":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402241}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"4e776733933f":{"x":{},"y":{},"colour":{},"type":"scatter"}},"cur_data":"4e776733933f","visdat":{"4e776733933f":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1378,17 +1385,17 @@ A topic model with 20 topics, 23060 documents and a 11035 word dictionary.</code
 <h2>Extraktion der Beta- &amp; Gamma-Matrix</h2>
 <h4 id="modell-einstellung-interpretierbarkeit-der-top-features"><em><code>2.Modell-Einstellung</code></em>: Interpretierbarkeit der Top Features</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="co"># Define model</span></span>
-<span id="cb19-2"><a></a>tpm_k14 <span class="ot">&lt;-</span> stm_results <span class="sc">%&gt;%</span> </span>
-<span id="cb19-3"><a></a>   <span class="fu">filter</span>(k <span class="sc">==</span> <span class="dv">14</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb19-4"><a></a>   <span class="fu">pull</span>(mdl) <span class="sc">%&gt;%</span> .[[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="co"># Define model</span></span>
+<span id="cb22-2"><a></a>tpm_k14 <span class="ot">&lt;-</span> stm_results <span class="sc">%&gt;%</span> </span>
+<span id="cb22-3"><a></a>   <span class="fu">filter</span>(k <span class="sc">==</span> <span class="dv">14</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb22-4"><a></a>   <span class="fu">pull</span>(mdl) <span class="sc">%&gt;%</span> .[[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div style="font-size: smaller;">
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>tpm_k14 <span class="sc">%&gt;%</span> </span>
-<span id="cb20-2"><a></a>  <span class="fu">tidy</span>(., <span class="at">matrix =</span> <span class="st">"frex"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>tpm_k14 <span class="sc">%&gt;%</span> </span>
+<span id="cb23-2"><a></a>  <span class="fu">tidy</span>(., <span class="at">matrix =</span> <span class="st">"frex"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 154,490 × 2
    topic term                
@@ -1408,10 +1415,10 @@ A topic model with 20 topics, 23060 documents and a 11035 word dictionary.</code
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>tpm_k14 <span class="sc">%&gt;%</span> </span>
-<span id="cb22-2"><a></a>  <span class="fu">tidy</span>(.,<span class="at">matrix =</span> <span class="st">"gamma"</span>, </span>
-<span id="cb22-3"><a></a>    <span class="at">document_names =</span> <span class="fu">names</span>(majority_report_chat_stm<span class="sc">$</span>documents)</span>
-<span id="cb22-4"><a></a>    ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>tpm_k14 <span class="sc">%&gt;%</span> </span>
+<span id="cb25-2"><a></a>  <span class="fu">tidy</span>(.,<span class="at">matrix =</span> <span class="st">"gamma"</span>, </span>
+<span id="cb25-3"><a></a>    <span class="at">document_names =</span> <span class="fu">names</span>(majority_report_chat_stm<span class="sc">$</span>documents)</span>
+<span id="cb25-4"><a></a>    ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 322,840 × 3
    document                                 topic   gamma
@@ -1438,37 +1445,37 @@ A topic model with 20 topics, 23060 documents and a 11035 word dictionary.</code
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="co"># Create gamma data</span></span>
-<span id="cb24-2"><a></a>top_gamma_k14 <span class="ot">&lt;-</span> tpm_k14 <span class="sc">%&gt;%</span></span>
-<span id="cb24-3"><a></a>  <span class="fu">tidy</span>(<span class="at">matrix =</span> <span class="st">"gamma"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-4"><a></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(topic) <span class="sc">%&gt;%</span></span>
-<span id="cb24-5"><a></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
-<span id="cb24-6"><a></a>    <span class="at">gamma =</span> <span class="fu">mean</span>(gamma),</span>
-<span id="cb24-7"><a></a>    <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb24-8"><a></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">desc</span>(gamma))</span>
-<span id="cb24-9"><a></a></span>
-<span id="cb24-10"><a></a><span class="co"># Create beta data</span></span>
-<span id="cb24-11"><a></a>top_beta_k14 <span class="ot">&lt;-</span> tpm_k14 <span class="sc">%&gt;%</span></span>
-<span id="cb24-12"><a></a>  tidytext<span class="sc">::</span><span class="fu">tidy</span>(.) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-13"><a></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(topic) <span class="sc">%&gt;%</span></span>
-<span id="cb24-14"><a></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="sc">-</span>beta) <span class="sc">%&gt;%</span></span>
-<span id="cb24-15"><a></a>  dplyr<span class="sc">::</span><span class="fu">top_n</span>(<span class="dv">7</span>, <span class="at">wt =</span> beta) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-16"><a></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(topic, term) <span class="sc">%&gt;%</span></span>
-<span id="cb24-17"><a></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
-<span id="cb24-18"><a></a>    <span class="at">terms_beta =</span> <span class="fu">toString</span>(term),</span>
-<span id="cb24-19"><a></a>    <span class="at">.groups =</span> <span class="st">"drop"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="co"># Create gamma data</span></span>
+<span id="cb27-2"><a></a>top_gamma_k14 <span class="ot">&lt;-</span> tpm_k14 <span class="sc">%&gt;%</span></span>
+<span id="cb27-3"><a></a>  <span class="fu">tidy</span>(<span class="at">matrix =</span> <span class="st">"gamma"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-4"><a></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(topic) <span class="sc">%&gt;%</span></span>
+<span id="cb27-5"><a></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb27-6"><a></a>    <span class="at">gamma =</span> <span class="fu">mean</span>(gamma),</span>
+<span id="cb27-7"><a></a>    <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb27-8"><a></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">desc</span>(gamma))</span>
+<span id="cb27-9"><a></a></span>
+<span id="cb27-10"><a></a><span class="co"># Create beta data</span></span>
+<span id="cb27-11"><a></a>top_beta_k14 <span class="ot">&lt;-</span> tpm_k14 <span class="sc">%&gt;%</span></span>
+<span id="cb27-12"><a></a>  tidytext<span class="sc">::</span><span class="fu">tidy</span>(.) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-13"><a></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(topic) <span class="sc">%&gt;%</span></span>
+<span id="cb27-14"><a></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="sc">-</span>beta) <span class="sc">%&gt;%</span></span>
+<span id="cb27-15"><a></a>  dplyr<span class="sc">::</span><span class="fu">top_n</span>(<span class="dv">7</span>, <span class="at">wt =</span> beta) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-16"><a></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(topic, term) <span class="sc">%&gt;%</span></span>
+<span id="cb27-17"><a></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb27-18"><a></a>    <span class="at">terms_beta =</span> <span class="fu">toString</span>(term),</span>
+<span id="cb27-19"><a></a>    <span class="at">.groups =</span> <span class="st">"drop"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="co"># Merge gamma &amp; beta data</span></span>
-<span id="cb25-2"><a></a>top_topics_terms_k14 <span class="ot">&lt;-</span> top_beta_k14 <span class="sc">%&gt;%</span> </span>
-<span id="cb25-3"><a></a>  dplyr<span class="sc">::</span><span class="fu">left_join</span>(</span>
-<span id="cb25-4"><a></a>    top_gamma_k14, </span>
-<span id="cb25-5"><a></a>    <span class="at">by =</span> <span class="st">"topic"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb25-6"><a></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb25-7"><a></a>          <span class="at">topic =</span> <span class="fu">paste0</span>(<span class="st">"Topic "</span>, topic),</span>
-<span id="cb25-8"><a></a>          <span class="at">topic =</span> <span class="fu">reorder</span>(topic, gamma)</span>
-<span id="cb25-9"><a></a>      )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a><span class="co"># Merge gamma &amp; beta data</span></span>
+<span id="cb28-2"><a></a>top_topics_terms_k14 <span class="ot">&lt;-</span> top_beta_k14 <span class="sc">%&gt;%</span> </span>
+<span id="cb28-3"><a></a>  dplyr<span class="sc">::</span><span class="fu">left_join</span>(</span>
+<span id="cb28-4"><a></a>    top_gamma_k14, </span>
+<span id="cb28-5"><a></a>    <span class="at">by =</span> <span class="st">"topic"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb28-6"><a></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb28-7"><a></a>          <span class="at">topic =</span> <span class="fu">paste0</span>(<span class="st">"Topic "</span>, topic),</span>
+<span id="cb28-8"><a></a>          <span class="at">topic =</span> <span class="fu">reorder</span>(topic, gamma)</span>
+<span id="cb28-9"><a></a>      )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div></div>
 </section>
@@ -1477,38 +1484,38 @@ A topic model with 20 topics, 23060 documents and a 11035 word dictionary.</code
 <h4 id="modell-einstellung-interpretierbarkeit-der-top-features-2"><em><code>2.Modell-Einstellung</code></em>: Interpretierbarkeit der Top Features</h4>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>top_topics_terms_k14 <span class="sc">%&gt;%</span></span>
-<span id="cb26-2"><a></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(gamma, <span class="sc">~</span><span class="fu">round</span>(.,<span class="dv">3</span>))) <span class="sc">%&gt;%</span> </span>
-<span id="cb26-3"><a></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="sc">-</span>gamma) <span class="sc">%&gt;%</span> </span>
-<span id="cb26-4"><a></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb26-5"><a></a>  gtExtras<span class="sc">::</span><span class="fu">gt_theme_538</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb26-6"><a></a>  gt<span class="sc">::</span><span class="fu">tab_options</span>(</span>
-<span id="cb26-7"><a></a>    <span class="at">table.width =</span> gt<span class="sc">::</span><span class="fu">pct</span>(<span class="dv">90</span>), </span>
-<span id="cb26-8"><a></a>    <span class="at">table.font.size =</span> <span class="st">"12px"</span></span>
-<span id="cb26-9"><a></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>top_topics_terms_k14 <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(gamma, <span class="sc">~</span><span class="fu">round</span>(.,<span class="dv">3</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-3"><a></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="sc">-</span>gamma) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-4"><a></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb29-5"><a></a>  gtExtras<span class="sc">::</span><span class="fu">gt_theme_538</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb29-6"><a></a>  gt<span class="sc">::</span><span class="fu">tab_options</span>(</span>
+<span id="cb29-7"><a></a>    <span class="at">table.width =</span> gt<span class="sc">::</span><span class="fu">pct</span>(<span class="dv">90</span>), </span>
+<span id="cb29-8"><a></a>    <span class="at">table.font.size =</span> <span class="st">"12px"</span></span>
+<span id="cb29-9"><a></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
-<div id="bhnjokyyux" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="wynyrpynxs" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Cairo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#bhnjokyyux table {
+#wynyrpynxs table {
   font-family: Cairo, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#bhnjokyyux thead, #bhnjokyyux tbody, #bhnjokyyux tfoot, #bhnjokyyux tr, #bhnjokyyux td, #bhnjokyyux th {
+#wynyrpynxs thead, #wynyrpynxs tbody, #wynyrpynxs tfoot, #wynyrpynxs tr, #wynyrpynxs td, #wynyrpynxs th {
   border-style: none;
 }
 
-#bhnjokyyux p {
+#wynyrpynxs p {
   margin: 0;
   padding: 0;
 }
 
-#bhnjokyyux .gt_table {
+#wynyrpynxs .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1534,12 +1541,12 @@ A topic model with 20 topics, 23060 documents and a 11035 word dictionary.</code
   border-left-color: #D3D3D3;
 }
 
-#bhnjokyyux .gt_caption {
+#wynyrpynxs .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#bhnjokyyux .gt_title {
+#wynyrpynxs .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1551,7 +1558,7 @@ A topic model with 20 topics, 23060 documents and a 11035 word dictionary.</code
   border-bottom-width: 0;
 }
 
-#bhnjokyyux .gt_subtitle {
+#wynyrpynxs .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1563,7 +1570,7 @@ A topic model with 20 topics, 23060 documents and a 11035 word dictionary.</code
   border-top-width: 0;
 }
 
-#bhnjokyyux .gt_heading {
+#wynyrpynxs .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -1575,13 +1582,13 @@ A topic model with 20 topics, 23060 documents and a 11035 word dictionary.</code
   border-right-color: #D3D3D3;
 }
 
-#bhnjokyyux .gt_bottom_border {
+#wynyrpynxs .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#bhnjokyyux .gt_col_headings {
+#wynyrpynxs .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1596,7 +1603,7 @@ A topic model with 20 topics, 23060 documents and a 11035 word dictionary.</code
   border-right-color: #D3D3D3;
 }
 
-#bhnjokyyux .gt_col_heading {
+#wynyrpynxs .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1616,7 +1623,7 @@ A topic model with 20 topics, 23060 documents and a 11035 word dictionary.</code
   overflow-x: hidden;
 }
 
-#bhnjokyyux .gt_column_spanner_outer {
+#wynyrpynxs .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1628,15 +1635,15 @@ A topic model with 20 topics, 23060 documents and a 11035 word dictionary.</code
   padding-right: 4px;
 }
 
-#bhnjokyyux .gt_column_spanner_outer:first-child {
+#wynyrpynxs .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#bhnjokyyux .gt_column_spanner_outer:last-child {
+#wynyrpynxs .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#bhnjokyyux .gt_column_spanner {
+#wynyrpynxs .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #000000;
@@ -1648,11 +1655,11 @@ A topic model with 20 topics, 23060 documents and a 11035 word dictionary.</code
   width: 100%;
 }
 
-#bhnjokyyux .gt_spanner_row {
+#wynyrpynxs .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#bhnjokyyux .gt_group_heading {
+#wynyrpynxs .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1678,7 +1685,7 @@ A topic model with 20 topics, 23060 documents and a 11035 word dictionary.</code
   text-align: left;
 }
 
-#bhnjokyyux .gt_empty_group_heading {
+#wynyrpynxs .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1693,15 +1700,15 @@ A topic model with 20 topics, 23060 documents and a 11035 word dictionary.</code
   vertical-align: middle;
 }
 
-#bhnjokyyux .gt_from_md > :first-child {
+#wynyrpynxs .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#bhnjokyyux .gt_from_md > :last-child {
+#wynyrpynxs .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#bhnjokyyux .gt_row {
+#wynyrpynxs .gt_row {
   padding-top: 3px;
   padding-bottom: 3px;
   padding-left: 5px;
@@ -1720,7 +1727,7 @@ A topic model with 20 topics, 23060 documents and a 11035 word dictionary.</code
   overflow-x: hidden;
 }
 
-#bhnjokyyux .gt_stub {
+#wynyrpynxs .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1733,7 +1740,7 @@ A topic model with 20 topics, 23060 documents and a 11035 word dictionary.</code
   padding-right: 5px;
 }
 
-#bhnjokyyux .gt_stub_row_group {
+#wynyrpynxs .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1747,15 +1754,15 @@ A topic model with 20 topics, 23060 documents and a 11035 word dictionary.</code
   vertical-align: top;
 }
 
-#bhnjokyyux .gt_row_group_first td {
+#wynyrpynxs .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#bhnjokyyux .gt_row_group_first th {
+#wynyrpynxs .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#bhnjokyyux .gt_summary_row {
+#wynyrpynxs .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1765,16 +1772,16 @@ A topic model with 20 topics, 23060 documents and a 11035 word dictionary.</code
   padding-right: 5px;
 }
 
-#bhnjokyyux .gt_first_summary_row {
+#wynyrpynxs .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#bhnjokyyux .gt_first_summary_row.thick {
+#wynyrpynxs .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#bhnjokyyux .gt_last_summary_row {
+#wynyrpynxs .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1784,7 +1791,7 @@ A topic model with 20 topics, 23060 documents and a 11035 word dictionary.</code
   border-bottom-color: #D3D3D3;
 }
 
-#bhnjokyyux .gt_grand_summary_row {
+#wynyrpynxs .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1794,7 +1801,7 @@ A topic model with 20 topics, 23060 documents and a 11035 word dictionary.</code
   padding-right: 5px;
 }
 
-#bhnjokyyux .gt_first_grand_summary_row {
+#wynyrpynxs .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1804,7 +1811,7 @@ A topic model with 20 topics, 23060 documents and a 11035 word dictionary.</code
   border-top-color: #D3D3D3;
 }
 
-#bhnjokyyux .gt_last_grand_summary_row_top {
+#wynyrpynxs .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1814,11 +1821,11 @@ A topic model with 20 topics, 23060 documents and a 11035 word dictionary.</code
   border-bottom-color: #D3D3D3;
 }
 
-#bhnjokyyux .gt_striped {
+#wynyrpynxs .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#bhnjokyyux .gt_table_body {
+#wynyrpynxs .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1827,7 +1834,7 @@ A topic model with 20 topics, 23060 documents and a 11035 word dictionary.</code
   border-bottom-color: #D3D3D3;
 }
 
-#bhnjokyyux .gt_footnotes {
+#wynyrpynxs .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1841,7 +1848,7 @@ A topic model with 20 topics, 23060 documents and a 11035 word dictionary.</code
   border-right-color: #D3D3D3;
 }
 
-#bhnjokyyux .gt_footnote {
+#wynyrpynxs .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1850,7 +1857,7 @@ A topic model with 20 topics, 23060 documents and a 11035 word dictionary.</code
   padding-right: 5px;
 }
 
-#bhnjokyyux .gt_sourcenotes {
+#wynyrpynxs .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1864,7 +1871,7 @@ A topic model with 20 topics, 23060 documents and a 11035 word dictionary.</code
   border-right-color: #D3D3D3;
 }
 
-#bhnjokyyux .gt_sourcenote {
+#wynyrpynxs .gt_sourcenote {
   font-size: 12px;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1872,72 +1879,72 @@ A topic model with 20 topics, 23060 documents and a 11035 word dictionary.</code
   padding-right: 5px;
 }
 
-#bhnjokyyux .gt_left {
+#wynyrpynxs .gt_left {
   text-align: left;
 }
 
-#bhnjokyyux .gt_center {
+#wynyrpynxs .gt_center {
   text-align: center;
 }
 
-#bhnjokyyux .gt_right {
+#wynyrpynxs .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#bhnjokyyux .gt_font_normal {
+#wynyrpynxs .gt_font_normal {
   font-weight: normal;
 }
 
-#bhnjokyyux .gt_font_bold {
+#wynyrpynxs .gt_font_bold {
   font-weight: bold;
 }
 
-#bhnjokyyux .gt_font_italic {
+#wynyrpynxs .gt_font_italic {
   font-style: italic;
 }
 
-#bhnjokyyux .gt_super {
+#wynyrpynxs .gt_super {
   font-size: 65%;
 }
 
-#bhnjokyyux .gt_footnote_marks {
+#wynyrpynxs .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#bhnjokyyux .gt_asterisk {
+#wynyrpynxs .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#bhnjokyyux .gt_indent_1 {
+#wynyrpynxs .gt_indent_1 {
   text-indent: 5px;
 }
 
-#bhnjokyyux .gt_indent_2 {
+#wynyrpynxs .gt_indent_2 {
   text-indent: 10px;
 }
 
-#bhnjokyyux .gt_indent_3 {
+#wynyrpynxs .gt_indent_3 {
   text-indent: 15px;
 }
 
-#bhnjokyyux .gt_indent_4 {
+#wynyrpynxs .gt_indent_4 {
   text-indent: 20px;
 }
 
-#bhnjokyyux .gt_indent_5 {
+#wynyrpynxs .gt_indent_5 {
   text-indent: 25px;
 }
 
-#bhnjokyyux .katex-display {
+#wynyrpynxs .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#bhnjokyyux div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#wynyrpynxs div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 
@@ -2038,44 +2045,44 @@ tbody tr:last-child {
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="co"># Prepare for merging</span></span>
-<span id="cb27-2"><a></a>topic_gammas_k14 <span class="ot">&lt;-</span> tpm_k14 <span class="sc">%&gt;%</span></span>
-<span id="cb27-3"><a></a>  <span class="fu">tidy</span>(<span class="at">matrix =</span> <span class="st">"gamma"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-4"><a></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(document) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-5"><a></a>  tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(</span>
-<span id="cb27-6"><a></a>    <span class="at">id_cols =</span> document, </span>
-<span id="cb27-7"><a></a>    <span class="at">names_from =</span> <span class="st">"topic"</span>, </span>
-<span id="cb27-8"><a></a>    <span class="at">names_prefix =</span> <span class="st">"gamma_topic_"</span>,</span>
-<span id="cb27-9"><a></a>    <span class="at">values_from =</span> <span class="st">"gamma"</span>)</span>
-<span id="cb27-10"><a></a>      </span>
-<span id="cb27-11"><a></a>gammas_k14 <span class="ot">&lt;-</span> tpm_k14 <span class="sc">%&gt;%</span></span>
-<span id="cb27-12"><a></a>  tidytext<span class="sc">::</span><span class="fu">tidy</span>(<span class="at">matrix =</span> <span class="st">"gamma"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-13"><a></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(document) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-14"><a></a>  dplyr<span class="sc">::</span><span class="fu">slice_max</span>(gamma) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-15"><a></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb27-16"><a></a>    <span class="at">main_topic =</span> <span class="fu">ifelse</span>(</span>
-<span id="cb27-17"><a></a>      gamma <span class="sc">&gt;</span> <span class="fl">0.5</span>, topic, <span class="cn">NA</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-18"><a></a>  <span class="fu">rename</span>(</span>
-<span id="cb27-19"><a></a>    <span class="at">top_topic =</span> topic,</span>
-<span id="cb27-20"><a></a>    <span class="at">top_gamma =</span> gamma) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-21"><a></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb27-22"><a></a>  <span class="fu">left_join</span>(.,</span>
-<span id="cb27-23"><a></a>    topic_gammas_k14,</span>
-<span id="cb27-24"><a></a>    <span class="at">by =</span> <span class="fu">join_by</span>(document))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a><span class="co"># Prepare for merging</span></span>
+<span id="cb30-2"><a></a>topic_gammas_k14 <span class="ot">&lt;-</span> tpm_k14 <span class="sc">%&gt;%</span></span>
+<span id="cb30-3"><a></a>  <span class="fu">tidy</span>(<span class="at">matrix =</span> <span class="st">"gamma"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb30-4"><a></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(document) <span class="sc">%&gt;%</span> </span>
+<span id="cb30-5"><a></a>  tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(</span>
+<span id="cb30-6"><a></a>    <span class="at">id_cols =</span> document, </span>
+<span id="cb30-7"><a></a>    <span class="at">names_from =</span> <span class="st">"topic"</span>, </span>
+<span id="cb30-8"><a></a>    <span class="at">names_prefix =</span> <span class="st">"gamma_topic_"</span>,</span>
+<span id="cb30-9"><a></a>    <span class="at">values_from =</span> <span class="st">"gamma"</span>)</span>
+<span id="cb30-10"><a></a>      </span>
+<span id="cb30-11"><a></a>gammas_k14 <span class="ot">&lt;-</span> tpm_k14 <span class="sc">%&gt;%</span></span>
+<span id="cb30-12"><a></a>  tidytext<span class="sc">::</span><span class="fu">tidy</span>(<span class="at">matrix =</span> <span class="st">"gamma"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb30-13"><a></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(document) <span class="sc">%&gt;%</span> </span>
+<span id="cb30-14"><a></a>  dplyr<span class="sc">::</span><span class="fu">slice_max</span>(gamma) <span class="sc">%&gt;%</span> </span>
+<span id="cb30-15"><a></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb30-16"><a></a>    <span class="at">main_topic =</span> <span class="fu">ifelse</span>(</span>
+<span id="cb30-17"><a></a>      gamma <span class="sc">&gt;</span> <span class="fl">0.5</span>, topic, <span class="cn">NA</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb30-18"><a></a>  <span class="fu">rename</span>(</span>
+<span id="cb30-19"><a></a>    <span class="at">top_topic =</span> topic,</span>
+<span id="cb30-20"><a></a>    <span class="at">top_gamma =</span> gamma) <span class="sc">%&gt;%</span> </span>
+<span id="cb30-21"><a></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb30-22"><a></a>  <span class="fu">left_join</span>(.,</span>
+<span id="cb30-23"><a></a>    topic_gammas_k14,</span>
+<span id="cb30-24"><a></a>    <span class="at">by =</span> <span class="fu">join_by</span>(document))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a><span class="co"># Identify empty documents</span></span>
-<span id="cb28-2"><a></a>empty_docs <span class="ot">&lt;-</span> Matrix<span class="sc">::</span><span class="fu">rowSums</span>(</span>
-<span id="cb28-3"><a></a>  <span class="fu">as</span>(majority_report_chat_trim, <span class="st">"Matrix"</span>)) <span class="sc">==</span> <span class="dv">0</span> </span>
-<span id="cb28-4"><a></a>empty_docs_ids <span class="ot">&lt;-</span> majority_report_chat_trim<span class="sc">@</span>docvars<span class="sc">$</span>docname[empty_docs]</span>
-<span id="cb28-5"><a></a></span>
-<span id="cb28-6"><a></a><span class="co"># Merge with original data</span></span>
-<span id="cb28-7"><a></a>chats_topics <span class="ot">&lt;-</span> chats_filtered <span class="sc">%&gt;%</span></span>
-<span id="cb28-8"><a></a>  <span class="fu">filter</span>(<span class="sc">!</span>(message_id <span class="sc">%in%</span> empty_docs_ids)) <span class="sc">%&gt;%</span> </span>
-<span id="cb28-9"><a></a>  <span class="fu">filter</span>(streamer <span class="sc">==</span> <span class="st">"the_majority_report"</span>) <span class="sc">%&gt;%</span>   </span>
-<span id="cb28-10"><a></a>  <span class="fu">bind_cols</span>(gammas_k14) <span class="sc">%&gt;%</span> </span>
-<span id="cb28-11"><a></a>  <span class="fu">select</span>(<span class="sc">-</span>document)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="co"># Identify empty documents</span></span>
+<span id="cb31-2"><a></a>empty_docs <span class="ot">&lt;-</span> Matrix<span class="sc">::</span><span class="fu">rowSums</span>(</span>
+<span id="cb31-3"><a></a>  <span class="fu">as</span>(majority_report_chat_trim, <span class="st">"Matrix"</span>)) <span class="sc">==</span> <span class="dv">0</span> </span>
+<span id="cb31-4"><a></a>empty_docs_ids <span class="ot">&lt;-</span> majority_report_chat_trim<span class="sc">@</span>docvars<span class="sc">$</span>docname[empty_docs]</span>
+<span id="cb31-5"><a></a></span>
+<span id="cb31-6"><a></a><span class="co"># Merge with original data</span></span>
+<span id="cb31-7"><a></a>chats_topics <span class="ot">&lt;-</span> chats_filtered <span class="sc">%&gt;%</span></span>
+<span id="cb31-8"><a></a>  <span class="fu">filter</span>(<span class="sc">!</span>(message_id <span class="sc">%in%</span> empty_docs_ids)) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-9"><a></a>  <span class="fu">filter</span>(streamer <span class="sc">==</span> <span class="st">"the_majority_report"</span>) <span class="sc">%&gt;%</span>   </span>
+<span id="cb31-10"><a></a>  <span class="fu">bind_cols</span>(gammas_k14) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-11"><a></a>  <span class="fu">select</span>(<span class="sc">-</span>document)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div></div>
 </section>
@@ -2083,7 +2090,7 @@ tbody tr:last-child {
 <h2>Angereicherter Datensatz</h2>
 <h4 id="modell-einstellung-interpretierbarkeit-der-top-documents-1"><em><code>2.Modell-Einstellung</code></em>: Interpretierbarkeit der Top Documents</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>chats_topics <span class="sc">%&gt;%</span> glimpse</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>chats_topics <span class="sc">%&gt;%</span> glimpse</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 23,060
 Columns: 50
@@ -2146,37 +2153,37 @@ $ gamma_topic_14        &lt;dbl&gt; 0.029343282, 0.035266919, 0.015419046, 0.022
 <div class="cell">
 <details class="code-fold">
 <summary>Expand for full code</summary>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a>chats_topics <span class="sc">%&gt;%</span> </span>
-<span id="cb31-2"><a></a>  <span class="fu">filter</span>(top_topic <span class="sc">==</span> <span class="dv">8</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb31-3"><a></a>  <span class="fu">arrange</span>(<span class="sc">-</span>top_gamma) <span class="sc">%&gt;%</span> </span>
-<span id="cb31-4"><a></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb31-5"><a></a>  <span class="fu">select</span>(message_id, user_name, message_time, message_content, top_gamma, top_topic) <span class="sc">%&gt;%</span> </span>
-<span id="cb31-6"><a></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb31-7"><a></a>  gtExtras<span class="sc">::</span><span class="fu">gt_theme_538</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb31-8"><a></a>  gt<span class="sc">::</span><span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="st">"10px"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a>chats_topics <span class="sc">%&gt;%</span> </span>
+<span id="cb34-2"><a></a>  <span class="fu">filter</span>(top_topic <span class="sc">==</span> <span class="dv">8</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-3"><a></a>  <span class="fu">arrange</span>(<span class="sc">-</span>top_gamma) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-4"><a></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-5"><a></a>  <span class="fu">select</span>(message_id, user_name, message_time, message_content, top_gamma, top_topic) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-6"><a></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb34-7"><a></a>  gtExtras<span class="sc">::</span><span class="fu">gt_theme_538</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb34-8"><a></a>  gt<span class="sc">::</span><span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="st">"10px"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="xnwauibakm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="nqjjhcfgky" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Cairo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#xnwauibakm table {
+#nqjjhcfgky table {
   font-family: Cairo, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#xnwauibakm thead, #xnwauibakm tbody, #xnwauibakm tfoot, #xnwauibakm tr, #xnwauibakm td, #xnwauibakm th {
+#nqjjhcfgky thead, #nqjjhcfgky tbody, #nqjjhcfgky tfoot, #nqjjhcfgky tr, #nqjjhcfgky td, #nqjjhcfgky th {
   border-style: none;
 }
 
-#xnwauibakm p {
+#nqjjhcfgky p {
   margin: 0;
   padding: 0;
 }
 
-#xnwauibakm .gt_table {
+#nqjjhcfgky .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2202,12 +2209,12 @@ $ gamma_topic_14        &lt;dbl&gt; 0.029343282, 0.035266919, 0.015419046, 0.022
   border-left-color: #D3D3D3;
 }
 
-#xnwauibakm .gt_caption {
+#nqjjhcfgky .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#xnwauibakm .gt_title {
+#nqjjhcfgky .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2219,7 +2226,7 @@ $ gamma_topic_14        &lt;dbl&gt; 0.029343282, 0.035266919, 0.015419046, 0.022
   border-bottom-width: 0;
 }
 
-#xnwauibakm .gt_subtitle {
+#nqjjhcfgky .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2231,7 +2238,7 @@ $ gamma_topic_14        &lt;dbl&gt; 0.029343282, 0.035266919, 0.015419046, 0.022
   border-top-width: 0;
 }
 
-#xnwauibakm .gt_heading {
+#nqjjhcfgky .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -2243,13 +2250,13 @@ $ gamma_topic_14        &lt;dbl&gt; 0.029343282, 0.035266919, 0.015419046, 0.022
   border-right-color: #D3D3D3;
 }
 
-#xnwauibakm .gt_bottom_border {
+#nqjjhcfgky .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xnwauibakm .gt_col_headings {
+#nqjjhcfgky .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2264,7 +2271,7 @@ $ gamma_topic_14        &lt;dbl&gt; 0.029343282, 0.035266919, 0.015419046, 0.022
   border-right-color: #D3D3D3;
 }
 
-#xnwauibakm .gt_col_heading {
+#nqjjhcfgky .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2284,7 +2291,7 @@ $ gamma_topic_14        &lt;dbl&gt; 0.029343282, 0.035266919, 0.015419046, 0.022
   overflow-x: hidden;
 }
 
-#xnwauibakm .gt_column_spanner_outer {
+#nqjjhcfgky .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2296,15 +2303,15 @@ $ gamma_topic_14        &lt;dbl&gt; 0.029343282, 0.035266919, 0.015419046, 0.022
   padding-right: 4px;
 }
 
-#xnwauibakm .gt_column_spanner_outer:first-child {
+#nqjjhcfgky .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xnwauibakm .gt_column_spanner_outer:last-child {
+#nqjjhcfgky .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xnwauibakm .gt_column_spanner {
+#nqjjhcfgky .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #000000;
@@ -2316,11 +2323,11 @@ $ gamma_topic_14        &lt;dbl&gt; 0.029343282, 0.035266919, 0.015419046, 0.022
   width: 100%;
 }
 
-#xnwauibakm .gt_spanner_row {
+#nqjjhcfgky .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#xnwauibakm .gt_group_heading {
+#nqjjhcfgky .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2346,7 +2353,7 @@ $ gamma_topic_14        &lt;dbl&gt; 0.029343282, 0.035266919, 0.015419046, 0.022
   text-align: left;
 }
 
-#xnwauibakm .gt_empty_group_heading {
+#nqjjhcfgky .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2361,15 +2368,15 @@ $ gamma_topic_14        &lt;dbl&gt; 0.029343282, 0.035266919, 0.015419046, 0.022
   vertical-align: middle;
 }
 
-#xnwauibakm .gt_from_md > :first-child {
+#nqjjhcfgky .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xnwauibakm .gt_from_md > :last-child {
+#nqjjhcfgky .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xnwauibakm .gt_row {
+#nqjjhcfgky .gt_row {
   padding-top: 3px;
   padding-bottom: 3px;
   padding-left: 5px;
@@ -2388,7 +2395,7 @@ $ gamma_topic_14        &lt;dbl&gt; 0.029343282, 0.035266919, 0.015419046, 0.022
   overflow-x: hidden;
 }
 
-#xnwauibakm .gt_stub {
+#nqjjhcfgky .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2401,7 +2408,7 @@ $ gamma_topic_14        &lt;dbl&gt; 0.029343282, 0.035266919, 0.015419046, 0.022
   padding-right: 5px;
 }
 
-#xnwauibakm .gt_stub_row_group {
+#nqjjhcfgky .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2415,15 +2422,15 @@ $ gamma_topic_14        &lt;dbl&gt; 0.029343282, 0.035266919, 0.015419046, 0.022
   vertical-align: top;
 }
 
-#xnwauibakm .gt_row_group_first td {
+#nqjjhcfgky .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#xnwauibakm .gt_row_group_first th {
+#nqjjhcfgky .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#xnwauibakm .gt_summary_row {
+#nqjjhcfgky .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2433,16 +2440,16 @@ $ gamma_topic_14        &lt;dbl&gt; 0.029343282, 0.035266919, 0.015419046, 0.022
   padding-right: 5px;
 }
 
-#xnwauibakm .gt_first_summary_row {
+#nqjjhcfgky .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#xnwauibakm .gt_first_summary_row.thick {
+#nqjjhcfgky .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#xnwauibakm .gt_last_summary_row {
+#nqjjhcfgky .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2452,7 +2459,7 @@ $ gamma_topic_14        &lt;dbl&gt; 0.029343282, 0.035266919, 0.015419046, 0.022
   border-bottom-color: #D3D3D3;
 }
 
-#xnwauibakm .gt_grand_summary_row {
+#nqjjhcfgky .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2462,7 +2469,7 @@ $ gamma_topic_14        &lt;dbl&gt; 0.029343282, 0.035266919, 0.015419046, 0.022
   padding-right: 5px;
 }
 
-#xnwauibakm .gt_first_grand_summary_row {
+#nqjjhcfgky .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2472,7 +2479,7 @@ $ gamma_topic_14        &lt;dbl&gt; 0.029343282, 0.035266919, 0.015419046, 0.022
   border-top-color: #D3D3D3;
 }
 
-#xnwauibakm .gt_last_grand_summary_row_top {
+#nqjjhcfgky .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2482,11 +2489,11 @@ $ gamma_topic_14        &lt;dbl&gt; 0.029343282, 0.035266919, 0.015419046, 0.022
   border-bottom-color: #D3D3D3;
 }
 
-#xnwauibakm .gt_striped {
+#nqjjhcfgky .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xnwauibakm .gt_table_body {
+#nqjjhcfgky .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2495,7 +2502,7 @@ $ gamma_topic_14        &lt;dbl&gt; 0.029343282, 0.035266919, 0.015419046, 0.022
   border-bottom-color: #D3D3D3;
 }
 
-#xnwauibakm .gt_footnotes {
+#nqjjhcfgky .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2509,7 +2516,7 @@ $ gamma_topic_14        &lt;dbl&gt; 0.029343282, 0.035266919, 0.015419046, 0.022
   border-right-color: #D3D3D3;
 }
 
-#xnwauibakm .gt_footnote {
+#nqjjhcfgky .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2518,7 +2525,7 @@ $ gamma_topic_14        &lt;dbl&gt; 0.029343282, 0.035266919, 0.015419046, 0.022
   padding-right: 5px;
 }
 
-#xnwauibakm .gt_sourcenotes {
+#nqjjhcfgky .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2532,7 +2539,7 @@ $ gamma_topic_14        &lt;dbl&gt; 0.029343282, 0.035266919, 0.015419046, 0.022
   border-right-color: #D3D3D3;
 }
 
-#xnwauibakm .gt_sourcenote {
+#nqjjhcfgky .gt_sourcenote {
   font-size: 12px;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2540,72 +2547,72 @@ $ gamma_topic_14        &lt;dbl&gt; 0.029343282, 0.035266919, 0.015419046, 0.022
   padding-right: 5px;
 }
 
-#xnwauibakm .gt_left {
+#nqjjhcfgky .gt_left {
   text-align: left;
 }
 
-#xnwauibakm .gt_center {
+#nqjjhcfgky .gt_center {
   text-align: center;
 }
 
-#xnwauibakm .gt_right {
+#nqjjhcfgky .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xnwauibakm .gt_font_normal {
+#nqjjhcfgky .gt_font_normal {
   font-weight: normal;
 }
 
-#xnwauibakm .gt_font_bold {
+#nqjjhcfgky .gt_font_bold {
   font-weight: bold;
 }
 
-#xnwauibakm .gt_font_italic {
+#nqjjhcfgky .gt_font_italic {
   font-style: italic;
 }
 
-#xnwauibakm .gt_super {
+#nqjjhcfgky .gt_super {
   font-size: 65%;
 }
 
-#xnwauibakm .gt_footnote_marks {
+#nqjjhcfgky .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#xnwauibakm .gt_asterisk {
+#nqjjhcfgky .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#xnwauibakm .gt_indent_1 {
+#nqjjhcfgky .gt_indent_1 {
   text-indent: 5px;
 }
 
-#xnwauibakm .gt_indent_2 {
+#nqjjhcfgky .gt_indent_2 {
   text-indent: 10px;
 }
 
-#xnwauibakm .gt_indent_3 {
+#nqjjhcfgky .gt_indent_3 {
   text-indent: 15px;
 }
 
-#xnwauibakm .gt_indent_4 {
+#nqjjhcfgky .gt_indent_4 {
   text-indent: 20px;
 }
 
-#xnwauibakm .gt_indent_5 {
+#nqjjhcfgky .gt_indent_5 {
   text-indent: 25px;
 }
 
-#xnwauibakm .katex-display {
+#nqjjhcfgky .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#xnwauibakm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#nqjjhcfgky div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 
@@ -2719,37 +2726,37 @@ tbody tr:last-child {
 <div class="cell">
 <details class="code-fold">
 <summary>Expand for full code</summary>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>chats_topics <span class="sc">%&gt;%</span> </span>
-<span id="cb32-2"><a></a>  <span class="fu">filter</span>(top_topic <span class="sc">==</span> <span class="dv">12</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb32-3"><a></a>  <span class="fu">arrange</span>(<span class="sc">-</span>top_gamma) <span class="sc">%&gt;%</span> </span>
-<span id="cb32-4"><a></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb32-5"><a></a>  <span class="fu">select</span>(message_id, user_name, message_time, message_content, top_gamma, top_topic) <span class="sc">%&gt;%</span> </span>
-<span id="cb32-6"><a></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb32-7"><a></a>  gtExtras<span class="sc">::</span><span class="fu">gt_theme_538</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb32-8"><a></a>  gt<span class="sc">::</span><span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="st">"10px"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a>chats_topics <span class="sc">%&gt;%</span> </span>
+<span id="cb35-2"><a></a>  <span class="fu">filter</span>(top_topic <span class="sc">==</span> <span class="dv">12</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-3"><a></a>  <span class="fu">arrange</span>(<span class="sc">-</span>top_gamma) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-4"><a></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-5"><a></a>  <span class="fu">select</span>(message_id, user_name, message_time, message_content, top_gamma, top_topic) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-6"><a></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb35-7"><a></a>  gtExtras<span class="sc">::</span><span class="fu">gt_theme_538</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb35-8"><a></a>  gt<span class="sc">::</span><span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="st">"10px"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="zvayxvbxit" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="bldzssgjkm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Cairo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#zvayxvbxit table {
+#bldzssgjkm table {
   font-family: Cairo, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#zvayxvbxit thead, #zvayxvbxit tbody, #zvayxvbxit tfoot, #zvayxvbxit tr, #zvayxvbxit td, #zvayxvbxit th {
+#bldzssgjkm thead, #bldzssgjkm tbody, #bldzssgjkm tfoot, #bldzssgjkm tr, #bldzssgjkm td, #bldzssgjkm th {
   border-style: none;
 }
 
-#zvayxvbxit p {
+#bldzssgjkm p {
   margin: 0;
   padding: 0;
 }
 
-#zvayxvbxit .gt_table {
+#bldzssgjkm .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2775,12 +2782,12 @@ tbody tr:last-child {
   border-left-color: #D3D3D3;
 }
 
-#zvayxvbxit .gt_caption {
+#bldzssgjkm .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#zvayxvbxit .gt_title {
+#bldzssgjkm .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2792,7 +2799,7 @@ tbody tr:last-child {
   border-bottom-width: 0;
 }
 
-#zvayxvbxit .gt_subtitle {
+#bldzssgjkm .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2804,7 +2811,7 @@ tbody tr:last-child {
   border-top-width: 0;
 }
 
-#zvayxvbxit .gt_heading {
+#bldzssgjkm .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -2816,13 +2823,13 @@ tbody tr:last-child {
   border-right-color: #D3D3D3;
 }
 
-#zvayxvbxit .gt_bottom_border {
+#bldzssgjkm .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#zvayxvbxit .gt_col_headings {
+#bldzssgjkm .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2837,7 +2844,7 @@ tbody tr:last-child {
   border-right-color: #D3D3D3;
 }
 
-#zvayxvbxit .gt_col_heading {
+#bldzssgjkm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2857,7 +2864,7 @@ tbody tr:last-child {
   overflow-x: hidden;
 }
 
-#zvayxvbxit .gt_column_spanner_outer {
+#bldzssgjkm .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2869,15 +2876,15 @@ tbody tr:last-child {
   padding-right: 4px;
 }
 
-#zvayxvbxit .gt_column_spanner_outer:first-child {
+#bldzssgjkm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#zvayxvbxit .gt_column_spanner_outer:last-child {
+#bldzssgjkm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#zvayxvbxit .gt_column_spanner {
+#bldzssgjkm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #000000;
@@ -2889,11 +2896,11 @@ tbody tr:last-child {
   width: 100%;
 }
 
-#zvayxvbxit .gt_spanner_row {
+#bldzssgjkm .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#zvayxvbxit .gt_group_heading {
+#bldzssgjkm .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2919,7 +2926,7 @@ tbody tr:last-child {
   text-align: left;
 }
 
-#zvayxvbxit .gt_empty_group_heading {
+#bldzssgjkm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2934,15 +2941,15 @@ tbody tr:last-child {
   vertical-align: middle;
 }
 
-#zvayxvbxit .gt_from_md > :first-child {
+#bldzssgjkm .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#zvayxvbxit .gt_from_md > :last-child {
+#bldzssgjkm .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#zvayxvbxit .gt_row {
+#bldzssgjkm .gt_row {
   padding-top: 3px;
   padding-bottom: 3px;
   padding-left: 5px;
@@ -2961,7 +2968,7 @@ tbody tr:last-child {
   overflow-x: hidden;
 }
 
-#zvayxvbxit .gt_stub {
+#bldzssgjkm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2974,7 +2981,7 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#zvayxvbxit .gt_stub_row_group {
+#bldzssgjkm .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2988,15 +2995,15 @@ tbody tr:last-child {
   vertical-align: top;
 }
 
-#zvayxvbxit .gt_row_group_first td {
+#bldzssgjkm .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#zvayxvbxit .gt_row_group_first th {
+#bldzssgjkm .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#zvayxvbxit .gt_summary_row {
+#bldzssgjkm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3006,16 +3013,16 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#zvayxvbxit .gt_first_summary_row {
+#bldzssgjkm .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#zvayxvbxit .gt_first_summary_row.thick {
+#bldzssgjkm .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#zvayxvbxit .gt_last_summary_row {
+#bldzssgjkm .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3025,7 +3032,7 @@ tbody tr:last-child {
   border-bottom-color: #D3D3D3;
 }
 
-#zvayxvbxit .gt_grand_summary_row {
+#bldzssgjkm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3035,7 +3042,7 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#zvayxvbxit .gt_first_grand_summary_row {
+#bldzssgjkm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3045,7 +3052,7 @@ tbody tr:last-child {
   border-top-color: #D3D3D3;
 }
 
-#zvayxvbxit .gt_last_grand_summary_row_top {
+#bldzssgjkm .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3055,11 +3062,11 @@ tbody tr:last-child {
   border-bottom-color: #D3D3D3;
 }
 
-#zvayxvbxit .gt_striped {
+#bldzssgjkm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#zvayxvbxit .gt_table_body {
+#bldzssgjkm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3068,7 +3075,7 @@ tbody tr:last-child {
   border-bottom-color: #D3D3D3;
 }
 
-#zvayxvbxit .gt_footnotes {
+#bldzssgjkm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3082,7 +3089,7 @@ tbody tr:last-child {
   border-right-color: #D3D3D3;
 }
 
-#zvayxvbxit .gt_footnote {
+#bldzssgjkm .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3091,7 +3098,7 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#zvayxvbxit .gt_sourcenotes {
+#bldzssgjkm .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3105,7 +3112,7 @@ tbody tr:last-child {
   border-right-color: #D3D3D3;
 }
 
-#zvayxvbxit .gt_sourcenote {
+#bldzssgjkm .gt_sourcenote {
   font-size: 12px;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3113,72 +3120,72 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#zvayxvbxit .gt_left {
+#bldzssgjkm .gt_left {
   text-align: left;
 }
 
-#zvayxvbxit .gt_center {
+#bldzssgjkm .gt_center {
   text-align: center;
 }
 
-#zvayxvbxit .gt_right {
+#bldzssgjkm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#zvayxvbxit .gt_font_normal {
+#bldzssgjkm .gt_font_normal {
   font-weight: normal;
 }
 
-#zvayxvbxit .gt_font_bold {
+#bldzssgjkm .gt_font_bold {
   font-weight: bold;
 }
 
-#zvayxvbxit .gt_font_italic {
+#bldzssgjkm .gt_font_italic {
   font-style: italic;
 }
 
-#zvayxvbxit .gt_super {
+#bldzssgjkm .gt_super {
   font-size: 65%;
 }
 
-#zvayxvbxit .gt_footnote_marks {
+#bldzssgjkm .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#zvayxvbxit .gt_asterisk {
+#bldzssgjkm .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#zvayxvbxit .gt_indent_1 {
+#bldzssgjkm .gt_indent_1 {
   text-indent: 5px;
 }
 
-#zvayxvbxit .gt_indent_2 {
+#bldzssgjkm .gt_indent_2 {
   text-indent: 10px;
 }
 
-#zvayxvbxit .gt_indent_3 {
+#bldzssgjkm .gt_indent_3 {
   text-indent: 15px;
 }
 
-#zvayxvbxit .gt_indent_4 {
+#bldzssgjkm .gt_indent_4 {
   text-indent: 20px;
 }
 
-#zvayxvbxit .gt_indent_5 {
+#bldzssgjkm .gt_indent_5 {
   text-indent: 25px;
 }
 
-#zvayxvbxit .katex-display {
+#bldzssgjkm .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#zvayxvbxit div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#bldzssgjkm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 
@@ -3292,37 +3299,37 @@ tbody tr:last-child {
 <div class="cell">
 <details class="code-fold">
 <summary>Expand for full code</summary>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>chats_topics <span class="sc">%&gt;%</span> </span>
-<span id="cb33-2"><a></a>  <span class="fu">filter</span>(top_topic <span class="sc">==</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb33-3"><a></a>  <span class="fu">arrange</span>(<span class="sc">-</span>top_gamma) <span class="sc">%&gt;%</span> </span>
-<span id="cb33-4"><a></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb33-5"><a></a>  <span class="fu">select</span>(message_id, user_name, message_time, message_content, top_gamma, top_topic) <span class="sc">%&gt;%</span> </span>
-<span id="cb33-6"><a></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb33-7"><a></a>  gtExtras<span class="sc">::</span><span class="fu">gt_theme_538</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb33-8"><a></a>  gt<span class="sc">::</span><span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="st">"10px"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a>chats_topics <span class="sc">%&gt;%</span> </span>
+<span id="cb36-2"><a></a>  <span class="fu">filter</span>(top_topic <span class="sc">==</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb36-3"><a></a>  <span class="fu">arrange</span>(<span class="sc">-</span>top_gamma) <span class="sc">%&gt;%</span> </span>
+<span id="cb36-4"><a></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb36-5"><a></a>  <span class="fu">select</span>(message_id, user_name, message_time, message_content, top_gamma, top_topic) <span class="sc">%&gt;%</span> </span>
+<span id="cb36-6"><a></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb36-7"><a></a>  gtExtras<span class="sc">::</span><span class="fu">gt_theme_538</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb36-8"><a></a>  gt<span class="sc">::</span><span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="st">"10px"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="wmxspwrdft" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="uqjyflxfer" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Cairo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#wmxspwrdft table {
+#uqjyflxfer table {
   font-family: Cairo, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#wmxspwrdft thead, #wmxspwrdft tbody, #wmxspwrdft tfoot, #wmxspwrdft tr, #wmxspwrdft td, #wmxspwrdft th {
+#uqjyflxfer thead, #uqjyflxfer tbody, #uqjyflxfer tfoot, #uqjyflxfer tr, #uqjyflxfer td, #uqjyflxfer th {
   border-style: none;
 }
 
-#wmxspwrdft p {
+#uqjyflxfer p {
   margin: 0;
   padding: 0;
 }
 
-#wmxspwrdft .gt_table {
+#uqjyflxfer .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3348,12 +3355,12 @@ tbody tr:last-child {
   border-left-color: #D3D3D3;
 }
 
-#wmxspwrdft .gt_caption {
+#uqjyflxfer .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#wmxspwrdft .gt_title {
+#uqjyflxfer .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3365,7 +3372,7 @@ tbody tr:last-child {
   border-bottom-width: 0;
 }
 
-#wmxspwrdft .gt_subtitle {
+#uqjyflxfer .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3377,7 +3384,7 @@ tbody tr:last-child {
   border-top-width: 0;
 }
 
-#wmxspwrdft .gt_heading {
+#uqjyflxfer .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -3389,13 +3396,13 @@ tbody tr:last-child {
   border-right-color: #D3D3D3;
 }
 
-#wmxspwrdft .gt_bottom_border {
+#uqjyflxfer .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#wmxspwrdft .gt_col_headings {
+#uqjyflxfer .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3410,7 +3417,7 @@ tbody tr:last-child {
   border-right-color: #D3D3D3;
 }
 
-#wmxspwrdft .gt_col_heading {
+#uqjyflxfer .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3430,7 +3437,7 @@ tbody tr:last-child {
   overflow-x: hidden;
 }
 
-#wmxspwrdft .gt_column_spanner_outer {
+#uqjyflxfer .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3442,15 +3449,15 @@ tbody tr:last-child {
   padding-right: 4px;
 }
 
-#wmxspwrdft .gt_column_spanner_outer:first-child {
+#uqjyflxfer .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#wmxspwrdft .gt_column_spanner_outer:last-child {
+#uqjyflxfer .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#wmxspwrdft .gt_column_spanner {
+#uqjyflxfer .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #000000;
@@ -3462,11 +3469,11 @@ tbody tr:last-child {
   width: 100%;
 }
 
-#wmxspwrdft .gt_spanner_row {
+#uqjyflxfer .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#wmxspwrdft .gt_group_heading {
+#uqjyflxfer .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3492,7 +3499,7 @@ tbody tr:last-child {
   text-align: left;
 }
 
-#wmxspwrdft .gt_empty_group_heading {
+#uqjyflxfer .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3507,15 +3514,15 @@ tbody tr:last-child {
   vertical-align: middle;
 }
 
-#wmxspwrdft .gt_from_md > :first-child {
+#uqjyflxfer .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#wmxspwrdft .gt_from_md > :last-child {
+#uqjyflxfer .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#wmxspwrdft .gt_row {
+#uqjyflxfer .gt_row {
   padding-top: 3px;
   padding-bottom: 3px;
   padding-left: 5px;
@@ -3534,7 +3541,7 @@ tbody tr:last-child {
   overflow-x: hidden;
 }
 
-#wmxspwrdft .gt_stub {
+#uqjyflxfer .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3547,7 +3554,7 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#wmxspwrdft .gt_stub_row_group {
+#uqjyflxfer .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3561,15 +3568,15 @@ tbody tr:last-child {
   vertical-align: top;
 }
 
-#wmxspwrdft .gt_row_group_first td {
+#uqjyflxfer .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#wmxspwrdft .gt_row_group_first th {
+#uqjyflxfer .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#wmxspwrdft .gt_summary_row {
+#uqjyflxfer .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3579,16 +3586,16 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#wmxspwrdft .gt_first_summary_row {
+#uqjyflxfer .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#wmxspwrdft .gt_first_summary_row.thick {
+#uqjyflxfer .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#wmxspwrdft .gt_last_summary_row {
+#uqjyflxfer .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3598,7 +3605,7 @@ tbody tr:last-child {
   border-bottom-color: #D3D3D3;
 }
 
-#wmxspwrdft .gt_grand_summary_row {
+#uqjyflxfer .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3608,7 +3615,7 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#wmxspwrdft .gt_first_grand_summary_row {
+#uqjyflxfer .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3618,7 +3625,7 @@ tbody tr:last-child {
   border-top-color: #D3D3D3;
 }
 
-#wmxspwrdft .gt_last_grand_summary_row_top {
+#uqjyflxfer .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3628,11 +3635,11 @@ tbody tr:last-child {
   border-bottom-color: #D3D3D3;
 }
 
-#wmxspwrdft .gt_striped {
+#uqjyflxfer .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#wmxspwrdft .gt_table_body {
+#uqjyflxfer .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3641,7 +3648,7 @@ tbody tr:last-child {
   border-bottom-color: #D3D3D3;
 }
 
-#wmxspwrdft .gt_footnotes {
+#uqjyflxfer .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3655,7 +3662,7 @@ tbody tr:last-child {
   border-right-color: #D3D3D3;
 }
 
-#wmxspwrdft .gt_footnote {
+#uqjyflxfer .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3664,7 +3671,7 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#wmxspwrdft .gt_sourcenotes {
+#uqjyflxfer .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3678,7 +3685,7 @@ tbody tr:last-child {
   border-right-color: #D3D3D3;
 }
 
-#wmxspwrdft .gt_sourcenote {
+#uqjyflxfer .gt_sourcenote {
   font-size: 12px;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3686,72 +3693,72 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#wmxspwrdft .gt_left {
+#uqjyflxfer .gt_left {
   text-align: left;
 }
 
-#wmxspwrdft .gt_center {
+#uqjyflxfer .gt_center {
   text-align: center;
 }
 
-#wmxspwrdft .gt_right {
+#uqjyflxfer .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#wmxspwrdft .gt_font_normal {
+#uqjyflxfer .gt_font_normal {
   font-weight: normal;
 }
 
-#wmxspwrdft .gt_font_bold {
+#uqjyflxfer .gt_font_bold {
   font-weight: bold;
 }
 
-#wmxspwrdft .gt_font_italic {
+#uqjyflxfer .gt_font_italic {
   font-style: italic;
 }
 
-#wmxspwrdft .gt_super {
+#uqjyflxfer .gt_super {
   font-size: 65%;
 }
 
-#wmxspwrdft .gt_footnote_marks {
+#uqjyflxfer .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#wmxspwrdft .gt_asterisk {
+#uqjyflxfer .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#wmxspwrdft .gt_indent_1 {
+#uqjyflxfer .gt_indent_1 {
   text-indent: 5px;
 }
 
-#wmxspwrdft .gt_indent_2 {
+#uqjyflxfer .gt_indent_2 {
   text-indent: 10px;
 }
 
-#wmxspwrdft .gt_indent_3 {
+#uqjyflxfer .gt_indent_3 {
   text-indent: 15px;
 }
 
-#wmxspwrdft .gt_indent_4 {
+#uqjyflxfer .gt_indent_4 {
   text-indent: 20px;
 }
 
-#wmxspwrdft .gt_indent_5 {
+#uqjyflxfer .gt_indent_5 {
   text-indent: 25px;
 }
 
-#wmxspwrdft .katex-display {
+#uqjyflxfer .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#wmxspwrdft div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#uqjyflxfer div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 
@@ -3880,37 +3887,37 @@ tbody tr:last-child {
 <h4 id="analyse-interpretation---beispiel-für-deskriptive-verfahren"><em><code>3.Analyse &amp; Interpretation</code></em> - Beispiel für deskriptive Verfahren</h4>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a>chats_topics <span class="sc">%&gt;%</span> </span>
-<span id="cb34-2"><a></a>  <span class="fu">filter</span>(top_topic <span class="sc">==</span> <span class="dv">8</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb34-3"><a></a>  <span class="fu">count</span>(user_name, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb34-4"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb34-5"><a></a>    <span class="at">prop =</span> <span class="fu">round</span>(n<span class="sc">/</span><span class="fu">sum</span>(n)<span class="sc">*</span><span class="dv">100</span>, <span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb34-6"><a></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb34-7"><a></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb34-8"><a></a>  gtExtras<span class="sc">::</span><span class="fu">gt_theme_538</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a>chats_topics <span class="sc">%&gt;%</span> </span>
+<span id="cb37-2"><a></a>  <span class="fu">filter</span>(top_topic <span class="sc">==</span> <span class="dv">8</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-3"><a></a>  <span class="fu">count</span>(user_name, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-4"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb37-5"><a></a>    <span class="at">prop =</span> <span class="fu">round</span>(n<span class="sc">/</span><span class="fu">sum</span>(n)<span class="sc">*</span><span class="dv">100</span>, <span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-6"><a></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-7"><a></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb37-8"><a></a>  gtExtras<span class="sc">::</span><span class="fu">gt_theme_538</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
-<div id="kdouutbnhr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="tpznuihfnh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Cairo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#kdouutbnhr table {
+#tpznuihfnh table {
   font-family: Cairo, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#kdouutbnhr thead, #kdouutbnhr tbody, #kdouutbnhr tfoot, #kdouutbnhr tr, #kdouutbnhr td, #kdouutbnhr th {
+#tpznuihfnh thead, #tpznuihfnh tbody, #tpznuihfnh tfoot, #tpznuihfnh tr, #tpznuihfnh td, #tpznuihfnh th {
   border-style: none;
 }
 
-#kdouutbnhr p {
+#tpznuihfnh p {
   margin: 0;
   padding: 0;
 }
 
-#kdouutbnhr .gt_table {
+#tpznuihfnh .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3936,12 +3943,12 @@ tbody tr:last-child {
   border-left-color: #D3D3D3;
 }
 
-#kdouutbnhr .gt_caption {
+#tpznuihfnh .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#kdouutbnhr .gt_title {
+#tpznuihfnh .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3953,7 +3960,7 @@ tbody tr:last-child {
   border-bottom-width: 0;
 }
 
-#kdouutbnhr .gt_subtitle {
+#tpznuihfnh .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3965,7 +3972,7 @@ tbody tr:last-child {
   border-top-width: 0;
 }
 
-#kdouutbnhr .gt_heading {
+#tpznuihfnh .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -3977,13 +3984,13 @@ tbody tr:last-child {
   border-right-color: #D3D3D3;
 }
 
-#kdouutbnhr .gt_bottom_border {
+#tpznuihfnh .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#kdouutbnhr .gt_col_headings {
+#tpznuihfnh .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3998,7 +4005,7 @@ tbody tr:last-child {
   border-right-color: #D3D3D3;
 }
 
-#kdouutbnhr .gt_col_heading {
+#tpznuihfnh .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4018,7 +4025,7 @@ tbody tr:last-child {
   overflow-x: hidden;
 }
 
-#kdouutbnhr .gt_column_spanner_outer {
+#tpznuihfnh .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4030,15 +4037,15 @@ tbody tr:last-child {
   padding-right: 4px;
 }
 
-#kdouutbnhr .gt_column_spanner_outer:first-child {
+#tpznuihfnh .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#kdouutbnhr .gt_column_spanner_outer:last-child {
+#tpznuihfnh .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#kdouutbnhr .gt_column_spanner {
+#tpznuihfnh .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #000000;
@@ -4050,11 +4057,11 @@ tbody tr:last-child {
   width: 100%;
 }
 
-#kdouutbnhr .gt_spanner_row {
+#tpznuihfnh .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#kdouutbnhr .gt_group_heading {
+#tpznuihfnh .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4080,7 +4087,7 @@ tbody tr:last-child {
   text-align: left;
 }
 
-#kdouutbnhr .gt_empty_group_heading {
+#tpznuihfnh .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -4095,15 +4102,15 @@ tbody tr:last-child {
   vertical-align: middle;
 }
 
-#kdouutbnhr .gt_from_md > :first-child {
+#tpznuihfnh .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#kdouutbnhr .gt_from_md > :last-child {
+#tpznuihfnh .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#kdouutbnhr .gt_row {
+#tpznuihfnh .gt_row {
   padding-top: 3px;
   padding-bottom: 3px;
   padding-left: 5px;
@@ -4122,7 +4129,7 @@ tbody tr:last-child {
   overflow-x: hidden;
 }
 
-#kdouutbnhr .gt_stub {
+#tpznuihfnh .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4135,7 +4142,7 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#kdouutbnhr .gt_stub_row_group {
+#tpznuihfnh .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4149,15 +4156,15 @@ tbody tr:last-child {
   vertical-align: top;
 }
 
-#kdouutbnhr .gt_row_group_first td {
+#tpznuihfnh .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#kdouutbnhr .gt_row_group_first th {
+#tpznuihfnh .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#kdouutbnhr .gt_summary_row {
+#tpznuihfnh .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4167,16 +4174,16 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#kdouutbnhr .gt_first_summary_row {
+#tpznuihfnh .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#kdouutbnhr .gt_first_summary_row.thick {
+#tpznuihfnh .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#kdouutbnhr .gt_last_summary_row {
+#tpznuihfnh .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4186,7 +4193,7 @@ tbody tr:last-child {
   border-bottom-color: #D3D3D3;
 }
 
-#kdouutbnhr .gt_grand_summary_row {
+#tpznuihfnh .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4196,7 +4203,7 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#kdouutbnhr .gt_first_grand_summary_row {
+#tpznuihfnh .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4206,7 +4213,7 @@ tbody tr:last-child {
   border-top-color: #D3D3D3;
 }
 
-#kdouutbnhr .gt_last_grand_summary_row_top {
+#tpznuihfnh .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4216,11 +4223,11 @@ tbody tr:last-child {
   border-bottom-color: #D3D3D3;
 }
 
-#kdouutbnhr .gt_striped {
+#tpznuihfnh .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#kdouutbnhr .gt_table_body {
+#tpznuihfnh .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4229,7 +4236,7 @@ tbody tr:last-child {
   border-bottom-color: #D3D3D3;
 }
 
-#kdouutbnhr .gt_footnotes {
+#tpznuihfnh .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4243,7 +4250,7 @@ tbody tr:last-child {
   border-right-color: #D3D3D3;
 }
 
-#kdouutbnhr .gt_footnote {
+#tpznuihfnh .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -4252,7 +4259,7 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#kdouutbnhr .gt_sourcenotes {
+#tpznuihfnh .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4266,7 +4273,7 @@ tbody tr:last-child {
   border-right-color: #D3D3D3;
 }
 
-#kdouutbnhr .gt_sourcenote {
+#tpznuihfnh .gt_sourcenote {
   font-size: 12px;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -4274,72 +4281,72 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#kdouutbnhr .gt_left {
+#tpznuihfnh .gt_left {
   text-align: left;
 }
 
-#kdouutbnhr .gt_center {
+#tpznuihfnh .gt_center {
   text-align: center;
 }
 
-#kdouutbnhr .gt_right {
+#tpznuihfnh .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#kdouutbnhr .gt_font_normal {
+#tpznuihfnh .gt_font_normal {
   font-weight: normal;
 }
 
-#kdouutbnhr .gt_font_bold {
+#tpznuihfnh .gt_font_bold {
   font-weight: bold;
 }
 
-#kdouutbnhr .gt_font_italic {
+#tpznuihfnh .gt_font_italic {
   font-style: italic;
 }
 
-#kdouutbnhr .gt_super {
+#tpznuihfnh .gt_super {
   font-size: 65%;
 }
 
-#kdouutbnhr .gt_footnote_marks {
+#tpznuihfnh .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#kdouutbnhr .gt_asterisk {
+#tpznuihfnh .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#kdouutbnhr .gt_indent_1 {
+#tpznuihfnh .gt_indent_1 {
   text-indent: 5px;
 }
 
-#kdouutbnhr .gt_indent_2 {
+#tpznuihfnh .gt_indent_2 {
   text-indent: 10px;
 }
 
-#kdouutbnhr .gt_indent_3 {
+#tpznuihfnh .gt_indent_3 {
   text-indent: 15px;
 }
 
-#kdouutbnhr .gt_indent_4 {
+#tpznuihfnh .gt_indent_4 {
   text-indent: 20px;
 }
 
-#kdouutbnhr .gt_indent_5 {
+#tpznuihfnh .gt_indent_5 {
   text-indent: 25px;
 }
 
-#kdouutbnhr .katex-display {
+#tpznuihfnh .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#kdouutbnhr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#tpznuihfnh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 
@@ -4422,22 +4429,22 @@ tbody tr:last-child {
 <div class="cell">
 <details class="code-fold">
 <summary>Expand for full code</summary>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a>top_gamma_k14 <span class="sc">%&gt;%</span> </span>
-<span id="cb35-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">as.factor</span>(topic), gamma)) <span class="sc">+</span></span>
-<span id="cb35-3"><a></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#F57350"</span>) <span class="sc">+</span></span>
-<span id="cb35-4"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb35-5"><a></a>    <span class="at">x =</span> <span class="st">"Topic"</span>,</span>
-<span id="cb35-6"><a></a>    <span class="at">y =</span> <span class="st">"Mean gamma"</span></span>
-<span id="cb35-7"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb35-8"><a></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb35-9"><a></a>  <span class="fu">scale_y_reverse</span>() <span class="sc">+</span></span>
-<span id="cb35-10"><a></a>  <span class="fu">scale_x_discrete</span>(<span class="at">position =</span> <span class="st">"top"</span>) <span class="sc">+</span></span>
-<span id="cb35-11"><a></a>  <span class="fu">theme_pubr</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a>top_gamma_k14 <span class="sc">%&gt;%</span> </span>
+<span id="cb38-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">as.factor</span>(topic), gamma)) <span class="sc">+</span></span>
+<span id="cb38-3"><a></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#F57350"</span>) <span class="sc">+</span></span>
+<span id="cb38-4"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb38-5"><a></a>    <span class="at">x =</span> <span class="st">"Topic"</span>,</span>
+<span id="cb38-6"><a></a>    <span class="at">y =</span> <span class="st">"Mean gamma"</span></span>
+<span id="cb38-7"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb38-8"><a></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb38-9"><a></a>  <span class="fu">scale_y_reverse</span>() <span class="sc">+</span></span>
+<span id="cb38-10"><a></a>  <span class="fu">scale_x_discrete</span>(<span class="at">position =</span> <span class="st">"top"</span>) <span class="sc">+</span></span>
+<span id="cb38-11"><a></a>  <span class="fu">theme_pubr</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides-09_files/figure-revealjs/stm-results-top-prevalence-1.png" width="960"></p>
+<p><img data-src="slides-09_files/figure-html/stm-results-top-prevalence-1.png" width="672"></p>
 </figure>
 </div>
 </div>
@@ -4446,22 +4453,22 @@ tbody tr:last-child {
 <div class="cell">
 <details class="code-fold">
 <summary>Expand for full code</summary>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a>chats_topics <span class="sc">%&gt;%</span> </span>
-<span id="cb36-2"><a></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(top_topic, as.factor)) <span class="sc">%&gt;%</span> </span>
-<span id="cb36-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(top_topic, <span class="at">y =</span> <span class="fu">after_stat</span>(prop), <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb36-4"><a></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"#1DA1F2"</span>) <span class="sc">+</span></span>
-<span id="cb36-5"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
-<span id="cb36-6"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb36-7"><a></a>    <span class="at">x =</span> <span class="st">""</span>, </span>
-<span id="cb36-8"><a></a>    <span class="at">y =</span> <span class="st">"Relative frequency"</span></span>
-<span id="cb36-9"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb36-10"><a></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb36-11"><a></a>  <span class="fu">theme_pubr</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a>chats_topics <span class="sc">%&gt;%</span> </span>
+<span id="cb39-2"><a></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(top_topic, as.factor)) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(top_topic, <span class="at">y =</span> <span class="fu">after_stat</span>(prop), <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb39-4"><a></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"#1DA1F2"</span>) <span class="sc">+</span></span>
+<span id="cb39-5"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
+<span id="cb39-6"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb39-7"><a></a>    <span class="at">x =</span> <span class="st">""</span>, </span>
+<span id="cb39-8"><a></a>    <span class="at">y =</span> <span class="st">"Relative frequency"</span></span>
+<span id="cb39-9"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb39-10"><a></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb39-11"><a></a>  <span class="fu">theme_pubr</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides-09_files/figure-revealjs/chat-topics-topics-frequency-1.png" width="960"></p>
+<p><img data-src="slides-09_files/figure-html/chat-topics-topics-frequency-1.png" width="672"></p>
 </figure>
 </div>
 </div>
@@ -4472,16 +4479,20 @@ tbody tr:last-child {
 <h2>Einfluss von Meta-Variablen</h2>
 <h4 id="analyse-interpretation---beispiel-für-inferenzstatistische-verfahren"><em><code>3.Analyse &amp; Interpretation</code></em> - Beispiel für inferenzstatistische Verfahren</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a>effects <span class="ot">&lt;-</span> <span class="fu">estimateEffect</span>(</span>
-<span id="cb37-2"><a></a>  <span class="at">formula =</span><span class="sc">~</span> platform <span class="sc">+</span> debate <span class="sc">+</span> message_during_debate,</span>
-<span id="cb37-3"><a></a>  <span class="at">stmobj =</span> tpm_k14, </span>
-<span id="cb37-4"><a></a>  <span class="at">metadata =</span> chats_topics)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a>effects <span class="ot">&lt;-</span> <span class="fu">estimateEffect</span>(</span>
+<span id="cb40-2"><a></a>  <span class="at">formula =</span><span class="sc">~</span> platform <span class="sc">+</span> debate <span class="sc">+</span> message_during_debate,</span>
+<span id="cb40-3"><a></a>  <span class="at">stmobj =</span> tpm_k14, </span>
+<span id="cb40-4"><a></a>  <span class="at">metadata =</span> chats_topics)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in estimateEffect(formula = ~platform + debate + message_during_debate, : Covariate matrix is singular.  See the details of ?estimateEffect() for some common causes.
+             Adding a small prior 1e-5 for numerical stability.</code></pre>
+</div>
 </div>
 <div style="font-size: smaller;">
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a><span class="fu">summary</span>(effects, <span class="at">topics =</span> <span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a><span class="fu">summary</span>(effects, <span class="at">topics =</span> <span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -4492,18 +4503,18 @@ estimateEffect(formula = ~platform + debate + message_during_debate,
 Topic 12:
 
 Coefficients:
-                         Estimate Std. Error t value Pr(&gt;|t|)  
-(Intercept)              0.233267  28.851120   0.008   0.9935  
-platformyoutube         -0.146956  28.851023  -0.005   0.9959  
-debatevice presidential -0.158080  28.851006  -0.005   0.9956  
-message_during_debate    0.012086   0.004782   2.527   0.0115 *
+                         Estimate Std. Error t value Pr(&gt;|t|)   
+(Intercept)              0.130299  29.076022   0.004  0.99642   
+platformyoutube         -0.044308  29.075963  -0.002  0.99878   
+debatevice presidential -0.054949  29.075974  -0.002  0.99849   
+message_during_debate    0.012174   0.004523   2.691  0.00712 **
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a><span class="fu">summary</span>(effects, <span class="at">topics =</span> <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a><span class="fu">summary</span>(effects, <span class="at">topics =</span> <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -4514,11 +4525,11 @@ estimateEffect(formula = ~platform + debate + message_during_debate,
 Topic 8:
 
 Coefficients:
-                          Estimate Std. Error t value Pr(&gt;|t|)
-(Intercept)              0.5983277 29.1722232   0.021    0.984
-platformyoutube         -0.5083573 29.1722406  -0.017    0.986
-debatevice presidential -0.4886385 29.1722663  -0.017    0.987
-message_during_debate    0.0009576  0.0049386   0.194    0.846</code></pre>
+                         Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)              0.343159  29.348608   0.012    0.991
+platformyoutube         -0.253151  29.348565  -0.009    0.993
+debatevice presidential -0.233550  29.348558  -0.008    0.994
+message_during_debate    0.001028   0.004541   0.226    0.821</code></pre>
 </div>
 </div>
 </div></div>
@@ -4590,9 +4601,9 @@ message_during_debate    0.0009576  0.0049386   0.194    0.846</code></pre>
 <li>Führt folgenden Code-Chunk aus:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a><span class="fu">install.packages</span>(<span class="st">"stminsights"</span>)</span>
-<span id="cb42-2"><a></a><span class="fu">library</span>(stminsights)</span>
-<span id="cb42-3"><a></a><span class="fu">run_stminsights</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a><span class="fu">install.packages</span>(<span class="st">"stminsights"</span>)</span>
+<span id="cb46-2"><a></a><span class="fu">library</span>(stminsights)</span>
+<span id="cb46-3"><a></a><span class="fu">run_stminsights</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Ladet den Datensatz in die App.</li>
@@ -4879,44 +4890,6 @@ Wilkerson, J., &amp; Casas, A. (2017). Large-Scale Computerized Text Analysis in
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

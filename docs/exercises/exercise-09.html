@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Advanced Twitch Chat Analysis – Digital behavioral data</title>
+<title>Topic Modeling with stminsights – Digital behavioral data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -54,7 +54,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -70,8 +90,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e8fb9d25728d58bfeac61b497e4a6629.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-57a92833092fd6dc0d7710b6bdfff9c5.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-57476271c5f0467c372e20ff5d25630e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-391c4f7f0df7475a7487d1067a5e1fc7.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-2bb03e02df4adaeba556f08ab559a131.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
@@ -107,8 +127,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="../styles.css">
-<meta property="og:title" content="Advanced Twitch Chat Analysis – Digital behavioral data">
-<meta property="og:description" content="Session 08 - 🔨 Advanced Methods in R">
+<meta property="og:title" content="Topic Modeling with stminsights – Digital behavioral data">
+<meta property="og:description" content="Session 09 - 🔨 Advanced Methods in R">
 <meta property="og:site_name" content="Digital behavioral data">
 </head>
 
@@ -121,7 +141,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Advanced Twitch Chat Analysis</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Topic Modeling with <code>stminsights</code></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -292,25 +312,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a></li>
-  <li><a href="#todayss-data-basis-advanced-text-analysis" id="toc-todayss-data-basis-advanced-text-analysis" class="nav-link" data-scroll-target="#todayss-data-basis-advanced-text-analysis">Todays’s data basis: Advanced Text Analysis</a></li>
   <li><a href="#preparation" id="toc-preparation" class="nav-link" data-scroll-target="#preparation">Preparation</a>
   <ul>
   <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
-  <li><a href="#import-und-vorverarbeitung-der-daten" id="toc-import-und-vorverarbeitung-der-daten" class="nav-link" data-scroll-target="#import-und-vorverarbeitung-der-daten">Import und Vorverarbeitung der Daten</a></li>
+  <li><a href="#import-und-vorverarbeitung-der-daten" id="toc-import-und-vorverarbeitung-der-daten" class="nav-link" data-scroll-target="#import-und-vorverarbeitung-der-daten">Import und Vorverarbeitung der Daten</a>
+  <ul class="collapse">
   <li><a href="#vorverarbeitung-der-daten" id="toc-vorverarbeitung-der-daten" class="nav-link" data-scroll-target="#vorverarbeitung-der-daten">Vorverarbeitung der Daten</a></li>
   <li><a href="#vorverarbeitung-des-korpus" id="toc-vorverarbeitung-des-korpus" class="nav-link" data-scroll-target="#vorverarbeitung-des-korpus">Vorverarbeitung des Korpus</a></li>
   <li><a href="#add-docvars" id="toc-add-docvars" class="nav-link" data-scroll-target="#add-docvars">Add docvars</a></li>
   <li><a href="#fokus-on-the-majority-report" id="toc-fokus-on-the-majority-report" class="nav-link" data-scroll-target="#fokus-on-the-majority-report">Fokus on The Majority Report</a></li>
-  <li><a href="#topic-models" id="toc-topic-models" class="nav-link" data-scroll-target="#topic-models">Topic Models</a>
-  <ul class="collapse">
-  <li><a href="#k-12" id="toc-k-12" class="nav-link" data-scroll-target="#k-12">K = 12</a></li>
-  <li><a href="#k-14" id="toc-k-14" class="nav-link" data-scroll-target="#k-14">K = 14</a></li>
-  <li><a href="#k-18" id="toc-k-18" class="nav-link" data-scroll-target="#k-18">K = 18</a></li>
+  <li><a href="#export-topic-models" id="toc-export-topic-models" class="nav-link" data-scroll-target="#export-topic-models">Export topic models</a></li>
   </ul></li>
-  <li><a href="#save-images" id="toc-save-images" class="nav-link" data-scroll-target="#save-images">Save images</a></li>
   </ul></li>
-  <li><a href="#praktische-übung" id="toc-praktische-übung" class="nav-link" data-scroll-target="#praktische-übung">🛠️ Praktische Übung</a></li>
+  <li><a href="#praktische-übung" id="toc-praktische-übung" class="nav-link" data-scroll-target="#praktische-übung">🛠️ Praktische Übung</a>
+  <ul>
+  <li><a href="#prepare-and-save-workspace" id="toc-prepare-and-save-workspace" class="nav-link" data-scroll-target="#prepare-and-save-workspace">Prepare and save workspace</a></li>
   <li><a href="#start-stminsights" id="toc-start-stminsights" class="nav-link" data-scroll-target="#start-stminsights">Start <code>stminsights</code></a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/chrdrn/dbd_2024/edit/main/exercises/exercise-09.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/chrdrn/dbd_2024/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -319,8 +337,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Advanced Twitch Chat Analysis</h1>
-<p class="subtitle lead">Session 08 - 🔨 Advanced Methods in R</p>
+<h1 class="title">Topic Modeling with <code>stminsights</code></h1>
+<p class="subtitle lead">Session 09 - 🔨 Advanced Methods in R</p>
 </div>
 
 
@@ -331,7 +349,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">18.12.2024</p>
+      <p class="date">05.01.2025</p>
     </div>
   </div>
   
@@ -361,27 +379,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Ziel der Anwendung: Fortgeschrittene Korpusanalyse in R
+Ziel der Anwendung: Anwendung von <code>stminsights</code>
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Review advanced methods of working with R, tidyverse, and ggplot2</li>
-<li>Get to know the typical steps of advanced text analysis with <code>quanteda</code>, from tokenisation and summarisation to visualisation.</li>
+<li>Auf- bzw. Vorbereitung der Daten zur Anwendung mit <code>stminsights</code> <span class="citation" data-cites="schwemmer2021">(v0.4.3, <a href="#ref-schwemmer2021" role="doc-biblioref">Schwemmer 2021</a>)</span></li>
 </ul>
 </div>
 </div>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-</section>
-<section id="todayss-data-basis-advanced-text-analysis" class="level2 callout-tipa">
-<h2 class="anchored" data-anchor-id="todayss-data-basis-advanced-text-analysis">Todays’s data basis: Advanced Text Analysis</h2>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Todays’s data basis: Topic Modeling
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><strong>Transcripts &amp; Chats of the Live-Streams</strong> from <a href="https://www.twitch.tv/hasanabi"><i class="bi-twitch " style="" role="img" aria-hidden="true"></i> hasanabi</a> and <a href="https://www.twitch.tv/zackrawrr"><i class="bi-twitch " style="" role="img" aria-hidden="true"></i> zackrawrr</a> and <a href="https://www.youtube.com/majorityreportlive"><i class="bi-youtube " style="" role="img" aria-hidden="true"></i></a>|<a href="https://www.twitch.tv/themajorityreport"><i class="bi-twitch " style="" role="img" aria-hidden="true"></i> TheMajorityReport</a> for the <strong>Presidential</strong> (Harris vs.&nbsp;Trump) and <strong>Vice-Presidential</strong> (Vance vs.&nbsp;Walz) <strong>Debates</strong> 2024</p>
-</section>
+</div>
+</div>
 <ul>
 <li>The best way to learn R is by trying. This document tries to display a version of the “normal” data processing procedure.</li>
 <li>Use <code>tidytuesday</code> data as an example to showcase the potential</li>
 </ul>
+</section>
 <section id="preparation" class="level2">
 <h2 class="anchored" data-anchor-id="preparation">Preparation</h2>
 <section id="packages" class="level3">
@@ -412,6 +438,19 @@ Ziel der Anwendung: Fortgeschrittene Korpusanalyse in R
 </section>
 <section id="import-und-vorverarbeitung-der-daten" class="level3">
 <h3 class="anchored" data-anchor-id="import-und-vorverarbeitung-der-daten">Import und Vorverarbeitung der Daten</h3>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Information
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For information about how the data, especially the topic modeling results, were prepared, processed and estimated, please see the <a href="../tutorials/tutorial-09.html">tutorial</a>.</p>
+</div>
+</div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import base data</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>chats <span class="ot">&lt;-</span> qs<span class="sc">::</span><span class="fu">qread</span>(<span class="fu">here</span>(<span class="st">"local_data/chat-debates_full.qs"</span>))<span class="sc">$</span>correct</span>
@@ -421,9 +460,8 @@ Ziel der Anwendung: Fortgeschrittene Korpusanalyse in R
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>stm_search <span class="ot">&lt;-</span> qs<span class="sc">::</span><span class="fu">qread</span>(<span class="fu">here</span>(<span class="st">"local_data/stm-majority_report-search.qs"</span>))</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>stm_results <span class="ot">&lt;-</span> qs<span class="sc">::</span><span class="fu">qread</span>(<span class="fu">here</span>(<span class="st">"local_data/stm-majority_report-results.qs"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="vorverarbeitung-der-daten" class="level3">
-<h3 class="anchored" data-anchor-id="vorverarbeitung-der-daten">Vorverarbeitung der Daten</h3>
+<section id="vorverarbeitung-der-daten" class="level4">
+<h4 class="anchored" data-anchor-id="vorverarbeitung-der-daten">Vorverarbeitung der Daten</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>chats_valid <span class="ot">&lt;-</span> chats <span class="sc">%&gt;%</span> </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
@@ -431,8 +469,8 @@ Ziel der Anwendung: Fortgeschrittene Korpusanalyse in R
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="vorverarbeitung-des-korpus" class="level3">
-<h3 class="anchored" data-anchor-id="vorverarbeitung-des-korpus">Vorverarbeitung des Korpus</h3>
+<section id="vorverarbeitung-des-korpus" class="level4">
+<h4 class="anchored" data-anchor-id="vorverarbeitung-des-korpus">Vorverarbeitung des Korpus</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># spacyr-Korpus zu Tokens</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>chat_spacyr_toks <span class="ot">&lt;-</span> chats_spacyr <span class="sc">%&gt;%</span> </span>
@@ -453,8 +491,8 @@ Ziel der Anwendung: Fortgeschrittene Korpusanalyse in R
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tokens_ngrams</span>(<span class="at">n =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="add-docvars" class="level3">
-<h3 class="anchored" data-anchor-id="add-docvars">Add docvars</h3>
+<section id="add-docvars" class="level4">
+<h4 class="anchored" data-anchor-id="add-docvars">Add docvars</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get document names from the original data</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>original_docnames <span class="ot">&lt;-</span> chats<span class="sc">$</span>message_id</span>
@@ -473,8 +511,8 @@ Ziel der Anwendung: Fortgeschrittene Korpusanalyse in R
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">docvars</span>(chat_spacyr_toks) <span class="ot">&lt;-</span> chats_filtered</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="fokus-on-the-majority-report" class="level3">
-<h3 class="anchored" data-anchor-id="fokus-on-the-majority-report">Fokus on The Majority Report</h3>
+<section id="fokus-on-the-majority-report" class="level4">
+<h4 class="anchored" data-anchor-id="fokus-on-the-majority-report">Fokus on The Majority Report</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset tokens based on docvars</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>majority_report_chat_toks <span class="ot">&lt;-</span> <span class="fu">tokens_subset</span>(</span>
@@ -507,10 +545,10 @@ Ziel der Anwendung: Fortgeschrittene Korpusanalyse in R
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(streamer <span class="sc">==</span> <span class="st">"the_majority_report"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="topic-models" class="level3">
-<h3 class="anchored" data-anchor-id="topic-models">Topic Models</h3>
-<section id="k-12" class="level4">
-<h4 class="anchored" data-anchor-id="k-12">K = 12</h4>
+<section id="export-topic-models" class="level4">
+<h4 class="anchored" data-anchor-id="export-topic-models">Export topic models</h4>
+<section id="k-12" class="level5">
+<h5 class="anchored" data-anchor-id="k-12">K = 12</h5>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get model</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>tpm_k12 <span class="ot">&lt;-</span> stm_results <span class="sc">%&gt;%</span> </span>
@@ -524,8 +562,8 @@ Ziel der Anwendung: Fortgeschrittene Korpusanalyse in R
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">metadata =</span> chats_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="k-14" class="level4">
-<h4 class="anchored" data-anchor-id="k-14">K = 14</h4>
+<section id="k-14" class="level5">
+<h5 class="anchored" data-anchor-id="k-14">K = 14</h5>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get model</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>tpm_k14 <span class="ot">&lt;-</span> stm_results <span class="sc">%&gt;%</span> </span>
@@ -539,8 +577,8 @@ Ziel der Anwendung: Fortgeschrittene Korpusanalyse in R
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">metadata =</span> chats_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="k-18" class="level4">
-<h4 class="anchored" data-anchor-id="k-18">K = 18</h4>
+<section id="k-18" class="level5">
+<h5 class="anchored" data-anchor-id="k-18">K = 18</h5>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get model</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>tpm_k18 <span class="ot">&lt;-</span> stm_results <span class="sc">%&gt;%</span> </span>
@@ -555,14 +593,6 @@ Ziel der Anwendung: Fortgeschrittene Korpusanalyse in R
 </div>
 </section>
 </section>
-<section id="save-images" class="level3">
-<h3 class="anchored" data-anchor-id="save-images">Save images</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> majority_report_chat_trim</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> majority_report_chat_stm</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">save.image</span>(<span class="fu">here</span>(<span class="st">"local_data/stm_session_09.RData"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 </section>
 <section id="praktische-übung" class="level2">
@@ -583,18 +613,41 @@ Achtung, bitte lesen!
 </ul>
 </div>
 </div>
+<section id="prepare-and-save-workspace" class="level3">
+<h3 class="anchored" data-anchor-id="prepare-and-save-workspace">Prepare and save workspace</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set names required by stminsights</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> majority_report_chat_trim</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> majority_report_chat_stm</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Clean workspace</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">setdiff</span>(</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ls</span>(),</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">"data"</span>, <span class="st">"out"</span>,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"tpm_k12"</span>, <span class="st">"tpm_k14"</span>, <span class="st">"tpm_k18"</span>, </span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"effects_k12"</span>, <span class="st">"effects_k14"</span>, <span class="st">"effects_k18"</span>)))</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Save workspace</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="fu">save.image</span>(<span class="fu">here</span>(<span class="st">"stm_session_09.RData"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="start-stminsights" class="level2">
-<h2 class="anchored" data-anchor-id="start-stminsights">Start <code>stminsights</code></h2>
+<section id="start-stminsights" class="level3">
+<h3 class="anchored" data-anchor-id="start-stminsights">Start <code>stminsights</code></h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stminsights)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">run_stminsights</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
+
+</section>
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-schwemmer2021" class="csl-entry" role="listitem">
+Schwemmer, Carsten. 2021. <em>Stminsights: A Shiny Application for Inspecting Structural Topic Models</em>. <a href="https://github.com/cschwem2er/stminsights">https://github.com/cschwem2er/stminsights</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

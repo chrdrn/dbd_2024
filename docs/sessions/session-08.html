@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -36,12 +36,13 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-a8319c1cf6773f4a5c9a0b7b7e89f344.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark-0aec2d94dbdb5e6d406284aae2ad85c6.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/quarto-contrib/bootstrap-icons-1.11.1/all.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -257,7 +258,12 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#participate" id="toc-participate" class="nav-link active" data-scroll-target="#participate">Participate</a></li>
-  <li><a href="#suggested-readings" id="toc-suggested-readings" class="nav-link" data-scroll-target="#suggested-readings">Suggested readings</a></li>
+  <li><a href="#suggested-readings" id="toc-suggested-readings" class="nav-link" data-scroll-target="#suggested-readings">Suggested readings</a>
+  <ul class="collapse">
+  <li><a href="#with-focus-on-n-gram-methods" id="toc-with-focus-on-n-gram-methods" class="nav-link" data-scroll-target="#with-focus-on-n-gram-methods">… with focus on n-gram methods</a></li>
+  <li><a href="#with-focus-on-topic-modeling" id="toc-with-focus-on-topic-modeling" class="nav-link" data-scroll-target="#with-focus-on-topic-modeling">… with focus on topic modeling</a></li>
+  </ul></li>
+  <li><a href="#useful-packages" id="toc-useful-packages" class="nav-link" data-scroll-target="#useful-packages">Useful packages</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/chrdrn/dbd_2024/edit/main/sessions/session-08.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/chrdrn/dbd_2024/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -292,10 +298,35 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="suggested-readings">Suggested readings</h2>
 <ul>
 <li><p><span class="citation" data-cites="atteveldt2021">Atteveldt, W. van, Trilling, D., &amp; Arcíla, C. (2021). <em>Computational analysis of communication: A practical introduction to the analysis of texts, networks, and images with code examples in python and r</em>. John Wiley &amp; Sons.</span></p></li>
+<li><p><span class="citation" data-cites="grimmer2022">Grimmer, J., Roberts, M. E., &amp; Stewart, B. M. (2022). <em>Text as data: A new framework for machine learning and the social sciences</em>. Princeton University Press.</span></p></li>
+<li><p><span class="citation" data-cites="jurafsky2024">Jurafsky, D., &amp; Martin, J. H. (2024). <em>Speech and language processing: An introduction to natural language processing, computational linguistics, and speech recognition with language models</em> (3rd ed.). <a href="https://web.stanford.edu/~jurafsky/slp3/">https://web.stanford.edu/~jurafsky/slp3/</a></span></p></li>
+<li><p><span class="citation" data-cites="silge2017">Silge, J., &amp; Robinson, D. (2017). <em>Text mining with r: A tidy approach</em> (First edition). O’Reilly.</span></p></li>
+</ul>
+<section id="with-focus-on-n-gram-methods" class="level3">
+<h3 class="anchored" data-anchor-id="with-focus-on-n-gram-methods">… with focus on n-gram methods</h3>
+<ul>
+<li><p><span class="citation" data-cites="nicholls2019">Nicholls, T. (2019). Detecting Textual Reuse in News Stories, At Scale. <em>International Journal of Communication</em>, <em>13</em>(0), 25. <a href="https://ijoc.org/index.php/ijoc/article/view/9904">https://ijoc.org/index.php/ijoc/article/view/9904</a></span></p></li>
+<li><p><span class="citation" data-cites="arendt2017">Arendt, F., &amp; Karadas, N. (2017). Content analysis of mediated associations: An automated text-analytic approach. <em>Communication Methods and Measures</em>, <em>11</em>(2), 105–120. <a href="https://doi.org/10.1080/19312458.2016.1276894">https://doi.org/10.1080/19312458.2016.1276894</a></span></p></li>
+</ul>
+</section>
+<section id="with-focus-on-topic-modeling" class="level3">
+<h3 class="anchored" data-anchor-id="with-focus-on-topic-modeling">… with focus on topic modeling</h3>
+<ul>
 <li><p><span class="citation" data-cites="chen2023">Chen, Y., Peng, Z., Kim, S.-H., &amp; Choi, C. W. (2023). What We Can Do and Cannot Do with Topic Modeling: A Systematic Review. <em>Communication Methods and Measures</em>, <em>17</em>(2), 111–130. <a href="https://doi.org/10.1080/19312458.2023.2167965">https://doi.org/10.1080/19312458.2023.2167965</a></span></p></li>
 <li><p><span class="citation" data-cites="hase2023">Hase, V. (2023). <em>Automated Content Analysis</em> (F. Oehmer-Pedrazzi, S. H. Kessler, E. Humprecht, K. Sommer, &amp; L. Castro, Eds.; pp. 23–36). Springer Fachmedien Wiesbaden. <a href="https://link.springer.com/10.1007/978-3-658-36179-2_3">https://link.springer.com/10.1007/978-3-658-36179-2_3</a></span></p></li>
 <li><p><span class="citation" data-cites="maier2018">Maier, D., Waldherr, A., Miltner, P., Wiedemann, G., Niekler, A., Keinert, A., Pfetsch, B., Heyer, G., Reber, U., Häussler, T., Schmid-Petri, H., &amp; Adam, S. (2018). Applying LDA Topic Modeling in Communication Research: Toward a Valid and Reliable Methodology. <em>Communication Methods and Measures</em>, <em>12</em>(2-3), 93–118. <a href="https://doi.org/10.1080/19312458.2018.1430754">https://doi.org/10.1080/19312458.2018.1430754</a></span></p></li>
-<li><p><span class="citation" data-cites="silge2017">Silge, J., &amp; Robinson, D. (2017). <em>Text mining with r: A tidy approach</em> (First edition). O’Reilly.</span></p></li>
+</ul>
+</section>
+</section>
+<section id="useful-packages" class="level2">
+<h2 class="anchored" data-anchor-id="useful-packages">Useful packages</h2>
+<ul>
+<li><p><code>quanteda</code> <a href="https://quanteda.io/index.html">🌐</a> | <a href="https://github.com/quanteda/quanteda"><i class="bi-github " style="" role="img" aria-hidden="true"></i></a><br>
+<span class="citation" data-cites="benoit2018">Benoit, K., Watanabe, K., Wang, H., Nulty, P., Obeng, A., Müller, S., &amp; Matsuo, A. (2018). Quanteda: An r package for the quantitative analysis of textual data. <em>Journal of Open Source Software</em>, <em>3</em>(30), 774. <a href="https://doi.org/10.21105/joss.00774">https://doi.org/10.21105/joss.00774</a></span></p></li>
+<li><p><code>textreuse</code> <a href="https://docs.ropensci.org/textreuse/">🌐</a> | <a href="https://github.com/ropensci/textreuse"><i class="bi-github " style="" role="img" aria-hidden="true"></i></a><br>
+<span class="citation" data-cites="li2024">Li, Y., &amp; Mullen, L. (2024). <em>Textreuse: Detect text reuse and document similarity</em>. <a href="https://docs.ropensci.org/textreuse (website)     https://github.com/ropensci/textreuse">https://docs.ropensci.org/textreuse (website) https://github.com/ropensci/textreuse</a></span></p></li>
+<li><p><code>tidytext</code> <a href="https://juliasilge.github.io/tidytext/">🌐</a> | <a href="https://github.com/juliasilge/tidytext"><i class="bi-github " style="" role="img" aria-hidden="true"></i></a><br>
+<span class="citation" data-cites="silge2016">Silge, J., &amp; Robinson, D. (2016). Tidytext: Text mining and analysis using tidy data principles in r. <em>The Journal of Open Source Software</em>, <em>1</em>(3), 37. <a href="https://doi.org/10.21105/joss.00037">https://doi.org/10.21105/joss.00037</a></span></p></li>
 </ul>
 <p><br></p>
 <div style="font-size: 0.875em;">
