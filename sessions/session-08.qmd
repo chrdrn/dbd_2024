@@ -16,13 +16,37 @@ citations-hover: false
 
 -   [@atteveldt2021]
 
+-   [@grimmer2022]
+
+-   [@jurafsky2024]
+
+-   [@silge2017]
+
+### ... with focus on n-gram methods
+
+-   [@nicholls2019]
+
+-   [@arendt2017]
+
+### ... with focus on topic modeling
+
 -   [@chen2023]
 
 -   [@hase2023]
 
 -   [@maier2018]
 
--   [@silge2017]
+## Useful packages
+
+-   `quanteda` [🌐](https://quanteda.io/index.html) \| [{{< bi github >}}](https://github.com/quanteda/quanteda)\
+    [@benoit2018]
+
+-   `textreuse` [🌐](https://docs.ropensci.org/textreuse/) \| [{{< bi github >}}](https://github.com/ropensci/textreuse)\
+    [@li2024]
+
+-   `tidytext` [🌐](https://juliasilge.github.io/tidytext/) \| [{{< bi github >}}](https://github.com/juliasilge/tidytext)\
+    [@silge2016]
+
 
 <br>
 

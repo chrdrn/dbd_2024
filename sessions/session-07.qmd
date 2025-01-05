@@ -18,6 +18,10 @@ citations-hover: false
 
 -   [@silge2017]
 
+## Useful packages
+-   `chat_downloader` [🌐](https://chat-downloader.readthedocs.io/en/latest/) |  [{{< bi github >}}](https://github.com/xenova/chat-downloader)\
+-   `twitch-dl` [🌐](https://twitch-dl.bezdomni.net/) | [{{< bi github >}}](https://github.com/ihabunek/twitch-dl))
+
 ## Useful resources
 
 -   [🌐 twitchtracker.com](https://twitchtracker.com/)

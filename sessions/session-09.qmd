@@ -1,0 +1,67 @@
+---
+title: "Session 9"
+subtitle: "🔨 Advanced Methods: Topic Modeling"
+bibliography: references_sessions.bib
+csl: ../apa-cv.csl 
+suppress-bibliography: true
+link-citations: false
+citations-hover: false
+---
+
+## Participate
+
+🖥️ [Session 09](/slides/slides-09.html)
+
+## Suggested readings
+
+-   [@chen2023]
+
+-   [@hase2023]
+
+-   [@maier2018]
+
+## Additional readings
+
+-   [@bernhard2023]
+
+-   [@churchill2022]
+
+-   [@denny2018]
+
+-   [@maier2020]
+
+-   [@quinn2010]
+
+-   [@roberts2014]
+
+## Useful packages
+
+-   `quanteda` [🌐](https://quanteda.io/index.html) \| [{{< bi github >}}](https://github.com/quanteda/quanteda)\
+    [@benoit2018]
+
+-   `stm` [🌐](https://www.structuraltopicmodel.com/) \| [{{< bi github >}}](https://github.com/bstewart/stm) für Structural Topic Modeling\
+    [@roberts2019]
+
+-   `keyATM` [🌐](https://keyatm.github.io/keyATM/) \| [{{< bi github >}}](https://github.com/keyATM/keyATM) für Keyword Assisted Topic Modeling\
+    [@esser2019]
+
+-   `topicmodels` [🌐](https://cran.r-project.org/web/packages/topicmodels/index.html) für LDA basiertes Verfahren \
+    [@grün]
+
+-   `tidytext` [🌐](https://juliasilge.github.io/tidytext/) \| [{{< bi github >}}](https://github.com/juliasilge/tidytext) für Extraktion z.B. der Theta- oder Phi-Matrix\
+    [@silge2016]
+
+-   `LDAvis`[{{< bi github >}}](https://github.com/cpsievert/LDAvis) zur Visualisierung\
+    [@sievert]
+
+-   `stminsights` [🌐](https://cschwem2er.github.io/stminsights/) \| [{{< bi github >}}](https://github.com/cschwem2er/stminsights) zur Visualisierung \
+    [@schwemmer2021]
+
+-   `oolong` [🌐](https://gesistsa.github.io/oolong/) \| [{{< bi github >}}](https://github.com/gesistsa/oolong/) für Validierungen \
+    [@chan2020]
+
+<br>
+
+::: {style="font-size: 0.875em;"}
+Back to [course schedule](/index.html "Course schedule") ⏎
+:::
