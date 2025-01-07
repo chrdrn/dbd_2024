@@ -1,0 +1,35 @@
+---
+title: "Session 10"
+subtitle: "🔨 Advanced Methods: Sentiment Analysis"
+bibliography: references_sessions.bib
+csl: ../apa-cv.csl 
+suppress-bibliography: true
+link-citations: false
+citations-hover: false
+---
+
+## Participate
+
+🖥️ [Session 10](/slides/slides-10.html)
+
+## Useful packages
+
+-   `quanteda` [🌐](https://quanteda.io/index.html) \| [{{< bi github >}}](https://github.com/quanteda/quanteda)\
+    [@benoit2018]
+
+-   `quanteda.sentiment` [{{< bi github >}}](https://github.com/quanteda/quanteda.sentiment)
+
+-   `tidymodels` [🌐](https://www.tidymodels.org/) \| [{{< bi github >}}](https://github.com/tidymodels/tidymodels)\
+    [@kuhn2020]
+
+-   `ellmer` [🌐](https://ellmer.tidyverse.org/index.html) \| [{{< bi github >}}](https://github.com/tidyverse/ellmer/)\
+    [@wickham2024]
+
+-   `rollama` [🌐](https://jbgruber.github.io/rollama/) \| [{{< bi github >}}](https://github.com/JBGruber/rollama/)\
+    [@gruber2024]
+
+<br>
+
+::: {style="font-size: 0.875em;"}
+Back to [course schedule](/index.html "Course schedule") ⏎
+:::

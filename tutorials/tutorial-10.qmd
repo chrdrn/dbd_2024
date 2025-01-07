@@ -1,0 +1,535 @@
+---
+title: "🔨 Sentiment Analysis with R"
+subtitle: "Tutorial - Session 10"
+date: last-modified
+date-format: "DD.MM.YYYY"
+---
+
+::: {.callout-tip icon="false"}
+[![Quarto Slides](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto-slide.svg) Link to slides](../slides/slides-10.html)
+
+[![](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-quarto_document.svg) Download source file](https://github.com/chrdrn/dbd_2024/blob/main/tutorials/tutorial-10.qmd)
+
+[![](https://raw.githubusercontent.com/faucommsci/teaching_materials/refs/heads/main/images/badges/badge-binder_rstudio.svg) Open interactive and executable RStudio environment](https://mybinder.org/v2/gh/faucommsci/dbd_binder/HEAD?urlpath=rstudio)
+:::
+
+## Background
+
+## Preparation
+
+```{r load-packages}
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(
+    here, 
+    magrittr, janitor,
+    ggpubr, ggdist, ggsci,
+    gt, gtExtras,
+    countdown, 
+    quanteda, # quanteda text processing
+    quanteda.textplots, quanteda.textstats, 
+    quanteda.textmodels, quanteda.sentiment, 
+    ellmer, rollama,
+    tidymodels,
+    easystats, tidyverse
+)
+```
+
+```{r import-data-frontend}
+#| eval: false
+# Import base data
+chats <- qs::qread(here("local_data/chats.qs"))
+corp_chats <- chats %>% 
+    quanteda::corpus(docid_field = "message_id", text_field = "message_content")
+```
+
+```{r import-data-backend}
+#| echo: false
+chats <- qs::qread(here("local_data/chats.qs"))
+chats_polarity <- qs::qread(here("local_data/chats-sentiment_polarity.qs"))
+chats_valence <- qs::qread(here("local_data/chats-sentiment_valence.qs"))
+chats_vader <- qs::qread(here("local_data/chats-sentiment_vader.qs"))
+chats_sentiment <- chats %>% 
+    left_join(chats_polarity, by = join_by("message_id" == "doc_id")) %>%
+    left_join(chats_valence, by = join_by("message_id" == "doc_id")) %>% 
+    left_join(chats_vader %>% 
+        select(message_id, vader_output, word_scores, compound, pos, neu, neg, but_count), 
+        by = "message_id")
+lasso_grid <- qs::qread(here("local_data/tidymodels-lasso_grid.qs"))
+```
+
+## Codechunks aus der Sitzung
+
+### Praktische Anwedung von `quanteda.sentiment`
+
+```{r chats-polarity-create}
+#| eval: false
+chats_polarity <- corp_chats %>% 
+  textstat_polarity(
+    dictionary = data_dictionary_LSD2015) %>% 
+  rename(polarity = sentiment)
+```
+
+```{r chats-polarity-output}
+chats_polarity %>% 
+    head(n = 10) 
+```
+
+```{r chats-valence-create}
+#| eval: false
+chats_valence <- corp_chats %>% 
+  textstat_valence(
+    dictionary = data_dictionary_AFINN) %>% 
+  rename(valence = sentiment)
+```
+
+```{r chats-valence-output}
+chats_valence %>% 
+    head(n = 10)
+```
+
+```{r save-sentiment-data-backend}
+#| eval: false
+#| echo: false
+
+qs::qsave(chats_polarity, file = here("local_data/chats-sentiment_polarity.qs"))
+qs::qsave(chats_valence, file = here("local_data/chats-sentiment_valence.qs"))
+```
+
+### Praktische Anwedung von `vader`
+
+```{r vader-data-create}
+#| eval: false
+
+chats_vader <- chats %>% 
+  mutate(
+    vader_output = map(message_content, ~vader::get_vader(.x)), 
+    # Extract word-level scores
+    word_scores = map(vader_output, ~ .x[
+        names(.x) != "compound" &
+        names(.x) != "pos" & 
+        names(.x) != "neu" & 
+        names(.x) != "neg" & 
+        names(.x) != "but_count"]),  
+    compound = map_dbl(vader_output, ~ as.numeric(.x["compound"])),
+    pos = map_dbl(vader_output, ~ as.numeric(.x["pos"])),
+    neu = map_dbl(vader_output, ~ as.numeric(.x["neu"])),
+    neg = map_dbl(vader_output, ~ as.numeric(.x["neg"])),
+    but_count = map_dbl(vader_output, ~ as.numeric(.x["but_count"]))
+  )
+```
+
+```{r save-sentiment-vader-backend}
+#| eval: false
+qs::qsave(chats_vader, file = here("local_data/chats-vader.qs"))
+```
+
+```{r vader-data-overview}
+chats_vader %>% 
+    select(message_id, compound:but_count) %>% 
+    head(n = 20)
+```
+
+### Zusammenführung Dictionary-Sentiments
+
+```{r chats-sentiment-create}
+#| eval: false
+chats_sentiment <- chats %>% 
+    left_join(chats_polarity, by = join_by("message_id" == "doc_id")) %>%
+    left_join(chats_valence, by = join_by("message_id" == "doc_id")) %>% 
+    left_join(chats_vader %>% 
+        select(message_id, vader_output, word_scores, compound, pos, neu, neg, but_count), 
+        by = "message_id")
+```
+
+```{r chats-sentiment-distribution}
+chats_sentiment %>% 
+    select(message_id, polarity, valence, compound) %>%
+    datawizard::describe_distribution()
+```
+
+### Verschiedene VADER-Visualisierungen
+
+```{r chats-sentiment-vader-subsample}
+chats_vader_sample <- chats_vader %>%
+    filter(message_length < 100) %>%
+    slice_sample(n = 10) 
+
+```
+
+```{r chats-sentiment-compound-scores}
+chats_vader_sample %>%
+    ggplot(aes(x = message_content, y = compound, fill = compound > 0)) +
+        geom_bar(stat = "identity", width = 0.7) +
+        scale_fill_manual(values = c("TRUE" = "blue", "FALSE" = "red"), labels = c("Positive", "Negative")) +
+        labs(
+            title = "Overall Compound Sentiment for Each Sentence",
+            x = "Sentences",
+            y = "Compound Sentiment",
+            fill = "Sentiment") +
+        coord_flip() +  # Flip for easier readability
+        theme_minimal() +
+        theme(
+            axis.text.x = element_text(angle = 45, hjust = 1))  # Label wrapping and adjusting angle
+```
+
+```{r chats-sentiment-word-level-scores}
+
+chats_vader_sample %>% 
+    mutate(
+        pos_pct = pos * 100,
+        neu_pct = neu * 100,
+        neg_pct = neg * 100) %>% 
+  select(message_content, pos_pct, neu_pct, neg_pct) %>% 
+  pivot_longer(
+    cols = c(pos_pct, neu_pct, neg_pct),
+    names_to = "sentiment",
+    values_to = "percentage") %>% 
+  mutate(
+    sentiment = factor(
+        sentiment,
+        levels = c("pos_pct", "neu_pct", "neg_pct"),
+        labels = c("Positive", "Neutral", "Negative"))) %>% 
+  ggplot(aes(x = message_content, y = percentage, fill = sentiment)) +
+    geom_bar(stat = "identity", width = 0.7) +
+    scale_fill_manual(values = c("Positive" = "blue", "Neutral" = "gray", "Negative" = "red")) +
+    labs(
+        title = "Proportion of Positive, Neutral, and Negative Sentiment",
+        x = "Sentences",
+        y = "Percentage",
+        fill = "Sentiment") +
+  coord_flip() +
+  theme_minimal()
+```
+
+### Chat mit LLMs in R
+
+#### ellmer
+
+```{r ellmer-demo-1-llama3}
+ellmer_chat_llama <- ellmer::chat_ollama(
+    model = "llama3.2"
+)
+
+ellmer_chat_llama$chat("Why is the sky blue?")
+```
+
+```{r ellmer-demo-1-mistral}
+ellmer_chat_mistral <- ellmer::chat_ollama(
+    model = "mistral"
+)
+
+ellmer_chat_mistral$chat("Why is the sky blue?")
+```
+
+#### rollama
+
+```{r ollama-demo-2-llama3_2}
+demo_2_llama3_2 <- rollama::query(
+     "What is the longest five letter word in english?",
+    model = "llama3.2",
+    screen = FALSE,
+    output = "text"
+)
+
+glue::glue(demo_2_llama3_2)
+```
+
+```{r ollama-demo-2-mistral}
+demo_2_mistral <- rollama::query(
+    "What is the longest five letter word in english?",
+    model = "mistral",
+    screen = FALSE,
+    output = "text"
+)
+
+glue::glue(demo_2_mistral)
+```
+
+```{r ollama-demo-3-llama3}
+demo_3_llama3_2 <- rollama::query(
+    "Is 9677 a prime number?",
+    model = "llama3.2",
+    screen = FALSE,
+    output = "text"
+)
+
+glue::glue(demo_3_llama3_2)
+```
+
+```{r ollama-demo-3-mistral}
+demo_3_mistral <- rollama::query(
+    "Is 9677 a prime number?",
+    model = "mistral",
+    screen = FALSE,
+    output = "text"
+)
+
+glue::glue(demo_3_mistral)
+```
+
+### Sentimentscores mit LLM
+
+```{r rollama-sentiment-score-estimation}
+# Erstellung einer kleinen Stichprobe
+subsample <- chats_sentiment %>% 
+    filter(message_length > 20 & message_length < 50) %>%
+    slice_sample(n = 10) 
+
+# Process each review using make_query
+queries <- rollama::make_query(
+    text = subsample$message_content,
+    prompt = "Classify the sentiment of the provided text. Provide a sentiment score ranging from -1 (very negative) to 1 (very positive).",
+    template = "{prefix}{text}\n{prompt}",
+    system = "Classify the sentiment of this text. Respond with only a numerical sentiment score.",
+    prefix = "Text: "
+)
+
+# Create sentiment score for different models
+models <- c("llama3.2", "gemma2", "mistral")
+names <- c("llama", "gemma", "mistral")
+for (i in seq_along(models)) {
+  subsample[[names[i]]] <- rollama::query(queries, model = models[i], screen = FALSE, output = "text")
+}
+```
+
+```{r rollama-sentiment-score-comparison}
+subsample %>% 
+  select(message_content, polarity, valence, compound, llama, gemma, mistral) %>% 
+  gt() 
+```
+
+### Weiteführende Analysen
+
+```{r chats-sentiemnt-density-by-streamer}
+chats_sentiment %>% 
+    ggpubr::ggdensity(
+        x = "compound",
+        color = "streamer"
+    )
+```
+
+```{r chats-sentiment-violin-plot}
+#| code-fold: true
+#| code-summary: "Expand for full code"
+
+chats_sentiment %>% 
+    mutate(message_length_fct = case_when( 
+        message_length <= 7 ~ "<= 7 words",
+        message_length > 7 & message_length <= 34 ~ "8 to 34 words",
+        message_length >= 34 ~ "> 34 words")
+     ) %>%
+    group_by(message_length_fct) %>%
+    mutate(n = n()) %>%
+    ggviolin(
+        x = "message_length_fct",
+        y = "compound", 
+        fill = "message_length_fct"
+    ) +
+    stat_summary(
+        fun.data = function(x) data.frame(y = max(x) + 0.15, label = paste0("n=", length(x))),
+        geom = "text",
+        size = 3,
+        color = "black"
+    ) +
+    labs(
+        x = "Länge der Nachricht"
+    )
+```
+
+### Beispiele für Validierung
+
+```{r chats-sentiment-positive-messages-validation}
+chats_sentiment %>% 
+    filter(compound >= 0.95) %>% 
+    arrange(desc(compound)) %>% 
+    select(message_content, compound) %>% 
+    head(n = 3) %>% 
+    gt() %>% gtExtras::gt_theme_538()
+```
+
+```{r chats-sentiment-negative-messages-validation}
+chats_sentiment %>% 
+    filter(compound <= -0.95) %>% 
+    arrange(compound) %>% 
+    select(message_content, compound) %>% 
+    head(n = 3) %>% 
+    gt() %>% gtExtras::gt_theme_538()
+```
+
+```{r chats-sentiment-negative-messages-users}
+chats_sentiment %>% 
+    filter(compound >= 0.95) %>% 
+    sjmisc::frq(
+        user_name, 
+        min.frq = 5,
+        sort.frq = "desc")
+```
+
+## Exkurs: Machine Learning
+
+::: callout-important
+## Important information
+
+-   The following code chunks were not part of the session or the slides.
+-   Based on the **blog post (with screencast)** by [Julia Silge](https://juliasilge.com/blog/animal-crossing/), the following sections exemplify the implementation of sentiment analysis using the `tidymodels` package.
+:::
+
+### Extract data
+
+```{r tidymodels-create-datat}
+chats_tidymodels <- chats_sentiment %>% 
+    mutate(
+        rating = case_when(
+            compound > 0.5 ~ "positive",
+            compound < -0.5 ~ "negative",
+            TRUE ~ "neutral"), 
+        word_count = str_count(message_content, "\\S+")
+    ) %>% 
+    filter(rating != "neutral")
+```
+
+```{r tidymodels-overview-descriptives}
+# Distribution of compound sentiment scores
+chats_tidymodels %>% 
+    ggplot(aes(x = compound)) +
+        geom_histogram(binwidth = 0.1, fill = "lightblue", color = "darkblue") +
+        labs(
+            title = "Distribution of Compound Sentiment Scores",
+            x = "Compound Sentiment",
+            y = "Frequency") +
+    theme_minimal()   
+
+# Distribution of word count
+chats_tidymodels %>% 
+    ggplot(aes(word_count)) +
+    geom_histogram(fill = "midnightblue", alpha = 0.8) +
+    theme_minimal()
+
+chats_tidymodels %>% 
+    datawizard::describe_distribution(word_count)
+```
+
+### Build model
+
+```{r tidymodels-split-data}
+library(tidymodels)
+
+set.seed(42)
+chats_rating_splits <- initial_split(chats_tidymodels, strata = rating)
+chats_ratings_train <- training(chats_rating_splits)
+chats_ratings_test <- testing(chats_rating_splits)
+```
+
+```{r tidymodels-recipes}
+library(textrecipes)
+
+chats_ratings_rec <- recipe(rating ~ message_content, data = chats_ratings_train) %>% 
+    step_tokenize(message_content) %>% 
+    step_stopwords(message_content) %>%
+    step_tokenfilter(message_content, max_tokens = 1000) %>%
+    step_tfidf(message_content) %>% 
+    step_normalize(all_predictors()) 
+
+chats_ratings_prep <- prep(chats_ratings_rec)
+```
+
+
+```{r tidymodels-lasso-model}
+lasso_spec <- logistic_reg(penalty = tune(), mixture = 1) %>%
+  set_engine("glmnet")
+
+lasso_wf <- workflow() %>%
+  add_recipe(chats_ratings_rec) %>%
+  add_model(lasso_spec)
+
+lasso_wf
+```
+
+### Tune model parameters 
+
+```{r tidymodels-bootstrap} 
+lambda_grid <- grid_regular(penalty(), levels = 40)
+
+set.seed(42)
+chats_ratings_folds <- bootstraps(chats_ratings_train, strata = rating)
+chats_ratings_folds
+```
+
+```{r tidymodels-tune-model}
+#| eval: false
+doParallel::registerDoParallel()
+
+set.seed(2020)
+lasso_grid <- tune_grid( 
+  lasso_wf,
+  resamples = chats_ratings_folds,
+  grid = lambda_grid,
+  metrics = metric_set(roc_auc, ppv, npv)
+)
+```
+
+```{r tidymodels-save-lasso-grid-backend}
+#| eval: false
+#| echo: false
+qs::qsave(lasso_grid, file = here("local_data/tidymodels-lasso_grid.qs"))
+```
+
+
+```{r tidymodels-collect-metrics-lasso-grid}
+lasso_grid %>%
+  collect_metrics()
+```
+
+```{r tidymodels-plot-metrics-lasso-grid}
+lasso_grid %>%
+  collect_metrics() %>%
+  ggplot(aes(penalty, mean, color = .metric)) +
+  geom_line(linewidth = 1.5, show.legend = FALSE) +
+  facet_wrap(~.metric) +
+  scale_x_log10()
+```
+
+### Choose the final model 
+
+```{r tidymodels-select-best-lasso}
+best_auc <- lasso_grid %>% select_best(metric = "roc_auc")
+best_auc
+```
+
+```{r tidymodels-finalize-lasso}
+final_lasso <- finalize_workflow(lasso_wf, best_auc)
+final_lasso
+```
+
+```{r tidymodels-final-lasso-variable-importance}
+library(vip)
+
+final_lasso %>%
+  fit(chats_ratings_train) %>%
+  extract_fit_parsnip() %>%
+  vi(lambda = best_auc$penalty) %>%
+  group_by(Sign) %>%
+  top_n(20, wt = abs(Importance)) %>%
+  ungroup() %>%
+  mutate(
+    Importance = abs(Importance),
+    Variable = str_remove(Variable, "tfidf_message_content_"),
+    Variable = fct_reorder(Variable, Importance)
+  ) %>%
+  ggplot(aes(x = Importance, y = Variable, fill = Sign)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~Sign, scales = "free_y") +
+  labs(y = NULL)
+```
+
+```{r tidymodels-final-lasso}
+chats_ratings_final <- last_fit(final_lasso, chats_rating_splits)
+chats_ratings_final %>%
+  collect_metrics()
+```
+
+```{r tidymodels-confusion-matrix}
+chats_ratings_final %>% 
+  collect_predictions() %>%
+  conf_mat(rating, .pred_class)
+```

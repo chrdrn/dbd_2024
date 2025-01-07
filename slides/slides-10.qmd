@@ -1,0 +1,767 @@
+---
+title: "🔨 Sentiment Analysis"
+subtitle: "Session 10"
+date: 08 01 2025
+date-format: "DD.MM.YYYY"
+bibliography: references_slides.bib
+---
+
+## Seminarplan
+
+```{r setup-slide-session}
+#| echo: false
+#| message: false
+
+# Load packages
+# Load schedule
+source(here::here("slides/schedule.R"))
+
+if (!requireNamespace("pacman", quietly = TRUE)) install.packages("pacman")
+pacman::p_load(
+    here, 
+    magrittr, janitor,
+    ggpubr, ggdist, ggsci,
+    gt, gtExtras,
+    countdown, 
+    quanteda, # quanteda text processing
+    quanteda.textplots, quanteda.textstats, 
+    quanteda.textmodels, quanteda.sentiment, 
+    ellmer, rollama,
+    easystats, tidyverse
+)
+```
+
+```{r table-schedule}
+#| echo: false 
+
+schedule %>%
+    gt::gt() %>%
+    gt::fmt_markdown(columns = c(Datum, Topic)) %>% 
+    gtExtras::gt_theme_538() %>% 
+    gt::tab_options(
+        table.width = gt::pct(75), 
+        table.font.size = "12px"
+    ) %>%
+    # mark current session
+    gtExtras::gt_highlight_rows(
+        rows = 14,
+        fill = "#C50F3C", 
+        alpha = 0.2,
+        bold_target_only = TRUE,
+        target_col = Topic       
+    ) %>% 
+    # fade out past sessions
+    gt::tab_style(
+        style = cell_text(
+            style = "italic", 
+            color = "grey"),
+        location = cells_body(
+            columns = everything(), 
+            rows = c(2:8, 10:13))
+    )
+```
+
+```{r import-data-silent}
+#| echo: false
+
+chats <- qs::qread(here("local_data/chats.qs"))
+chats_polarity <- qs::qread(here("local_data/chats-sentiment_polarity.qs"))
+chats_valence <- qs::qread(here("local_data/chats-sentiment_valence.qs"))
+chats_vader <- qs::qread(here("local_data/chats-sentiment_vader.qs"))
+chats_sentiment <- chats %>% 
+    left_join(chats_polarity, by = join_by("message_id" == "doc_id")) %>%
+    left_join(chats_valence, by = join_by("message_id" == "doc_id")) %>% 
+    left_join(chats_vader %>% 
+        select(message_id, vader_output, word_scores, compound, pos, neu, neg, but_count), 
+        by = "message_id")
+```
+
+# Agenda {background-image="img/slide_bg-agenda.png"}
+
+1.  [Dictionary-basierte Ansätze](#sentiment-analyis-1)
+2.  [Exkurs: ML & LLM](#sentiment-analyis-2)
+3.  [👥 Group activity](#group-activity)
+
+# Dictionary-basierte Ansätze {#sentiment-analyis-1 background-image="img/slide_bg-example.png"}
+
+LSD15, AFINN, VADER & Co.
+
+## Kurze Rekapitulation
+
+#### Grundidee & verschiedene Umsetzungsmöglichkeiten einer Sentimentanalyse
+
+-   Anwendung von Natural Language Processing (NLP), Textanalyse und Computational Linguistics, um subjektive Informationen aus Texten zu extrahieren bzw. **Meinung, Einstellung oder Emotionen** zu bestimmten Themen oder Entitäten zu bestimmen
+
+-   Verschiede Methoden:
+
+    -   **Regelbasierte Ansätze (Dictionaries)**
+    -   Maschinelles Lernen & Deep Learning
+    -   **LLMs (& KI)**
+
+## Ein Spektrum an Möglichkeiten
+
+#### Beispiele für verschiedene Dictionaries & Pakete zur Umsetzung einer Sentimentanalyse
+
+::: {style="font-size: smaller"}
+-   Definition eines eigenen, "organischen" Dictionaries vs. Off-the-shelf, wie z.B.
+
+    -   **Lexicoder Sentiment Dictionary** [@young2012] ➜ Das Wörterbuch besteht aus 2.858 "negativen" und 1.709 "positiven" Sentiment-Wörtern sowie 2.860 und 1.721 Negationen von negativen bzw. positiven Wörtern.
+    -   **AFINN** [@nielsen2011] ➜ Bewertung von Wörtern mit Sentiment-Werten von -5 (negativ) bis +5 (positiv)
+    -   **Valence Aware Dictionary and sEntiment Reasoner** [@hutto2014] ➜ Sentiment-Tool, dass zusätzlich den Kontext der Wörter mit berücksichtigt und einen Score zwischen -1 (negativ) und +1 (positiv) berechnet
+
+-   Praktische Umsetzung mit `quanteda` [`r glue::glue("v{packageVersion('quanteda')}")`, @benoit2018] bzw. `quanteda.sentiment` \[`r glue::glue("v{packageVersion('quanteda.sentiment')}")`\] oder `vader` \[`r glue::glue("v{packageVersion('vader')}")`, @roehrick\]
+:::
+
+## Erweiterung des `quanteda`verse
+
+#### Vorstellung von `quanteda.sentiment` bzw. enthaltenen Funktionen & Diktionäre
+
+-   **quanteda.sentiment** erweitert das **quanteda** Paket um Funktionen zur Berechnung von Sentiment in Texten. Es bietet zwei Hauptfunktionen:
+
+    -   `textstat_polarity()` ➜ Sentiment basierend auf positiven und negativen Wörtern (z.B. mit **Lexicoder Sentiment Dictionary**).\
+        *Beispiel in Bezug auf politische Diskussionen: „War der Ton der Diskussion positiv oder negativ?“*
+
+    -   `textstat_valence()` ➜ Sentiment als Durchschnitt der Valenzwerte der Wörter in einem Dokument (z.B. **AFINN**).\
+        *Beispiel in Bezug auf politische Diskussionen: „Wie intensiv haben die Teilnehmer:innen ihre Emotionen ausgedrückt?“*
+
+## Unterschied zwischen Polarität & Valenz
+
+#### Praktische Anwedung von `quanteda.sentiment`
+
+::::: columns
+::: {.column width="50%"}
+```{r chats-polarity-create}
+#| eval: false
+chats_polarity <- corp_chats %>% 
+  textstat_polarity(
+    dictionary = data_dictionary_LSD2015) %>% 
+  rename(polarity = sentiment)
+```
+
+```{r chats-polarity-output}
+chats_polarity %>% 
+    head(n = 10)
+```
+:::
+
+::: {.column width="50%"}
+```{r chats-valence-create}
+#| eval: false
+chats_valence <- corp_chats %>% 
+  textstat_valence(
+    dictionary = data_dictionary_AFINN) %>% 
+  rename(valence = sentiment)
+```
+
+```{r chats-valence-output}
+chats_valence %>% 
+    head(n = 10)
+```
+:::
+:::::
+
+## Was VADER anders macht
+
+#### Hintergrundinformationen zu VADER [@hutto2014]
+
+1.  Berücksichtigt **Valenzverschiebungen mit Kontextbewusstsein**
+    -   **Negationen** (*z.B. „nicht gut“ ist weniger positiv als „gut“*).
+    -   **Intensitätsmodifikatoren** (*z.B. „sehr gut“ ist positiver als „gut“*).
+    -   **Kontrastierende Konjunktionen** (*z.B. „aber“ signalisiert einen Stimmungswechsel: „gut, aber nicht großartig“*).
+2.  Berücksichtigt **Interpunktion** (*z.B. „Erstaunlich!!!“ ist positiver als „Erstaunlich“*) und **Großschreibung** (*z.B. „ERSTAUNLICH“ hat ein stärkeres Sentiment als „erstaunlich“*)
+3.  Handhabt **Slang, Emojis und internet-spezifische Sprache** (*z.B. „LOL“, „:)“, oder „omg“*)
+
+## Mehr als nur ein Score
+
+#### Vorstellung der Funktion `vader` \[`r glue::glue("v{packageVersion('vader')}")`, @roehrick\] inklusive Output
+
+-   `get_vader()`➜ Exportiert folgende Metriken:
+    -   `Wortbezogene Sentiment-Scores`: Jedes Wort erhält einen Sentiment-Score, der basierend auf Faktoren wie Interpunktion und Großschreibung angepasst wird.
+    -   `Gesamtwert (Compound score)`: Ein einzelner Wert, der das Gesamtsentiment des gesamten Satzes zusammenfasst.
+    -   `Positive (pos), neutrale (neu) und negative (neg) Scores`: Repräsentieren den Prozentsatz der Wörter, die in jede Sentiment-Kategorie fallen.
+    -   `But count`: Zählt das Vorkommen des Wortes „aber“, was auf mögliche Stimmungswechsel innerhalb des Satzes hinweist.
+
+## Erstellung & Transformation des VADER Outputs
+
+#### Praktische Anwedung von `vader`
+
+```{r vadert-data-create}
+#| eval: false
+chats_vader <- chats %>% 
+  mutate(
+    # Estimate sentiment scores
+    vader_output = map(dialogue, ~vader::get_vader(.x)), 
+    # Extract word-level scores
+    word_scores = map(vader_output, ~ .x[
+        names(.x) != "compound" &
+        names(.x) != "pos" & 
+        names(.x) != "neu" & 
+        names(.x) != "neg" & 
+        names(.x) != "but_count"]),  
+    compound = map_dbl(vader_output, ~ as.numeric(.x["compound"])),
+    pos = map_dbl(vader_output, ~ as.numeric(.x["pos"])),
+    neu = map_dbl(vader_output, ~ as.numeric(.x["neu"])),
+    neg = map_dbl(vader_output, ~ as.numeric(.x["neg"])),
+    but_count = map_dbl(vader_output, ~ as.numeric(.x["but_count"]))
+  )
+```
+
+## Ein Blick auf das Ergebnis
+
+#### Praktische Anwedung von `vader`
+
+```{r vader-data-overview}
+chats_vader %>% 
+    select(message_id, compound:but_count) %>% 
+    head(n = 20)
+```
+
+## Kombinieren & vergleichen
+
+#### Zusammenführung der einzelnen Dictionary-Sentiments mit den Stammdaten
+
+```{r chats-sentiment-create}
+#| eval: false
+chats_sentiment <- chats %>% 
+    left_join(chats_polarity, by = join_by("message_id" == "doc_id")) %>%
+    left_join(chats_valence, by = join_by("message_id" == "doc_id")) %>% 
+    left_join(chats_vader %>% 
+        select(message_id, vader_output, word_scores, compound, pos, neu, neg, but_count), 
+        by = "message_id")
+```
+
+```{r chats-sentiment-distribution}
+chats_sentiment %>% 
+    select(message_id, polarity, valence, compound) %>%
+    datawizard::describe_distribution()
+```
+
+## Neutralität dominiert
+
+#### Vergleich der Verteilungsfunktionen der verschiedenen Sentiments
+
+```{r chats-sentiment-comparison-density-plot}
+#| code-fold: true
+#| code-summary: "Expand for full code"
+
+chats_sentiment %>%
+    pivot_longer(cols = c(polarity, valence, compound), names_to = "sentiment_type", values_to = "sentiment_value") %>%
+    ggplot(aes(x = sentiment_value, fill = sentiment_type)) +
+    geom_density(alpha = 0.5) +
+    facet_wrap(~ sentiment_type, scales = "free") +
+    labs(
+        title = "Density Plot of Polarity, Valence, and Compound Sentiment"
+    ) +
+    theme_pubr() +
+    theme(legend.position = "none")
+```
+
+## Sentiment Scores einer Nachricht
+
+#### Praktische Anwendung des compound scores
+
+```{r chats-sentiment-compound-scores}
+#| code-fold: true
+#| code-summary: "Expand for full code"
+
+chats_vader_sample <- chats_vader %>%
+    filter(message_length < 100) %>%
+    slice_sample(n = 10) 
+
+chats_vader_sample %>%
+    ggplot(aes(x = message_content, y = compound, fill = compound > 0)) +
+        geom_bar(stat = "identity", width = 0.7) +
+        scale_fill_manual(values = c("TRUE" = "blue", "FALSE" = "red"), labels = c("Positive", "Negative")) +
+        labs(
+            title = "Overall Compound Sentiment for Each Sentence",
+            x = "Sentences",
+            y = "Compound Sentiment",
+            fill = "Sentiment") +
+        coord_flip() +  # Flip for easier readability
+        theme_minimal() +
+        theme(
+            axis.text.x = element_text(angle = 45, hjust = 1))  # Label wrapping and adjusting angle
+```
+
+## Anteil an positiven, neutralen und negativen Wörtern
+
+#### Praktische Anwendung der Word-Level Scores
+
+```{r chats-sentiment-word-level-scores}
+#| code-fold: true
+#| code-summary: "Expand for full code"
+
+chats_vader_sample %>% 
+    mutate(
+        pos_pct = pos * 100,
+        neu_pct = neu * 100,
+        neg_pct = neg * 100) %>% 
+  select(message_content, pos_pct, neu_pct, neg_pct) %>% 
+  pivot_longer(
+    cols = c(pos_pct, neu_pct, neg_pct),
+    names_to = "sentiment",
+    values_to = "percentage") %>% 
+  mutate(
+    sentiment = factor(
+        sentiment,
+        levels = c("pos_pct", "neu_pct", "neg_pct"),
+        labels = c("Positive", "Neutral", "Negative"))) %>% 
+  ggplot(aes(x = message_content, y = percentage, fill = sentiment)) +
+    geom_bar(stat = "identity", width = 0.7) +
+    scale_fill_manual(values = c("Positive" = "blue", "Neutral" = "gray", "Negative" = "red")) +
+    labs(
+        title = "Proportion of Positive, Neutral, and Negative Sentiment",
+        x = "Sentences",
+        y = "Percentage",
+        fill = "Sentiment") +
+  coord_flip() +
+  theme_minimal()
+```
+
+# The next level {#sentiment-analyis-2 background-image="img/slide_bg-example.png"}
+
+Machine Learning, Deep Learning & LLMs
+
+## The power of machines
+
+#### Alternativen zu Dictionary-sbasierten Ansätzen
+
+-   **"Traditionelles" Machine Learning (ML)**, z.B. durch Feature extraction (*z.B. TF-IDF*) und Modellierung (*z.B. Naive Bayes, Random Forest, SVM, etc.*)
+
+-   **Deep Learning**, z.B. durch die Nutzung von Wort-Embeddings (*z.B. Word2Vec, GloVe*) oder kontextuellen Embeddings (*z.B. BERT*) und Verwendung von neuronalen Netzwerken wie LSTMs, GRUs oder CNNs.
+
+-   **Large Language Models (LLMs)**, z.B. vortrainierte LLMs (*z.B. GPT, BERT*), die für Sentiment-Aufgaben feinabgestimmt sind und Kontext und Nuancen besser verstehen als traditionelle Ansätze.
+
+<!-- TODO Add information here -->
+
+## The way to use ML in R
+
+#### Hintergrundinformationen zu Tidymodels
+
+![](https://github.com/tidymodels/workshops/blob/main/slides/images/tm-org.png?raw=true){fig-align="center"}
+
+::: notes
+Kernfunktionen und Merkmale
+
+-   Vorverarbeitung: Umgang mit fehlenden Daten, Transformationen und Feature-Engineering.
+-   Modellierung: Vereinfachte Modellspezifikation, -training und -abstimmung.
+-   Bewertung: Bewertung der Modellleistung mit Metriken, Resampling und Visualisierungen.
+-   Workflow: Integration von Vorverarbeitung, Modellierung und Bewertung in reproduzierbare Pipelines.
+-   Kompatibilität: Unterstützt eine Vielzahl von Modellen (z.B. Regression, Klassifikation, Clustering).
+:::
+
+## ML the tidy way
+
+#### Was macht das `tidymodels` Paket besonders?
+
+-   **Integration mit Tidyverse**: Datenorientiertes Design mit menschenlesbarer Syntax.
+-   **Modulares Ökosystem**: Spezialisierte Pakete (z.B. recipes, parsnip, rsample, tune), die nahtlos zusammenarbeiten.
+-   **Reproduzierbarkeit und Transparenz**: Explizite Workflows und Abstimmungsstrategien.
+-   **Umfassende Toolbox**: Kreuzvalidierung, Bootstrapping und erweiterte Diagnosen.
+-   **Benutzerfreundlich**: Intuitiv für R-Nutzer, Balance zwischen Benutzerfreundlichkeit und fortgeschrittener Funktionalität.
+
+## Viele Vorteile, ein zentrales Problem
+
+#### Warum im Seminar kein Fokus auf supervised ML gelegt wird
+
+-   **Zeit**: sorgfältige Vorverarbeitung, (Re-)Modellierung und Fine-Tuning
+-   **Komplexität**: tiefes Verständnis von Algorithmen und Modellierungstechniken erforderlich.
+-   **Fehlende Daten: besonders "supervised" ML benötigt große, saubere und gut annotierte Datensätze**
+
+#### Aber:
+
+-   Code für Umsetzung im **Tutorial zur Sitzung** enhalten
+-   Die Umsetzung orientiert sich an einem **Blogeintrag (inklusive Screencast)** von [Julia Silge](https://juliasilge.com/blog/animal-crossing/) [{{< bi github >}}](https://github.com/juliasilge), der mehr Hintergrundinformationen enthält
+
+## The (not so distant) future
+
+#### Nutzung lokaler LLMs mit [Ollama](https://ollama.com/)
+
+::::: columns
+::: {.column width="25%"}
+![](https://ollama.com/public/ollama.png)
+:::
+
+::: {.column width="75%"}
+-   open-source project that serves as a powerful and user-friendly platform for running LLMs on your local machine.
+-   bridge between the complexities of LLM technology and the desire for an accessible and customizable AI experience.
+-   provides access to a diverse and continuously expanding library of pre-trained LLM models (e.g.[Llama 3,](https://ollama.com/library/llama3) [Phi 3](https://ollama.com/library/phi3), [Mistral](https://ollama.com/library/mistral), [Gemma 2](https://ollama.com/library/gemma2))
+:::
+:::::
+
+## R-Wrapper für LLM APIs
+
+#### Vorstellung von Pakten für die Nutzung (lokaler) LLMs in R
+
+::::: columns
+::: {.column width="25%"}
+![](https://raw.githubusercontent.com/JBGruber/rollama/main/man/figures/logo.png){width="200"}
+:::
+
+::: {.column width="75%"}
+-   the goal of [rollama](https://jbgruber.github.io/rollama/) is to wrap the Ollama API, which allows you to run different LLMs locally and create an experience similar to ChatGPT/OpenAI’s API.
+:::
+:::::
+
+::::: columns
+::: {.column width="25%"}
+![](https://ellmer.tidyverse.org/logo.png){width="200"}
+:::
+
+::: {.column width="75%"}
+-   [ellmer](https://ellmer.tidyverse.org/) makes it easy to use large language models (LLM) from R. It supports a wide variety of LLM providers and implements a rich set of features including streaming outputs, tool/function calling, structured data extraction, and more.
+:::
+:::::
+
+## Chat mit LLMs in R
+
+#### Praktische Anwendung von `ellmer` \[`r glue::glue("v{packageVersion('ellmer')}")`, @wickham2024\]
+
+:::::: {style="font-size: smaller"}
+::::: columns
+::: {.column width="50%"}
+```{r ellmer-demo-1-llama3}
+ellmer_chat_llama <- ellmer::chat_ollama(
+    model = "llama3.2"
+)
+
+ellmer_chat_llama$chat("Why is the sky blue?")
+```
+:::
+
+::: {.column width="50%"}
+```{r ellmer-demo-1-mistral}
+ellmer_chat_mistral <- ellmer::chat_ollama(
+    model = "mistral"
+)
+
+ellmer_chat_mistral$chat("Why is the sky blue?")
+```
+:::
+:::::
+::::::
+
+## Chat mit LLMs in R
+
+#### Praktische Anwendung von `rollama` \[`r glue::glue("v{packageVersion('rollama')}")`, @gruber2024\]
+
+:::::: {style="font-size: smaller"}
+::::: columns
+::: {.column width="50%"}
+```{r ollama-demo-2-llama3_2}
+demo_2_llama3_2 <- rollama::query(
+     "What is the longest five letter word in english?",
+    model = "llama3.2",
+    screen = FALSE,
+    output = "text"
+)
+
+glue::glue(demo_2_llama3_2)
+```
+:::
+
+::: {.column width="50%"}
+```{r ollama-demo-2-mistral}
+demo_2_mistral <- rollama::query(
+    "What is the longest five letter word in english?",
+    model = "mistral",
+    screen = FALSE,
+    output = "text"
+)
+
+glue::glue(demo_2_mistral)
+```
+:::
+:::::
+::::::
+
+## Vorsicht bei der Auswahl eines Modells
+
+#### Modelle unterscheiden sich in ihrer Komplexität & Performance
+
+:::::: {style="font-size: smaller"}
+::::: columns
+::: {.column width="50%"}
+```{r ollama-demo-3-llama3}
+demo_3_llama3_2 <- rollama::query(
+    "Is 9677 a prime number?",
+    model = "llama3.2",
+    screen = FALSE,
+    output = "text"
+)
+
+glue::glue(demo_3_llama3_2)
+```
+:::
+
+::: {.column width="50%"}
+```{r ollama-demo-3-mistral}
+demo_3_mistral <- rollama::query(
+    "Is 9677 a prime number?",
+    model = "mistral",
+    screen = FALSE,
+    output = "text"
+)
+
+glue::glue(demo_3_mistral)
+```
+:::
+:::::
+::::::
+
+## Sentimentscores mit LLM
+
+#### Prompt-Design für einfache Sentimentanalsye via LLM in R
+
+```{r rollama-sentiment-score-estimation}
+# Erstellung einer kleinen Stichprobe
+subsample <- chats_sentiment %>% 
+    filter(message_length > 20 & message_length < 50) %>%
+    slice_sample(n = 10) 
+
+# Process each review using make_query
+queries <- rollama::make_query(
+    text = subsample$message_content,
+    prompt = "Classify the sentiment of the provided text. Provide a sentiment score ranging from -1 (very negative) to 1 (very positive).",
+    template = "{prefix}{text}\n{prompt}",
+    system = "Classify the sentiment of this text. Respond with only a numerical sentiment score.",
+    prefix = "Text: "
+)
+
+# Create sentiment score for different models
+models <- c("llama3.2", "gemma2", "mistral")
+names <- c("llama", "gemma", "mistral")
+for (i in seq_along(models)) {
+  subsample[[names[i]]] <- rollama::query(queries, model = models[i], screen = FALSE, output = "text")
+}
+```
+
+## Die Krux mit dem Sentiment
+
+#### Vergleich der verschiedenen Sentiment Scores
+
+```{r rollama-sentiment-score-comparison}
+subsample %>% 
+  select(message_content, polarity, valence, compound, llama, gemma, mistral) %>% 
+  gt() 
+```
+
+## Und was machen wir jetzt damit?
+
+#### (Weiter-)Arbeit mit dem Sentiments
+
+-   **Validierung**, z.B.
+    -   Qualitativer Vergleich der Scores und dem Inhalt der Nachricht
+    -   Überprüfung besonders "positiver" oder "negativer" Nachrichten
+    -   ggf. Vergleich verschiedener Sentiment Scores
+-   **Weiterführende Analysen**, z.B.
+    -   Verteilung der Sentiment Scores nach Streamer oder Länge der Nachrichten
+    -   **Wichtig: Bezug zur Forschungsfrage!**
+
+## Unterschiedliche Emotionalität des Chats?
+
+#### Beispiel für weiterführende Analyse: Sentiment Scores nach Streamer
+
+```{r chats-sentiemnt-density-by-streamer}
+chats_sentiment %>% 
+    ggpubr::ggdensity(
+        x = "compound",
+        color = "streamer"
+    )
+```
+
+## Und was machen wir jetzt damit?
+
+#### Beispiel für weiterführende Analyse: Sentiment Scores nach Länge der Nachrichten
+
+```{r chats-sentiment-violin-plot}
+#| code-fold: true
+#| code-summary: "Expand for full code"
+
+chats_sentiment %>% 
+    mutate(message_length_fct = case_when( 
+        message_length <= 7 ~ "<= 7 words",
+        message_length > 7 & message_length <= 34 ~ "8 to 34 words",
+        message_length >= 34 ~ "> 34 words")
+     ) %>%
+    group_by(message_length_fct) %>%
+    mutate(n = n()) %>%
+    ggviolin(
+        x = "message_length_fct",
+        y = "compound", 
+        fill = "message_length_fct"
+    ) +
+    stat_summary(
+        fun.data = function(x) data.frame(y = max(x) + 0.15, label = paste0("n=", length(x))),
+        geom = "text",
+        size = 3,
+        color = "black"
+    ) +
+    labs(
+        x = "Länge der Nachricht"
+    )
+```
+
+## Validierung, Validierung, Validierung
+
+#### Überprüfung besonders "positiver" Nachrichten
+
+```{r chats-sentiment-positive-messages-validation}
+chats_sentiment %>% 
+    filter(compound >= 0.95) %>% 
+    arrange(desc(compound)) %>% 
+    select(message_content, compound) %>% 
+    head(n = 3) %>% 
+    gt() %>% gtExtras::gt_theme_538()
+```
+
+## Validierung, Validierung, Validierung
+
+#### Überprüfung besonders "negativer" Nachrichten
+
+```{r chats-sentiment-negative-messages-validation}
+chats_sentiment %>% 
+    filter(compound <= -0.95) %>% 
+    arrange(compound) %>% 
+    select(message_content, compound) %>% 
+    head(n = 3) %>% 
+    gt() %>% gtExtras::gt_theme_538()
+```
+
+## Validierung, Validierung, Validierung
+
+#### Wersendert besonders negative Nachrichten?
+
+```{r chats-sentiment-negative-messages-users}
+chats_sentiment %>% 
+    filter(compound >= 0.95) %>% 
+    sjmisc::frq(
+        user_name, 
+        min.frq = 5,
+        sort.frq = "desc")
+```
+
+## Was nehmen wir mit?
+
+#### Kurze Zusammenfassung der Inhalte zur Sentimentanalyse
+
+-   **Verschiedene Möglichkeiten** (Modelle, Dictionaries, etc), Sentimentanalyse in R durchzuführen
+-   Die verschiedene Möglichkeiten haben **unterschiedliche Vor- und Nachteile**
+-   Allgemein gilt:
+    -   Die Wahl des Modells hängt von der spezifischen Forschungsfrage und den verfügbaren Daten ab
+    -   **Validieren, Validieren, Validieren (& Optimieren!)**
+
+#### Aber: Wie sinnvoll und aussagekräftig sind (unsupervised) Sentimentanalysen in der Praxis?
+
+# Time for questions {background-image="img/slide_bg-question.png"}
+
+# Design your own research (design) {#group-activity background-image="img/slide_bg-group_activity.png"}
+
+👥 Entwicklung Forschungsfrage & methodisches Vorgehen
+
+## Goodbye theory, hello practice!
+
+#### Ein Blick auf die kommenden Sitzungen
+
+-   Abschluss der inhaltlichen Sitzungen ➜ "Projektphase"
+-   **Ziel: Durchführung einer "Mini-Studie"**
+    -   Entwicklung einer **Forschungsfrage (auf Basis der Inhalte der Vorträge)** und
+
+    -   Anwendung **mindestens einer der behandelten Methoden**
+
+    -   auf **bereitgestellte Datensätze**
+
+## Fokus auf Gruppenarbeit
+
+#### Zum Ablauf der nächsten zwei Sitzungen
+
+-   **Fokus** der nächsten Sitzungen liegt auf **eigenständige Gruppenarbeit**
+    -   Grobe Struktur: Kurze Input-Session am Anfang (Fragerunde, Orgaupdates), danach Fokus auf Arbeit in den Gruppen
+-   Nutzt die Möglichkeit für den **Austausch oder Nachfragen**
+    -   Tauscht euch untereinander aus, sprecht mit den Expert:innen der jeweiligen Sitzung!
+    -   Ich stehe währendessen als Ansprechpartner zur Verfügung
+-   Denkt an die **anstehenden Assignments (Präsentationsentwurf & Peer Review)**!
+
+## 🧪 And now … you!
+
+#### Für den Rest der Sitzung: Grupppenarbeit am Projektpräsentationsentwurf
+
+::: callout-important
+#### Wichtige Hinweise
+
+-   Nächste Woche (15.01.) ist die Deadline für den Entwurf der ["Projektpräsentation"](https://chrdrn.github.io/dbd_2024/slides/slides-01.html#/die-projektpr%C3%A4sentation) ( = Grundlage für das Peer Review)
+-   Ablauf wird nächste Woche noch detailliert besprochen!
+:::
+
+::: callout-caution
+#### Arbeitsauftrag
+
+In euren Gruppen ...
+
+-   beginnt die **Arbeit an der Projektpräsentation** (siehe QR-Code nächste Folie)
+-   setzt den **Schwerpunkt** zunächst auf die **Forschungsfrage**, und überlegt danach, wie ihr diese mit Hilfe der vorgestellten Methoden beantworten könnt
+:::
+
+
+
+## Get started!
+
+#### Bitte nutzt die jeweilige Folienvorlage für die Dokumentation euerer Ergebnisse
+
+:::::::: columns
+::: {.column width="30%"}
+{{< qrcode https://t1p.de/qvgky qr1 width=150 height=150 colorDark='#C50F3C' >}} [Gruppe 1](https://t1p.de/qvgky)
+<!-- Deaktivierungslink: https://t1p.de/del.3umyalzazeptxikag1g6 -->
+:::
+
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="30%"}
+{{< qrcode https://t1p.de/690up qr2 width=150 height=150 colorDark='#c22786' >}} [Gruppe 2](https://t1p.de/690up)
+<!-- Deaktivierungslink: https://t1p.de/del.46q8cp8lhqkoiv7pyo4n -->
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="30%"}
+{{< qrcode https://t1p.de/ttuac qr4 width=150 height=150 colorDark='#9159c5' >}} [Gruppe 3](https://t1p.de/ttuac)
+<!-- Deaktivierungslink: https://t1p.de/del.3kx3drn1g2qv0dqi4khj -->
+:::
+::::::::
+
+<br>
+
+:::::::: columns
+::: {.column width="30%"}
+{{< qrcode https://t1p.de/4wpub qr1 width=150 height=150 colorDark='#007de5' >}} [Gruppe 4](https://t1p.de/4wpub)
+<!-- Deaktivierungslink: https://t1p.de/del.g0xurmyju4hz2vrdawy1 -->
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="30%"}
+{{< qrcode https://t1p.de/ugv4u qr2 width=150 height=150 colorDark='#0094de' >}} [Gruppe 5](https://t1p.de/ugv4u)
+<!-- Deaktivierungslink: https://t1p.de/del.dptlfmqtpeg1a73oajbn -->
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="30%"}
+{{< qrcode https://t1p.de/k6ilk qr4 width=150 height=150 colorDark='#00a2b9' >}} [Gruppe 6](https://t1p.de/k6ilk)
+<!-- Deaktivierungslink: https://t1p.de/del.cbse3a8wnghzofn3n4an -->
+:::
+::::::::
+
+# Time for questions, again {background-image="img/slide_bg-question.png"}
+
+# Bis zur nächsten Sitzung! {background-image="img/slide_bg-end_session.png"}
+
+## References
+
+::: {#refs}
+:::
