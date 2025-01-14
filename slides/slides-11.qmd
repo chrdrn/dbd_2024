@@ -87,7 +87,7 @@ Fahrplan für die nächsten Wochen, Github-Copilot, Duplikate
 
 ::: {style="font-size: 20px"}
 | Zeitpunkte | Leistung | Status |
-|-------------------|----------------------------------------|-------|
+|------------------|----------------------------------------------|-------|
 | Block II | **"Themenpräsentation" 📚** | ✅ |
 | bis zum 4.12. | **R-Tutorials abschließen** (Grundlage für Methodenblock) | ✅ |
 | bis zum 15.01. | Erster vollständiger Entwurf **"Projektpräsentation"** **📊** | 🔨 |
