@@ -1,0 +1,25 @@
+---
+title: "Session 11"
+subtitle: "🔨 Project Work"
+bibliography: references_sessions.bib
+csl: ../apa-cv.csl 
+suppress-bibliography: true
+link-citations: false
+citations-hover: false
+---
+
+## Participate
+
+🖥️ [Session 11](/slides/slides-11.html)
+
+## Useful sources
+
+-   [{{< bi github >}} Github-Copliot](https://github.com/features/copilot)
+-   [{{< bi github >}} Github Education](https://github.com/education)
+-   
+
+<br>
+
+::: {style="font-size: 0.875em;"}
+Back to [course schedule](/index.html "Course schedule") ⏎
+:::

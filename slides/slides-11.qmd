@@ -1,0 +1,332 @@
+---
+title: "🔨 Project work"
+subtitle: "Session 11"
+date: 15 01 2025
+date-format: "DD.MM.YYYY"
+bibliography: references_slides.bib
+---
+
+## Seminarplan
+
+```{r setup-slide-session}
+#| echo: false
+#| message: false
+
+# Load packages
+# Load schedule
+source(here::here("slides/schedule.R"))
+
+if (!requireNamespace("pacman", quietly = TRUE)) install.packages("pacman")
+pacman::p_load(
+    here, 
+    magrittr, janitor,
+    ggpubr, ggdist, ggsci,
+    gt, gtExtras,
+    countdown, 
+    quanteda, # quanteda text processing
+    quanteda.textplots, quanteda.textstats, 
+    quanteda.textmodels, quanteda.sentiment, 
+    ellmer, rollama,
+    easystats, tidyverse
+)
+pak::pak("chrdrn/dbdhelpr")
+library(dbdhelpr)
+```
+
+```{r table-schedule}
+#| echo: false 
+schedule %>%
+    gt::gt() %>%
+    gt::fmt_markdown(columns = c(Datum, Topic)) %>% 
+    gtExtras::gt_theme_538() %>% 
+    gt::tab_options(
+        table.width = gt::pct(75), 
+        table.font.size = "12px"
+    ) %>%
+    # mark current session
+    gtExtras::gt_highlight_rows(
+        rows = 16,
+        fill = "#C50F3C", 
+        alpha = 0.2,
+        bold_target_only = TRUE,
+        target_col = Topic       
+    ) %>% 
+    # fade out past sessions
+    gt::tab_style(
+        style = cell_text(
+            style = "italic", 
+            color = "grey"),
+        location = cells_body(
+            columns = everything(), 
+            rows = c(2:14))
+    )
+```
+
+```{r import-data-silent}
+#| echo: false
+
+chat <- qs::qread(here("local_data/chat.qs"))
+chat_hashed <- chat
+```
+
+# Agenda {background-image="img/slide_bg-agenda.png"}
+
+1.  [Organisatorisches](#organisational)
+2.  [Peer Review](#peer-review)
+3.  [👥 Group activity](#group-activity)
+
+# Organisatorisches {#organisational background-image="img/slide_bg-orga.png"}
+
+Fahrplan für die nächsten Wochen, Github-Copilot, Duplikate
+
+## Überblick der nächsten Wochen
+
+#### Fahrplan für die Prüfungsleistungen
+
+<br>
+
+::: {style="font-size: 20px"}
+| Zeitpunkte | Leistung | Status |
+|-------------------|----------------------------------------|-------|
+| Block II | **"Themenpräsentation" 📚** | ✅ |
+| bis zum 4.12. | **R-Tutorials abschließen** (Grundlage für Methodenblock) | ✅ |
+| bis zum 15.01. | Erster vollständiger Entwurf **"Projektpräsentation"** **📊** | 🔨 |
+| vom 16.01. bis zum 21.01. | Ausfüllen der **Peer-Review-Formulare** | 🔨 |
+| vom 22.01 bis 29.01/05.02 | Einarbeitung des Feedback in **"Projektpräsentation"** **📊** |  |
+| 29.01./05.02 | **"Projektpräsentation"** **📊** |  |
+| bis zum 02.03.25 | Abgabe des **Projektberichts** |  |
+:::
+
+## Your Personal Code Assistant
+
+#### Zugriff auf Github Copilot via Github Education
+
+::::: columns
+::: {.column width="30%"}
+![](img/session-11/github-copilot-icon.png){fig-align="center" width="300"}
+:::
+
+::: {.column width="70%"}
+-   [**Github Copilot**](https://github.com/features/copilot) ist ein KI-gestütztes Tool, das beim Schreiben von Code unterstützt.
+-   [**Github Education**](https://github.com/education/students) bietet Zugriff auf Github Copilot für Studierende. Informationen zur Bewerbung gibt es [hier](https://docs.github.com/en/education/explore-the-benefits-of-teaching-and-learning-with-github-education/github-education-for-students/apply-to-github-education-as-a-student).
+-   RStudio erlaubt die Intergration von Github Copilot. Informationen dazu gibt es [hier](https://docs.posit.co/ide/user/ide/guide/tools/copilot.html).
+:::
+:::::
+
+## Erst Normalisierung, danach Erstellung von Hashes
+
+#### Erkennung von (Nah-)Duplikaten mit Hilfe von custom R-Functionen
+
+::::: columns
+::: {.column width="50%"}
+```{r function-normalize-text}
+#| eval: false
+
+# Funktion zur Normalisierung
+dbdhelpr::normalize_text(
+  text,
+  remove_mentions = TRUE,
+  remove_hashtags = TRUE,
+  remove_urls = TRUE,
+  remove_rt = TRUE,
+  remove_punct = TRUE
+)
+```
+:::
+
+::: {.column width="50%"}
+```{r function-hash-text}
+#| eval: false
+
+# Funktion für das Hashing
+dbdhelpr::hash_text(
+  text
+)
+```
+:::
+:::::
+
+```{r functions-documentation}
+#| echo: false
+normalize_text_args <- '[
+    {"Argument": "text", "Description": "A character string to be normalized."},
+    {"Argument": "remove_mentions", "Description": "Logical. If TRUE, mentions (e.g., \\"@username\\") will be removed. Default is TRUE."},
+    {"Argument": "remove_hashtags", "Description": "Logical. If TRUE, hashtags (e.g., #hashtag) will be removed. Default is TRUE."},
+    {"Argument": "remove_urls", "Description": "Logical. If TRUE, URLs (e.g., http://example.com) will be removed. Default is TRUE."},
+    {"Argument": "remove_rt", "Description": "Logical. If TRUE, retweet indicators (e.g., \\"RT :\\") will be removed. Default is TRUE."},
+    {"Argument": "remove_punct", "Description": "Logical. If TRUE, punctuation will be removed. Default is TRUE."}
+]'
+
+normalize_text_args_df <- fromJSON(normalize_text_args, flatten = TRUE)
+
+normalize_text_args_df %>%
+    gt::gt() %>%
+    gt::fmt_markdown(columns = c(Argument, Description)) %>%
+    gtExtras::gt_theme_538() %>%
+    gt::tab_options(
+        table.width = gt::pct(100),
+        table.font.size = "14px"
+    )
+```
+
+## Praktische Anwendung der `dbdhelpr`-Funktionen
+
+#### Beispiel: Normalisierung & Hashing der Chat-Nachrichten
+
+```{r dbdhelper-normalization-hashing}
+#| eval: false
+
+# Installation des Pakets
+remotes::install_github("chrdrn/dbdhelpr")
+
+# Transformation
+chat_hashed <- chat %>% 
+    mutate(
+        message_nrmd = future.apply::future_lapply(message_content, dbdhelpr::normalize_text),
+        message_hash = future.apply::future_lapply(message_nrmd, dbdhelpr::hash_text),
+        across(message_nrmd:message_hash, ~as.character(.))
+    )
+```
+
+```{r}
+# Show output
+chat_hashed %>% 
+    filter(message_length < 50) %>%
+    select(message_content, message_nrmd, message_hash) %>% 
+    slice_sample(n = 5) %>%
+    gt::gt() %>% gtExtras::gt_theme_538()
+```
+
+## ⚠️ Aktualisierte Datenbasis!
+
+#### Re-Upload und Re-Organisation der Daten auf StudON
+
+-   Aktualisierung bzw. neue Version der Basisdatensätze (`chats.qs` & `transcripts.qs`) mit zwei zusätzlichen Variablen
+    -   `..._nrmd` für die normalisierten Chats/Transkripte
+    -   `..._hash` für die gehashten Chats/Transkripte
+-   Kurze Nachfrage:
+    -   (Geplante) Nutzung der `udpipe`/`spacyr`-Daten?
+
+# Peer Review {#peer-review background-image="img/slide_bg-orga.png"}
+
+Hintergrund, Ablaufs & Formular
+
+## Feedback geben (lernen)
+
+#### Kurzer Reminder zum Peer Review der Gruppenpräsentationen
+
+-   **Basierend** auf den **Projektpräsentationsentwürfen**
+
+-   **Peer-Review-Formularen** (Ratingskalen sowie offenen Fragen) für Präsentationen anderer Gruppen **ausfüllen**
+
+-   Gruppen erhalten **zusätzliches Feedback zum eigenen Projekt**, dass für die Präsentation bzw. den Projektbericht verwendet werden kann
+
+-   **Ziele**:
+
+    -   **lernen**, andere Projekte zu bewerten und **konstruktives Feedback** zu geben
+
+    -   **lernen**, **Feedback zu erhalten bzw. zu bewerten** und dieses in die eigene Arbeit einfließen zu lassen
+
+#### Besonderheit: Individuelles Assigment!
+
+## Google Forms
+
+#### Vorstellung & Anforderungen an das Peer Review
+
+:::::: columns
+::: {.column width="25%"}
+[![](https://upload.wikimedia.org/wikipedia/commons/5/5b/Google_Forms_2020_Logo.svg){fig-align="center" width="180"}](https://docs.google.com/forms/d/11lRuS2vyJnh7wNpa2tNozfNO9zea_z1hqGVzqEfPP3g/edit)
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="70%"}
+-   Jede Person gibt für **zwei Gruppen** Feedback ➜ jede Gruppe erhält **fünf Bewertungen**
+-   Am **16.01.** erhält jede Person eine Mail mit dem Link zu den Präsentationen
+-   **Deadline**: **Bis zum 21.01. um 23:59** müssen die Formulare ausgefüllt sein
+-   Am **22.01.** erhalten die Gruppen die Feedbackbögen
+:::
+::::::
+
+<!-- Add content here -->
+
+# Time for questions {background-image="img/slide_bg-question.png"}
+
+# Design your own research {#group-activity background-image="img/slide_bg-group_activity.png"}
+
+👥 Fertigstellung des Projektpräsentationsentwurfs
+
+## 🧪 And now … you!
+
+#### Für den Rest der Sitzung: Grupppenarbeit am Projektpräsentationsentwurf
+
+::: callout-important
+#### Wichtige Hinweise
+
+-   Bitte alle Änderungen an euer Entwurf der ["Projektpräsentation"](https://chrdrn.github.io/dbd_2024/slides/slides-01.html#/die-projektpr%C3%A4sentation) bis **15.01. um 23:59 einfügen**, danach werden die Präsentationen bis zum Ende der Peer-Review-Phase **schreibgeschützt**
+:::
+
+::: callout-caution
+#### Arbeitsauftrag
+
+In euren Gruppen ...
+
+-   Fertigstellung der **Arbeit an der Projektpräsentation** (siehe QR-Code nächste Folie)
+-   Besprechung mit Expert:innen (falls notwendig)
+:::
+
+## Get started!
+
+#### Bitte nutzt die jeweilige Folienvorlage für die Dokumentation euerer Ergebnisse
+
+:::::::: columns
+::: {.column width="30%"}
+{{< qrcode https://t1p.de/qvgky qr1 width=150 height=150 colorDark='#C50F3C' >}} [Gruppe 1](https://t1p.de/qvgky) <!-- Deaktivierungslink: https://t1p.de/del.3umyalzazeptxikag1g6 -->
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="30%"}
+{{< qrcode https://t1p.de/690up qr2 width=150 height=150 colorDark='#c22786' >}} [Gruppe 2](https://t1p.de/690up) <!-- Deaktivierungslink: https://t1p.de/del.46q8cp8lhqkoiv7pyo4n -->
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="30%"}
+{{< qrcode https://t1p.de/ttuac qr4 width=150 height=150 colorDark='#9159c5' >}} [Gruppe 3](https://t1p.de/ttuac) <!-- Deaktivierungslink: https://t1p.de/del.3kx3drn1g2qv0dqi4khj -->
+:::
+::::::::
+
+<br>
+
+:::::::: columns
+::: {.column width="30%"}
+{{< qrcode https://t1p.de/4wpub qr1 width=150 height=150 colorDark='#007de5' >}} [Gruppe 4](https://t1p.de/4wpub) <!-- Deaktivierungslink: https://t1p.de/del.g0xurmyju4hz2vrdawy1 -->
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="30%"}
+{{< qrcode https://t1p.de/ugv4u qr2 width=150 height=150 colorDark='#0094de' >}} [Gruppe 5](https://t1p.de/ugv4u) <!-- Deaktivierungslink: https://t1p.de/del.dptlfmqtpeg1a73oajbn -->
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="30%"}
+{{< qrcode https://t1p.de/k6ilk qr4 width=150 height=150 colorDark='#00a2b9' >}} [Gruppe 6](https://t1p.de/k6ilk) <!-- Deaktivierungslink: https://t1p.de/del.cbse3a8wnghzofn3n4an -->
+:::
+::::::::
+
+# Time for questions, again {background-image="img/slide_bg-question.png"}
+
+# Bis zur nächsten Sitzung! {background-image="img/slide_bg-end_session.png"}
+
+## References {visibility="hidden"}
+
+::: {#refs}
+:::
