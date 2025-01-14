@@ -34,7 +34,7 @@ This page provides an outline of the topics, contents, and assignments for the s
 | \- | \- | 🎄*Christmas Break (No Lecture)* |  |
 | 10 | 08.01.2025 | 🔨 Advanced Method II: Sentiment Analysis | [{{< bi book >}}](/sessions/session-10.html "Session 10"){aria-label="Session 10"} \| [{{< bi file-earmark-slides >}}](/slides/slides-10.html "Slides: Session 10"){aria-label="Slides Session 10"} \| [{{< bi file-earmark-code >}}](/tutorials/tutorial-10.html "Tutorial: Session 10"){aria-label="Tutorial Session 10"} |
 |  | 📂 **Block 5** | **Project Work** |  |
-| 11 | 15.01.2025 | 🔨 Project work |  |
+| 11 | 15.01.2025 | 🔨 Project work | [{{< bi book >}}](/sessions/session-11.html "Session 11"){aria-label="Session 11"} \| [{{< bi file-earmark-slides >}}](/slides/slides-11.html "Slides: Session 11"){aria-label="Slides Session 11"}  |
 | 12 | 22.01.2025 | 🔨 Project work |  |
 | 13 | 29.01.2025 | 📊 Project Presentation (I) |  |
 | 14 | 05.02.2025 | 📊 Project Presentation (II) & 🏁 Evaluation |  |
