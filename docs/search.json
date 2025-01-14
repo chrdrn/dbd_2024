@@ -835,7 +835,7 @@
     "href": "slides/slides-03.html#beispiele-für-tidytuesday",
     "title": "🔨 Working with R",
     "section": "Beispiele für #tidytuesday",
-    "text": "Beispiele für #tidytuesday\n\n\n\n\n;document.getElementById(\"tweet-21720\").innerHTML = tweet[\"html\"];\n\n\n\n;document.getElementById(\"tweet-13944\").innerHTML = tweet[\"html\"];"
+    "text": "Beispiele für #tidytuesday"
   },
   {
     "objectID": "slides/slides-03.html#everything-you-need-in-one-place",
@@ -2163,7 +2163,7 @@
     "href": "slides/slides-11.html#praktische-anwendung-der-dbdhelpr-funktionen",
     "title": "🔨 Project work",
     "section": "Praktische Anwendung der dbdhelpr-Funktionen",
-    "text": "Praktische Anwendung der dbdhelpr-Funktionen\nBeispiel: Normalisierung & Hashing der Chat-Nachrichten\n\n# Installation des Pakets\nremotes::install_github(\"chrdrn/dbdhelpr\")\n\n# Transformation\nchat_hashed &lt;- chat %&gt;% \n    mutate(\n        message_nrmd = future.apply::future_lapply(message_content, dbdhelpr::normalize_text),\n        message_hash = future.apply::future_lapply(message_nrmd, dbdhelpr::hash_text),\n        across(message_nrmd:message_hash, ~as.character(.))\n    )\n\n\n# Show output\nchat_hashed %&gt;% \n    filter(message_length &lt; 50) %&gt;%\n    select(message_content, message_nrmd, message_hash) %&gt;% \n    slice_sample(n = 5) %&gt;%\n    gt::gt() %&gt;% gtExtras::gt_theme_538()\n\n\n\n\n\n\n\nmessage_content\nmessage_nrmd\nmessage_hash\n\n\n\n\nCOOKEDDD\ncookeddd\nf65032a2886b23aaaabdda7a500511bd\n\n\nWW3\nww3\n174b6efa5a5cdf32f9ff6ba63598f861\n\n\nhasL\nhasl\n97492aeb9ba40617aafa8ca340f326f6\n\n\nwho wants to gift me a sub\nwhowantstogiftmeasub\n6ebf2147826edb5081875babad7e99c1\n\n\nWWWWWWW\nwwwwwww\n25c585287821cba0b659c937b1b8635c"
+    "text": "Praktische Anwendung der dbdhelpr-Funktionen\nBeispiel: Normalisierung & Hashing der Chat-Nachrichten\n\n# Installation des Pakets\nremotes::install_github(\"chrdrn/dbdhelpr\")\n\n# Transformation\nchat_hashed &lt;- chat %&gt;% \n    mutate(\n        message_nrmd = future.apply::future_lapply(message_content, dbdhelpr::normalize_text),\n        message_hash = future.apply::future_lapply(message_nrmd, dbdhelpr::hash_text),\n        across(message_nrmd:message_hash, ~as.character(.))\n    )\n\n\n# Show output\nchat_hashed %&gt;% \n    filter(message_length &lt; 50) %&gt;%\n    select(message_content, message_nrmd, message_hash) %&gt;% \n    slice_sample(n = 5) %&gt;%\n    gt::gt() %&gt;% gtExtras::gt_theme_538()\n\n\n\n\n\n\n\nmessage_content\nmessage_nrmd\nmessage_hash\n\n\n\n\nShe was a TREND SETTER\nshewasatrendsetter\ne060f38a5d57ee2038e9f12ce64ba33c\n\n\nICANT\nicant\nf98e1004ff9cff017b629d22563fc1bf\n\n\nVance is sleepr\nvanceissleepr\n42a5444e0536a61ddf0ca9adb100de51\n\n\n@HasanAbi Wife beaters too\nwifebeaterstoo\n78a6bd3c92c0d57cb4dea79e91a8fbe3\n\n\nTIM \"BUILD THE WALZ\" WALZ\ntimbuildthewalzwalz\n5f8f22507e50c03a9905f3538b30ec36"
   },
   {
     "objectID": "slides/slides-11.html#aktualisierte-datenbasis",
