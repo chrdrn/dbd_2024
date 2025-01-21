@@ -1,0 +1,232 @@
+---
+title: "🔨 Project work"
+subtitle: "Session 12"
+date: 22 01 2025
+date-format: "DD.MM.YYYY"
+bibliography: references_slides.bib
+---
+
+## Seminarplan
+
+```{r setup-slide-session}
+#| echo: false
+#| message: false
+
+# Load packages
+# Load schedule
+source(here::here("slides/schedule.R"))
+
+if (!requireNamespace("pacman", quietly = TRUE)) install.packages("pacman")
+pacman::p_load(
+    here, 
+    magrittr, janitor,
+    ggpubr, ggdist, ggsci,
+    gt, gtExtras,
+    countdown, 
+    quanteda, # quanteda text processing
+    quanteda.textplots, quanteda.textstats, 
+    quanteda.textmodels, quanteda.sentiment, 
+    ellmer, rollama,
+    easystats, tidyverse
+)
+pak::pak("chrdrn/dbdhelpr")
+library(dbdhelpr)
+```
+
+```{r table-schedule}
+#| echo: false 
+schedule %>%
+    gt::gt() %>%
+    gt::fmt_markdown(columns = c(Datum, Topic)) %>% 
+    gtExtras::gt_theme_538() %>% 
+    gt::tab_options(
+        table.width = gt::pct(75), 
+        table.font.size = "12px"
+    ) %>%
+    # mark current session
+    gtExtras::gt_highlight_rows(
+        rows = 17,
+        fill = "#C50F3C", 
+        alpha = 0.2,
+        bold_target_only = TRUE,
+        target_col = Topic       
+    ) %>% 
+    # fade out past sessions
+    gt::tab_style(
+        style = cell_text(
+            style = "italic", 
+            color = "grey"),
+        location = cells_body(
+            columns = everything(), 
+            rows = c(2:14, 16))
+    )
+```
+
+```{r import-data-silent}
+#| echo: false
+
+chat <- qs::qread(here("local_data/chat.qs"))
+chat_hashed <- chat
+```
+
+# Agenda {background-image="img/slide_bg-agenda.png"}
+
+1.  [Organisatorisches](#organisational)
+2.  [👥 Group activity](#group-activity)
+
+# Organisatorisches {#organisational background-image="img/slide_bg-orga.png"}
+
+Ausblick, Infos zur Projektpräsentation und Projektarbeit
+
+## Überblick der nächsten Wochen
+
+#### Fahrplan für die Prüfungsleistungen
+
+<br>
+
+::: {style="font-size: 20px"}
+| Zeitpunkte | Leistung | Status |
+|--------------------|-------------------------------------------|-------|
+| Block II | **"Themenpräsentation" 📚** | ✅ |
+| bis zum 4.12. | **R-Tutorials abschließen** (Grundlage für Methodenblock) | ✅ |
+| bis zum 15.01. | Erster vollständiger Entwurf **"Projektpräsentation"** **📊** | ✅ |
+| vom 16.01. bis zum 21.01. | Ausfüllen der **Peer-Review-Formulare** | ✅ |
+| vom 22.01 bis 29.01/05.02 | Einarbeitung des Feedback in **"Projektpräsentation"** **📊** | 🔨 |
+| 29.01./05.02 | **"Projektpräsentation"** **📊** |  |
+| bis zum 02.03.25 | Abgabe des **Projektberichts** |  |
+:::
+
+## Termine für die Präsentation
+
+#### {{<  bi file-earmark-slides >}} Projektpräsentation
+
+::::: columns
+::: {.column width="55%"}
+- zwischen **10 bis 15 Minuten** (inklusive mind. 5 Minuten für Nachfragen), maximal **10 Folien**
+- bietet Möglichkeit für **Problembesprechung, Feedback und Diskussion**
+- Verwendung von **Google Slides Vorlagen**
+:::
+
+::: {.column width="45%"}
+| Gruppe | Termin | Zeitslot      |
+|--------|--------|---------------|
+| 1      | 29.01. | 13:20 - 13:40 |
+| 2      | 29.01. | 13:40 - 14:00 |
+| 3      | 29.01. | 14:00 - 14:20 |
+| 4      | 05.02. | 13:15 - 13:45 |
+| 5      | 05.02  | 13:45 - 14:15 |
+| 6      | 29.01. | 14:20 - 14:40 |
+:::
+:::::
+
+
+## Formale Anforderungen
+
+#### {{< fa file-signature >}} Short Report
+
+::::: columns
+::: {.column width="55%"}
+-   **750 bis 1000 Wörter pro Person**. Bei **Gruppenbericht** skaliert die Anzahl der Wörter mit einem **Faktor von 0,8 pro Person** (z. B. sollte eine Zweiergruppe 1200 bis 1600 Wörter schreiben, eine Dreiergruppe 1800 bis 2400 Wörter).
+-   Alle Analysen sowie der schriftliche Bericht müssen **in RStudio durchgeführt bw. geschrieben** werden und alle Bestandteile des Projekts müssen reproduzierbar sein.
+:::
+
+::: {.column width="45%"}
+| Total                     | 40 pts |
+|---------------------------|--------|
+| *Einführung/Theorie*      | 6 pts  |
+| *Methode*                 | 10 pts |
+| *Ergebnisse*              | 14 pts |
+| *Diskussion + Fazit*      | 6 pts  |
+| *Organization + Formalia* | 4 pts  |
+:::
+:::::
+
+## Quarto-Vorlage
+
+#### {{< fa file-signature >}} Short Report
+
+::::: columns
+::: {.column width="50%"}
+-   Verwendung eines [`quarto-journal`](https://github.com/quarto-journals/)-Templates ([`jasa`](https://github.com/quarto-journals/jasa))
+-   Abgabe des **RStudio-Projektes** sowie der **.pdf-Datei**
+-   RStudio-Vorlage auf [Lehrstuhl-Github](https://github.com/faucommsci/template_seminar_report)
+:::
+
+::: {.column width="50%"}
+[![](img/session-12/screenshot-quarto_journals.png){fig-align="center"}](https://quarto-journals.github.io/jasa/)
+:::
+:::::
+
+# Time for questions {background-image="img/slide_bg-question.png"}
+
+# Design your own research {#group-activity background-image="img/slide_bg-group_activity.png"}
+
+👥 Fertigstellung des Projektpräsentationsentwurfs
+
+## 🧪 And now … you!
+
+#### Für den Rest der Sitzung: Grupppenarbeit am Projektpräsentationsentwurf
+
+::: callout-caution
+#### Arbeitsauftrag
+
+In euren Gruppen ...
+
+-   Fertigstellung der **Arbeit an der Projektpräsentation** (siehe QR-Code nächste Folie) mit Hilfe der Feedbackbögen
+-   Besprechung mit Expert:innen (falls notwendig)
+:::
+
+## Get started!
+
+#### Bitte nutzt die jeweilige Folienvorlage für die Dokumentation euerer Ergebnisse
+
+:::::::: columns
+::: {.column width="30%"}
+{{< qrcode https://t1p.de/qvgky qr1 width=150 height=150 colorDark='#C50F3C' >}} [Gruppe 1](https://t1p.de/qvgky) <!-- Deaktivierungslink: https://t1p.de/del.3umyalzazeptxikag1g6 -->
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="30%"}
+{{< qrcode https://t1p.de/690up qr2 width=150 height=150 colorDark='#c22786' >}} [Gruppe 2](https://t1p.de/690up) <!-- Deaktivierungslink: https://t1p.de/del.46q8cp8lhqkoiv7pyo4n -->
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="30%"}
+{{< qrcode https://t1p.de/ttuac qr4 width=150 height=150 colorDark='#9159c5' >}} [Gruppe 3](https://t1p.de/ttuac) <!-- Deaktivierungslink: https://t1p.de/del.3kx3drn1g2qv0dqi4khj -->
+:::
+::::::::
+
+<br>
+
+:::::::: columns
+::: {.column width="30%"}
+{{< qrcode https://t1p.de/4wpub qr1 width=150 height=150 colorDark='#007de5' >}} [Gruppe 4](https://t1p.de/4wpub) <!-- Deaktivierungslink: https://t1p.de/del.g0xurmyju4hz2vrdawy1 -->
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="30%"}
+{{< qrcode https://t1p.de/ugv4u qr2 width=150 height=150 colorDark='#0094de' >}} [Gruppe 5](https://t1p.de/ugv4u) <!-- Deaktivierungslink: https://t1p.de/del.dptlfmqtpeg1a73oajbn -->
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="30%"}
+{{< qrcode https://t1p.de/k6ilk qr4 width=150 height=150 colorDark='#00a2b9' >}} [Gruppe 6](https://t1p.de/k6ilk) <!-- Deaktivierungslink: https://t1p.de/del.cbse3a8wnghzofn3n4an -->
+:::
+::::::::
+
+# Time for questions, again {background-image="img/slide_bg-question.png"}
+
+# Bis zur nächsten Sitzung! {background-image="img/slide_bg-end_session.png"}
+
+## References {visibility="hidden"}
+
+::: {#refs}
+:::

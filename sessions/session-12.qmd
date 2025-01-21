@@ -1,0 +1,26 @@
+---
+title: "Session 12"
+subtitle: "🔨 Project Work"
+bibliography: references_sessions.bib
+csl: ../apa-cv.csl 
+suppress-bibliography: true
+link-citations: false
+citations-hover: false
+---
+
+## Participate
+
+🖥️ [Session 12](/slides/slides-12.html)
+
+## Useful sources
+
+📖 Information about [Quarto Journal Formats](https://quarto.org/docs/journals/formats.html)
+
+{{< fa brands github >}} Organization [`quarto-journals`](https://github.com/quarto-journals/) 
+   
+
+<br>
+
+::: {style="font-size: 0.875em;"}
+Back to [course schedule](/index.html "Course schedule") ⏎
+:::
