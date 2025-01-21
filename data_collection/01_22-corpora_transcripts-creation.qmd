@@ -38,7 +38,7 @@ transcripts <- qs::qread(here("local_data/transcripts-debates_full.qs"))
 transcripts_corpora <- list()
 
 # Create corpus
-transcripts_corpora$corp <- transcripts$correct %>% 
+transcripts_corpora$corp <- transcripts$hashed %>% 
     quanteda::corpus(
         docid_field = "id_sequence", 
         text_field = "dialogue"

@@ -39,7 +39,7 @@ chat_corpora <- qs::qread(here("local_data/chat-corpora_full.qs"))
 chat_corpora <- list()
 
 # Create corpus
-chat_corpora$corp <- chats$correct %>% 
+chat_corpora$corp <- chat$hashed %>% 
     quanteda::corpus(
         docid_field = "message_id", 
         text_field = "message_content"
@@ -64,7 +64,7 @@ chat_corpora$dfm <- chat_corpora$toks %>%
 # Load udpipe model
 udmodel_english <- udpipe::udpipe_load_model(file = here("models/english-ewt-ud-2.5-191206.udpipe"))
 
-chat_corpora$udpipe <- chat$correct %>% 
+chat_corpora$udpipe <- chat$hashed %>% 
   rename(
     doc_id = message_id,
     text = message_content
