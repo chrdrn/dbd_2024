@@ -15,4 +15,8 @@ His work focuses on computational methods, especially Text as Data Approaches an
 | Wednesday 15:30 - 16:30 | FG 2.031 |
 
 
-<!-- TODO Add Emma as teaching assistant (if ok) -->
+## Teaching Assistants
+
+[**Emma Leuner**](https://www.kowi.rw.fau.de/person/emma-leuner/) (she/her) is a Student Assistant at the [Assistant Professorship of Communication Science](https://www.kowi.rw.fau.de/) at [Friedrich-Alexander-Universität (FAU) Erlangen-Nürnberg](https://www.fau.de/).
+
+Her responsibilities include reviewing and selecting relevant scientific papers for course literature, compiling, processing, and refining various types of behavioral data (e.g., chat logs, video transcripts), and performing exploratory analyses of the datasets.
