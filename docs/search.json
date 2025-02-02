@@ -2207,86 +2207,79 @@
   {
     "objectID": "slides/slides-14.html#seminarplan",
     "href": "slides/slides-14.html#seminarplan",
-    "title": "🔨 Project work",
+    "title": "Final Session",
     "section": "Seminarplan",
-    "text": "Seminarplan"
+    "text": "Seminarplan\n\n\n\n\n\n\n\n\nSession\nDatum\nTopic\nPresenter\n\n\n\n\n\n📂 Block 1\nIntroduction\n\n\n\n1\n23.10.2024\nKick-Off\nChristoph Adrian\n\n\n2\n30.10.2024\nDBD: Overview & Introduction\nChristoph Adrian\n\n\n3\n06.11.2024\n🔨 Introduction to working with R\nChristoph Adrian\n\n\n\n📂 Block 2\nTheoretical Background: Twitch & TV Election Debates\n\n\n\n4\n13.11.2024\n📚 Twitch-Nutzung im Fokus\nStudent groups\n\n\n5\n20.11.2024\n📚 (Wirkungs-)Effekte von Twitch & TV-Debatten\nStudent groups\n\n\n6\n27.11.2024\n📚 Politische Debatten & Social Media\nStudent groups\n\n\n\n📂 Block 3\nMethod: Natural Language Processing\n\n\n\n7\n04.12.2024\n🔨 Text as data I: Introduction\nChristoph Adrian\n\n\n8\n11.12.2024\n🔨 Text as data II: Advanced Methods\nChristoph Adrian\n\n\n9\n18.12.2024\n🔨 Advanced Method I: Topic Modeling\nChristoph Adrian\n\n\n\nNo lecture\n🎄Christmas Break\n\n\n\n10\n08.01.2025\n🔨 Advanced Method II: Machine Learning\nChristoph Adrian\n\n\n\n📂 Block 4\nProject Work\n\n\n\n11\n15.01.2025\n🔨 Project work\nStudent groups\n\n\n12\n22.01.2025\n🔨 Project work\nStudent groups\n\n\n13\n29.01.2025\n📊 Project Presentation I\nStudent groups\n\n\n14\n05.02.2025\n📊 Project Presentation & 🏁 Evaluation\nStudentds & Christoph Adrian"
+  },
+  {
+    "objectID": "slides/slides-14.html#job-offer-we-want-you",
+    "href": "slides/slides-14.html#job-offer-we-want-you",
+    "title": "Final Session",
+    "section": "Job offer: We want you!",
+    "text": "Job offer: We want you!\nStudent assistants for a DFG-funded, European research project!\n\n\nMore info? Click here"
+  },
+  {
+    "objectID": "slides/slides-14.html#job-offer-we-want-you-1",
+    "href": "slides/slides-14.html#job-offer-we-want-you-1",
+    "title": "Final Session",
+    "section": "Job offer: We want you!",
+    "text": "Job offer: We want you!\nStudent assistants for a DFG-funded, European research project!\n\n\n\n\n\n\nMore info? Click here"
   },
   {
     "objectID": "slides/slides-14.html#überblick-der-nächsten-wochen",
     "href": "slides/slides-14.html#überblick-der-nächsten-wochen",
-    "title": "🔨 Project work",
+    "title": "Final Session",
     "section": "Überblick der nächsten Wochen",
-    "text": "Überblick der nächsten Wochen\nFahrplan für die Prüfungsleistungen\n\n\n\n\n\n\n\n\n\n\nZeitpunkte\nLeistung\nStatus\n\n\n\n\nBlock II\n“Themenpräsentation” 📚\n✅\n\n\nbis zum 4.12.\nR-Tutorials abschließen (Grundlage für Methodenblock)\n✅\n\n\nbis zum 15.01.\nErster vollständiger Entwurf “Projektpräsentation” 📊\n✅\n\n\nvom 16.01. bis zum 21.01.\nAusfüllen der Peer-Review-Formulare\n✅\n\n\nvom 22.01 bis 29.01/05.02\nEinarbeitung des Feedback in “Projektpräsentation” 📊\n🔨\n\n\n29.01./05.02\n“Projektpräsentation” 📊\n\n\n\nbis zum 02.03.25\nAbgabe des Projektberichts"
-  },
-  {
-    "objectID": "slides/slides-14.html#termine-für-die-präsentation",
-    "href": "slides/slides-14.html#termine-für-die-präsentation",
-    "title": "🔨 Project work",
-    "section": "Termine für die Präsentation",
-    "text": "Termine für die Präsentation\n Projektpräsentation\n\n\n\nzwischen 10 bis 15 Minuten (inklusive mind. 5 Minuten für Nachfragen), maximal 10 Folien\nbietet Möglichkeit für Problembesprechung, Feedback und Diskussion\nVerwendung von Google Slides Vorlagen\n\n\n\n\n\nGruppe\nTermin\nZeitslot\n\n\n\n\n1\n29.01.\n13:20 - 13:40\n\n\n2\n29.01.\n13:40 - 14:00\n\n\n3\n29.01.\n14:00 - 14:20\n\n\n4\n05.02.\n13:15 - 13:45\n\n\n5\n05.02\n13:45 - 14:15\n\n\n6\n29.01.\n14:20 - 14:40"
+    "text": "Überblick der nächsten Wochen\nFahrplan für die Prüfungsleistungen\n\n\n\n\n\n\n\n\n\n\nZeitpunkte\nLeistung\nStatus\n\n\n\n\nBlock II\n“Themenpräsentation” 📚\n✅\n\n\nbis zum 4.12.\nR-Tutorials abschließen (Grundlage für Methodenblock)\n✅\n\n\nbis zum 15.01.\nErster vollständiger Entwurf “Projektpräsentation” 📊\n✅\n\n\nvom 16.01. bis zum 21.01.\nAusfüllen der Peer-Review-Formulare\n✅\n\n\nvom 22.01 bis 29.01/05.02\nEinarbeitung des Feedback in “Projektpräsentation” 📊\n✅\n\n\n29.01./05.02\n“Projektpräsentation” 📊\n✅\n\n\nbis zum 02.03.25\nAbgabe des Projektberichts\n🔨"
   },
   {
     "objectID": "slides/slides-14.html#formale-anforderungen",
     "href": "slides/slides-14.html#formale-anforderungen",
-    "title": "🔨 Project work",
+    "title": "Final Session",
     "section": "Formale Anforderungen",
     "text": "Formale Anforderungen\n Short Report\n\n\n\n750 bis 1000 Wörter pro Person. Bei Gruppenbericht skaliert die Anzahl der Wörter mit einem Faktor von 0,8 pro Person (z. B. sollte eine Zweiergruppe 1200 bis 1600 Wörter schreiben, eine Dreiergruppe 1800 bis 2400 Wörter).\nAlle Analysen sowie der schriftliche Bericht müssen in RStudio durchgeführt bw. geschrieben werden und alle Bestandteile des Projekts müssen reproduzierbar sein.\n\n\n\n\n\nTotal\n40 pts\n\n\n\n\nEinführung/Theorie\n6 pts\n\n\nMethode\n10 pts\n\n\nErgebnisse\n14 pts\n\n\nDiskussion + Fazit\n6 pts\n\n\nOrganization + Formalia\n4 pts"
   },
   {
     "objectID": "slides/slides-14.html#quarto-vorlage",
     "href": "slides/slides-14.html#quarto-vorlage",
-    "title": "🔨 Project work",
+    "title": "Final Session",
     "section": "Quarto-Vorlage",
     "text": "Quarto-Vorlage\n Short Report\n\n\n\nVerwendung eines quarto-journal-Templates (jasa)\nAbgabe des RStudio-Projektes sowie der .pdf-Datei\nRStudio-Vorlage auf Lehrstuhl-Github"
   },
   {
     "objectID": "slides/slides-14.html#betreuung-und-veranstaltungskonzept",
     "href": "slides/slides-14.html#betreuung-und-veranstaltungskonzept",
-    "title": "🔨 Project work",
+    "title": "Final Session",
     "section": "Betreuung und Veranstaltungskonzept",
     "text": "Betreuung und Veranstaltungskonzept\nFAU Lehrevaluation 1️⃣ | 5️⃣\n\n\nWie hätte der Stoff verständlicher dargestellt werden können?\nProbleme beim bestimmten Inhalten oder spezifische Themen?"
   },
   {
     "objectID": "slides/slides-14.html#interaktivität-und-lernstandsüberprüfung",
     "href": "slides/slides-14.html#interaktivität-und-lernstandsüberprüfung",
-    "title": "🔨 Project work",
+    "title": "Final Session",
     "section": "Interaktivität und Lernstandsüberprüfung",
     "text": "Interaktivität und Lernstandsüberprüfung\nFAU Lehrevaluation 2️⃣ | 5️⃣\n\n\nIdee(n) für Lernstandsüberprüfung?\n\n\nz.B. Praktische R-Übungen?"
   },
   {
     "objectID": "slides/slides-14.html#forschungs--und-praxisbezug",
     "href": "slides/slides-14.html#forschungs--und-praxisbezug",
-    "title": "🔨 Project work",
+    "title": "Final Session",
     "section": "Forschungs- und Praxisbezug",
     "text": "Forschungs- und Praxisbezug\nFAU Lehrevaluation 3️⃣ | 5️⃣\n\n\nWie war die Arbeit mit R?"
   },
   {
     "objectID": "slides/slides-14.html#schwierigkeit-und-umfang",
     "href": "slides/slides-14.html#schwierigkeit-und-umfang",
-    "title": "🔨 Project work",
+    "title": "Final Session",
     "section": "Schwierigkeit und Umfang",
     "text": "Schwierigkeit und Umfang\nFAU Lehrevaluation 4️⃣ | 5️⃣\n\n\nWelche Hinweise (mit Blick auf das Vorwissen) wären hilfreich gewesen?\n\n\n\nEmpirisches Arbeiten? Coding? …"
   },
   {
     "objectID": "slides/slides-14.html#globale-veranstaltungsbeurteilung",
     "href": "slides/slides-14.html#globale-veranstaltungsbeurteilung",
-    "title": "🔨 Project work",
+    "title": "Final Session",
     "section": "Globale Veranstaltungsbeurteilung",
     "text": "Globale Veranstaltungsbeurteilung\nFAU Lehrevaluation 5️⃣ | 5️⃣\n\n\nDanke für das Feedback! Haben Sie noch weitere Anmerkungen?"
-  },
-  {
-    "objectID": "slides/slides-14.html#and-now-you",
-    "href": "slides/slides-14.html#and-now-you",
-    "title": "🔨 Project work",
-    "section": "🧪 And now … you!",
-    "text": "🧪 And now … you!\nFür den Rest der Sitzung: Grupppenarbeit am Projektpräsentationsentwurf\n\n\n\n\n\n\nArbeitsauftrag\n\n\nIn euren Gruppen …\n\nFertigstellung der Arbeit an der Projektpräsentation (siehe QR-Code nächste Folie) mit Hilfe der Feedbackbögen\nBesprechung mit Expert:innen (falls notwendig)"
-  },
-  {
-    "objectID": "slides/slides-14.html#get-started",
-    "href": "slides/slides-14.html#get-started",
-    "title": "🔨 Project work",
-    "section": "Get started!",
-    "text": "Get started!\nBitte nutzt die jeweilige Folienvorlage für die Dokumentation euerer Ergebnisse\n\n\n\n\n     Gruppe 1 \n\n\n\n\n\n     Gruppe 2 \n\n\n\n\n\n     Gruppe 3 \n\n\n\n\n\n\n     Gruppe 4 \n\n\n\n\n\n     Gruppe 5 \n\n\n\n\n\n     Gruppe 6"
   },
   {
     "objectID": "slides/slides-03.html#seminarplan",
