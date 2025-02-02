@@ -37,7 +37,7 @@ This page provides an outline of the topics, contents, and assignments for the s
 | 11 | 15.01.2025 | 🔨 Project work | [{{< bi book >}}](/sessions/session-11.html "Session 11"){aria-label="Session 11"} \| [{{< bi file-earmark-slides >}}](/slides/slides-11.html "Slides: Session 11"){aria-label="Slides Session 11"}  |
 | 12 | 22.01.2025 | 🔨 Project work | [{{< bi book >}}](/sessions/session-12.html "Session 12"){aria-label="Session 12"} \| [{{< bi file-earmark-slides >}}](/slides/slides-12.html "Slides: Session 12"){aria-label="Slides Session 12"}  |
 | 13 | 29.01.2025 | 📊 Project Presentation (I) |  |
-| 14 | 05.02.2025 | 📊 Project Presentation (II) & 🏁 Evaluation |  |
+| 14 | 05.02.2025 | 📊 Project Presentation (II) & 🏁 Evaluation | [{{< bi file-earmark-slides >}}](/slides/slides-14.html "Slides: Session 14"){aria-label="Slides Session 14"} |
 
 : {tbl-colwidths="\[5,10,60,25 \]"}
 
