@@ -112,13 +112,13 @@ schedule_json <- '[
         "Session": "13",
         "Datum": "29.01.2025",
         "Topic": "📊 Project Presentation I",
-        "Presenter": "Student groups (TBD)"
+        "Presenter": "Student groups"
     },
     {
         "Session": "14",
         "Datum": "05.02.2025",
         "Topic": "📊 Project Presentation & 🏁 Evaluation",
-        "Presenter": "Studentds (TBD) & Christoph Adrian"
+        "Presenter": "Studentds & Christoph Adrian"
     }
 ]'
 
