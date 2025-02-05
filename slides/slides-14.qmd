@@ -98,7 +98,7 @@ More info? Click [here](https://www.kowi.rw.fau.de/team/jobs/wissenschaftliche-h
 
 ::: {style="font-size: 20px"}
 | Zeitpunkte | Leistung | Status |
-|-------------------|------------------------------------------|--------|
+|-----------------|----------------------------------------|---------------|
 | Block II | **"Themenpräsentation" 📚** | ✅ |
 | bis zum 4.12. | **R-Tutorials abschließen** (Grundlage für Methodenblock) | ✅ |
 | bis zum 15.01. | Erster vollständiger Entwurf **"Projektpräsentation"** **📊** | ✅ |
@@ -199,6 +199,16 @@ z.B. Praktische R-Übungen?
 ::: notes
 Danke für das Feedback! Haben Sie noch weitere Anmerkungen?
 :::
+
+## Lernziele
+
+#### Die Studierenden werden ...
+
+-   *einen **Überblick über die zentralen Möglichkeiten von DBD** und die damit verbundenen **Herausforderungen** bei der Datenerhebung und -aufbereitung bekommen* ✅
+-   lernen die **Stärken und Schwächen** verschiedener **Methoden zur Erhebung von DBD** bewerten ✅
+-   *zentrale Anforderungen an **Datenschutz, Forschungsethik und Datenqualität** kennen und verstehen lernen* ✅
+-   zentrale sozialwissenschaftliche **Methoden zur Analyse von DBD kennenlernen** ✅
+-   das Wissen über DBD, Statistik und Datenanalyse in **eigenen kleinen Projekten** zu üben und anzuwenden (✅)
 
 # (Last) Time for questions {background-image="img/slide_bg-question.png"}
 
